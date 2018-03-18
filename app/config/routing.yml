@@ -1,0 +1,8 @@
+souk_el_medina_pidev:
+    resource: "@SoukElMedinaPidevBundle/Resources/config/routing.yml"
+    prefix:   /
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

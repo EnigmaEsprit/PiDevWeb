@@ -1,0 +1,47 @@
+souk_el_medina_pidev_homepage:
+    path:     /
+    defaults: { _controller: SoukElMedinaPidevBundle:Default:index }
+souk_el_medina_pidev_homepage_Admin:
+    path:     /admin/
+    defaults: { _controller: SoukElMedinaPidevBundle:Default:indexAdmin }
+souk_el_medina_pidev_homepage_Client:
+    path:     /client/
+    defaults: { _controller: SoukElMedinaPidevBundle:Default:indexClient }
+souk_el_medina_pidev_homepage_Vendeur:
+    path:     /vendeur/
+    defaults: { _controller: SoukElMedinaPidevBundle:Default:indexVendeur }
+#souk_el_medina_pidev_login:
+#    path:     /login
+#    defaults: { _controller: SoukElMedinaPidevBundle:Login:Login }
+
+souk_el_medina_pidev_registered:
+    path:     /registered
+    defaults: { _controller: SoukElMedinaPidevBundle:Login:registered }
+
+souk_el_medina_pidev_contact:
+    path:     /contact
+    defaults: { _controller: SoukElMedinaPidevBundle:Contact:contact}
+
+souk_el_medina_pidev_faq:
+    path:     /faq
+    defaults: { _controller: SoukElMedinaPidevBundle:faq:faq }
+
+souk_el_medina_pidev_panier:
+    path:     /panier
+    defaults: { _controller: SoukElMedinaPidevBundle:Commande:panier }
+
+souk_el_medina_pidev_produit:
+    path:     /produit
+    defaults: { _controller: SoukElMedinaPidevBundle:Produit:produit }
+
+souk_el_medina_pidev_groceries:
+    path:     /groceries
+    defaults: { _controller: SoukElMedinaPidevBundle:Categorie:groceries }
+
+souk_el_medina_pidev_beverages:
+    path:     /beverages
+    defaults: { _controller: SoukElMedinaPidevBundle:Categorie:beverages }
+souk_el_medina_pidev_detail:
+    path:     /detail
+    defaults: { _controller: SoukElMedinaPidevBundle:Produit:detail }
+
