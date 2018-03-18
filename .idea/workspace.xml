@@ -2,60 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97942a8e-6622-4003-9c8a-a3f3572f4747" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/CommentairesBundle/Controller/DefaultController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/CommentairesBundle/Resources/config/routing.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/CommentairesBundle/Resources/config/services.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/CommentairesBundle/Resources/views/Default/index.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/CommentairesBundle/SoukElMedinaCommentairesBundle.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Controller/DefaultController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Resources/config/routing.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Resources/config/services.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Resources/views/Default/index.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/SoukElMedinaDecouverteBundle.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/DefaultController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/services.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/Default/index.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/SoukElMedinaEvenementBundle.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/MagasinsBundle/Controller/DefaultController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/MagasinsBundle/Resources/config/routing.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/MagasinsBundle/Resources/config/services.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/MagasinsBundle/Resources/views/Default/index.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/MagasinsBundle/SoukElMedinaMagasinsBundle.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Controller/DefaultController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Resources/config/routing.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Resources/config/services.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Resources/views/Default/index.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/SoukElMedinaPanierBundle.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Controller/DefaultController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Resources/config/routing.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Resources/config/services.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Resources/views/Default/index.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/SoukElMedinaProduitBundle.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/DefaultController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/config/routing.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/config/services.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/Default/index.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/SoukElMedinaPromotionBundle.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/Controller/DefaultController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/Resources/config/routing.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/Resources/config/services.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/Resources/views/Default/index.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/SoukElMedinaReclamationBundle.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tests/SoukElMedinaCommentairesBundle/Controller/DefaultControllerTest.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tests/SoukElMedinaDecouverteBundle/Controller/DefaultControllerTest.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tests/SoukElMedinaEvenementBundle/Controller/DefaultControllerTest.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tests/SoukElMedinaMagasinsBundle/Controller/DefaultControllerTest.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tests/SoukElMedinaPanierBundle/Controller/DefaultControllerTest.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tests/SoukElMedinaProduitBundle/Controller/DefaultControllerTest.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tests/SoukElMedinaPromotionBundle/Controller/DefaultControllerTest.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/tests/SoukElMedinaReclamationBundle/Controller/DefaultControllerTest.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
+      <change beforePath="$PROJECT_DIR$/web/images/log.png" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -109,7 +58,7 @@
         <entry file="file://$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
-              <caret line="43" column="73" lean-forward="false" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
+              <caret line="43" column="49" lean-forward="false" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -286,7 +235,7 @@
       <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="952" />
     <option name="width" value="976" />
     <option name="height" value="1048" />
@@ -377,15 +326,15 @@
       <workItem from="1521049765640" duration="32000000" />
       <workItem from="1521144152126" duration="10927000" />
       <workItem from="1521366089298" duration="23101000" />
-      <workItem from="1521392435532" duration="104000" />
+      <workItem from="1521392435532" duration="565000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90005000" />
+    <option name="totallyTimeSpent" value="90466000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1058" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32330826" sideWeight="0.4869762" order="1" side_tool="false" content_ui="combo" />
@@ -788,7 +737,7 @@
     <entry file="file://$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
-          <caret line="43" column="73" lean-forward="false" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
+          <caret line="43" column="49" lean-forward="false" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
           <folding />
         </state>
       </provider>
