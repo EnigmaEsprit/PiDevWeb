@@ -1,0 +1,4 @@
+services:
+#    souk_el_medina_reclamation.example:
+#        class: SoukElMedina\ReclamationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

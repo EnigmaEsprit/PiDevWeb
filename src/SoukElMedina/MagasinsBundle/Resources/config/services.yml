@@ -1,0 +1,4 @@
+services:
+#    souk_el_medina_magasins.example:
+#        class: SoukElMedina\MagasinsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

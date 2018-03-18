@@ -1,3 +1,35 @@
+souk_el_medina_reclamation:
+    resource: "@SoukElMedinaReclamationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+souk_el_medina_produit:
+    resource: "@SoukElMedinaProduitBundle/Resources/config/routing.yml"
+    prefix:   /
+
+souk_el_medina_panier:
+    resource: "@SoukElMedinaPanierBundle/Resources/config/routing.yml"
+    prefix:   /
+
+souk_el_medina_magasins:
+    resource: "@SoukElMedinaMagasinsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+souk_el_medina_decouverte:
+    resource: "@SoukElMedinaDecouverteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+souk_el_medina_commentaires:
+    resource: "@SoukElMedinaCommentairesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+souk_el_medina_promotion:
+    resource: "@SoukElMedinaPromotionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+souk_el_medina_evenement:
+    resource: "@SoukElMedinaEvenementBundle/Resources/config/routing.yml"
+    prefix:   /
+
 souk_el_medina_pidev:
     resource: "@SoukElMedinaPidevBundle/Resources/config/routing.yml"
     prefix:   /

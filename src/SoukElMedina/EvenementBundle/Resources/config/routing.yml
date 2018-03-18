@@ -1,0 +1,3 @@
+souk_el_medina_evenement_homepage:
+    path:     /
+    defaults: { _controller: SoukElMedinaEvenementBundle:Default:index }

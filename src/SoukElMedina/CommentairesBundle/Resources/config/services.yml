@@ -1,0 +1,4 @@
+services:
+#    souk_el_medina_commentaires.example:
+#        class: SoukElMedina\CommentairesBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

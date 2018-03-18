@@ -18,7 +18,14 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new SoukElMedina\PidevBundle\SoukElMedinaPidevBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-
+            new SoukElMedina\EvenementBundle\SoukElMedinaEvenementBundle(),
+            new SoukElMedina\PromotionBundle\SoukElMedinaPromotionBundle(),
+            new SoukElMedina\CommentairesBundle\SoukElMedinaCommentairesBundle(),
+            new SoukElMedina\DecouverteBundle\SoukElMedinaDecouverteBundle(),
+            new SoukElMedina\MagasinsBundle\SoukElMedinaMagasinsBundle(),
+            new SoukElMedina\PanierBundle\SoukElMedinaPanierBundle(),
+            new SoukElMedina\ProduitBundle\SoukElMedinaProduitBundle(),
+            new SoukElMedina\ReclamationBundle\SoukElMedinaReclamationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

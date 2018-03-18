@@ -1,0 +1,3 @@
+souk_el_medina_decouverte_homepage:
+    path:     /
+    defaults: { _controller: SoukElMedinaDecouverteBundle:Default:index }

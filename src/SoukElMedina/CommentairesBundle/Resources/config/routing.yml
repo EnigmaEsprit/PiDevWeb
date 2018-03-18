@@ -1,0 +1,3 @@
+souk_el_medina_commentaires_homepage:
+    path:     /
+    defaults: { _controller: SoukElMedinaCommentairesBundle:Default:index }
