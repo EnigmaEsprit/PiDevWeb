@@ -26,7 +26,7 @@ class Produits
      *
      * @ORM\Column(name="referenceProduit", type="integer", nullable=false)
      */
-    private $referenceproduit = '0';
+    private $referenceproduit;
 
     /**
      * @var string
@@ -61,14 +61,14 @@ class Produits
      *
      * @ORM\Column(name="active", type="boolean", nullable=false)
      */
-    private $active = '0';
+    private $active;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="idpromotion", type="integer", nullable=false)
      */
-    private $idpromotion = '0';
+    private $idpromotion;
 
     /**
      * @var string
