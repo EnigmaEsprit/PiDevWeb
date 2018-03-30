@@ -176,7 +176,7 @@
                  var name = $("#search").val();
                  $.ajax({
                      type:'GET',
-                     url: Routing.generate('evenements_search_ajax_INC', {name: name}),
+                     url: Routing.generate('evenements_search_ajax_Contact', {name: name}),
                      success:function(data){
                          var user = JSON.parse(data);
                          if (user.length > 0 ){
@@ -206,27 +206,20 @@
                                  result=result+"<div class='description' style='display:block;clear:both;font-size:11px;color:#84888f'>";
                                  result=result+ "<div class='row' style='margin-left:-15px;margin-right:-15px'>";
                                  result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
-                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'a90cc''></i> Du "+value.date+" au "+value.datefin+"</p>";
+                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'a90cc''></i> Nom & Prenomde Magasinier: "+value.iduser.nom+"   "+value.iduser.prenom+"</p>";
                                  result=result+"</div>";
                                  result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
-                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='content:'';color:#f2812f;width:15px;height:15px'></i>"+value.lieu+"</p>";
+                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='content:'';color:#f2812f;width:15px;height:15px'></i> Email(Vendeur):"+value.iduser.email+"</p>";
                                  result=result+"</div>";
-                                 result=result+"</div>";
-                                 result=result+"<div class='row'style='margin-left:-15px;margin-right:-15px'>";
                                  result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
-                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'\a90cc''></i> "+value.nombredeplaces+"Place Totale</p>";
+                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'\a90cc''></i> N° de telephone: "+value.iduser.numerodutelephone+"</p>";
                                  result=result+"</div>";
                                  result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
-                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='content:'';color:#f2812f;width:15px;height:15px'></i> "+value.nombredesplacesrestante+" Place Disponible</p>";
+                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='color:#f2812f;width:15px;height:15px'></i> Cantact Magasin: "+value.contactmagasin+" </p>";
                                  result=result+"</div>";
                                  result=result+"</div>";
-                                 result=result+"<div class=' col-lg-3 col-md-12' style='margin-top:0px;text-align:center;padding:30px;border:1px solid #f2812f;color:#fff;font-size:16px;background-color:#f2812f;text-transform:capitalize;line-height:35px;float: right'  >";
-                                 result=result+"<div style='font-size:26px;font-weight:700;padding-bottom:15px'>"+value.tarifevenement+"</div>";
-                                 result=result+"<div class='month'>TND</div>";
-                                 result=result+"</div>";
-                                 result=result+"<div >";
                                  result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
-                                 result=result+"<p>"+value.descriptionevenement+"</p>";
+                                 result=result+"<p>"+value.descriptionmagasin+"</p>";
                                  result=result+"</div>";
                                  result=result+"</div>";
                                  result=result+"</div>";

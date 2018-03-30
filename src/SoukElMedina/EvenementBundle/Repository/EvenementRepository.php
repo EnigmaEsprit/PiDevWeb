@@ -76,7 +76,7 @@ class EvenementRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQuery(
 
-            "select m from  SoukElMedinaPidevBundle:Participations m , SoukElMedinaPidevBundle:Evenements e WHERE e.iduser =:x GROUP BY m.idevenement "
+            "select m from  SoukElMedinaPidevBundle:Participations m , SoukElMedinaPidevBundle:Evenements e WHERE e.iduser =:x and m.idevenement = e.id GROUP BY m.idevenement "
 
         )->setParameter('x',$user);
 

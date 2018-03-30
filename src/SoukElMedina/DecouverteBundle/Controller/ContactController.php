@@ -58,6 +58,16 @@ class ContactController extends Controller
         ));
 
     }
+    public function SearchAction($name,Request $request)
+    {
+
+        $em=$this->getDoctrine()->getManager();
+        $user=$em->getRepository('SoukElMedinaPidevBundle:Magasins')->findContactDql($name);
+        $serializer = SerializerBuilder::create()->build();
+        $response = $serializer->serialize($user,'json');
+        return new JsonResponse($response);
+
+    }
 //    public function SendEmailAction(Request $request)
 //    {
 //

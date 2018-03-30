@@ -4,6 +4,11 @@ souk_el_medina_pidev_contact:
 souk_el_medina_pidev_contact_V:
     path:     /contactv
     defaults: { _controller: SoukElMedinaDecouverteBundle:Contact:contactVendeur}
+evenements_search_ajax_Contact:
+    path:     /{name}/search
+    defaults: { _controller: "SoukElMedinaDecouverteBundle:Contact:Search" }
+    options:
+        expose: true
 #souk_el_medina_pidev_send_mail:
 #    path:     /sendMsg
 #    defaults: { _controller: SoukElMedinaDecouverteBundle:Contact:SendEmail}

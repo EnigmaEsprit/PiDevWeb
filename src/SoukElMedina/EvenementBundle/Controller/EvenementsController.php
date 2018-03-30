@@ -398,6 +398,7 @@ class EvenementsController extends Controller
                 "form" =>$Form->createView())
         );
     }
+
 //    public function sendMailAction(Request $request)
 //    {
 //        if($request->getMethod()=="POST")
