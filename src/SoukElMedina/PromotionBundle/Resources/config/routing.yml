@@ -1,3 +1,7 @@
+promotions_index_inc:
+    path:     /produitINC
+    defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:indexINC" }
+    methods:  GET
 #souk_el_medina_promotion_homepage:
 #    path:     /
 #    defaults: { _controller: SoukElMedinaPromotionBundle:Default:index }

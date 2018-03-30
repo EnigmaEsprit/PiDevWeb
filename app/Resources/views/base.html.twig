@@ -81,6 +81,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                                 {% endif %}
                                                 </li>
+                                            <li>{% if is_granted("IS_AUTHENTICATED_REMEMBERED") and is_granted('ROLE_ADMIN') %}
+
+                                                    <a href="{{ path('souk_el_medina_pidev_homepage_Admin') }}">Espace Admin</a>
+                                                    </a>
+
+                                                {% endif %}
+                                            </li>
                                             <li><div>
                                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                                         {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -202,7 +209,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                             <li><a href="{{ path('evenements_indexEventClient') }}">Evenement</a></li>
-                            <li><a href="offers.html">Offers</a></li>
+                            <li><a href="{{ path('promotions_index_inc') }}">Offers</a></li>
                             <li><a href="{{ path('souk_el_medina_pidev_contact') }}">Contact</a></li>
                         </ul>
                     </div>

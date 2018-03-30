@@ -22,8 +22,11 @@ class DefaultController extends Controller
 
             $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC);
 
+            $prompotion =$em->getRepository('SoukElMedinaPidevBundle:Promotions')->FindOffers($DC);
+
+
             return $this->render('@SoukElMedinaPidev/Default/index.html.twig', array(
-                'evenements' => $evenements,
+                'evenements' => $evenements,'promotionsO'=>$prompotion,
             ));
 
         }
@@ -34,9 +37,10 @@ class DefaultController extends Controller
         var_dump($DC);
 
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC);
+        $prompotion =$em->getRepository('SoukElMedinaPidevBundle:Promotions')->FindOffers($DC);
 
         return $this->render('@SoukElMedinaPidev/Default/index.html.twig', array(
-            'evenements' => $evenements,
+            'evenements' => $evenements,'promotionsO'=>$prompotion,
         ));
 
     }
@@ -44,11 +48,12 @@ class DefaultController extends Controller
     {
         $userID = $this->getUser()->getId();
         $em = $this->getDoctrine()->getManager();
+        $prompotion =$em->getRepository('SoukElMedinaPidevBundle:Promotions')->findBy(array('iduser'=>$userID));
 
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('iduser'=>$userID));
 
         return $this->render('@SoukElMedinaPidev/Default/indexVendeur.html.twig', array(
-            'evenements' => $evenements,
+            'evenements' => $evenements,'promotionsO'=>$prompotion,
         ));
 
     }

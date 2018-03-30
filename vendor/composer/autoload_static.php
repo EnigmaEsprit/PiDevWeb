@@ -56,6 +56,14 @@ class ComposerStaticInit1c56b9f8baaef3511324c8a024f1eb72
         array (
             'Monolog\\' => 8,
         ),
+        'K' => 
+        array (
+            'Knp\\Bundle\\PaginatorBundle\\' => 27,
+        ),
+        'J' => 
+        array (
+            'JMS\\SerializerBundle\\' => 21,
+        ),
         'I' => 
         array (
             'Incenteev\\ParameterHandler\\' => 27,
@@ -64,6 +72,7 @@ class ComposerStaticInit1c56b9f8baaef3511324c8a024f1eb72
         array (
             'Fig\\Link\\' => 9,
             'FOS\\UserBundle\\' => 15,
+            'FOS\\JsRoutingBundle\\' => 20,
         ),
         'D' => 
         array (
@@ -181,6 +190,14 @@ class ComposerStaticInit1c56b9f8baaef3511324c8a024f1eb72
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Knp\\Bundle\\PaginatorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
+        ),
+        'JMS\\SerializerBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jms/serializer-bundle',
+        ),
         'Incenteev\\ParameterHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
@@ -192,6 +209,10 @@ class ComposerStaticInit1c56b9f8baaef3511324c8a024f1eb72
         'FOS\\UserBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
+        ),
+        'FOS\\JsRoutingBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/jsrouting-bundle',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -240,6 +261,53 @@ class ComposerStaticInit1c56b9f8baaef3511324c8a024f1eb72
             'SensioLabs\\Security' => 
             array (
                 0 => __DIR__ . '/..' . '/sensiolabs/security-checker',
+            ),
+        ),
+        'P' => 
+        array (
+            'PhpOption\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoption/phpoption/src',
+            ),
+            'PhpCollection' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpcollection/phpcollection/src',
+            ),
+        ),
+        'N' => 
+        array (
+            'Nomaya\\SocialBundle\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/nomaya/social-bundle',
+            ),
+        ),
+        'M' => 
+        array (
+            'Metadata\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/jms/metadata/src',
+            ),
+        ),
+        'K' => 
+        array (
+            'Knp\\Component' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/knp-components/src',
+            ),
+        ),
+        'J' => 
+        array (
+            'JsonpCallbackValidator' => 
+            array (
+                0 => __DIR__ . '/..' . '/willdurand/jsonp-callback-validator/src',
+            ),
+            'JMS\\Serializer' => 
+            array (
+                0 => __DIR__ . '/..' . '/jms/serializer/src',
+            ),
+            'JMS\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/jms/parser-lib/src',
             ),
         ),
         'D' => 

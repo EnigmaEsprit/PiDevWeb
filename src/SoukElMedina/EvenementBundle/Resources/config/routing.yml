@@ -5,6 +5,9 @@
 souk_el_medina_pidev_evenements:
     resource: "@SoukElMedinaEvenementBundle/Resources/config/routing/evenements.yml"
     prefix:   /evenements
+souk_el_medina_pidev_evenements_admin:
+    resource: "@SoukElMedinaEvenementBundle/Resources/config/routing/admin.yml"
+    prefix:   /adminevent
 evenements_indexEventClient:
     path:     /EventClient
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:indexEventClient" }
@@ -15,4 +18,10 @@ evenements_sub:
 evenements_show_INC:
     path:     /{id}/show
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:showINC" }
-    methods:  GET
+    methods:  [GET,POST]
+evenements_search_ajax_INC:
+    path:     /{name}/search
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Search" }
+    options:
+        expose: true
+

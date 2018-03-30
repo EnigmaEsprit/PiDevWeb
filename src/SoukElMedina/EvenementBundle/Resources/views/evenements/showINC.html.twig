@@ -94,6 +94,8 @@
 	line-height: 1.8em;" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">posté par: Admin | </font><font style="vertical-align: inherit;">le 27 octobre</font></font></span>
                     <center><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink }}" alt="" class="img-responsive" ></center>
                 </div>
+                <br>
+
                 {#<p style=" margin-top:10px;font-size: 13px;#}
                 {#color: #0c5460;text-justify: newspaper;#}
                 {#line-height: 1.8em;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem Ipsum est simplement un faux texte de l'industrie de l'impression et de la composition. </font><font style="vertical-align: inherit;">Lorem Ipsum a été le texte factice standard de l'industrie depuis les années 1500, quand une imprimante inconnue a pris une galère de type et l'a brouillée pour faire un livre de spécimen de type. </font><font style="vertical-align: inherit;">Il a survécu non seulement cinq siècles, mais aussi le saut dans la composition électronique, demeurant essentiellement inchangé. </font><font style="vertical-align: inherit;">Il a été popularisé dans les années 1960 avec la sortie de feuilles de Letraset contenant des passages de Lorem Ipsum, et plus récemment avec des logiciels de publication assistée par ordinateur comme Aldus PageMaker, y compris des versions de Lorem Ipsum! </font><font style="vertical-align: inherit;">! </font><font style="vertical-align: inherit;">!</font></font></p>#}
@@ -312,13 +314,14 @@
                             <div class="col-md-3 " style="padding: 0">
 
                             </div>
+
+
                             <div class="col-md-9 f_list1" style="float: left;margin-top: 150px;
 		width: 64.3333%;
 		margin-left: 10px;">
                                 {% if var and npr != 0 %}
 
                                     <form method="get">
-                                        <input type="text" value="{{ evenement.id }}" name="id" id="id">
                                         <a  href="{{ path('evenements_sub',{ 'idevenement': evenement.id }) }}" style="outline: none;
     border: none;
     padding: 10px 0;
@@ -329,21 +332,43 @@
     background:#3399cc;
     margin: 1.5em 0 0;text-align: center">Participer</a>
                                     </form>
-                                    {% elseif npr == 0 and var %}
-                                        <h3 style="color: red">Compler</h3>
+                                {% elseif npr == 0 and var %}
+                                    <h3 style="color: red">Compler</h3>
 
-                                    {% endif %}
+                                {% endif %}
+
+<br>
+                              <center><div class="col-md-12 col-sm-12 col-xs-12" style="width: border-box">
+                                    <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i> {{socialButtons ()}}</p>
+                                  </div></center>
+
+
+                                {#<!--Facebook-->#}
+                                {#<button type="button" class="btn btn-fb"><i class="fa fa-facebook"></i></button>#}
+                                {#<!--Twitter-->#}
+                                {#<button type="button" class="btn btn-tw"><i class="fa fa-twitter"></i></button>#}
+                                {#<!--Google +-->#}
+                                {#<button type="button" class="btn btn-gplus"><i class="fa fa-google-plus"></i></button>#}
+
+
+
+
 
 
                             </div>
 
+
                             <div class="clearfix"></div>
                         </div>
+
                         <div class="clearfix"></div>
                     </div>
                     <div class="clearfix"></div>
+
                 </div>
+
             </div>
         </div>
     </div>
+
 {% endblock %}

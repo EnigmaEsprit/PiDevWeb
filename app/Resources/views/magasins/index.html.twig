@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Magasins list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idmagasin</th>
+                <th>Nommagasin</th>
+                <th>Photomagasin</th>
+                <th>Descriptionmagasin</th>
+                <th>Datecreationmagasin</th>
+                <th>Contactmagasin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for magasin in magasins %}
+            <tr>
+                <td><a href="{{ path('magasins_show', { 'idmagasin': magasin.idmagasin }) }}">{{ magasin.idmagasin }}</a></td>
+                <td>{{ magasin.nommagasin }}</td>
+                <td>{{ magasin.photomagasin }}</td>
+                <td>{{ magasin.descriptionmagasin }}</td>
+                <td>{% if magasin.datecreationmagasin %}{{ magasin.datecreationmagasin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ magasin.contactmagasin }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('magasins_show', { 'idmagasin': magasin.idmagasin }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('magasins_edit', { 'idmagasin': magasin.idmagasin }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('magasins_new') }}">Create a new magasin</a>
+        </li>
+    </ul>
+{% endblock %}

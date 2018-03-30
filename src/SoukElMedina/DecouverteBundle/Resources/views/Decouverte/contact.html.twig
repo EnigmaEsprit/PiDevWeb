@@ -1,0 +1,252 @@
+
+{% extends "base.html.twig" %}
+
+ {% block body %}
+     <meta name="description" content="Liste des évènements">
+
+
+
+
+
+     <!-- Latest compiled and minified JavaScript -->
+     <script src="{{ asset('Artisans/jquery.rateyo.min.js.téléchargement') }}"></script>
+     <script src="{{ asset('Artisans/smart-app-banner.js.téléchargement') }}"></script>
+
+
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="{{ path('souk_el_medina_pidev_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">Contact</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+     <div class="w3l_search" style="float: right; width: 250px">
+         <br>
+         <form action="#" method="post">
+             <input  type="search" name="Search"  id="search" placeholder="Search for a Event..." required="">
+
+             <div class="clearfix"></div>
+         </form>
+     </div>
+     <div id="last"></div>
+
+     <div id="first">
+     {% for magasin in magasins %}
+
+         <ul id="suppliers_list"  style="content:'';display:table;margin-left:300px;margin-right:300px;position:relative;border-bottom:1px solid #d6d4d4;box-shadow:0 1px #fff;-webkit-box-shadow:0 1px #fff;-moz-box-shadow:0 1px #fff;padding:31px 0 30px">
+
+
+             <li class=" first-in-line  first-item-of-tablet-line col-xs-12" style="list-style-type: none;clear:left; margin-bottom: 15px;">
+                 <div class="mansup-container" style="font-family:'ArtisanFont','sans-serif'!important;font-size:inherit;color:#65403b;margin-right:auto !important;margin-left:auto !important;padding-left:15px !important;padding-right:15px !important";>
+                     <div class="row" style="margin-left:-15px;margin-right:-15px">
+                         <div class="left-side col-xs-12 col-md-4 col-sm-4" style="padding-bottom:42px;">
+                             <!-- logo -->
+                             <div class="logo" style="height:120px;width:auto;margin:10px}.header_bottom{min-height:130px;margin-top:61px;margin-bottom:15px;">
+                                 {#<a href="{{ path('evenements_show_INC', { 'id': evenement.id }) }}" title="{{ evenement.nomevenement }}">#}
+                                 <a  title="{{ magasin.nommagasin }}"></a>
+                                 {#<div style="background:url({{ asset('uploads/Images/') }}{{ evenement.imagelink}}) center/cover;" class="img-post"></div>#}
+                                 <div ><img class="img-post" src="{{ asset('uploads/Images/') }}{{ magasin.photomagasin}}"style="width:220px;height:210px;overflow:hidden;margin:0 auto; outline: none;
+                                    border: 1px solid #DBDBDB;
+                                    padding: 10px 10px 10px 10px;
+                                    font-size: 14px;
+                                    color: #999;
+                                    display: block;
+                                    width: 100%;"></div>
+                                 </a>
+                             </div> <!-- .logo -->
+                         </div> <!-- .left-side -->
+
+                         <div class="middle-side col-xs-12 col-md-8 col-sm-8" style="font-family:'ArtisanFont','sans-serif' !important;margin-top:0">
+                             <h2>
+                                 <a class="event-name" style="font-family:'ArtisanFont','sans-serif' !important;color:#65403b">
+                                     {{ magasin.nommagasin }}
+                                 </a>
+                                 {#<a class="event-name" style="font-family:'ArtisanFont','sans-serif' !important;color:#65403b" href="{{ path('evenements_show_INC', { 'id': evenement.id }) }}">#}
+                                 {#{{ evenement.nomevenement }}#}
+                                 {#</a>#}
+                             </h2>
+
+                             <div class="description" style="display:block;clear:both;font-size:11px;color:#84888f">
+                                 <div class="row" style="margin-left:-15px;margin-right:-15px">
+                                     <div class="col-md-6 col-sm-6 col-xs-6">
+                                         <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i>  Nom & Prenomde Magasinier: {{ magasin.iduser.nom }} {{ magasin.iduser.prenom }}</p>
+                                     </div>
+                                     {#<div class="col-md-6 col-sm-6 col-xs-6">#}
+                                     {#<p class="event-region" style="color:#666;font-size:13px"><i class="icon-map-marker" style="content:'';color:#f2812f;width:15px;height:15px"></i>  {{ evenement.lieu }}</p>#}
+                                     {#</div>#}
+                                 </div>
+                                 <div class="row" style="margin-left:-15px;margin-right:-15px">
+                                     <div class="col-md-4 col-sm-6 col-xs-6">
+                                         <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i>  Email(Vendeur): {{ magasin.iduser.email }} </p>
+                                     </div>
+                                     <div class="col-md-4 col-sm-6 col-xs-6">
+                                         <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i>  N° de telephone: {{ magasin.iduser.numerodutelephone }}</p>
+                                     </div>
+                                     <div class="col-md-4 col-sm-6 col-xs-6">
+                                         <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i> Cantact Magasin: {{ magasin.contactmagasin }}</p>
+                                     </div>
+                                     {#<div class="col-md-6 col-sm-6 col-xs-6">#}
+                                     {#<p class="event-region" style="color:#666;font-size:13px"><i class="icon-map-marker" style="content:'';color:#f2812f;width:15px;height:15px"></i> N° de telephone {{ magasin.iduser.numerodetelephone }} Place Disponible</p>#}
+                                     {#</div>#}
+                                 </div>
+                                 {#<div class=" col-lg-3 col-md-12" style="margin-top:0px;text-align:center;padding:30px;border:1px solid #f2812f;color:#fff;font-size:16px;background-color:#f2812f;text-transform:capitalize;line-height:35px;float: right"  >#}
+                                 {#<div style="font-size:26px;font-weight:700;padding-bottom:15px">{{ evenement.tarifevenement }}</div>#}
+                                 {#<div class="month">TND</div>#}
+                                 {#</div>#}
+                                 <div >
+                                     <div class="col-md-4 col-sm-6 col-xs-6">
+                                         <p>{{ magasin.descriptionmagasin }}</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div><!-- .middle-side -->
+                     </div>
+                 </div>
+             </li>
+             <li class=" first-in-line  last-item-of-tablet-line col-xs-12" style="list-style-type: none;clear:left;border-bottom:none">
+         </ul>
+
+
+     {% endfor %}
+     <center>
+         <div class="navigation">
+             {{ knp_pagination_render(magasins) }}
+         </div>
+     </center>
+     </div>
+<!-- contact -->
+<div class="about">
+    <div class="w3_agileits_contact_grids">
+        <div class="col-md-6 w3_agileits_contact_grid_left">
+            <div class="agile_map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3905851087434!2d-34.90500565012194!3d-8.061582082752993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d90992e4ab%3A0x8e83c4afabe39a3a!2sSport+Club+Do+Recife!5e0!3m2!1sen!2sin!4v1478684415917" style="border:0"></iframe>
+            </div>
+            <div class="agileits_w3layouts_map_pos">
+                <div class="agileits_w3layouts_map_pos1">
+                    <h3>Contact Info</h3>
+                    <p>1234k Avenue, 4th block, New York City.</p>
+                    <ul class="wthree_contact_info_address">
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>+(0123) 232 232</li>
+                    </ul>
+                    <div class="w3_agile_social_icons w3_agile_social_icons_contact">
+                        <ul>
+                            <li><a href="#" class="icon icon-cube agile_facebook"></a></li>
+                            <li><a href="#" class="icon icon-cube agile_rss"></a></li>
+                            <li><a href="#" class="icon icon-cube agile_t"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 w3_agileits_contact_grid_right">
+            <h2 class="w3_agile_header">Leave a<span> Message</span></h2>
+
+            <form method="post">
+					<span class="input input--ichiro">
+						<input class="input__field input__field--ichiro" type="text" id="name" name="name"  placeholder=" " required="" />
+						<label class="input__label input__label--ichiro" for="name">
+							<span class="input__label-content input__label-content--ichiro">Your Name</span>
+						</label>
+					</span>
+                <span class="input input--ichiro">
+						<input class="input__field input__field--ichiro" type="email" id="email" name="email" placeholder=" " required="" />
+						<label class="input__label input__label--ichiro" for="email">
+							<span class="input__label-content input__label-content--ichiro">Your Email</span>
+						</label>
+					</span>
+                <textarea name="body" placeholder="Your message here..." id="body"  required=""></textarea>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- contact -->
+     <script src="{{ asset('assets/jquery-3.2.1.min.js') }}"></script>
+     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+     <script>
+         $(function() {
+             $("#search").keyup(function () {
+                 var name = $("#search").val();
+                 $.ajax({
+                     type:'GET',
+                     url: Routing.generate('evenements_search_ajax_INC', {name: name}),
+                     success:function(data){
+                         var user = JSON.parse(data);
+                         if (user.length > 0 ){
+                             $("#first").hide();
+                             console.log(user);
+                             var result="";
+                             var newPath = "";
+                             var image="";
+
+                             $.each(user,function (index, value) {
+                                 var path = "{{ asset("uploads/Images/path") }}";
+                                 newPath = path.replace('path', value.photomagasin);
+                                 // var root = Routing.generate('evenements_show_INC', { 'id': value.id });
+                                 result="<ul id='suppliers_list'  style='content:;display:table;margin-left:300px;margin-right:300px;position:relative;border-bottom:1px solid #d6d4d4;box-shadow:0 1px #fff;-webkit-box-shadow:0 1px #fff;-moz-box-shadow:0 1px #fff;padding:31px 0 30px'>";
+                                 result=result+" <li class=' first-in-line  first-item-of-tablet-line col-xs-12' style='list-style-type: none;clear:left; margin-bottom: 15px;'>";
+                                 result=result+"<div class='mansup-container' style='font-family:ArtisanFont,sans-serif!important;font-size:inherit;color:#65403b;margin-right:auto !important;margin-left:auto !important;padding-left:15px !important;padding-right:15px !important;'>";
+                                 result=result+"<div class='row' style='margin-left:-15px;margin-right:-15px'>";
+                                 result=result+"<div class='left-side col-xs-12 col-md-4 col-sm-4' style='padding-bottom:42px;'>";
+                                 result=result+"<div class='logo' style='height:120px;width:auto;margin:10px}.header_bottom{min-height:130px;margin-top:61px;margin-bottom:15px;'>";
+                                 result=result+"<a  title='"+value.nommagasin+"'><div ><img class='img-post' src='"+newPath+"'style='width:220px;height:210px;overflow:hidden;margin:0 auto; outline: none;order: 1px solid #DBDBDB;padding: 10px 10px 10px 10px;font-size: 14px;color: #999;display: block;width: 100%;'></div></a>";
+                                 result=result+" </div>";
+                                 result=result+" </div>";
+                                 result=result+"<div class='middle-side col-xs-12 col-md-8 col-sm-8' style='font-family:ArtisanFont,sans-serif !important;margin-top:0'>";
+                                 result=result+"<h2>";
+                                 result=result+"<a class='event-name' style='font-family:ArtisanFont,sans-serif !important;color:#65403b' >"+value.nommagasin+"</a>";
+                                 result=result+"</h2>";
+                                 result=result+"<div class='description' style='display:block;clear:both;font-size:11px;color:#84888f'>";
+                                 result=result+ "<div class='row' style='margin-left:-15px;margin-right:-15px'>";
+                                 result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
+                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'a90cc''></i> Du "+value.date+" au "+value.datefin+"</p>";
+                                 result=result+"</div>";
+                                 result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
+                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='content:'';color:#f2812f;width:15px;height:15px'></i>"+value.lieu+"</p>";
+                                 result=result+"</div>";
+                                 result=result+"</div>";
+                                 result=result+"<div class='row'style='margin-left:-15px;margin-right:-15px'>";
+                                 result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
+                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'\a90cc''></i> "+value.nombredeplaces+"Place Totale</p>";
+                                 result=result+"</div>";
+                                 result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
+                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='content:'';color:#f2812f;width:15px;height:15px'></i> "+value.nombredesplacesrestante+" Place Disponible</p>";
+                                 result=result+"</div>";
+                                 result=result+"</div>";
+                                 result=result+"<div class=' col-lg-3 col-md-12' style='margin-top:0px;text-align:center;padding:30px;border:1px solid #f2812f;color:#fff;font-size:16px;background-color:#f2812f;text-transform:capitalize;line-height:35px;float: right'  >";
+                                 result=result+"<div style='font-size:26px;font-weight:700;padding-bottom:15px'>"+value.tarifevenement+"</div>";
+                                 result=result+"<div class='month'>TND</div>";
+                                 result=result+"</div>";
+                                 result=result+"<div >";
+                                 result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
+                                 result=result+"<p>"+value.descriptionevenement+"</p>";
+                                 result=result+"</div>";
+                                 result=result+"</div>";
+                                 result=result+"</div>";
+                                 result=result+"</div>"
+                                 result=result+"</div>";
+                                 result=result+"</div>";
+                                 result=result+"</li>";
+                                 result=result+"<li class=' first-in-line  last-item-of-tablet-line col-xs-12' style='list-style-type: none;clear:left;border-bottom:none'>";
+                                 result=result+"</ul>"
+
+
+                                 $("#last").append(result)
+                             });
+                         }
+
+
+                     }
+                 });
+             })
+         });
+     </script>
+
+{% endblock %}

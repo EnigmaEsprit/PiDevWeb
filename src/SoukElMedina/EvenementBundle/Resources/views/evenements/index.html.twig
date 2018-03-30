@@ -21,6 +21,8 @@
                         <th>Actions</th>
                         <th>Delete</th>
                         <th>Update</th>
+                        <th>Participant</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -43,7 +45,7 @@
                             </td>
                             <td class="invert">
                                 <div class="rem">
-                                    <div ><a class="close1" href="{{ path('evenements_delete', { 'idevenement': evenement.id }) }}"></a>
+                                    <div ><a  href="{{ path('evenements_delete', { 'idevenement': evenement.id }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a>
                                     </div>
                                 </div>
 
@@ -55,6 +57,13 @@
                                 </div>
 
                             </td>
+                            <td class="invert">
+                                <div class="rem">
+                                    <div ><a  href="{{ path('evenements_index_sub_ev', { 'id': evenement.id }) }}"><img src="{{ asset('images/subscribe-rss-button.png') }}"></a>
+                                    </div>
+                                </div>
+
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -62,6 +71,11 @@
             </div>
         </div>
     </div>
+    <center>
+        <div class="navigation">
+            {{ knp_pagination_render(evenements) }}
+        </div>
+    </center>
 
 {% endblock %}
 

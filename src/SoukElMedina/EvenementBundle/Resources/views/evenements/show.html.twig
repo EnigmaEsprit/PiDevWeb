@@ -1,4 +1,4 @@
-{% extends"base.html.twig" %}
+{% extends"baseVendeur.html.twig" %}
 {% block body %}
     <!-- Bootstrap -->
     <link href="{{ asset('temp/css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' />
@@ -347,7 +347,7 @@
                                 </td>
                                 <td class="invert">
                                     <div class="rem">
-                                        <div ><a class="close1" href="{{ path('evenements_delete', { 'idevenement': evenement.id }) }}"></a>
+                                        <div ><a  href="{{ path('evenements_delete', { 'idevenement': evenement.id }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a>
                                         </div>
                                     </div>
 

@@ -1,45 +1,120 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseVendeur.html.twig' %}
 
 {% block body %}
-    <h1>Promotions list</h1>
+    {#<h1>Promotions list</h1>#}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idpromotion</th>
-                <th>Nompromotion</th>
-                <th>Imagepromotion</th>
-                <th>Datedebut</th>
-                <th>Datefin</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for promotion in promotions %}
-            <tr>
-                <td><a href="{{ path('promotions_show', { 'idpromotion': promotion.idpromotion }) }}">{{ promotion.idpromotion }}</a></td>
-                <td>{{ promotion.nompromotion }}</td>
-                <td>{{ promotion.imagepromotion }}</td>
-                <td>{% if promotion.datedebut %}{{ promotion.datedebut|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if promotion.datefin %}{{ promotion.datefin|date('Y-m-d') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('promotions_show', { 'idpromotion': promotion.idpromotion }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('promotions_edit', { 'idpromotion': promotion.idpromotion }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {#<table>#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Idpromotion</th>#}
+                {#<th>Nompromotion</th>#}
+                {#<th>Datedebut</th>#}
+                {#<th>Datefin</th>#}
+                {#<th>Imagelink</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for promotion in promotions %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('promotions_show', { 'idpromotion': promotion.idpromotion }) }}">{{ promotion.idpromotion }}</a></td>#}
+                {#<td>{{ promotion.nompromotion }}</td>#}
+                {#<td>{% if promotion.datedebut %}{{ promotion.datedebut|date('Y-m-d') }}{% endif %}</td>#}
+                {#<td>{% if promotion.datefin %}{{ promotion.datefin|date('Y-m-d') }}{% endif %}</td>#}
+                {#<td>{{ promotion.imagelink }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('promotions_show', { 'idpromotion': promotion.idpromotion }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('promotions_edit', { 'idpromotion': promotion.idpromotion }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
 
-    <ul>
-        <li>
-            <a href="{{ path('promotions_new') }}">Create a new promotion</a>
-        </li>
-    </ul>
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('promotions_new') }}">Create a new promotion</a>#}
+        {#</li>#}
+    {#</ul>#}
+
+
+    {#{% extends 'baseVendeur.html.twig' %}#}
+
+    {#{% block body %}#}
+
+        <div class="checkout">
+            <div class="container">
+                <h1>Promotions list</h1>
+                <div class="checkout-right">
+                    <table  class="timetable_sub">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Image</th>
+                            <th>Titre de Promotion</th>
+                            <th>Datedebut</th>
+                            <th>Date fin</th>
+                            <th>Produit</th>
+                            <th>Reference du Produit</th>
+                            <th>Image de Produit</th>
+                            <th>Prix Initial (TND)</th>
+                            <th>Nouveau Prix (TND)</th>
+                            <th>Pourcentage (%)</th>
+                            <th>Actions</th>
+                            <th>Delete</th>
+                            <th>Update</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for promotion in promotions %}
+                            <tr  class="rem1">
+                                <td class="invert"><a href="{{ path('promotions_show', { 'idpromotion': promotion.idpromotion }) }}">{{ promotion.idpromotion }}</a></td>
+                                <td class="invert"><img src="{{ asset('uploads/Images/') }}{{ promotion.imagelink }}"style="width: 50px;height: 50px"></td>
+                                <td class="invert">{{ promotion.nompromotion }}</td>
+                                <td class="invert">{{ promotion.datedebut }}</td>
+                                <td class="invert">{{ promotion.datefin }}</td>
+                                <td class="invert">{{ promotion.idproduit.nomproduit }}</td>
+                                <td class="invert">{{ promotion.idproduit.referenceproduit }}</td>
+                                <td class="invert"><img src="{{ asset('uploads/Images/') }}{{ promotion.idproduit.photoproduit }}"style="width: 50px;height: 50px"></td>
+                                <td class="invert">{{ promotion.idproduit.prixproduit }}</td>
+                                <td class="invert">{{ promotion.newPrix }}</td>
+                                <td class="invert">{{ promotion.pourcentage }}</td>
+
+                                <td class="invert">
+
+                                    <a href="{{ path('promotions_show', { 'idpromotion': promotion.idpromotion }) }}"><img src="{{ asset('images/job-search.png') }}"></a>
+
+                                </td>
+                                <td class="invert">
+                                    <div class="rem">
+                                        <div ><a  href="{{ path('promotions_delete', { 'idpromotion': promotion.idpromotion }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a>
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td class="invert">
+                                    <div class="rem">
+                                        <div ><a  href="{{ path('promotions_edit', { 'idpromotion': promotion.idpromotion }) }}"><img src="{{ asset('images/test (1).png') }}"></a>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
 {% endblock %}

@@ -1,44 +1,171 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseVendeur.html.twig' %}
 
 {% block body %}
-    <h1>Promotion</h1>
+<div class="register">
+    <div class="container">
+        <h1>Promotion</h1>
+
+
+        <div class="login-form-grids">
+
 
     <table>
         <tbody>
             <tr>
-                <th>Idpromotion</th>
-                <td>{{ promotion.idpromotion }}</td>
+                <th>Id: </th>
+                <td style="outline: none;
+                                border: 1px solid #DBDBDB;
+                                padding: 10px 10px 10px 10px;
+                                font-size: 14px;
+                                color: #999;
+                                display: block;
+                                width: 100%;">{{ promotion.idpromotion }}</td>
             </tr>
             <tr>
-                <th>Nompromotion</th>
-                <td>{{ promotion.nompromotion }}</td>
+                <th>Titre: </th>
+                <td style="outline: none;
+                                border: 1px solid #DBDBDB;
+                                padding: 10px 10px 10px 10px;
+                                font-size: 14px;
+                                color: #999;
+                                display: block;
+                                width: 100%;">{{ promotion.nompromotion }}</td>
             </tr>
             <tr>
-                <th>Imagepromotion</th>
-                <td>{{ promotion.imagepromotion }}</td>
+                <th>Date debut: </th>
+                <td style="outline: none;
+                                border: 1px solid #DBDBDB;
+                                padding: 10px 10px 10px 10px;
+                                font-size: 14px;
+                                color: #999;
+                                display: block;
+                                width: 100%;">{{ promotion.datedebut }}</td>
             </tr>
             <tr>
-                <th>Datedebut</th>
-                <td>{% if promotion.datedebut %}{{ promotion.datedebut|date('Y-m-d') }}{% endif %}</td>
+                <th>Date fin: </th>
+                <td style="outline: none;
+                border: 1px solid #DBDBDB;
+                padding: 10px 10px 10px 10px;
+                font-size: 14px;
+                color: #999;
+                display: block;
+                width: 100%;">{{ promotion.datefin }}</td>
             </tr>
             <tr>
-                <th>Datefin</th>
-                <td>{% if promotion.datefin %}{{ promotion.datefin|date('Y-m-d') }}{% endif %}</td>
+                <th>Produit: </th>
+                <td style="outline: none;
+                border: 1px solid #DBDBDB;
+                padding: 10px 10px 10px 10px;
+                font-size: 14px;
+                color: #999;
+                display: block;
+                width: 100%;">{{ promotion.idproduit.nomproduit }}</td>
+            </tr>
+            <tr>
+                <th>Reference: </th>
+                <td style="outline: none;
+                border: 1px solid #DBDBDB;
+                padding: 10px 10px 10px 10px;
+                font-size: 14px;
+                color: #999;
+                display: block;
+                width: 100%;">{{ promotion.idproduit.referenceproduit }}</td>
+            </tr>
+            <tr>
+                <th>Image Produit: </th>
+                <td><img src="{{ asset('uploads/Images/') }}{{ promotion.idproduit.photoproduit }}"style="outline: none;
+                                border: 1px solid #DBDBDB;
+                                padding: 10px 10px 10px 10px;
+                                font-size: 14px;
+                                color: #999;
+                                display: block;
+                                width: 100%;"></td>
+            </tr>
+            <tr>
+                <th>Prix Initial: </th>
+                <td style="outline: none;
+                border: 1px solid #DBDBDB;
+                padding: 10px 10px 10px 10px;
+                font-size: 14px;
+                color: #999;
+                display: block;
+                width: 100%;">{{ promotion.idproduit.prixproduit }} TND</td>
+            </tr>
+            <tr>
+                <th>Nouveau Prix: </th>
+                <td style="outline: none;
+                border: 1px solid #DBDBDB;
+                padding: 10px 10px 10px 10px;
+                font-size: 14px;
+                color: #999;
+                display: block;
+                width: 100%;">{{ promotion.newPrix }} TND</td>
+            </tr>
+            <tr>
+                <th>Pourcentage: </th>
+                <td style="outline: none;
+                border: 1px solid #DBDBDB;
+                padding: 10px 10px 10px 10px;
+                font-size: 14px;
+                color: #999;
+                display: block;
+                width: 100%;">{{ promotion.pourcentage }} %</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset('uploads/Images/') }}{{ promotion.imagelink }}" style="outline: none;
+                                border: 1px solid #DBDBDB;
+                                padding: 10px 10px 10px 10px;
+                                font-size: 14px;
+                                color: #999;
+                                display: block;
+                                width: 100%;"></td>
             </tr>
         </tbody>
     </table>
+            <center><table class="timetable_sub">
+                <tr>
+            <td class="invert">
 
-    <ul>
-        <li>
-            <a href="{{ path('promotions_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('promotions_edit', { 'idpromotion': promotion.idpromotion }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
+                <a href="{{ path('promotions_index') }}"><img src="{{ asset('images/job-search.png') }}"></a>
+
+            </td><br>
+            <td class="invert">
+                <div class="rem">
+                    <div ><a  href="{{ path('promotions_delete', { 'idpromotion': promotion.idpromotion }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a>
+                    </div>
+                </div>
+
+            </td><br>
+            <td class="invert">
+                <div class="rem">
+                    <div ><a  href="{{ path('promotions_edit', { 'idpromotion': promotion.idpromotion }) }}"><img src="{{ asset('images/test (1).png') }}"></a>
+                    </div>
+                </div>
+
+            </td>
+            </tr>
+            </table></center>
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('promotions_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('promotions_edit', { 'idpromotion': promotion.idpromotion }) }}">Edit</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+            {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+
+    {#</ul>#}
+
+        </div>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+
+
+        {% endblock %}

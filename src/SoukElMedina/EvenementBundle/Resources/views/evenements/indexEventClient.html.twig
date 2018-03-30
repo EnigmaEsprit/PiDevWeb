@@ -1,72 +1,23 @@
 {% extends"base.html.twig" %}
 {% block body %}
-    {#<meta name="description" content="Liste des évènements">#}
-    {#<meta name="generator" content="PrestaShop">#}
-    {#<meta name="robots" content="index,follow">#}
-    {#<meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0">#}
-    {#<meta name="apple-mobile-web-app-capable" content="yes">#}
-    {#<link rel="icon" type="image/vnd.microsoft.icon" href="http://www.artisansdart.tn/img/favicon.ico?1492609925">#}
-    {#<link rel="shortcut icon" type="image/x-icon" href="http://www.artisansdart.tn/img/favicon.ico?1492609925">#}
-    {#<link rel="stylesheet" href="{{ asset('Artisans/v_56_83d57e018c9d248978fbb7827baf0029_all.css') }}" type="text/css" media="all">#}
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{{ asset('Artisans/jquery.rateyo.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('Artisans/smart-app-banner.css') }}" type="text/css" media="screen">
-
-    <link rel="stylesheet" crossorigin="anonymous" href="{{ asset('Artisans/main.css') }}">
-    <script type="text/javascript" src="{{ asset('Artisans/jquery-1.11.0.min.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery-migrate-1.2.1.min.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.easing.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/tools.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/global.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/10-bootstrap.min.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/15-jquery.total-storage.min.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/15-jquery.uniform-modified.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.fancybox.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/products-comparison.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/lightbox.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/js') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/treeManagement.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/blocknewsletter.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.autocomplete.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/blocksearch.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/ajax-wishlist.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.plugins.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.field.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.nivo.slider.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.fieldmegamenu.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jssor.slider.min.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.field_title.js.téléchargement') }}"></script>
-    <script type="text/javascript" src="{{ asset('Artisans/jquery.onecatepslowlcarousel.js.téléchargement') }}"></script>
-
-
-
-
-
-    <!-- Latest compiled and minified JavaScript -->
     <script src="{{ asset('Artisans/jquery.rateyo.min.js.téléchargement') }}"></script>
     <script src="{{ asset('Artisans/smart-app-banner.js.téléchargement') }}"></script>
+    <div class="w3l_search" style="float: right; width: 250px">
+        <br>
+        <form action="#" method="post">
+            <input  type="search" name="Search"  id="search" placeholder="Search for a Event..." required="">
 
+            <div class="clearfix"></div>
+        </form>
+    </div>
+    <div id="last"></div>
 
+    <div id="first">
     {% for evenement in evenements %}
-                    {#<div class="middle-side col-xs-12 col-md-8 col-sm-8">#}
-                {#<ul>#}
 
-                    {#<li ><div class="row"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}"style="width: 200px;height: 200px"></div><br></li>#}
 
-                    {#<li>#}
-                        {#<div class="description">#}
-                            {#<h2>{{ evenement.nomevenement }}</h2>#}
-                        {#</div>#}
-                        {#<div>#}
-                            {#<h5>l'emplacement</h5><p>{{ evenement.lieu }}</p>#}
-                        {#</div>#}
-                    {#</li>#}
-
-                {#</ul>#}
-                    {#</div>#}
     <ul id="suppliers_list"  style="content:'';display:table;margin-left:300px;margin-right:300px;position:relative;border-bottom:1px solid #d6d4d4;box-shadow:0 1px #fff;-webkit-box-shadow:0 1px #fff;-moz-box-shadow:0 1px #fff;padding:31px 0 30px">
-
 
         <li class=" first-in-line  first-item-of-tablet-line col-xs-12" style="list-style-type: none;clear:left; margin-bottom: 15px;">
             <div class="mansup-container" style="font-family:'ArtisanFont','sans-serif'!important;font-size:inherit;color:#65403b;margin-right:auto !important;margin-left:auto !important;padding-left:15px !important;padding-right:15px !important";>
@@ -76,7 +27,13 @@
                         <div class="logo" style="height:120px;width:auto;margin:10px}.header_bottom{min-height:130px;margin-top:61px;margin-bottom:15px;">
                             <a href="{{ path('evenements_show_INC', { 'id': evenement.id }) }}" title="{{ evenement.nomevenement }}">
                                 {#<div style="background:url({{ asset('uploads/Images/') }}{{ evenement.imagelink}}) center/cover;" class="img-post"></div>#}
-                                <div ><img class="img-post" src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}"style="width:220px;height:210px;overflow:hidden;margin:0 auto"; ></div>
+                                <div ><img class="img-post" src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}"style="width:220px;height:210px;overflow:hidden;margin:0 auto; outline: none;
+                                    border: 1px solid #DBDBDB;
+                                    padding: 10px 10px 10px 10px;
+                                    font-size: 14px;
+                                    color: #999;
+                                    display: block;
+                                    width: 100%;"></div>
                             </a>
                         </div> <!-- .logo -->
                     </div> <!-- .left-side -->
@@ -119,11 +76,101 @@
                 </div>
             </div>
         </li>
+
         <li class=" first-in-line  last-item-of-tablet-line col-xs-12" style="list-style-type: none;clear:left;border-bottom:none">
     </ul>
+    {% endfor %}
 
 
-                {% endfor %}
 
+
+    <center>
+        <div class="navigation">
+            {{ knp_pagination_render(evenements) }}
+        </div>
+    </center>
+    </div>
+
+    <script src="{{ asset('assets/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script>
+        $(function() {
+            $("#search").keyup(function () {
+                var name = $("#search").val();
+                $.ajax({
+                    type:'GET',
+                    url: Routing.generate('evenements_search_ajax_INC', {name: name}),
+                    success:function(data){
+                        var user = JSON.parse(data);
+                        if (user.length > 0 ){
+                            $("#first").hide();
+                            console.log(user);
+                            var result="";
+                            var newPath = "";
+                            var image="";
+
+                            $.each(user,function (index, value) {
+                                var path = "{{ asset("uploads/Images/path") }}";
+                                newPath = path.replace('path', value.imagelink);
+                                // var root = Routing.generate('evenements_show_INC', { 'id': value.id });
+                                result="<ul id='suppliers_list'  style='content:;display:table;margin-left:300px;margin-right:300px;position:relative;border-bottom:1px solid #d6d4d4;box-shadow:0 1px #fff;-webkit-box-shadow:0 1px #fff;-moz-box-shadow:0 1px #fff;padding:31px 0 30px'>";
+                                result=result+" <li class=' first-in-line  first-item-of-tablet-line col-xs-12' style='list-style-type: none;clear:left; margin-bottom: 15px;'>";
+                                result=result+"<div class='mansup-container' style='font-family:ArtisanFont,sans-serif!important;font-size:inherit;color:#65403b;margin-right:auto !important;margin-left:auto !important;padding-left:15px !important;padding-right:15px !important;'>";
+                                result=result+"<div class='row' style='margin-left:-15px;margin-right:-15px'>";
+                                result=result+"<div class='left-side col-xs-12 col-md-4 col-sm-4' style='padding-bottom:42px;'>";
+                                result=result+"<div class='logo' style='height:120px;width:auto;margin:10px}.header_bottom{min-height:130px;margin-top:61px;margin-bottom:15px;'>";
+                                result=result+"<a  title='"+value.nomevenement+"'><div ><img class='img-post' src='"+newPath+"'style='width:220px;height:210px;overflow:hidden;margin:0 auto; outline: none;order: 1px solid #DBDBDB;padding: 10px 10px 10px 10px;font-size: 14px;color: #999;display: block;width: 100%;'></div></a>";
+                                result=result+" </div>";
+                                result=result+" </div>";
+                                result=result+"<div class='middle-side col-xs-12 col-md-8 col-sm-8' style='font-family:ArtisanFont,sans-serif !important;margin-top:0'>";
+                                result=result+"<h2>";
+                                result=result+"<a class='event-name' style='font-family:ArtisanFont,sans-serif !important;color:#65403b' >"+value.nomevenement+"</a>";
+                                result=result+"</h2>";
+                                result=result+"<div class='description' style='display:block;clear:both;font-size:11px;color:#84888f'>";
+                                result=result+ "<div class='row' style='margin-left:-15px;margin-right:-15px'>";
+                                result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
+                                result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'a90cc''></i> Du "+value.date+" au "+value.datefin+"</p>";
+                                result=result+"</div>";
+                                result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
+                                result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='content:'';color:#f2812f;width:15px;height:15px'></i>"+value.lieu+"</p>";
+                                result=result+"</div>";
+                                result=result+"</div>";
+                                result=result+"<div class='row'style='margin-left:-15px;margin-right:-15px'>";
+                                result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
+                                result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'\a90cc''></i> "+value.nombredeplaces+"Place Totale</p>";
+                                result=result+"</div>";
+                                result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
+                                result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='content:'';color:#f2812f;width:15px;height:15px'></i> "+value.nombredesplacesrestante+" Place Disponible</p>";
+                                result=result+"</div>";
+                                result=result+"</div>";
+                                result=result+"<div class=' col-lg-3 col-md-12' style='margin-top:0px;text-align:center;padding:30px;border:1px solid #f2812f;color:#fff;font-size:16px;background-color:#f2812f;text-transform:capitalize;line-height:35px;float: right'  >";
+                                result=result+"<div style='font-size:26px;font-weight:700;padding-bottom:15px'>"+value.tarifevenement+"</div>";
+                                result=result+"<div class='month'>TND</div>";
+                                result=result+"</div>";
+                                result=result+"<div >";
+                                result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
+                                result=result+"<p>"+value.descriptionevenement+"</p>";
+                                result=result+"</div>";
+                                result=result+"</div>";
+                                result=result+"</div>";
+                                result=result+"</div>"
+                                result=result+"</div>";
+                                result=result+"</div>";
+                                result=result+"</li>";
+                                result=result+"<li class=' first-in-line  last-item-of-tablet-line col-xs-12' style='list-style-type: none;clear:left;border-bottom:none'>";
+                                result=result+"</ul>"
+
+
+                                $("#last").append(result)
+                            });
+                        }
+
+
+                    }
+                });
+            })
+        });
+    </script>
 
 {% endblock %}

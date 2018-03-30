@@ -10,10 +10,21 @@
              <a href="{{ path('evenements_show', { 'id': evenement.id }) }}"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}" alt="" /></a>
              <!--Slider Description example-->
              <div class="slide-desc">
-                 <h3>Buy Rice Products Are Now On Line With Us</h3>
+                 <h3>{{ evenement.nomevenement }}</h3>
              </div>
          </li>
      {% endfor %}
+         {% for promotion in promotionsO %}
+             <li>
+                 <a href="{{ path('promotions_show', { 'idpromotion': promotion.idpromotion }) }}">
+                 <img src="{{ asset('uploads/Images/') }}{{ promotion.imagelink}}" alt="" />
+                 </a>
+                 <!--Slider Description example-->
+                 <div class="slide-desc">
+                 <h3>{{promotion.nompromotion }}</h3>
+                 </div>
+             </li>
+         {% endfor %}
          {#<li>#}
              {#<img src="{{ asset('images/22.jpg') }}" alt="" />#}
              {#<div class="slide-desc">#}

@@ -1,21 +1,270 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block body %}#}
+    {#<h1>Promotion edit</h1>#}
+
+    {#{{ form_start(edit_form) }}#}
+        {#{{ form_widget(edit_form) }}#}
+        {#<input type="submit" value="Edit" />#}
+    {#{{ form_end(edit_form) }}#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('promotions_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
+{#{% endblock %}#}
+{% extends 'baseVendeur.html.twig' %}
 
 {% block body %}
-    <h1>Promotion edit</h1>
+    {#<script src="{{ asset('assets/jquery-3.2.1.min.js') }}"></script>#}
+    {#<script>#}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    {#$("#pourcentage").keyup(#}
+    {#function () {#}
+    {#var pourcentage = $('#pourcentage').val();#}
+    {#var DATA = 'poucentage='+pourcentage;#}
+    {#$.ajax({#}
+    {#type: "POST",#}
+    {#url: "{{ path('promotions_prix') }}",#}
+    {#data:DATA,#}
+    {#success: function (data) {#}
+    {#console.log(data);#}
+    {#$("#div").html("<input id='newPrix' name='newPrix' value='"+data+"'>");#}
+    {#$("#new_prix").hide();#}
 
-    <ul>
-        <li>
-            <a href="{{ path('promotions_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {#}#}
+    {#});#}
+    {#}#}
+    {#);#}
+
+
+
+    {#</script>#}
+    <link href="{{ asset('Datepiker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="{{ path('souk_el_medina_pidev_homepage_Vendeur') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Promotion creation</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <div class="register">
+        <div class="container">
+            <h1>Promotion edit</h1>
+
+            {{ form_start(edit_form) }}
+            <div class="login-form-grids">
+
+
+
+                <form method="POST" >
+
+                    <table>
+                        <tr>
+
+                            <div class="wrap-input100 validate-input" data-validate="Phone is required">
+
+
+                                <span class="label-input100"></span>
+                                {{ form_widget(edit_form.nompromotion, {'attr': {'class': 'input100', 'placeholder': "Titre de Promotion"}}) }}
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-control-wrapper">
+                                        <input type="text" id="date-start" name="date-start" class="wrap-input100 validate-input" value="{{ promotion.datedebut }}" placeholder="Start Date" required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-control-wrapper">
+                                        <input type="text" id="date-end" name="date-end" class="wrap-input100 validate-input" value="{{ promotion.datefin }}" placeholder="End Date">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="wrap-input100 validate-input" data-validate="Phone is required" id="div">
+                                {#<input type="number" id="new_prix" name="new_prix" value="">#}
+
+                                <span class="label-input100"></span>
+                                {{ form_widget(edit_form.idproduit, {'attr': {'class': 'input100', 'placeholder': "Produit",'id':'produit','style':'outline: none;
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 100%;','name':'produit'}}) }}
+                                <span class="focus-input100"></span>
+                            </div>
+                            <br>
+                            <div class="wrap-input100 validate-input" data-validate="Phone is required">
+
+
+                                <span class="label-input100" style="  height: 100px;"></span>
+                                {#<input type="number" id="pourcentage" name="pourcentage"  min="1" max="100">#}
+                                {{ form_widget(edit_form.pourcentage, {'attr': {'class': 'input100', 'placeholder': "Pourcentage de reduction %",'style':'	outline: none;
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 100%;'}}) }}
+                                <span class="focus-input100"></span>
+                            </div>
+                            <br>
+
+                            <div class="wrap-input100 validate-input" data-validate="Phone is required" id="div">
+                                {#<input type="number" id="new_prix" name="new_prix" value="" >#}
+                                <img src="{{ asset('uploads/Images/') }}{{ promotion.imagelink }}" style="outline: none;
+                                border: 1px solid #DBDBDB;
+                                padding: 10px 10px 10px 10px;
+                                font-size: 14px;
+                                color: #999;
+                                display: block;
+                                width: 100%;">
+                                <span class="label-input100"></span>
+                                {{ form_widget(edit_form.file, {'attr': {'class': 'input100', 'placeholder': "File",'style':'outline: none;
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 100%;'}}) }}
+                                <span class="focus-input100"></span>
+                            </div>
+
+                        </tr>
+                        <tr>
+                            {#{{ form_widget(form) }}#}
+                        </tr>
+
+                        <input type="submit" value="Edit" />
+                        {{ form_end(edit_form) }}
+                        <center><table class="timetable_sub">
+                                <tr>
+                                    <td class="invert">
+
+                                        <a href="{{ path('promotions_index') }}"><img src="{{ asset('images/job-search.png') }}"></a>
+
+                                    </td><br>
+                                    <td class="invert">
+                                        <div class="rem">
+                                            <div ><a  href="{{ path('promotions_delete', { 'idpromotion': promotion.idpromotion }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a>
+                                            </div>
+                                        </div>
+
+                                    {#</td><br>#}
+                                    {#<td class="invert">#}
+                                        {#<div class="rem">#}
+                                            {#<div ><a  href="{{ path('promotions_edit', { 'idpromotion': promotion.idpromotion }) }}"><img src="{{ asset('images/test (1).png') }}"></a>#}
+                                            {#</div>#}
+                                        {#</div>#}
+
+                                    {#</td>#}
+                                </tr>
+                            </table></center>
+
+
+                        {#<ul>#}
+                        {#<li>#}
+                        {#<a href="{{ path('promotions_index') }}">Back to the list</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                        {#{{ form_start(delete_form) }}#}
+                        {#<input type="submit" value="Delete">#}
+                        {#{{ form_end(delete_form) }}#}
+                        {#</li>#}
+                        {#</ul>#}
+                        {#{{ form_end(form) }}#}
+
+                        {#<ul>#}
+                            {#<li>#}
+                                {#<a href="{{ path('produits_index') }}">Back to the list</a>#}
+                            {#</li>#}
+                        {#</ul>#}
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script src="{{ asset('Datepiker/js/bootstrap-material-datetimepicker.js') }}"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#date').bootstrapMaterialDatePicker
+            ({
+                time: false,
+                clearButton: true
+            });
+
+            $('#time').bootstrapMaterialDatePicker
+            ({
+                date: false,
+                shortTime: false,
+                format: 'HH:mm'
+            });
+
+            $('#date-format').bootstrapMaterialDatePicker
+            ({
+                format: 'dddd DD MMMM YYYY - HH:mm'
+            });
+            $('#date-fr').bootstrapMaterialDatePicker
+            ({
+                format: 'DD/MM/YYYY HH:mm',
+                lang: 'fr',
+                weekStart: 1,
+                cancelText : 'ANNULER',
+                nowButton : true,
+                switchOnClick : true
+            });
+
+            $('#date-end').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+            });
+            $('#date-start').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+            }).on('change', function(e, date)
+            {
+                $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+            });
+
+            $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+            $.material.init()
+        });
+    </script>
+    {#{{ form_widget(form) }}#}
+
+    {#{{ form_end(form) }}#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('promotions_index') }}">Back to the list</a>#}
+        {#</li>#}
+    {#</ul>#}
+
 {% endblock %}
+

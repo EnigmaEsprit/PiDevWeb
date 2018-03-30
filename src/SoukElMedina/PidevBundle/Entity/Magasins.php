@@ -66,6 +66,128 @@ class Magasins
      */
     private $iduser;
 
+    /**
+     * @return int
+     */
+    public function getIdmagasin()
+    {
+        return $this->idmagasin;
+    }
+
+    /**
+     * @param int $idmagasin
+     */
+    public function setIdmagasin($idmagasin)
+    {
+        $this->idmagasin = $idmagasin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNommagasin()
+    {
+        return $this->nommagasin;
+    }
+
+    /**
+     * @param string $nommagasin
+     */
+    public function setNommagasin($nommagasin)
+    {
+        $this->nommagasin = $nommagasin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhotomagasin()
+    {
+        return $this->photomagasin;
+    }
+
+    /**
+     * @param string $photomagasin
+     */
+    public function setPhotomagasin($photomagasin)
+    {
+        $this->photomagasin = $photomagasin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionmagasin()
+    {
+        return $this->descriptionmagasin;
+    }
+
+    /**
+     * @param string $descriptionmagasin
+     */
+    public function setDescriptionmagasin($descriptionmagasin)
+    {
+        $this->descriptionmagasin = $descriptionmagasin;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatecreationmagasin()
+    {
+        return $this->datecreationmagasin;
+    }
+
+    /**
+     * @param \DateTime $datecreationmagasin
+     */
+    public function setDatecreationmagasin($datecreationmagasin)
+    {
+        $this->datecreationmagasin = $datecreationmagasin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactmagasin()
+    {
+        return $this->contactmagasin;
+    }
+
+    /**
+     * @param string $contactmagasin
+     */
+    public function setContactmagasin($contactmagasin)
+    {
+        $this->contactmagasin = $contactmagasin;
+    }
+
+    /**
+     * @return \Users
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
+    }
+
+    /**
+     * @param \Users $iduser
+     */
+    public function setIduser($iduser)
+    {
+        $this->iduser = $iduser;
+    }
+    /**
+     * Generates the magic method
+     *
+     */
+    public function __toString(){
+        // to show the name of the Category in the select
+        return $this->nommagasin;
+        // to show the id of the Category in the select
+        // return $this->id;
+    }
+
 
 }
 

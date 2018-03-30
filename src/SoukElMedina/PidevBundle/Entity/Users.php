@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Users
  *
  * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1483A5E992FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_1483A5E9A0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_1483A5E9C05FB297", columns={"confirmation_token"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="SoukElMedina\EvenementBundle\Repository\UsersRepository")
  */
 class Users extends BaseUser
 {

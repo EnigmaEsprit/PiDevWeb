@@ -1,6 +1,6 @@
 promotions_index:
     path:     /
-    defaults: { _controller: "SoukElMedinaPromotionBundle:Default:index" }
+    defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:index" }
     methods:  GET
 
 promotions_show:
@@ -21,4 +21,10 @@ promotions_edit:
 promotions_delete:
     path:     /{idpromotion}/delete
     defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:delete" }
-    methods:  DELETE
+#    methods:  DELETE
+
+
+#promotions_prix:
+#    path:     /prix
+#    defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:PrixAjax" }
+#    methods:  [GET, POST]

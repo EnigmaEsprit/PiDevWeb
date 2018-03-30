@@ -25,3 +25,14 @@ evenements_delete:
 affichermap:
     path:     /map/{long}/{lat}
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:affichermap"}
+evenements_index_sub:
+    path:     /Participant
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:indexParticipant" }
+    methods:  [GET, POST]
+evenements_index_sub_ev:
+    path:     /{id}/Participant
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:indexParticipantevnt" }
+    methods:  [GET, POST]
+evenements_delete_sub:
+    path:     /{idparticipant}/delete
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:deleteParticipant" }

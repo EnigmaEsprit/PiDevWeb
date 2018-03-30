@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Produits
  *
  * @ORM\Table(name="produits", indexes={@ORM\Index(name="idMagasin", columns={"idMagasin"})})
- * @ORM\Entity
+ * @ORM\Entity()
  */
 class Produits
 {
@@ -86,6 +86,176 @@ class Produits
      * })
      */
     private $idmagasin;
+
+    /**
+     * @return int
+     */
+    public function getIdproduit()
+    {
+        return $this->idproduit;
+    }
+
+    /**
+     * @param int $idproduit
+     */
+    public function setIdproduit($idproduit)
+    {
+        $this->idproduit = $idproduit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReferenceproduit()
+    {
+        return $this->referenceproduit;
+    }
+
+    /**
+     * @param int $referenceproduit
+     */
+    public function setReferenceproduit($referenceproduit)
+    {
+        $this->referenceproduit = $referenceproduit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNomproduit()
+    {
+        return $this->nomproduit;
+    }
+
+    /**
+     * @param string $nomproduit
+     */
+    public function setNomproduit($nomproduit)
+    {
+        $this->nomproduit = $nomproduit;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrixproduit()
+    {
+        return $this->prixproduit;
+    }
+
+    /**
+     * @param float $prixproduit
+     */
+    public function setPrixproduit($prixproduit)
+    {
+        $this->prixproduit = $prixproduit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhotoproduit()
+    {
+        return $this->photoproduit;
+    }
+
+    /**
+     * @param string $photoproduit
+     */
+    public function setPhotoproduit($photoproduit)
+    {
+        $this->photoproduit = $photoproduit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuantiteproduit()
+    {
+        return $this->quantiteproduit;
+    }
+
+    /**
+     * @param int $quantiteproduit
+     */
+    public function setQuantiteproduit($quantiteproduit)
+    {
+        $this->quantiteproduit = $quantiteproduit;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdpromotion()
+    {
+        return $this->idpromotion;
+    }
+
+    /**
+     * @param int $idpromotion
+     */
+    public function setIdpromotion($idpromotion)
+    {
+        $this->idpromotion = $idpromotion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategoriemagasin()
+    {
+        return $this->categoriemagasin;
+    }
+
+    /**
+     * @param string $categoriemagasin
+     */
+    public function setCategoriemagasin($categoriemagasin)
+    {
+        $this->categoriemagasin = $categoriemagasin;
+    }
+
+    /**
+     * @return \Magasins
+     */
+    public function getIdmagasin()
+    {
+        return $this->idmagasin;
+    }
+
+    /**
+     * @param \Magasins $idmagasin
+     */
+    public function setIdmagasin($idmagasin)
+    {
+        $this->idmagasin = $idmagasin;
+    }
+    /**
+     * Generates the magic method
+     *
+     */
+    public function __toString(){
+        // to show the name of the Category in the select
+        return $this->nomproduit;
+        // to show the id of the Category in the select
+        // return $this->id;
+    }
 
 
 }

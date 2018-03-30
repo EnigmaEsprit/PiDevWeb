@@ -1,0 +1,152 @@
+{% extends "baseAdmin.html.twig" %}
+{% block body %}
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{{ asset('Admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('Admin/bower_components/font-awesome/css/font-awesome.min.css') }}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{{ asset('Admin/bower_components/Ionicons/css/ionicons.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('Admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('Admin/dist/css/AdminLTE.min.css') }}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{ asset('Admin/dist/css/skins/_all-skins.min.css') }}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Table de données avec fonctionnalités complètes</font></font></h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_length" id="example1_length">
+                            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Montrer </font></font><select name="example1_length" aria-controls="example1" class="form-control input-sm"><option value="10"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">dix</font></font></option><option value="25"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">25</font></font></option><option value="50"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">50</font></font></option><option value="100"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">100</font></font></option></select><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> entrées</font></font></label></div></div><div class="col-sm-6">
+                        <div id="example1_filter" class="dataTables_filter">
+                            <form method="post"><label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chercher:</font></font><input type="search" class="form-control input-sm" placeholder="" aria-controls="example1" id="search" name="chercher"></label></form></div></div></div>
+                        <div class="row">
+                            <div class="col-sm-12" name="affichage" id="affichage">
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 217px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Image </font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 266.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 237.8px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date Debut</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 186.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date Fin</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 186.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lieu</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarif</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom & Prenom (Vendeur)</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email (Vendeur)</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">N° Telephone(Vendeur)</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Description</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Show</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Delete</font></font></th>
+                            </tr>
+                            </thead>
+                            <tbody id="ajax"></tbody>
+                            <tbody id="first">
+                            {% for evenement in evenements %}
+                            <tr role="row" class="odd even">
+                                <td class="sorting_1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}"style="width: 100px;height: 80px"></font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.nomevenement }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.date }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.date }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.lieu }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.tarifevenement }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.iduser.nom }} {{ evenement.iduser.prenom }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.iduser.email }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.iduser.numerodutelephone }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.descriptionevenement }}</font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="{{ path('evenements_show_admin', { 'id': evenement.id }) }}"><img src="{{ asset('images/job-search.png') }}"></a></font></font></td>
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a class="close1" href="{{ path('evenements_delete_admin', { 'idevenement': evenement.id }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a></font></font></td>
+                            </tr>
+                                {% endfor %}
+
+                            </tbody>
+
+
+                            {#<div id="div"></div>#}
+                            <tfoot>
+                            <tr><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Image</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date Debut</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date Fin</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lieu</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarif</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom & Prenom (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">N° Telephone (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Description</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Show</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Delete</font></font></th></tr>
+                            </tfoot>
+                        </table>
+                            </div>
+
+                        </div>
+                <center id="first2">
+                    <div class="navigation">
+                        {{ knp_pagination_render(evenements) }}
+                    </div>
+                </center>
+        </div>
+
+    <script src="{{ asset('assets/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script>
+        $(function() {
+            $("#search").keyup(function () {
+                var name = $("#search").val();
+                $.ajax({
+                    type:'GET',
+                    url: Routing.generate('evenements_search_ajax', {name: name}),
+                    success:function(data){
+                        var user = JSON.parse(data);
+                         if (user.length > 0 ){
+                            $("#first").hide();
+                            $("#first2").hide();
+                             var result="";
+                             var newPath = "";
+                             var image="";
+
+                             $.each(user,function (index, value) {
+                                 var showImage="{{ asset('images/job-search.png') }}";
+                                 var deleteImage="{{ asset('images/rubbish-bin.png') }}"
+                                 var path = "{{ asset("uploads/Images/path") }}";
+                                 newPath = path.replace('path', value.imagelink);
+                                 var img="<img src='"+newPath+"' style='border-radius: 54px' class='img-profile-mobile'>";
+                                 // var rout=Routing.generate('evenements_show_admin', { 'id': value.id });
+                                 // var routdelete=Routing.generate('evenements_delete_admin', { 'idevenement': value.id });
+                                 result="<tr role='row' class='odd even'>";
+                                 result=result+"<td class='sorting_1'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><img src='"+newPath+"' style='width: 100px;height: 80px'></font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.nomevenement+"</font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.date+"</font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.datefin+"</font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.lieu+"</font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.tarifevenement+"</font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.iduser.nom+" "+value.iduser.prenom+"</font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.iduser.email+"</font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.iduser.numerodutelephone+"</font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.descriptionevenement+"</font></font></td>";
+                                 // result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a href='"+rout+"'><img src='"+showImage+"'></a></font></font></td>";
+                                 // result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a class='close1' href='"+routdelete+"'><img src='"+deleteImage+"'></a></font></font></td>";
+                                 result=result+"</tr>";
+
+                                 $("#ajax").append(result)
+                             });
+                         }
+
+
+                    }
+                });
+            })
+        });
+    </script>
+        <!-- /.box-body -->
+
+{% endblock %}

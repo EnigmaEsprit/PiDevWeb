@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Magasin</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idmagasin</th>
+                <td>{{ magasin.idmagasin }}</td>
+            </tr>
+            <tr>
+                <th>Nommagasin</th>
+                <td>{{ magasin.nommagasin }}</td>
+            </tr>
+            <tr>
+                <th>Photomagasin</th>
+                <td>{{ magasin.photomagasin }}</td>
+            </tr>
+            <tr>
+                <th>Descriptionmagasin</th>
+                <td>{{ magasin.descriptionmagasin }}</td>
+            </tr>
+            <tr>
+                <th>Datecreationmagasin</th>
+                <td>{% if magasin.datecreationmagasin %}{{ magasin.datecreationmagasin|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Contactmagasin</th>
+                <td>{{ magasin.contactmagasin }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('magasins_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('magasins_edit', { 'idmagasin': magasin.idmagasin }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

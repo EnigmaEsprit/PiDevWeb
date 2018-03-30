@@ -1,0 +1,55 @@
+{% extends 'baseVendeur.html.twig' %}
+
+{% block body %}
+
+    <div class="checkout">
+        <div class="container">
+            <h1>Participent list</h1>
+            <div class="checkout-right">
+                <table  class="timetable_sub">
+                    <thead>
+                    <tr>
+                        <th>Id evenement</th>
+                        <th>Image</th>
+                        <th>Nom de Evenement</th>
+                        <th>Nom & Prenom</th>
+                        <th>Email</th>
+                        <th>N° Telephone</th>
+                        <th>Delete</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for participant in participants %}
+                        <tr  class="rem1">
+                            <td class="invert"><a href="{{ path('evenements_show', { 'id': participant.idevenement.id }) }}">{{ participant.idevenement.id }}</a></td>
+                            <td class="invert"><img src="{{ asset('uploads/Images/') }}{{ participant.idevenement.imagelink}}"style="width: 50px;height: 50px"></td>
+                            <td class="invert">{{ participant.idevenement.nomevenement }}</td>
+                            <td class="invert">{{ participant.iduser.nom }} {{ participant.iduser.prenom }}</td>
+                            <td class="invert">{{ participant.iduser.email }}</td>
+                            <td class="invert">{{ participant.iduser.numerodutelephone }}</td>
+
+
+                            <td class="invert">
+                                <div class="rem">
+                                    <div ><a  href="{{ path('evenements_delete_sub', { 'idparticipant': participant.idparticipation }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <center>
+        <div class="navigation">
+            {{ knp_pagination_render(participants) }}
+        </div>
+    </center>
+
+{% endblock %}
+
+

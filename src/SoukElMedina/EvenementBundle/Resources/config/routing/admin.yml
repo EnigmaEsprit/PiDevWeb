@@ -1,0 +1,17 @@
+evenements_index_admin:
+    path:     /
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:indexAdmin" }
+    methods:  [GET,POST]
+evenements_show_admin:
+    path:     /{id}/show
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:showAdmin" }
+    methods:  [GET,POST]
+evenements_delete_admin:
+    path:     /{idevenement}/delete
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:deleteAdmin" }
+evenements_search_ajax:
+    path:     /{name}/search
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Search" }
+    options:
+        expose: true
+

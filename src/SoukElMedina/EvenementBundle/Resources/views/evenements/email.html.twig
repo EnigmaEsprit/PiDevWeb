@@ -1,0 +1,16 @@
+<h3>New Evenet</h3>
+
+bonjou, {{ name }},<br>
+vous pouvez maintenant consulter les nouvelle evenements
+
+{# example, assuming you have a route named "login" #}
+{{ nameEvenement }}
+<br>
+Sa commence le {{ datedubut }} a {{ datefin }} a {{ lieu }}
+<br>
+Pour plus des infomation conculter notre site  <a href="{{ url('evenements_show_INC', { 'id': evenement.id }) }}">...</a>.
+<br>
+Thanks!
+<br>
+{# Makes an absolute URL to the /images/logo.png file #}
+<img src="{{ absolute_url(asset('/images/LOGO_SOUK_Blan.png')) }}">
