@@ -42,4 +42,4 @@
 
 # Embedded web-server pid file
 /.web-server-pid
-vendor/friendsofsymfony/user-bundle/
+
