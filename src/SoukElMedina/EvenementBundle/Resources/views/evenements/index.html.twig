@@ -22,6 +22,7 @@
                         <th>Delete</th>
                         <th>Update</th>
                         <th>Participant</th>
+                        <th>Liste desParticipant</th>
 
                     </tr>
                     </thead>
@@ -60,6 +61,13 @@
                             <td class="invert">
                                 <div class="rem">
                                     <div ><a  href="{{ path('evenements_index_sub_ev', { 'id': evenement.id }) }}"><img src="{{ asset('images/subscribe-rss-button.png') }}"></a>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td class="invert">
+                                <div class="rem">
+                                    <div ><a  href="{{ path('evenements_sub_pdf', { 'id': evenement.id }) }}"><img src="{{ asset('images/pdf.png') }}"></a>
                                     </div>
                                 </div>
 

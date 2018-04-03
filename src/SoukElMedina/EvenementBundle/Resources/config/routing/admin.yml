@@ -6,9 +6,13 @@ evenements_show_admin:
     path:     /{id}/show
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:showAdmin" }
     methods:  [GET,POST]
+    options:
+        expose: true
 evenements_delete_admin:
     path:     /{idevenement}/delete
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:deleteAdmin" }
+    options:
+        expose: true
 evenements_search_ajax:
     path:     /{name}/search
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Search" }

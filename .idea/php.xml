@@ -52,6 +52,12 @@
       <path value="$PROJECT_DIR$/vendor/phpcollection/phpcollection" />
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/vendor/nomaya/social-bundle" />
+      <path value="$PROJECT_DIR$/vendor/scaytrase/symfony-sms-delivery-bundle" />
+      <path value="$PROJECT_DIR$/vendor/html2pdf/test" />
+      <path value="$PROJECT_DIR$/vendor/html2pdf/locale" />
+      <path value="$PROJECT_DIR$/vendor/html2pdf/examples" />
+      <path value="$PROJECT_DIR$/vendor/html2pdf/vendor" />
+      <path value="$PROJECT_DIR$/vendor/html2pdf/_class" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />

@@ -16,12 +16,30 @@ class PromotionRepository extends EntityRepository
     public function FindOffers($DC)
 
     {
-        $query = $this->getEntityManager()->createQuery(
+        $query = $this->createQueryBuilder("m");
+        $query->where(
+            $query->expr()->between(':x','m.datedebut','m.datefin'
+            ))
+        ->setParameter('x',$DC);
 
-            "select m from  SoukElMedinaPidevBundle:Promotions m WHERE  (:x>=m.datedebut ) and (m.datefin>=:x ) "
+        return $query->getQuery()->getResult();
 
-        )->setParameter('x',$DC);
+//        $query = $this->getEntityManager()->createQuery(
+//
+//            "select m from  SoukElMedinaPidevBundle:Promotions m WHERE  m.datedebut<=:x  and m.datefin>=:x  "
+//
+//        )->setParameter('x',$DC);
+//
+//        return $query->getResult();
+    }
+    public function FindProduit($DC)
 
-        return $query->getResult();
+    {
+        $query = $this->createQueryBuilder("m");
+        $query->where(
+            $query->expr()->eq(':x', 'm.idproduit'))
+            ->setParameter('x', $DC);
+
+        return $query->getQuery()->getResult();
     }
 }

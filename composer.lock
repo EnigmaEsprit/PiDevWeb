@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d8e54acd48dda8411cd299ca243cc2c",
+    "content-hash": "7e8d5c2d64da89d09b6e9b8edebc3d2c",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -2029,6 +2029,50 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
+        },
+        {
+            "name": "scaytrase/symfony-sms-delivery-bundle",
+            "version": "2.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scaytrase/symfony-sms-interface.git",
+                "reference": "5645a47652e6511b51f8fcdfba747a167dad0e2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scaytrase/symfony-sms-interface/zipball/5645a47652e6511b51f8fcdfba747a167dad0e2c",
+                "reference": "5645a47652e6511b51f8fcdfba747a167dad0e2c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/config": "~2.3|~3.0",
+                "symfony/dependency-injection": "~2.3|~3.0",
+                "symfony/http-foundation": "~2.3|~3.0",
+                "symfony/http-kernel": "~2.3|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0 <5.4 || ~4.6 ",
+                "symfony/framework-bundle": "~2.3|~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ScayTrase\\SmsDeliveryBundle\\": "src/ScayTrase/SmsDeliveryBundle"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Batanov",
+                    "email": "pavel@batanov.me"
+                }
+            ],
+            "description": "Symfony Bundle SMS sending service",
+            "time": "2017-03-29T06:44:16+00:00"
         },
         {
             "name": "sensio/distribution-bundle",

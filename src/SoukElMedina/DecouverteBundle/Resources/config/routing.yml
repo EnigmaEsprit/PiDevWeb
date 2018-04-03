@@ -4,8 +4,8 @@ souk_el_medina_pidev_contact:
 souk_el_medina_pidev_contact_V:
     path:     /contactv
     defaults: { _controller: SoukElMedinaDecouverteBundle:Contact:contactVendeur}
-evenements_search_ajax_Contact:
-    path:     /{name}/search
+decouvete_search_ajax_Contact:
+    path:     /{name}/searchContact
     defaults: { _controller: "SoukElMedinaDecouverteBundle:Contact:Search" }
     options:
         expose: true

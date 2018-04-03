@@ -8,6 +8,7 @@ use SoukElMedina\PidevBundle\Entity\Participations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
@@ -96,14 +97,42 @@ class EvenementsController extends Controller
             'evenements' => $evenements,
         ));
     }
-     public function SearchAction($name,Request $request)
+     public function SearchAction(Request $request)
      {
+         $em = $this->getDoctrine()->getManager();
 
-         $em=$this->getDoctrine()->getManager();
-         $user=$em->getRepository('SoukElMedinaPidevBundle:Evenements')->findEventDql($name);
-         $serializer = SerializerBuilder::create()->build();
-         $response = $serializer->serialize($user,'json');
-         return new JsonResponse($response);
+
+//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
+//         $paginator  = $this->get('knp_paginator');
+//         $evenements = $paginator->paginate(
+//             $evenements, /* query NOT result */
+//             $request->query->getInt('page', 1)/*page number*/,
+//             5/*limit per page*/
+//         )
+//         if(empty($request->get('name')))
+//         {
+
+//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
+//         $paginator  = $this->get('knp_paginator');
+//         $evenements = $paginator->paginate(
+//             $evenements, /* query NOT result */
+//             $request->query->getInt('page', 1)/*page number*/,
+//             5/*limit per page*/
+//         );
+//
+//         return $this->render('@SoukElMedinaEvenement/evenements/indexEventClient.html.twig', array(
+//             'evenements' => $evenements
+//         ));
+//         }
+//
+//         elseif ($request->isXmlHttpRequest() ) {
+//
+
+             $user = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findEventDql($request->get('name'));
+             $serializer = SerializerBuilder::create()->build();
+             $response = $serializer->serialize($user, 'json');
+             return new JsonResponse($response);
+//         }
 
      }
 
@@ -398,6 +427,43 @@ class EvenementsController extends Controller
                 "form" =>$Form->createView())
         );
     }
+    public function PDFParticiapantsAction(Evenements $evenements,Request $request)
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
+//        var_dump($evenements->getId());
+
+        $Participent = $em->getRepository('SoukElMedinaPidevBundle:Participations')->SelectListParticipantEvnt($evenements->getId());
+        if (!$Participent) {
+            return $this->redirectToRoute('evenements_index');
+        }
+
+        $html = $this->renderView('SoukElMedinaEvenementBundle:evenements:pdfParticipants.html.twig',array(
+            'Particiapants'=>$Participent,'Evenement'=>$evenements));
+
+        try{
+            $pdf = new \HTML2PDF('P','A4','fr');
+            $pdf->pdf->SetAuthor('SoukElMedina');
+            $pdf->pdf->SetTitle('Participant ');
+            $pdf->pdf->SetSubject('Participant SoukElMedina');
+            $pdf->pdf->SetKeywords('Participant,soukelmedina');
+            $pdf->pdf->SetDisplayMode('real');
+            $pdf->writeHTML($html);
+            $pdf->Output('Participant.pdf');
+
+
+//require 'phpmailer.php';
+
+        }catch(\HTML2PDF_exception $e){
+            die($e);
+        }
+
+        $response = new Response();
+        $response->headers->set('Content-type' , 'application/pdf');
+
+        return $response;
+    }
+
 
 //    public function sendMailAction(Request $request)
 //    {

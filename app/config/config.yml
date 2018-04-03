@@ -85,6 +85,11 @@ swiftmailer:
 #    username: '%mailer_user%'
 #    password: '%mailer_password%'
 #    spool: { type: memory }
+#sms_delivery:
+#    spool: "sms_delivery.spool.instant"
+#    transport: "sms_delivery.dummy_sender" # @id of the transport service
+#    disable_delivery: false # disable delivery overrides spool with disabled spool
+#    delivery_recipient: null # delivery recipient overrides recipient when sending
 nomaya_social:
     buttons:
         facebook:

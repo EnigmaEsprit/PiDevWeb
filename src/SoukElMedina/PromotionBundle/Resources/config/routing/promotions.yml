@@ -22,6 +22,11 @@ promotions_delete:
     path:     /{idpromotion}/delete
     defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:delete" }
 #    methods:  DELETE
+promotion_search_ajax_prix:
+    path:     /prix
+    defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:findProduit" }
+    options:
+        expose: true
 
 
 #promotions_prix:

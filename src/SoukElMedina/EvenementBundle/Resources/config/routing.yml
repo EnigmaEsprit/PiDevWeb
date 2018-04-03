@@ -19,9 +19,14 @@ evenements_show_INC:
     path:     /{id}/show
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:showINC" }
     methods:  [GET,POST]
+    options:
+        expose: true
 evenements_search_ajax_INC:
-    path:     /{name}/search
+    path:     /search
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Search" }
     options:
         expose: true
+evenements_sub_pdf:
+    path:     /{id}/PDF
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:PDFParticiapants"}
 

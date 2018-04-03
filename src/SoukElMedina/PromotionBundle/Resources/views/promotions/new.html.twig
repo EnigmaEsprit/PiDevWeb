@@ -90,6 +90,8 @@
                             <span class="focus-input100"></span>
                         </div>
                         <br>
+                        <div id="last"></div>
+                        <br>
                         <div class="wrap-input100 validate-input" data-validate="Phone is required">
 
 
@@ -110,7 +112,7 @@
                             {#<input type="number" id="new_prix" name="new_prix" value="" >#}
 
                             <span class="label-input100"></span>
-                            {{ form_widget(form.file, {'attr': {'class': 'input100', 'placeholder': "File",'style':'outline: none;
+                            {{ form_widget(form.file, {'attr': {'class': 'input100 produit', 'placeholder': "File",'style':'outline: none;
     border: 1px solid #DBDBDB;
     padding: 10px 10px 10px 10px;
     font-size: 14px;
@@ -202,5 +204,59 @@
             <a href="{{ path('promotions_index') }}">Back to the list</a>
         </li>
     </ul>
+
+<script src="{{ asset('assets/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+<script>
+    // $(function() {
+    //     $(".produit").change(function () {
+    //         alert("The text has been changed.");
+    //
+    //     //     var produitv = $("#produit").val();
+    //     //     var DATA = 'id=' + produitv;
+    //     //     $.ajax({
+    //     //         type: 'POST',
+    //     //         url: Routing.generate('promotion_search_ajax_prix'),
+    //     //         data: DATA,
+    //     //         success: function (data) {
+    //     //             var user = JSON.parse(data);
+    //     //
+    //     //             if (user.length > 0) {
+    //     //                 console.log(user);
+    //     //
+    //     //                 $.each(user, function (index, value) {
+    //     //                     $("#last").html("<h5>" + value.prixproduit + "</h5>");
+    //     //                 });
+    //     //             }
+    //     //         }
+    //     //     });
+    //     });
+    // });
+    $(document).ready(function(){
+        $(".input100").change(function(){
+            $(this).css("background-color", "#D6D6FF");
+            var produitv = $(".input100").text();
+            console.log(produitv)
+              var DATA = 'id=' + produitv;
+           $.ajax({
+                 type: 'POST',
+                  url: Routing.generate('promotion_search_ajax_prix'),
+                   data: DATA,
+                 success: function (data) {
+                    var user = JSON.parse(data);
+                    if (user.length > 0) {
+                           console.log(user);
+                          $.each(user, function (index, value) {
+                               $("#last").html("<h5>" + value.prixproduit + "</h5>");
+                           });
+                       }
+                   }
+                });
+        });
+    });
+</script>
+
+
 
 {% endblock %}

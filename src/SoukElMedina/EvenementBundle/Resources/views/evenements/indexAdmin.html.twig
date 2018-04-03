@@ -58,7 +58,7 @@
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Delete</font></font></th>
                             </tr>
                             </thead>
-                            <tbody id="ajax"></tbody>
+                            <tbody id='ajax'></tbody>
                             <tbody id="first">
                             {% for evenement in evenements %}
                             <tr role="row" class="odd even">
@@ -113,15 +113,15 @@
                              var result="";
                              var newPath = "";
                              var image="";
-
+                             $("#ajax").html("<tbody id='ajax'></tbody>");
                              $.each(user,function (index, value) {
                                  var showImage="{{ asset('images/job-search.png') }}";
                                  var deleteImage="{{ asset('images/rubbish-bin.png') }}"
                                  var path = "{{ asset("uploads/Images/path") }}";
                                  newPath = path.replace('path', value.imagelink);
                                  var img="<img src='"+newPath+"' style='border-radius: 54px' class='img-profile-mobile'>";
-                                 // var rout=Routing.generate('evenements_show_admin', { 'id': value.id });
-                                 // var routdelete=Routing.generate('evenements_delete_admin', { 'idevenement': value.id });
+                                 var rout=Routing.generate('evenements_show_admin', { 'id': value.id });
+                                 var routdelete=Routing.generate('evenements_delete_admin', { 'idevenement': value.id });
                                  result="<tr role='row' class='odd even'>";
                                  result=result+"<td class='sorting_1'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><img src='"+newPath+"' style='width: 100px;height: 80px'></font></font></td>";
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.nomevenement+"</font></font></td>";
@@ -133,8 +133,8 @@
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.iduser.email+"</font></font></td>";
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.iduser.numerodutelephone+"</font></font></td>";
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.descriptionevenement+"</font></font></td>";
-                                 // result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a href='"+rout+"'><img src='"+showImage+"'></a></font></font></td>";
-                                 // result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a class='close1' href='"+routdelete+"'><img src='"+deleteImage+"'></a></font></font></td>";
+                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a href='"+rout+"'><img src='"+showImage+"'></a></font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a class='close1' href='"+routdelete+"'><img src='"+deleteImage+"'></a></font></font></td>";
                                  result=result+"</tr>";
 
                                  $("#ajax").append(result)

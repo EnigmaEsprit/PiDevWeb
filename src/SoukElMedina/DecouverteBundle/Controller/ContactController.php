@@ -7,6 +7,8 @@ use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use \SoukElMedina\DecouverteBundle\Controller\MyMessage;
 
 class ContactController extends Controller
 {
@@ -41,8 +43,17 @@ class ContactController extends Controller
         ));
 
     }
+    public function sendSmsAction()
+    {
+     $message = new MyMessage('5552368','Help!');
+    $sender = $this->get('sms_delivery.sender');
+    $sender->spoolMessage($message);
+    $result = $sender->flush();
+    return new Response('Delivery '. $result ? 'successful' : 'failed');
+  }
     public function contactVendeurAction( Request $request)
     {
+
         $em = $this->getDoctrine()->getManager();
 
 
@@ -53,6 +64,20 @@ class ContactController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             1/*limit per page*/
         );
+
+        if($request->isMethod('post')){
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Contact(Vendeur)')
+                ->setFrom($request->get('email'))
+                ->setTo('boumaiazaoussama@gmail.com')
+                ->setCharset('utf-8')
+                ->setContentType('text/html')
+                ->setBody($this->render('@SoukElMedinaDecouverte/Decouverte/emailContact.html.twig', array('name' => $request->get('name'), 'body' => $request->get('body'))));
+            $this->get('mailer')->send($message);
+            return $this->render('@SoukElMedinaDecouverte/Decouverte/contactVendeur.html.twig', array(
+                'magasins' => $magasins, ));
+
+        }
         return $this->render('@SoukElMedinaDecouverte/Decouverte/contactVendeur.html.twig', array(
             'magasins' => $magasins,
         ));

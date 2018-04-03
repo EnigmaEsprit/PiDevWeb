@@ -43,6 +43,7 @@ class ComposerStaticInit1c56b9f8baaef3511324c8a024f1eb72
             'Sensio\\Bundle\\GeneratorBundle\\' => 30,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
+            'ScayTrase\\SmsDeliveryBundle\\' => 28,
         ),
         'P' => 
         array (
@@ -165,6 +166,10 @@ class ComposerStaticInit1c56b9f8baaef3511324c8a024f1eb72
         'Sensio\\Bundle\\DistributionBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/sensio/distribution-bundle',
+        ),
+        'ScayTrase\\SmsDeliveryBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/scaytrase/symfony-sms-delivery-bundle/src/ScayTrase/SmsDeliveryBundle',
         ),
         'Psr\\SimpleCache\\' => 
         array (

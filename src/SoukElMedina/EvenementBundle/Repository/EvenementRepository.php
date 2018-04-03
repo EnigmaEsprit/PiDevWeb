@@ -36,11 +36,19 @@ class EvenementRepository extends EntityRepository
     }
     public function findEventDql($nom)
     {
-        $query=$this->getEntityManager()
-            ->createQuery("Select v From SoukElMedinaPidevBundle:Evenements v
-              WHERE  v.nomevenement LIKE :nom  ORDER BY v.date")
-            ->setParameter('nom','%'.$nom.'%');
-        return $query->getResult();
+        $query = $this->createQueryBuilder("m");
+        $query->where(
+            $query->expr()->like('m.nomevenement',':x')
+            )
+       ->orderBy('m.date')
+            ->setParameter('x','%'.$nom.'%');
+
+        return $query->getQuery()->getResult();
+//        $query=$this->getEntityManager()
+//            ->createQuery("Select v From SoukElMedinaPidevBundle:Evenements v
+//              WHERE  v.nomevenement LIKE :nom  ORDER BY v.date")
+//            ->setParameter('nom','%'.$nom.'%');
+//        return $query->getResult();
     }
 //    public function FindAjax($nom)
 //

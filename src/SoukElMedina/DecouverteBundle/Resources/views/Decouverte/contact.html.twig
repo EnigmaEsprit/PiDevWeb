@@ -45,7 +45,7 @@
                      <div class="row" style="margin-left:-15px;margin-right:-15px">
                          <div class="left-side col-xs-12 col-md-4 col-sm-4" style="padding-bottom:42px;">
                              <!-- logo -->
-                             <div class="logo" style="height:120px;width:auto;margin:10px}.header_bottom{min-height:130px;margin-top:61px;margin-bottom:15px;">
+                             <div class="logo" style="height:120px;width:auto;margin:10px}.header_bottom{min-height:130px;margin-top:61px;margin-bottom:15px};">
                                  {#<a href="{{ path('evenements_show_INC', { 'id': evenement.id }) }}" title="{{ evenement.nomevenement }}">#}
                                  <a  title="{{ magasin.nommagasin }}"></a>
                                  {#<div style="background:url({{ asset('uploads/Images/') }}{{ evenement.imagelink}}) center/cover;" class="img-post"></div>#}
@@ -73,21 +73,21 @@
                              <div class="description" style="display:block;clear:both;font-size:11px;color:#84888f">
                                  <div class="row" style="margin-left:-15px;margin-right:-15px">
                                      <div class="col-md-6 col-sm-6 col-xs-6">
-                                         <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i>  Nom & Prenomde Magasinier: {{ magasin.iduser.nom }} {{ magasin.iduser.prenom }}</p>
+                                         <p class="date-event" style="color:#666;font-size:13px"><i class="fa fa-user" style="content:'';color:#f2812f;width:15px;height:15px"></i> {{ magasin.iduser.nom }} {{ magasin.iduser.prenom }}</p>
                                      </div>
                                      {#<div class="col-md-6 col-sm-6 col-xs-6">#}
                                      {#<p class="event-region" style="color:#666;font-size:13px"><i class="icon-map-marker" style="content:'';color:#f2812f;width:15px;height:15px"></i>  {{ evenement.lieu }}</p>#}
                                      {#</div>#}
                                  </div>
                                  <div class="row" style="margin-left:-15px;margin-right:-15px">
-                                     <div class="col-md-4 col-sm-6 col-xs-6">
-                                         <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i>  Email(Vendeur): {{ magasin.iduser.email }} </p>
+                                     <div class="col-md-5  col-sm-6 col-xs-6">
+                                         <p class="date-event" style="color:#666;font-size:13px"><i class="fa fa-envelope" style="content:'';color:#f2812f;width:15px;height:15px"></i> {{ magasin.iduser.email }} </p>
                                      </div>
                                      <div class="col-md-4 col-sm-6 col-xs-6">
-                                         <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i>  N° de telephone: {{ magasin.iduser.numerodutelephone }}</p>
+                                         <p class="date-event" style="color:#666;font-size:13px"><span class="glyphicon glyphicon-phone" aria-hidden="true" style="content:'';color:#f2812f;width:15px;height:15px"></span> {{ magasin.iduser.numerodutelephone }}</p>
                                      </div>
-                                     <div class="col-md-4 col-sm-6 col-xs-6">
-                                         <p class="date-event" style="color:#666;font-size:13px"><i class="artisans icon-cal"style="content:'\a90cc'"></i> Cantact Magasin: {{ magasin.contactmagasin }}</p>
+                                     <div class="col-md-3 col-sm-6 col-xs-6">
+                                         <p class="date-event" style="color:#666;font-size:13px"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true" style="content:'';color:#f2812f;width:15px;height:15px"></span> {{ magasin.contactmagasin }}</p>
                                      </div>
                                      {#<div class="col-md-6 col-sm-6 col-xs-6">#}
                                      {#<p class="event-region" style="color:#666;font-size:13px"><i class="icon-map-marker" style="content:'';color:#f2812f;width:15px;height:15px"></i> N° de telephone {{ magasin.iduser.numerodetelephone }} Place Disponible</p>#}
@@ -99,7 +99,7 @@
                                  {#</div>#}
                                  <div >
                                      <div class="col-md-4 col-sm-6 col-xs-6">
-                                         <p>{{ magasin.descriptionmagasin }}</p>
+                                         <p><i class="fa fa-wpforms" aria-hidden="true" style="content:'';color:#f2812f;width:15px;height:15px"></i>{{ magasin.descriptionmagasin }}</p>
                                      </div>
                                  </div>
                              </div>
@@ -123,15 +123,25 @@
     <div class="w3_agileits_contact_grids">
         <div class="col-md-6 w3_agileits_contact_grid_left">
             <div class="agile_map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3905851087434!2d-34.90500565012194!3d-8.061582082752993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d90992e4ab%3A0x8e83c4afabe39a3a!2sSport+Club+Do+Recife!5e0!3m2!1sen!2sin!4v1478684415917" style="border:0"></iframe>
+                {#<iframe#}
+                        {#width="450"#}
+                        {#height="250"#}
+                        {#frameborder="0" style="border:0"#}
+                        {#src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcwHdDoI65jU6iHlOGv54Efo67fE_AWw0&q=dar chaabane fehrie,nabeul" allowfullscreen>#}
+                {#</iframe>#}
+                <iframe src="https://www.google.com/maps/d/embed?mid=1Suijaer8QU1tGTndLFPnqp4IQfD-yQVQ" width="640" height="480"></iframe>
+                {#<div id="map_wrapper" style="height: 400px;">#}
+                    {#<div id="map_canvas" class="mapping" style="width: 100%;#}
+    {#height: 100%;"></div>#}
+                {#</div>#}
             </div>
             <div class="agileits_w3layouts_map_pos">
                 <div class="agileits_w3layouts_map_pos1">
                     <h3>Contact Info</h3>
-                    <p>1234k Avenue, 4th block, New York City.</p>
+                    <p>56,Rue du grand maghreb,Dar chaabane fehrie,Nabeul.Tunisie.</p>
                     <ul class="wthree_contact_info_address">
-                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-                        <li><i class="fa fa-phone" aria-hidden="true"></i>+(0123) 232 232</li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@soukelmedina.tn</a></li>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>+(216) 20950389</li>
                     </ul>
                     <div class="w3_agile_social_icons w3_agile_social_icons_contact">
                         <ul>
@@ -176,7 +186,7 @@
                  var name = $("#search").val();
                  $.ajax({
                      type:'GET',
-                     url: Routing.generate('evenements_search_ajax_Contact', {name: name}),
+                     url: Routing.generate('decouvete_search_ajax_Contact', {name: name}),
                      success:function(data){
                          var user = JSON.parse(data);
                          if (user.length > 0 ){
@@ -185,6 +195,7 @@
                              var result="";
                              var newPath = "";
                              var image="";
+                             $("#last").html("<div id='res'></div>");
 
                              $.each(user,function (index, value) {
                                  var path = "{{ asset("uploads/Images/path") }}";
@@ -206,32 +217,32 @@
                                  result=result+"<div class='description' style='display:block;clear:both;font-size:11px;color:#84888f'>";
                                  result=result+ "<div class='row' style='margin-left:-15px;margin-right:-15px'>";
                                  result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
-                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'a90cc''></i> Nom & Prenomde Magasinier: "+value.iduser.nom+"   "+value.iduser.prenom+"</p>";
+                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'> <i class='fa fa-user' style='color:#f2812f;width:15px;height:15px'></i>"+value.iduser.nom+"   "+value.iduser.prenom+"</p>";
                                  result=result+"</div>";
-                                 result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
-                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='content:'';color:#f2812f;width:15px;height:15px'></i> Email(Vendeur):"+value.iduser.email+"</p>";
-                                 result=result+"</div>";
-                                 result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
-                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><i class='artisans icon-cal'style='content:'\a90cc''></i> N° de telephone: "+value.iduser.numerodutelephone+"</p>";
-                                 result=result+"</div>";
-                                 result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
-                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='icon-map-marker' style='color:#f2812f;width:15px;height:15px'></i> Cantact Magasin: "+value.contactmagasin+" </p>";
-                                 result=result+"</div>";
+                                 result=result+"<div class='col-md-5 col-sm-6 col-xs-6'>";
+                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><i class='fa fa-envelope' style='color:#f2812f;width:15px;height:15px'></i> "+value.iduser.email+"</p>";
                                  result=result+"</div>";
                                  result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
-                                 result=result+"<p>"+value.descriptionmagasin+"</p>";
+                                 result=result+"<p class='date-event' style='color:#666;font-size:13px'><span class='glyphicon glyphicon-phone' aria-hidden='true' style='color:#f2812f;width:15px;height:15px'></span> "+value.iduser.numerodutelephone+"</p>";
+                                 result=result+"</div>";
+                                 result=result+"<div class='col-md-6 col-sm-6 col-xs-6'>";
+                                 result=result+"<p class='event-region' style='color:#666;font-size:13px'><span class='glyphicon glyphicon-phone-alt' aria-hidden='true' style='color:#f2812f;width:15px;height:15px'></span> "+value.contactmagasin+" </p>";
+                                 result=result+"</div>";
+                                 result=result+"</div>";
+                                 result=result+"<div class='col-md-4 col-sm-6 col-xs-6'>";
+                                 result=result+"<p><i class='fa fa-wpforms' aria-hidden='true' style='color:#f2812f;width:15px;height:15px'></i> "+value.descriptionmagasin+"</p>";
                                  result=result+"</div>";
                                  result=result+"</div>";
                                  result=result+"</div>";
-                                 result=result+"</div>"
+                                 result=result+"</div>";
                                  result=result+"</div>";
                                  result=result+"</div>";
                                  result=result+"</li>";
                                  result=result+"<li class=' first-in-line  last-item-of-tablet-line col-xs-12' style='list-style-type: none;clear:left;border-bottom:none'>";
-                                 result=result+"</ul>"
+                                 result=result+"</ul>";
 
 
-                                 $("#last").append(result)
+                                 $("#res").append(result)
                              });
                          }
 
@@ -240,6 +251,75 @@
                  });
              })
          });
+     </script>
+     <script>
+     jQuery(function($) {
+     // Asynchronously Load the map API
+     var script = document.createElement('script');
+     script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+     document.body.appendChild(script);
+     });
+
+     function initialize() {
+     var map;
+     var bounds = new google.maps.LatLngBounds();
+     var mapOptions = {
+     mapTypeId: 'roadmap'
+     };
+
+     // Display a map on the page
+     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+     map.setTilt(45);
+
+     // Multiple Markers
+     var markers = [
+     ['London Eye, London', 51.503454,-0.119562],
+     ['Palace of Westminster, London', 51.499633,-0.124755]
+     ];
+
+     // Info Window Content
+     var infoWindowContent = [
+     ['<div class="info_content">' +
+     '<h3>London Eye</h3>' +
+     '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>'],
+     ['<div class="info_content">' +
+     '<h3>Palace of Westminster</h3>' +
+     '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
+     '</div>']
+     ];
+
+     // Display multiple markers on a map
+     var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+     // Loop through our array of markers & place each one on the map
+     for( i = 0; i < markers.length; i++ ) {
+     var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+     bounds.extend(position);
+     marker = new google.maps.Marker({
+     position: position,
+     map: map,
+     title: markers[i][0]
+     });
+
+     // Allow each marker to have an info window
+     google.maps.event.addListener(marker, 'click', (function(marker, i) {
+     return function() {
+     infoWindow.setContent(infoWindowContent[i][0]);
+     infoWindow.open(map, marker);
+     }
+     })(marker, i));
+
+     // Automatically center the map fitting all markers on the screen
+     map.fitBounds(bounds);
+     }
+
+     // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+     var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+     this.setZoom(14);
+     google.maps.event.removeListener(boundsListener);
+     });
+
+     }
      </script>
 
 {% endblock %}

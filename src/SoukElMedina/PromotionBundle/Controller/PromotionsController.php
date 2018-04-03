@@ -2,8 +2,10 @@
 
 namespace SoukElMedina\PromotionBundle\Controller;
 
+use JMS\Serializer\SerializerBuilder;
 use SoukElMedina\PidevBundle\Entity\Promotions;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -176,6 +178,16 @@ class PromotionsController extends Controller
         return $this->render('@SoukElMedinaPromotion/promotions/promotionINC.html.twig', array(
             'promotions' => $promotions,'promotionsO'=>$prompotion2,
         ));
+    }
+    public function findProduitAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        var_dump($request->get('produitv'));
+
+        $user = $em->getRepository('SoukElMedinaPidevBundle:Produits')->findOneBy(array('nomproduit'=>$request->get('produitv')));
+        $serializer = SerializerBuilder::create()->build();
+        $response = $serializer->serialize($user, 'json');
+        return new JsonResponse($response);
     }
 
 //    public function PrixAjaxAction(Request $request)
