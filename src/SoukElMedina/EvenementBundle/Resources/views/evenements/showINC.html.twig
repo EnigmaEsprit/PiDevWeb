@@ -71,7 +71,7 @@
     <ul id="demo1">
         {% for evenement in evenements %}
             <li>
-                <a href="{{ path('evenements_show', { 'id': evenement.id }) }}"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}" alt="" /></a>
+                <a href="{{ path('evenements_show_INC', { 'id': evenement.id }) }}"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}" alt="" /></a>
                 <!--Slider Description example-->
                 <div class="slide-desc">
                     <h3>{{ evenement.nomevenement }}</h3>
@@ -334,7 +334,8 @@
                                     </form>
                                 {% elseif npr == 0 and var %}
                                     <h3 style="color: red">Compler</h3>
-
+                                {% elseif not var %}
+                                    <h3 style="color: red"></h3>
                                 {% endif %}
 
 <br>

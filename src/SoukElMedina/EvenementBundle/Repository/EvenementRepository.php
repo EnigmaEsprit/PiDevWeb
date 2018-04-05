@@ -14,9 +14,16 @@ class EvenementRepository extends EntityRepository
     public function FindEvenement($DC)
 
     {
+//        $query = $this->createQueryBuilder("m");
+//        $query->where(
+//            $query->expr()->gte(':x','m.datefin')
+//        )
+//            ->setParameter('x',$DC);
+//
+//        return $query->getQuery()->getResult();
         $query = $this->getEntityManager()->createQuery(
 
-            "select m from  SoukElMedinaPidevBundle:Evenements m WHERE (m.date>=:x) OR (m.datefin>=:x) "
+            "select m from  SoukElMedinaPidevBundle:Evenements m WHERE (m.datefin>=:x) "
 
         )->setParameter('x',$DC);
 

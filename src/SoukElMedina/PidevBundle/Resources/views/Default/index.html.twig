@@ -6,7 +6,7 @@
 <ul id="demo1">
     {% for evenement in evenements %}
      <li>
-      <a href="{{ path('evenements_show', { 'id': evenement.id }) }}"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}" alt="" /></a>
+      <a href="{{ path('evenements_show_INC', { 'id': evenement.id }) }}"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}" alt="" /></a>
       <!--Slider Description example-->
       <div class="slide-desc">
        <h3>{{ evenement.nomevenement }}</h3>

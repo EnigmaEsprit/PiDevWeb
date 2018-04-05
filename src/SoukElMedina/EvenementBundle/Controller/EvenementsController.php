@@ -2,6 +2,7 @@
 
 namespace SoukElMedina\EvenementBundle\Controller;
 
+use DateTime;
 use SoukElMedina\EvenementBundle\Form\RechercheAjaxType;
 use SoukElMedina\PidevBundle\Entity\Evenements;
 use SoukElMedina\PidevBundle\Entity\Participations;
@@ -13,6 +14,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 
 /**
@@ -330,12 +332,13 @@ class EvenementsController extends Controller
 
     public function subscribeAction(Request $request)
     {
+
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $EM = $this->getDoctrine()->getManager();
         $event = $request->get('idevenement');
         $user = $this->getUser();
         $Participent = $EM->getRepository("SoukElMedinaPidevBundle:Participations")->FindParticipation($event, $user);
-        if (empty($Participent)) {
+        if (empty($Participent)&& $this->isGranted('ROLE_CLIENT')) {
             $Participer = new Participations();
             var_dump($request->get('idevenement'));
             $repository = $this->getDoctrine()
@@ -352,7 +355,17 @@ class EvenementsController extends Controller
             $EM->flush();
 
             return $this->render("@SoukElMedinaEvenement/evenements/participation.html.twig");
-        } else {
+        } elseif ($this->isGranted('ROLE_VENDEUR')) {
+            $userID = $this->getUser()->getId();
+            $em = $this->getDoctrine()->getManager();
+            $prompotion =$em->getRepository('SoukElMedinaPidevBundle:Promotions')->findBy(array('iduser'=>$userID));
+
+            $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('iduser'=>$userID));
+
+            return $this->render('@SoukElMedinaPidev/Default/indexVendeur.html.twig', array(
+                'evenements' => $evenements,'promotionsO'=>$prompotion,
+            ));
+        }else{
             return $this->render("@SoukElMedinaEvenement/evenements/echec.html.twig");
         }
     }
@@ -363,12 +376,20 @@ class EvenementsController extends Controller
         $em = $this->getDoctrine()->getManager();
 //        $time = new \DateTime();
 //        $time->format('Y-m-d');
-        $DC = (new \DateTime('now'))->format("d/m/Y H:i");
+        $DC = (new \DateTime('now'));
+        $DC2=(new \DateTime('now'))->format("d/m/Y H:i");
+
 //        var_dump($DC);
         $NPR=$evenement->getNombredesplacesrestante();
         $DD=$evenement->getDate();
         $DF=$evenement->getDatefin();
-        if(($DD>=$DC) ||($DF>$DC))
+        $D= DateTime::createFromFormat('d/m/Y H:i', $DD);
+        $D2= DateTime::createFromFormat('d/m/Y H:i', $DF);
+        var_dump($D);
+        var_dump("-----------------------------");
+        var_dump($D2);
+
+        if($DC<=$D)
             {
                 $var=true;
             }
@@ -376,8 +397,8 @@ class EvenementsController extends Controller
             {
                 $var=false;
             }
-
-        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC);
+            var_dump($var);
+        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC2);
 
         return $this->render('SoukElMedinaEvenementBundle:evenements:showINC.html.twig', array(
             'evenement' => $evenement, 'evenements' => $evenements,'var'=>$var,'npr'=>$NPR
