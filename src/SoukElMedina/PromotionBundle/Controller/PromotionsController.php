@@ -25,6 +25,7 @@ class PromotionsController extends Controller
 
         $promotions = $em->getRepository('SoukElMedinaPidevBundle:Promotions')->findBy(array('iduser' => $this->getUser()->getId()));
 
+
         return $this->render('@SoukElMedinaPromotion/promotions/index.html.twig', array(
             'promotions' => $promotions,
         ));
@@ -166,17 +167,31 @@ class PromotionsController extends Controller
             ->getForm()
         ;
     }
-    public function indexINCAction()
+    public function indexINCAction(Request $request)
     {
 //        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $em = $this->getDoctrine()->getManager();
 
         $promotions = $em->getRepository('SoukElMedinaPidevBundle:Promotions')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $prompotions1 = $paginator->paginate(
+            $promotions, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            9/*limit per page*/
+        );
+
         $DC=(new \DateTime('now'))->format("d/m/Y H:i");
         $prompotion2 =$em->getRepository('SoukElMedinaPidevBundle:Promotions')->FindOffers($DC);
+        $paginator  = $this->get('knp_paginator');
+        $prompotions2 = $paginator->paginate(
+            $prompotion2, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            9/*limit per page*/
+        );
+
 
         return $this->render('@SoukElMedinaPromotion/promotions/promotionINC.html.twig', array(
-            'promotions' => $promotions,'promotionsO'=>$prompotion2,
+            'promotions' => $prompotions1,'promotionsO'=>$prompotions2,
         ));
     }
     public function findProduitAction(Request $request)
