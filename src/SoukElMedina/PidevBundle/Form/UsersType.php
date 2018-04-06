@@ -3,6 +3,7 @@
 namespace SoukElMedina\PidevBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -21,8 +22,25 @@ class UsersType extends AbstractType
             ->add('sexe')
             ->add('adresse')
             ->add('ville')
-            ->add('zip')
-            ->add('numerodutelephone',IntegerType::class,array('attr'=>array('min'=>20000000,'max'=>99999999)));
+            ->add('zip',IntegerType::class,array('attr'=>array('style'=>'	outline: none;
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 100%;'),))
+            ->add('numerodutelephone',IntegerType::class,array('attr'=>array('min'=>20000000,'max'=>99999999,'style'=>'	outline: none;
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 100%;'),))
+            ->add('pub', CheckboxType::class, array(
+                'label'    => 'Vous devez recevoir des publicitaires ?',
+                'required' => false,
+
+            ));
 //            ->add('type');
 //            ->add('imageuser')
 //            ->add('numerodecartebancaire')

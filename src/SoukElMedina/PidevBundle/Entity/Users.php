@@ -126,6 +126,12 @@ class Users extends BaseUser
      */
     private $ribbancaire;
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="pub", type="integer", nullable=true)
+     */
+    private $pub;
+    /**
      * Users constructor.
      */
     public function __construct()
@@ -372,6 +378,22 @@ class Users extends BaseUser
     public function setRibbancaire($ribbancaire)
     {
         $this->ribbancaire = $ribbancaire;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPub()
+    {
+        return $this->pub;
+    }
+
+    /**
+     * @param string $pub
+     */
+    public function setPub($pub)
+    {
+        $this->pub = $pub;
     }
 
 

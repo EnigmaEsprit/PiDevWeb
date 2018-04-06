@@ -24,6 +24,12 @@ class PromotionRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
 
+
+//        $query = $this->createQueryBuilder("m");
+//        $query->where($query->expr()->andX($query->expr()->gt(':x','m.datedebut'),
+//            $query->expr()->lt(':x','m.datefin')))
+//            ->setParameter('x',$DC);
+
 //        $query = $this->getEntityManager()->createQuery(
 //
 //            "select m from  SoukElMedinaPidevBundle:Promotions m WHERE  m.datedebut<=:x  and m.datefin>=:x  "

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseVendeur.html.twig' %}
 
 {% block body %}
     {#<script src="{{ asset('assets/jquery-3.2.1.min.js') }}"></script>#}
@@ -205,57 +205,57 @@
         </li>
     </ul>
 
-<script src="{{ asset('assets/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
-<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-<script>
-    // $(function() {
-    //     $(".produit").change(function () {
-    //         alert("The text has been changed.");
-    //
-    //     //     var produitv = $("#produit").val();
-    //     //     var DATA = 'id=' + produitv;
-    //     //     $.ajax({
-    //     //         type: 'POST',
-    //     //         url: Routing.generate('promotion_search_ajax_prix'),
-    //     //         data: DATA,
-    //     //         success: function (data) {
-    //     //             var user = JSON.parse(data);
-    //     //
-    //     //             if (user.length > 0) {
-    //     //                 console.log(user);
-    //     //
-    //     //                 $.each(user, function (index, value) {
-    //     //                     $("#last").html("<h5>" + value.prixproduit + "</h5>");
-    //     //                 });
-    //     //             }
-    //     //         }
-    //     //     });
-    //     });
-    // });
-    $(document).ready(function(){
-        $(".input100").change(function(){
-            $(this).css("background-color", "#D6D6FF");
-            var produitv = $(".input100").text();
-            console.log(produitv)
-              var DATA = 'id=' + produitv;
-           $.ajax({
-                 type: 'POST',
-                  url: Routing.generate('promotion_search_ajax_prix'),
-                   data: DATA,
-                 success: function (data) {
-                    var user = JSON.parse(data);
-                    if (user.length > 0) {
-                           console.log(user);
-                          $.each(user, function (index, value) {
-                               $("#last").html("<h5>" + value.prixproduit + "</h5>");
-                           });
-                       }
-                   }
-                });
-        });
-    });
-</script>
+{#<script src="{{ asset('assets/jquery-3.2.1.min.js') }}"></script>#}
+{#<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>#}
+{#<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
+{#<script>#}
+    {#// $(function() {#}
+    {#//     $(".produit").change(function () {#}
+    {#//         alert("The text has been changed.");#}
+    {#//#}
+    {#//     //     var produitv = $("#produit").val();#}
+    {#//     //     var DATA = 'id=' + produitv;#}
+    {#//     //     $.ajax({#}
+    {#//     //         type: 'POST',#}
+    {#//     //         url: Routing.generate('promotion_search_ajax_prix'),#}
+    {#//     //         data: DATA,#}
+    {#//     //         success: function (data) {#}
+    {#//     //             var user = JSON.parse(data);#}
+    {#//     //#}
+    {#//     //             if (user.length > 0) {#}
+    {#//     //                 console.log(user);#}
+    {#//     //#}
+    {#//     //                 $.each(user, function (index, value) {#}
+    {#//     //                     $("#last").html("<h5>" + value.prixproduit + "</h5>");#}
+    {#//     //                 });#}
+    {#//     //             }#}
+    {#//     //         }#}
+    {#//     //     });#}
+    {#//     });#}
+    {#// });#}
+    {#$(document).ready(function(){#}
+        {#$(".input100").change(function(){#}
+            {#$(this).css("background-color", "#D6D6FF");#}
+            {#var produitv = $(".input100").text();#}
+            {#console.log(produitv)#}
+              {#var DATA = 'id=' + produitv;#}
+           {#$.ajax({#}
+                 {#type: 'POST',#}
+                  {#url: Routing.generate('promotion_search_ajax_prix'),#}
+                   {#data: DATA,#}
+                 {#success: function (data) {#}
+                    {#var user = JSON.parse(data);#}
+                    {#if (user.length > 0) {#}
+                           {#console.log(user);#}
+                          {#$.each(user, function (index, value) {#}
+                               {#$("#last").html("<h5>" + value.prixproduit + "</h5>");#}
+                           {#});#}
+                       {#}#}
+                   {#}#}
+                {#});#}
+        {#});#}
+    {#});#}
+{#</script>#}
 
 
 

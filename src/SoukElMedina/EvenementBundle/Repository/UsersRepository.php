@@ -17,7 +17,7 @@ class UsersRepository extends EntityRepository
     {
         $query = $this->getEntityManager()->createQuery(
 
-            "select m from  SoukElMedinaPidevBundle:Users m WHERE m.roles LIKE '%ROLE_CLIENT%' "
+            "select m from  SoukElMedinaPidevBundle:Users m WHERE m.roles LIKE '%ROLE_CLIENT%' and m.pub = 1"
 
         );
 

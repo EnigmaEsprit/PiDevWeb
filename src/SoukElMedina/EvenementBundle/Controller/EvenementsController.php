@@ -153,7 +153,7 @@ class EvenementsController extends Controller
         $evenements = $paginator->paginate(
             $evenements, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            5/*limit per page*/
+            1/*limit per page*/
         );
 
         return $this->render('@SoukElMedinaEvenement/evenements/indexEventClient.html.twig', array(
@@ -388,6 +388,7 @@ class EvenementsController extends Controller
         var_dump($D);
         var_dump("-----------------------------");
         var_dump($D2);
+        $plan=("http://www.localhost/pidevweb/web/");
 
         if($DC<=$D)
             {
@@ -401,7 +402,7 @@ class EvenementsController extends Controller
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC2);
 
         return $this->render('SoukElMedinaEvenementBundle:evenements:showINC.html.twig', array(
-            'evenement' => $evenement, 'evenements' => $evenements,'var'=>$var,'npr'=>$NPR
+            'evenement' => $evenement, 'evenements' => $evenements,'var'=>$var,'npr'=>$NPR,'p'=>$plan
         ));
     }
     public function showAdminAction(Evenements $evenement)
