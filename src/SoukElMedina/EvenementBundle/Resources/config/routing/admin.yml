@@ -18,4 +18,47 @@ evenements_search_ajax:
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Search" }
     options:
         expose: true
+evenements_accepter:
+    path:     /{id}/accepter
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Accepter"}
+    options:
+        expose: true
 
+evenements_refuser:
+    path:     /{id}/refuser
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Refuser"}
+    options:
+        expose: true
+
+evenements_demande:
+    path:     /demande
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Demande"}
+    options:
+        expose: true
+
+evenements_search_ajax_request:
+    path:     /{name}/searchRequest
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:SearchRequest" }
+    options:
+        expose: true
+
+evenements_search_ajax_block:
+    path:     /{name}/searchblock
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:SearchBlock" }
+    options:
+        expose: true
+evenements_block:
+    path:     /{id}/block
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Block"}
+    options:
+        expose: true
+evenements_Unlock:
+    path:     /{id}/Unlock
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:Unlock"}
+    options:
+        expose: true
+evenements_Listblock:
+    path:     /listeblock
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:indexBlok"}
+    options:
+        expose: true

@@ -87,7 +87,7 @@ class EvenementsController extends Controller
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
+        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>1));
         $paginator  = $this->get('knp_paginator');
         $evenements = $paginator->paginate(
             $evenements, /* query NOT result */
@@ -96,6 +96,40 @@ class EvenementsController extends Controller
         );
 
         return $this->render('@SoukElMedinaEvenement/evenements/indexAdmin.html.twig', array(
+            'evenements' => $evenements,
+        ));
+    }
+    public function DemandeAction(Request $request)
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
+
+        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>0));
+        $paginator  = $this->get('knp_paginator');
+        $evenements = $paginator->paginate(
+            $evenements, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            4/*limit per page*/
+        );
+
+        return $this->render('@SoukElMedinaEvenement/evenements/demande.html.twig', array(
+            'evenements' => $evenements,
+        ));
+    }
+    public function indexBlokAction(Request $request)
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
+
+        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>3));
+        $paginator  = $this->get('knp_paginator');
+        $evenements = $paginator->paginate(
+            $evenements, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+        return $this->render('@SoukElMedinaEvenement/evenements/ListeBlock.html.twig', array(
             'evenements' => $evenements,
         ));
     }
@@ -139,6 +173,58 @@ class EvenementsController extends Controller
      }
 
 
+    public function SearchRequestAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+
+//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
+//         $paginator  = $this->get('knp_paginator');
+//         $evenements = $paginator->paginate(
+//             $evenements, /* query NOT result */
+//             $request->query->getInt('page', 1)/*page number*/,
+//             5/*limit per page*/
+//         )
+//         if(empty($request->get('name')))
+//         {
+
+//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
+//         $paginator  = $this->get('knp_paginator');
+//         $evenements = $paginator->paginate(
+//             $evenements, /* query NOT result */
+//             $request->query->getInt('page', 1)/*page number*/,
+//             5/*limit per page*/
+//         );
+//
+//         return $this->render('@SoukElMedinaEvenement/evenements/indexEventClient.html.twig', array(
+//             'evenements' => $evenements
+//         ));
+//         }
+//
+//         elseif ($request->isXmlHttpRequest() ) {
+//
+
+        $user = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findEventRequestDql($request->get('name'));
+        $serializer = SerializerBuilder::create()->build();
+        $response = $serializer->serialize($user, 'json');
+        return new JsonResponse($response);
+//         }
+
+    }
+    public function SearchBlockAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+
+
+        $user = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findEventBlockDql($request->get('name'));
+        $serializer = SerializerBuilder::create()->build();
+        $response = $serializer->serialize($user, 'json');
+        return new JsonResponse($response);
+
+
+    }
+
 
 
 
@@ -148,7 +234,7 @@ class EvenementsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 
-        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
+        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>1));
         $paginator  = $this->get('knp_paginator');
         $evenements = $paginator->paginate(
             $evenements, /* query NOT result */
@@ -182,23 +268,11 @@ class EvenementsController extends Controller
             $evenement->setDescriptionevenement($request->get('description'));
             $evenement->setDate($request->get('date-start'));
             $evenement->setDateFin($request->get('date-end'));
+            $evenement->setVerifier(0);
             $subject=$evenement->getNomevenement();
-            $users=$em->getRepository('SoukElMedinaPidevBundle:Users')->FindUsers();
             $em->persist($evenement);
             $em->flush();
-            foreach ($users as $user) {
 
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Events')
-                    ->setFrom('boumaiazaoussama@gmail.com')
-                    ->setTo($user->getEmail())
-                    ->setCharset('utf-8')
-                    ->setContentType('text/html')
-                    ->setBody($this->render('@SoukElMedinaEvenement/evenements/email.html.twig',array('name'=>$user->getNom(),'lieu'=>$evenement->getLieu(),'nameEvenement'=>$evenement->getNomevenement(),'datedubut'=>$evenement->getDate(),'datefin'=>$evenement->getDatefin(),'evenement'=>$evenement)));
-                $this->get('mailer')->send($message);
-
-
-            }
             return $this->redirectToRoute('evenements_index');
         }
 
@@ -206,6 +280,83 @@ class EvenementsController extends Controller
             'evenement' => $evenement,
             'form' => $form->createView(),
         ));
+    }
+    public function AccepterAction(Evenements $evenements)
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
+        $evenements->setVerifier(1);
+        $em->persist($evenements);
+        $em->flush();
+        $users=$em->getRepository('SoukElMedinaPidevBundle:Users')->FindUsers();
+
+        foreach ($users as $user) {
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Events')
+                ->setFrom('boumaiazaoussama@gmail.com')
+                ->setTo($user->getEmail())
+                ->setCharset('utf-8')
+                ->setContentType('text/html')
+                ->setBody($this->render('@SoukElMedinaEvenement/evenements/email.html.twig',array('name'=>$user->getNom(),'lieu'=>$evenements->getLieu(),'nameEvenement'=>$evenements->getNomevenement(),'datedubut'=>$evenements->getDate(),'datefin'=>$evenements->getDatefin(),'evenement'=>$evenements)));
+            $this->get('mailer')->send($message);
+
+
+        }
+
+        return $this->redirectToRoute('evenements_demande');
+
+
+    }
+    public function UnlockAction(Evenements $evenements)
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
+        $evenements->setVerifier(1);
+        $em->persist($evenements);
+        $em->flush();
+        $users=$em->getRepository('SoukElMedinaPidevBundle:Users')->FindUsers();
+
+        foreach ($users as $user) {
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Events')
+                ->setFrom('boumaiazaoussama@gmail.com')
+                ->setTo($user->getEmail())
+                ->setCharset('utf-8')
+                ->setContentType('text/html')
+                ->setBody($this->render('@SoukElMedinaEvenement/evenements/email.html.twig',array('name'=>$user->getNom(),'lieu'=>$evenements->getLieu(),'nameEvenement'=>$evenements->getNomevenement(),'datedubut'=>$evenements->getDate(),'datefin'=>$evenements->getDatefin(),'evenement'=>$evenements)));
+            $this->get('mailer')->send($message);
+
+
+        }
+
+        return $this->redirectToRoute('evenements_Listblock');
+
+
+    }
+    public function RefuserAction(Evenements $evenements)
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
+        $evenements->setVerifier(2);
+        $em->persist($evenements);
+        $em->flush();
+
+        return $this->redirectToRoute('evenements_demande');
+
+//        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+
+    }
+    public function BlockAction(Evenements $evenements)
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
+        $evenements->setVerifier(3);
+        $em->persist($evenements);
+        $em->flush();
+
+        return $this->redirectToRoute('evenements_index_admin');
     }
     /**
      * //     * Finds and displays a evenement entity.
@@ -253,6 +404,7 @@ class EvenementsController extends Controller
             $evenement->setDescriptionevenement($request->get('description'));
             $evenement->setDate($request->get('date-start'));
             $evenement->setDateFin($request->get('date-end'));
+            $evenement->setVerifier(0);
             $em->persist($evenement);
             $em->flush();
 

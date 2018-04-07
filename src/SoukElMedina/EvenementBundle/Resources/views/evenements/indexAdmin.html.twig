@@ -56,6 +56,7 @@
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Description</font></font></th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Show</font></font></th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Delete</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 135.6px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Block</font></font></th>
                             </tr>
                             </thead>
                             <tbody id='ajax'></tbody>
@@ -72,8 +73,9 @@
                                 <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.iduser.email }}</font></font></td>
                                 <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.iduser.numerodutelephone }}</font></font></td>
                                 <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.descriptionevenement }}</font></font></td>
-                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="{{ path('evenements_show_admin', { 'id': evenement.id }) }}"><img src="{{ asset('images/job-search.png') }}"></a></font></font></td>
-                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a class="close1" href="{{ path('evenements_delete_admin', { 'idevenement': evenement.id }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a></font></font></td>
+                                <td><center><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="{{ path('evenements_show_admin', { 'id': evenement.id }) }}"><img src="{{ asset('images/job-search.png') }}"></a></font></font></center></td>
+                                <td><center><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a class="close1" href="{{ path('evenements_delete_admin', { 'idevenement': evenement.id }) }}"><img src="{{ asset('images/rubbish-bin.png') }}"></a></font></font></center></td>
+                                <td><center><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a class="close1" href="{{ path('evenements_block', { 'id': evenement.id }) }}"><img src="{{ asset('images/do-not-disturb-rounded-sign.png') }}"></a></font></font></center></td>
                             </tr>
                                 {% endfor %}
 
@@ -82,7 +84,7 @@
 
                             {#<div id="div"></div>#}
                             <tfoot>
-                            <tr><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Image</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date Debut</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date Fin</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lieu</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarif</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom & Prenom (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">N° Telephone (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Description</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Show</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Delete</font></font></th></tr>
+                            <tr><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Image</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date Debut</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date Fin</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lieu</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarif</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom & Prenom (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">N° Telephone (Vendeur)</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Description</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Show</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Delete</font></font></th><th rowspan="1" colspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Block</font></font></th></tr>
                             </tfoot>
                         </table>
                             </div>
@@ -117,11 +119,13 @@
                              $.each(user,function (index, value) {
                                  var showImage="{{ asset('images/job-search.png') }}";
                                  var deleteImage="{{ asset('images/rubbish-bin.png') }}"
+                                 var blockImage="{{ asset('images/do-not-disturb-rounded-sign.png') }}"
                                  var path = "{{ asset("uploads/Images/path") }}";
                                  newPath = path.replace('path', value.imagelink);
                                  var img="<img src='"+newPath+"' style='border-radius: 54px' class='img-profile-mobile'>";
                                  var rout=Routing.generate('evenements_show_admin', { 'id': value.id });
                                  var routdelete=Routing.generate('evenements_delete_admin', { 'idevenement': value.id });
+                                 var routblock=Routing.generate('evenements_block', { 'id': value.id });
                                  result="<tr role='row' class='odd even'>";
                                  result=result+"<td class='sorting_1'><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><img src='"+newPath+"' style='width: 100px;height: 80px'></font></font></td>";
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.nomevenement+"</font></font></td>";
@@ -133,8 +137,9 @@
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.iduser.email+"</font></font></td>";
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.iduser.numerodutelephone+"</font></font></td>";
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'>"+value.descriptionevenement+"</font></font></td>";
-                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a href='"+rout+"'><img src='"+showImage+"'></a></font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a href='"+rout+"'><img src='"+showImage+"'></a></font></font></td>";
                                  result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a class='close1' href='"+routdelete+"'><img src='"+deleteImage+"'></a></font></font></td>";
+                                 result=result+"<td><font style='vertical-align: inherit;'><font style='vertical-align: inherit;'><a class='close1' href='"+routblock+"'><img src='"+blockImage+"'></a></font></font></td>";
                                  result=result+"</tr>";
 
                                  $("#ajax").append(result)

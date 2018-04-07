@@ -23,7 +23,7 @@ class EvenementRepository extends EntityRepository
 //        return $query->getQuery()->getResult();
         $query = $this->getEntityManager()->createQuery(
 
-            "select m from  SoukElMedinaPidevBundle:Evenements m WHERE (m.datefin>=:x) "
+            "select m from  SoukElMedinaPidevBundle:Evenements m WHERE (m.datefin>=:x) and m.verifier =1 "
 
         )->setParameter('x',$DC);
 
@@ -41,11 +41,12 @@ class EvenementRepository extends EntityRepository
 
         return $query->getResult();
     }
-    public function findEventDql($nom)
+    public function findEventRequestDql($nom)
     {
         $query = $this->createQueryBuilder("m");
         $query->where(
-            $query->expr()->like('m.nomevenement',':x')
+            $query->expr()->like('m.nomevenement',':x'),
+            $query->expr()->eq('m.verifier',0)
             )
        ->orderBy('m.date')
             ->setParameter('x','%'.$nom.'%');
@@ -68,6 +69,30 @@ class EvenementRepository extends EntityRepository
 //
 //        return $query->getResult();
 //    }
+    public function findEventBlockDql($nom)
+    {
+        $query = $this->createQueryBuilder("m");
+        $query->where(
+            $query->expr()->like('m.nomevenement', ':x'),
+            $query->expr()->eq('m.verifier', 3)
+        )
+            ->orderBy('m.date')
+            ->setParameter('x', '%' . $nom . '%');
+
+        return $query->getQuery()->getResult();
+    }
+    public function findEventDql($nom)
+    {
+        $query = $this->createQueryBuilder("m");
+        $query->where(
+            $query->expr()->like('m.nomevenement', ':x'),
+            $query->expr()->eq('m.verifier', 1)
+        )
+            ->orderBy('m.date')
+            ->setParameter('x', '%' . $nom . '%');
+
+        return $query->getQuery()->getResult();
+    }
     public function UpdatePlace($id)
 
     {

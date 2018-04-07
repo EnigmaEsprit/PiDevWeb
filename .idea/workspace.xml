@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97942a8e-6622-4003-9c8a-a3f3572f4747" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/ListeBlock.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/demande.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Repository/EvenementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Repository/EvenementRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing/admin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing/admin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexAdmin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Evenements.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Evenements.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,20 +64,110 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="EvenementsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EvenementsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="168" column="47" selection-start-line="168" selection-start-column="47" selection-end-line="168" selection-end-column="47" />
+            <state relative-caret-position="228">
+              <caret line="213" column="20" selection-start-line="213" selection-start-column="20" selection-end-line="213" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Evenements.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Evenements.php">
+      <file leaf-file-name="admin.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing/admin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="107" column="7" selection-start-line="107" selection-start-column="7" selection-end-line="107" selection-end-column="7" />
+            <state relative-caret-position="580">
+              <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EvenementRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Repository/EvenementRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="88" column="46" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ListeBlock.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/ListeBlock.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="104" column="71" selection-start-line="104" selection-start-column="71" selection-end-line="104" selection-end-column="71" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="demande.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/demande.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="84" column="1622" selection-start-line="84" selection-start-column="1622" selection-end-line="84" selection-end-column="1622" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="180" column="12" selection-start-line="180" selection-start-column="12" selection-end-line="180" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -74,24 +176,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tabl</find>
-      <find>edit</find>
-      <find>Moteur de rendu</find>
-      <find>style=&quot;vertical-align: inherit;&quot;</find>
-      <find>input</find>
-      <find>select</find>
-      <find>f</find>
-      <find>agile_top_brand_left_grid</find>
-      <find>agile_top_brands_grids</find>
-      <find>myTabContent</find>
-      <find>to</find>
-      <find>id=&quot;expeditions-tab&quot;</find>
-      <find>class=&quot;item&quot;</find>
-      <find>This week</find>
-      <find>off</find>
-      <find>index2.html</find>
-      <find>#}</find>
-      <find>table</find>
       <find>search</find>
       <find>conta</find>
       <find>offers</find>
@@ -104,6 +188,24 @@
       <find>produit</find>
       <find>body</find>
       <find>show</find>
+      <find>A</find>
+      <find>Re</find>
+      <find>indexA</find>
+      <find>indexAd</find>
+      <find>index</find>
+      <find>ser</find>
+      <find>Sea</find>
+      <find>new</find>
+      <find>newA</find>
+      <find>evene</find>
+      <find>Accep</find>
+      <find>Dema</find>
+      <find>Accept</find>
+      <find>Blo</find>
+      <find>edit</find>
+      <find>Demande</find>
+      <find>Requ</find>
+      <find>Search</find>
     </findStrings>
   </component>
   <component name="FrameworkCommandLineHistory">
@@ -137,6 +239,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/oussama" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
@@ -144,12 +259,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="src:table:/3b1576e9/9d980ce2-e9ff-41a2-8705-0e4664762bcf/pidev.evenements" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Repository/ParticipationRepository.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Participations.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing/evenements.yml" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/show.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
@@ -170,22 +282,15 @@
         <option value="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/config/routing/promotions.yml" />
         <option value="$PROJECT_DIR$/vendor/autoload.php" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing/admin.yml" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexAdmin.html.twig" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/pdfParticipants.html.twig" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/index.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Resources/views/Decouverte/contact.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Resources/views/Decouverte/contactVendeur.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Controller/ContactController.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Repository/EvenementRepository.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexEventClient.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/new.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Repository/PromotionRepository.php" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/showINC.html.twig" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Type/RegistrationFormType.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Users.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Form/UsersType.php" />
@@ -195,6 +300,16 @@
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/promotionINC.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/PromotionsController.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Evenements.php" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/demande.html.twig" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Repository/EvenementRepository.php" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/ListeBlock.html.twig" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing/admin.yml" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexAdmin.html.twig" />
       </list>
     </option>
   </component>
@@ -264,11 +379,10 @@
       <path value="$PROJECT_DIR$/vendor/html2pdf/_class" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="435" />
-    <option name="y" value="125" />
-    <option name="width" value="980" />
-    <option name="height" value="1050" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="width" value="1204" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -444,6 +558,25 @@
               <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="EvenementBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="EvenementBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="routing" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="EvenementBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -462,30 +595,6 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Entity" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Form" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -513,49 +622,6 @@
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Default" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="friendsofsymfony" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="friendsofsymfony" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="user-bundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="friendsofsymfony" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="user-bundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="friendsofsymfony" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="user-bundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Form" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="friendsofsymfony" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="user-bundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Form" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Type" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -638,12 +704,20 @@
       <workItem from="1522888013519" duration="2063000" />
       <workItem from="1522916110954" duration="5611000" />
       <workItem from="1523013469640" duration="6037000" />
-      <workItem from="1523094923054" duration="726000" />
+      <workItem from="1523094923054" duration="11399000" />
     </task>
+    <task id="LOCAL-00001" summary="oussema bundle">
+      <created>1523095763511</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1523095763512</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="604278000" />
+    <option name="totallyTimeSpent" value="614951000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -657,9 +731,9 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="846" extended-state="6" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="11" weight="0.32922733" />
-      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.51555556" side_tool="true" weight="0.25282487" />
-      <window_info active="true" anchor="bottom" id="Command Line Tools Console" order="1" visible="true" weight="0.33519554" />
+      <window_info anchor="bottom" id="TODO" order="11" weight="0.3282123" />
+      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.5080537" side_tool="true" weight="0.33519554" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="1" sideWeight="0.4919463" weight="0.33519554" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32922733" />
       <window_info anchor="bottom" id="Run" order="7" />
@@ -667,6 +741,7 @@
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4869762" weight="0.4590604" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="0" weight="0.1519871" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32698768" />
       <window_info id="Structure" order="2" sideWeight="0.49603623" side_tool="true" weight="0.24758324" />
       <window_info id="Favorites" order="0" sideWeight="0.5130238" side_tool="true" weight="0.7811111" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
@@ -676,7 +751,6 @@
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32698768" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,26 +759,18 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
+    <MESSAGE value="oussema bundle" />
+    <MESSAGE value="fos" />
+    <option name="LAST_COMMIT_MESSAGE" value="fos" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/PromotionsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2975">
-          <caret line="179" column="13" selection-start-line="179" selection-start-column="13" selection-end-line="179" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/nomaya/social-bundle/Nomaya/SocialBundle/Resources/views/Buttons/facebookButton.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="104" selection-start-line="15" selection-start-column="104" selection-end-line="15" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -803,13 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing/admin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Participations.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -866,20 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Repository/EvenementRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexEventClient.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-507">
@@ -908,20 +953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="69" column="144" selection-start-line="69" selection-start-column="144" selection-end-line="69" selection-end-column="144" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="517" column="21" selection-start-line="517" selection-start-column="17" selection-end-line="517" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -943,13 +974,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="185" column="113" selection-start-line="185" selection-start-column="113" selection-end-line="191" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Users.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -968,13 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="19" column="108" selection-start-line="19" selection-start-column="108" selection-end-line="19" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/showINC.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="369" lean-forward="true" selection-start-line="369" selection-end-line="369" />
         </state>
       </provider>
     </entry>
@@ -1009,13 +1026,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexAdmin.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="90" column="14" selection-start-line="90" selection-start-column="14" selection-end-line="94" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1938">
@@ -1037,17 +1047,177 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php">
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Evenements.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="168" column="47" selection-start-line="168" selection-start-column="47" selection-end-line="168" selection-end-column="47" />
+        <state relative-caret-position="289">
+          <caret line="106" column="13" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Evenements.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="107" column="7" selection-start-line="107" selection-start-column="7" selection-end-line="107" selection-end-column="7" />
+        <state relative-caret-position="245">
+          <caret line="430" column="115" selection-start-line="430" selection-start-column="115" selection-end-line="430" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/showINC.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="963">
+          <caret line="369" selection-start-line="369" selection-end-line="369" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/demande.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="84" column="1622" selection-start-line="84" selection-start-column="1622" selection-end-line="84" selection-end-column="1622" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="180" column="12" selection-start-line="180" selection-start-column="12" selection-end-line="180" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/ListeBlock.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="104" column="71" selection-start-line="104" selection-start-column="71" selection-end-line="104" selection-end-column="71" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing/admin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexAdmin.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="141" column="191" selection-start-line="141" selection-start-column="191" selection-end-line="141" selection-end-column="191" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Repository/EvenementRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="88" column="46" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="213" column="20" selection-start-line="213" selection-start-column="20" selection-end-line="213" selection-end-column="31" />
         </state>
       </provider>
     </entry>

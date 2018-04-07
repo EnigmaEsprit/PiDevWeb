@@ -378,6 +378,23 @@ class Evenements
     {
         $this->datefin = $datefin;
     }
+
+    /**
+     * @return int
+     */
+    public function getVerifier()
+    {
+        return $this->verifier;
+    }
+
+    /**
+     * @param int $verifier
+     */
+    public function setVerifier($verifier)
+    {
+        $this->verifier = $verifier;
+    }
+
 //    public function getLat()
 //    {
 //        return $this->lat;

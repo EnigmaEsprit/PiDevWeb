@@ -9,6 +9,7 @@
                 <table  class="timetable_sub">
                     <thead>
                     <tr>
+                        <th>Etat</th>
                         <th>Id evenement</th>
                         <th>Image</th>
                         <th>Nom de venement</th>
@@ -29,6 +30,18 @@
                     <tbody>
                     {% for evenement in evenements %}
                         <tr  class="rem1">
+                            {% if evenement.verifier  ==1 %}
+                            <td class="invert"><img src="{{ asset('images/checked.png') }}"style="width: 10px;height: 10px"></td>
+                            {% elseif  evenement.verifier ==2  %}
+                                <td class="invert"><img src="{{ asset('images/icon.png') }}"style="width: 10px;height: 10px"></td>
+                            {% elseif  evenement.verifier ==3  %}
+                                <td class="invert"><img src="{{ asset('images/do-not-disturb-rounded-sign.png') }}"style="width: 10px;height: 10px"></td>
+                                {% else %}
+                                    <td class="invert"><img src="{{ asset('images/hourglass.png') }}"style="width: 10px;height: 10px"></td>
+                                    {% endif %}
+
+
+
                             <td class="invert"><a href="{{ path('evenements_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
                             <td class="invert"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}"style="width: 50px;height: 50px"></td>
                             <td class="invert">{{ evenement.nomevenement }}</td>
@@ -53,8 +66,13 @@
                             </td>
                             <td class="invert">
                                 <div class="rem">
+                                    {% if  evenement.verifier ==3 %}
+                                    <div ><img src="{{ asset('images/test (1).png') }}">
+                                    </div>
+                                    {% else %}
                                     <div ><a  href="{{ path('evenements_edit', { 'id': evenement.id }) }}"><img src="{{ asset('images/test (1).png') }}"></a>
                                     </div>
+                                        {% endif %}
                                 </div>
 
                             </td>
