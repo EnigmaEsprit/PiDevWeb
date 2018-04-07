@@ -100,6 +100,12 @@ class Evenements
      */
     private $iduser;
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="verifier", type="integer", nullable=true)
+     */
+    private $verifier;
+    /**
      * @return int
      */
     public function getId()
