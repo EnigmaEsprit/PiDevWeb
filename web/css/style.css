@@ -921,6 +921,15 @@ a.w3_agile_vimeo:hover{
 .login-form-grids input[type="password"]{
 	margin:1em 0 0;
 }
+.login-form-grids textarea{
+    min-height: 115px;
+    padding-top: 14px;
+    padding-bottom: 13px;
+    width: 100%;
+}
+
+
+
 .forgot {
     margin: 1.5em 0 0;
 }
@@ -1074,9 +1083,11 @@ a.w3_agile_vimeo:hover{
 	text-transform:uppercase;
 	margin:0 0 3em;
 }
+
 .checkout h2 span{
 	color:#3399cc;
 }
+
 table.timetable_sub {
 	width:100%;
 	margin:0 auto;
@@ -1212,7 +1223,7 @@ td.invert-image a img {
 .checkout-left-basket ul li span {
     float: right;
 }
-.checkout-left-basket ul li:nth-child(5) {
+.checkout-left-basket ul li:nth-child(3) {
     font-size: 1em;
     color: #212121;
     font-weight: 600;
@@ -3390,4 +3401,5 @@ td.invert-image a img {
 .w3agile_description p {
     font-size: 13px;
 }
+
 }

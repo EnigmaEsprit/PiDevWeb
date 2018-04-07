@@ -1,0 +1,5 @@
+SoukElMedina\PidevBundle\Entity\Evenements:
+    properties:
+        file:
+            - File:
+                maxSize: 6000000

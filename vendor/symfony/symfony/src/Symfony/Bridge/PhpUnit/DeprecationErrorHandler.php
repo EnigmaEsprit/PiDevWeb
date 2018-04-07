@@ -75,12 +75,9 @@ class DeprecationErrorHandler
                     }
                 }
             }
-            $realPath = realpath($path);
-            if (false === $realPath && '-' !== $path && 'Standard input code' !== $path) {
-                return true;
-            }
+            $path = realpath($path) ?: $path;
             foreach ($vendors as $vendor) {
-                if (0 === strpos($realPath, $vendor) && false !== strpbrk(substr($realPath, strlen($vendor), 1), '/'.DIRECTORY_SEPARATOR)) {
+                if (0 === strpos($path, $vendor) && false !== strpbrk(substr($path, strlen($vendor), 1), '/'.DIRECTORY_SEPARATOR)) {
                     return true;
                 }
             }
@@ -119,16 +116,8 @@ class DeprecationErrorHandler
             }
 
             if (isset($trace[$i]['object']) || isset($trace[$i]['class'])) {
-                if (isset($trace[$i]['class']) && in_array($trace[$i]['class'], array('Symfony\Bridge\PhpUnit\SymfonyTestsListener', 'Symfony\Bridge\PhpUnit\Legacy\SymfonyTestsListener'), true)) {
-                    $parsedMsg = unserialize($msg);
-                    $msg = $parsedMsg['deprecation'];
-                    $class = $parsedMsg['class'];
-                    $method = $parsedMsg['method'];
-                } else {
-                    $class = isset($trace[$i]['object']) ? get_class($trace[$i]['object']) : $trace[$i]['class'];
-                    $method = $trace[$i]['function'];
-                }
-
+                $class = isset($trace[$i]['object']) ? get_class($trace[$i]['object']) : $trace[$i]['class'];
+                $method = $trace[$i]['function'];
                 $Test = $UtilPrefix.'Test';
 
                 if (0 !== error_reporting()) {
@@ -226,7 +215,7 @@ class DeprecationErrorHandler
                         uasort($deprecations[$group], $cmp);
 
                         foreach ($deprecations[$group] as $msg => $notices) {
-                            echo "\n  ", $notices['count'], 'x: ', $msg, "\n";
+                            echo "\n", rtrim($msg, '.'), ': ', $notices['count'], "x\n";
 
                             arsort($notices);
 
@@ -247,29 +236,6 @@ class DeprecationErrorHandler
                 }
             });
         }
-    }
-
-    public static function collectDeprecations($outputFile)
-    {
-        $deprecations = array();
-        $previousErrorHandler = set_error_handler(function ($type, $msg, $file, $line, $context = array()) use (&$deprecations, &$previousErrorHandler) {
-            if (E_USER_DEPRECATED !== $type && E_DEPRECATED !== $type) {
-                if ($previousErrorHandler) {
-                    return $previousErrorHandler($type, $msg, $file, $line, $context);
-                }
-                static $autoload = true;
-
-                $ErrorHandler = class_exists('PHPUnit_Util_ErrorHandler', $autoload) ? 'PHPUnit_Util_ErrorHandler' : 'PHPUnit\Util\ErrorHandler';
-                $autoload = false;
-
-                return $ErrorHandler::handleError($type, $msg, $file, $line, $context);
-            }
-            $deprecations[] = array(error_reporting(), $msg);
-        });
-
-        register_shutdown_function(function () use ($outputFile, &$deprecations) {
-            file_put_contents($outputFile, serialize($deprecations));
-        });
     }
 
     private static function hasColorSupport()

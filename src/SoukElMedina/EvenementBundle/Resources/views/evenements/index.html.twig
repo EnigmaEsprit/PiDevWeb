@@ -1,0 +1,68 @@
+{% extends 'baseVendeur.html.twig' %}
+
+{% block body %}
+
+    <div class="checkout">
+        <div class="container">
+            <h1>Evenements list</h1>
+            <div class="checkout-right">
+                <table  class="timetable_sub">
+                    <thead>
+                    <tr>
+                        <th>Id evenement</th>
+                        <th>Image</th>
+                        <th>Nom de venement</th>
+                        <th>Date</th>
+                        <th>Date Fin</th>
+                        <th>Lieu</th>
+                        <th>Nombre de places</th>
+                        <th>Tarif evenement</th>
+                        <th>Description evenement</th>
+                        <th>Actions</th>
+                        <th>Delete</th>
+                        <th>Update</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for evenement in evenements %}
+                        <tr  class="rem1">
+                            <td class="invert"><a href="{{ path('evenements_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a></td>
+                            <td class="invert"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}"style="width: 50px;height: 50px"></td>
+                            <td class="invert">{{ evenement.nomevenement }}</td>
+                            <td class="invert">{{ evenement.date }}</td>
+                            <td class="invert">{{ evenement.datefin }}</td>
+                            <td class="invert">{{ evenement.lieu }}</td>
+                            <td class="invert">{{ evenement.nombredeplaces }}</td>
+                            <td class="invert">{{ evenement.tarifevenement }}</td>
+                            <td class="invert">{{ evenement.descriptionevenement }}</td>
+                            {#{% if evenement.date %}{{ evenement.date|date('Y-m-d H:i:s') }}{% endif %}#}
+                            <td class="invert">
+
+                                <a href="{{ path('evenements_show', { 'id': evenement.id }) }}"><img src="{{ asset('images/job-search.png') }}"></a>
+
+                            </td>
+                            <td class="invert">
+                                <div class="rem">
+                                    <div ><a class="close1" href="{{ path('evenements_delete', { 'idevenement': evenement.id }) }}"></a>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td class="invert">
+                                <div class="rem">
+                                    <div ><a  href="{{ path('evenements_edit', { 'id': evenement.id }) }}"><img src="{{ asset('images/test (1).png') }}"></a>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+

@@ -35,7 +35,7 @@ class JsonBundleReaderTest extends TestCase
 
         $this->assertInternalType('array', $data);
         $this->assertSame('Bar', $data['Foo']);
-        $this->assertArrayNotHasKey('ExistsNot', $data);
+        $this->assertFalse(isset($data['ExistsNot']));
     }
 
     /**
@@ -68,13 +68,5 @@ class JsonBundleReaderTest extends TestCase
     public function testReadFailsIfInvalidJson()
     {
         $this->reader->read(__DIR__.'/Fixtures/json', 'en_Invalid');
-    }
-
-    /**
-     * @expectedException \Symfony\Component\Intl\Exception\ResourceBundleNotFoundException
-     */
-    public function testReaderDoesNotBreakOutOfGivenPath()
-    {
-        $this->reader->read(__DIR__.'/Fixtures/json', '../invalid_directory/en');
     }
 }

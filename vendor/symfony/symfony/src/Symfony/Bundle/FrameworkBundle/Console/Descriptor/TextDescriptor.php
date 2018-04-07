@@ -11,7 +11,6 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Console\Descriptor;
 
-use Symfony\Component\Console\Formatter\OutputFormatter;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\Alias;
@@ -227,8 +226,7 @@ class TextDescriptor extends Descriptor
         $rawOutput = isset($options['raw_text']) && $options['raw_text'];
         foreach ($this->sortServiceIds($serviceIds) as $serviceId) {
             $definition = $this->resolveServiceDefinition($builder, $serviceId);
-
-            $styledServiceId = $rawOutput ? $serviceId : sprintf('<fg=cyan>%s</fg=cyan>', OutputFormatter::escape($serviceId));
+            $styledServiceId = $rawOutput ? $serviceId : sprintf('<fg=cyan>%s</fg=cyan>', $serviceId);
             if ($definition instanceof Definition) {
                 if ($showTag) {
                     foreach ($definition->getTag($showTag) as $key => $tag) {
@@ -419,6 +417,9 @@ class TextDescriptor extends Descriptor
         $this->writeText($this->formatCallable($callable), $options);
     }
 
+    /**
+     * @param array $array
+     */
     private function renderEventListenerTable(EventDispatcherInterface $eventDispatcher, $event, array $eventListeners, SymfonyStyle $io)
     {
         $tableHeaders = array('Order', 'Callable', 'Priority');

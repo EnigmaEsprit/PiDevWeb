@@ -24,6 +24,8 @@ class ChainLoader extends Loader
     protected $loaders = array();
 
     /**
+     * Constructor.
+     *
      * @param LoaderInterface[] $loaders An array of loader instances
      */
     public function __construct(array $loaders = array())
@@ -35,6 +37,8 @@ class ChainLoader extends Loader
 
     /**
      * Adds a loader instance.
+     *
+     * @param LoaderInterface $loader A Loader instance
      */
     public function addLoader(LoaderInterface $loader)
     {
@@ -43,6 +47,8 @@ class ChainLoader extends Loader
 
     /**
      * Loads a template.
+     *
+     * @param TemplateReferenceInterface $template A template
      *
      * @return Storage|bool false if the template cannot be loaded, a Storage instance otherwise
      */

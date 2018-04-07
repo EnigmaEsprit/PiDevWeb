@@ -23,6 +23,11 @@ class RouterHelper extends Helper
 {
     protected $generator;
 
+    /**
+     * Constructor.
+     *
+     * @param UrlGeneratorInterface $router A Router instance
+     */
     public function __construct(UrlGeneratorInterface $router)
     {
         $this->generator = $router;

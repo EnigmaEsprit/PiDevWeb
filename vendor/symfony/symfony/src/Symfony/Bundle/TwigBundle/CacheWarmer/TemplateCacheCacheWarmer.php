@@ -35,7 +35,11 @@ class TemplateCacheCacheWarmer implements CacheWarmerInterface, ServiceSubscribe
     private $paths;
 
     /**
-     * @param array $paths Additional twig paths to warm
+     * Constructor.
+     *
+     * @param ContainerInterface      $container The dependency injection container
+     * @param TemplateFinderInterface $finder    The template paths cache warmer
+     * @param array                   $paths     Additional twig paths to warm
      */
     public function __construct(ContainerInterface $container, TemplateFinderInterface $finder = null, array $paths = array())
     {

@@ -22,6 +22,9 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
  */
 class ChromePhpHandler extends BaseChromePhpHandler
 {
+    /**
+     * @var array
+     */
     private $headers = array();
 
     /**

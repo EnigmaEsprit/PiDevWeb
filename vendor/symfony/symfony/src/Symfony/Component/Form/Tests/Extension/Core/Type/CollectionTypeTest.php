@@ -48,7 +48,7 @@ class CollectionTypeTest extends BaseTypeTest
 
         $form->setData(array('foo@baz.com'));
         $this->assertInstanceOf('Symfony\Component\Form\Form', $form[0]);
-        $this->assertArrayNotHasKey(1, $form);
+        $this->assertFalse(isset($form[1]));
         $this->assertCount(1, $form);
         $this->assertEquals('foo@baz.com', $form[0]->getData());
         $formAttrs0 = $form[0]->getConfig()->getOption('attr');
@@ -227,7 +227,7 @@ class CollectionTypeTest extends BaseTypeTest
         ));
 
         $data = $form->getData();
-        $this->assertArrayNotHasKey('__name__', $data);
+        $this->assertFalse(isset($data['__name__']));
     }
 
     public function testGetDataDoesNotContainsPrototypeNameAfterDataAreSet()
@@ -240,7 +240,7 @@ class CollectionTypeTest extends BaseTypeTest
 
         $form->setData(array('foobar.png'));
         $data = $form->getData();
-        $this->assertArrayNotHasKey('__name__', $data);
+        $this->assertFalse(isset($data['__name__']));
     }
 
     public function testPrototypeNameOption()

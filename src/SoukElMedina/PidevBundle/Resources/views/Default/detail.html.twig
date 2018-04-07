@@ -4,7 +4,7 @@
     <div class="breadcrumbs">
         <div class="container">
             <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-                <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li><a href="{{ path('souk_el_medina_pidev_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
                 <li class="active">Singlepage</li>
             </ol>
         </div>
@@ -15,10 +15,10 @@
             <div class="agileinfo_single">
 
                 <div class="col-md-4 agileinfo_single_left">
-                    <img id="example" src="images/si1.jpg" alt=" " class="img-responsive">
+                    <img id="example" src="{{ asset('images/' ~produit.idproduit~ '.png') }}" alt=" " class="img-responsive">
                 </div>
                 <div class="col-md-8 agileinfo_single_right">
-                    <h2>KHARAMORRA Khakra - Hariyali</h2>
+                    <h2>{{ produit.nomproduit  }}</h2>
                     <div class="rating1">
 						<span class="starRating">
 							<input id="rating5" type="radio" name="rating" value="5">
@@ -42,21 +42,41 @@
                     </div>
                     <div class="snipcart-item block">
                         <div class="snipcart-thumb agileinfo_single_right_snipcart">
-                            <h4 class="m-sing">$21.00 <span>$25.00</span></h4>
+                            <h4 class="m-sing">PRIX:    ${{ produit.prixproduit }}<span>$25.00</span></h4>
                         </div>
                         <div class="snipcart-details agileinfo_single_right_details">
-                            <form action="#" method="post">
+                            <form action="{{ path('souk_el_medina_panier_ajouter_panier',{'id': produit.idproduit}) }}" method="post">
                                 <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="business" value=" ">
-                                    <input type="hidden" name="item_name" value="pulao basmati rice">
-                                    <input type="hidden" name="amount" value="21.00">
-                                    <input type="hidden" name="discount_amount" value="1.00">
-                                    <input type="hidden" name="currency_code" value="USD">
-                                    <input type="hidden" name="return" value=" ">
-                                    <input type="hidden" name="cancel_return" value=" ">
-                                    <input type="submit" name="submit" value="Add to cart" class="button">
+
+
+
+                                    {% if panier[produit.idproduit] is not defined %}
+
+
+                                        <div class="snipcart-thumb agileinfo_single_right_snipcart">
+                                            <h4>QUANTITE:  <select name="quantite" >
+
+                                                    {% for i in 1..10 %}
+                                                        <option value="{{ i }}">{{ i }}</option>
+                                                    {% endfor %}
+                                                </select> </h4>
+                                        </div>
+
+                                        <input type="hidden" name="cmd" value="">
+                                        <input type="hidden" name="add" value="1">
+                                        <input type="hidden" name="business" value=" ">
+                                        <input type="hidden" name="item_name" value="pulao basmati rice">
+                                        <input type="hidden" name="amount" value="21.00">
+                                        <input type="hidden" name="discount_amount" value="1.00">
+                                        <input type="hidden" name="currency_code" value="USD">
+                                        <input type="hidden" name="return" value=" ">
+                                        <input type="hidden" name="cancel_return" value=" ">
+
+                                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                                    {% else %}
+                                        <a href="{{ path('souk_el_medina_panier_homepage') }}">  <input type="submit" name="submit" value="IN CART" class="button" /></a>
+                                    {% endif %}
+
                                 </fieldset>
                             </form>
                         </div>

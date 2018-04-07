@@ -31,6 +31,9 @@ interface AuthenticationSuccessHandlerInterface
      * is called by authentication listeners inheriting from
      * AbstractAuthenticationListener.
      *
+     * @param Request        $request
+     * @param TokenInterface $token
+     *
      * @return Response never null
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token);

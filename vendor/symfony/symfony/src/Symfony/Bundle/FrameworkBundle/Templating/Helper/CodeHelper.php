@@ -15,6 +15,8 @@ use Symfony\Component\HttpKernel\Debug\FileLinkFormatter;
 use Symfony\Component\Templating\Helper\Helper;
 
 /**
+ * CodeHelper.
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  */
 class CodeHelper extends Helper
@@ -24,6 +26,8 @@ class CodeHelper extends Helper
     protected $charset;
 
     /**
+     * Constructor.
+     *
      * @param string|FileLinkFormatter $fileLinkFormat The format for links to source files
      * @param string                   $rootDir        The project root directory
      * @param string                   $charset        The charset
@@ -61,9 +65,9 @@ class CodeHelper extends Helper
             list($class, $method) = explode('::', $method, 2);
             $result = sprintf('%s::%s()', $this->abbrClass($class), $method);
         } elseif ('Closure' === $method) {
-            $result = sprintf('<abbr title="%s">%1$s</abbr>', $method);
+            $result = sprintf('<abbr title="%s">%s</abbr>', $method, $method);
         } else {
-            $result = sprintf('<abbr title="%s">%1$s</abbr>()', $method);
+            $result = sprintf('<abbr title="%s">%s</abbr>()', $method, $method);
         }
 
         return $result;
@@ -116,7 +120,7 @@ class CodeHelper extends Helper
     {
         if (is_readable($file)) {
             if (extension_loaded('fileinfo')) {
-                $finfo = new \finfo();
+                $finfo = new \Finfo();
 
                 // Check if the file is an application/octet-stream (eg. Phar file) because highlight_file cannot parse these files
                 if ('application/octet-stream' === $finfo->file($file, FILEINFO_MIME_TYPE)) {

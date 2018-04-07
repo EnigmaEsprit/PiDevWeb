@@ -16,7 +16,6 @@ use Predis\Connection\Aggregate\ClusterInterface;
 use Predis\Connection\Aggregate\PredisCluster;
 use Predis\Connection\Aggregate\RedisCluster;
 use Predis\Response\Status;
-use Symfony\Component\Cache\Exception\CacheException;
 use Symfony\Component\Cache\Exception\InvalidArgumentException;
 
 /**
@@ -47,9 +46,7 @@ trait RedisTrait
         if (preg_match('#[^-+_.A-Za-z0-9]#', $namespace, $match)) {
             throw new InvalidArgumentException(sprintf('RedisAdapter namespace contains "%s" but only characters in [-+_.A-Za-z0-9] are allowed.', $match[0]));
         }
-        if ($redisClient instanceof \RedisCluster) {
-            $this->enableVersioning();
-        } elseif (!$redisClient instanceof \Redis && !$redisClient instanceof \RedisArray && !$redisClient instanceof \Predis\Client) {
+        if (!$redisClient instanceof \Redis && !$redisClient instanceof \RedisArray && !$redisClient instanceof \RedisCluster && !$redisClient instanceof \Predis\Client) {
             throw new InvalidArgumentException(sprintf('%s() expects parameter 1 to be Redis, RedisArray, RedisCluster or Predis\Client, %s given', __METHOD__, is_object($redisClient) ? get_class($redisClient) : gettype($redisClient)));
         }
         $this->redis = $redisClient;
@@ -68,7 +65,7 @@ trait RedisTrait
      * @param string $dsn
      * @param array  $options See self::$defaultConnectionOptions
      *
-     * @throws InvalidArgumentException when the DSN is invalid
+     * @throws InvalidArgumentException When the DSN is invalid.
      *
      * @return \Redis|\Predis\Client According to the "class" option
      */
@@ -109,9 +106,6 @@ trait RedisTrait
             $params += $query;
         }
         $params += $options + self::$defaultConnectionOptions;
-        if (null === $params['class'] && !extension_loaded('redis') && !class_exists(\Predis\Client::class)) {
-            throw new CacheException(sprintf('Cannot find the "redis" extension, and "predis/predis" is not installed: %s', $dsn));
-        }
         $class = null === $params['class'] ? (extension_loaded('redis') ? \Redis::class : \Predis\Client::class) : $params['class'];
 
         if (is_a($class, \Redis::class, true)) {
@@ -177,8 +171,8 @@ trait RedisTrait
      */
     protected function doClear($namespace)
     {
-        // When using a native Redis cluster, clearing the cache is done by versioning in AbstractTrait::clear().
-        // This means old keys are not really removed until they expire and may need gargage collection.
+        // When using a native Redis cluster, clearing the cache cannot work and always returns false.
+        // Clearing the cache should then be done by any other means (e.g. by restarting the cluster).
 
         $cleared = true;
         $hosts = array($this->redis);

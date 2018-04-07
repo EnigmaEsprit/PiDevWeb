@@ -44,6 +44,9 @@ class GuardAuthenticatorHandler
 
     /**
      * Authenticates the given token in the system.
+     *
+     * @param TokenInterface $token
+     * @param Request        $request
      */
     public function authenticateWithToken(TokenInterface $token, Request $request)
     {

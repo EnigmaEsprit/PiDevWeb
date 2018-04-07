@@ -72,7 +72,7 @@ class ContainerBuilderTest extends TestCase
 
         $builder->setDefinition('foobar', $foo = new Definition('FooBarClass'));
         $this->assertEquals($foo, $builder->getDefinition('foobar'), '->getDefinition() returns a service definition if defined');
-        $this->assertSame($builder->setDefinition('foobar', $foo = new Definition('FooBarClass')), $foo, '->setDefinition() implements a fluid interface by returning the service reference');
+        $this->assertTrue($builder->setDefinition('foobar', $foo = new Definition('FooBarClass')) === $foo, '->setDefinition() implements a fluid interface by returning the service reference');
 
         $builder->addDefinitions($defs = array('foobar' => new Definition('FooBarClass')));
         $this->assertEquals(array_merge($definitions, $defs), $builder->getDefinitions(), '->addDefinitions() adds the service definitions');
@@ -241,7 +241,7 @@ class ContainerBuilderTest extends TestCase
         $this->assertFalse($builder->hasAlias('foobar'), '->hasAlias() returns false if the alias does not exist');
         $this->assertEquals('foo', (string) $builder->getAlias('bar'), '->getAlias() returns the aliased service');
         $this->assertTrue($builder->has('bar'), '->setAlias() defines a new service');
-        $this->assertSame($builder->get('bar'), $builder->get('foo'), '->setAlias() creates a service that is an alias to another one');
+        $this->assertTrue($builder->get('bar') === $builder->get('foo'), '->setAlias() creates a service that is an alias to another one');
 
         try {
             $builder->setAlias('foobar', 'foobar');
@@ -286,8 +286,8 @@ class ContainerBuilderTest extends TestCase
         $builder->setAliases(array('bar' => 'foo', 'foobar' => 'foo'));
 
         $aliases = $builder->getAliases();
-        $this->assertArrayHasKey('bar', $aliases);
-        $this->assertArrayHasKey('foobar', $aliases);
+        $this->assertTrue(isset($aliases['bar']));
+        $this->assertTrue(isset($aliases['foobar']));
     }
 
     public function testAddAliases()
@@ -297,8 +297,8 @@ class ContainerBuilderTest extends TestCase
         $builder->addAliases(array('foobar' => 'foo'));
 
         $aliases = $builder->getAliases();
-        $this->assertArrayHasKey('bar', $aliases);
-        $this->assertArrayHasKey('foobar', $aliases);
+        $this->assertTrue(isset($aliases['bar']));
+        $this->assertTrue(isset($aliases['foobar']));
     }
 
     public function testSetReplacesAlias()
@@ -561,7 +561,7 @@ class ContainerBuilderTest extends TestCase
         $this->assertEquals(array('service_container', 'foo', 'bar', 'baz'), array_keys($container->getDefinitions()), '->merge() merges definitions already defined ones');
 
         $aliases = $container->getAliases();
-        $this->assertArrayHasKey('alias_for_foo', $aliases);
+        $this->assertTrue(isset($aliases['alias_for_foo']));
         $this->assertEquals('foo', (string) $aliases['alias_for_foo']);
 
         $container = new ContainerBuilder();
@@ -603,77 +603,29 @@ class ContainerBuilderTest extends TestCase
     public function testResolveEnvValues()
     {
         $_ENV['DUMMY_ENV_VAR'] = 'du%%y';
-        $_SERVER['DUMMY_SERVER_VAR'] = 'ABC';
-        $_SERVER['HTTP_DUMMY_VAR'] = 'DEF';
 
         $container = new ContainerBuilder();
-        $container->setParameter('bar', '%% %env(DUMMY_ENV_VAR)% %env(DUMMY_SERVER_VAR)% %env(HTTP_DUMMY_VAR)%');
-        $container->setParameter('env(HTTP_DUMMY_VAR)', '123');
+        $container->setParameter('bar', '%% %env(DUMMY_ENV_VAR)%');
 
-        $this->assertSame('%% du%%%%y ABC 123', $container->resolveEnvPlaceholders('%bar%', true));
+        $this->assertSame('%% du%%%%y', $container->resolveEnvPlaceholders('%bar%', true));
 
-        unset($_ENV['DUMMY_ENV_VAR'], $_SERVER['DUMMY_SERVER_VAR'], $_SERVER['HTTP_DUMMY_VAR']);
-    }
-
-    public function testResolveEnvValuesWithArray()
-    {
-        $_ENV['ANOTHER_DUMMY_ENV_VAR'] = 'dummy';
-
-        $dummyArray = array('1' => 'one', '2' => 'two');
-
-        $container = new ContainerBuilder();
-        $container->setParameter('dummy', '%env(ANOTHER_DUMMY_ENV_VAR)%');
-        $container->setParameter('dummy2', $dummyArray);
-
-        $container->resolveEnvPlaceholders('%dummy%', true);
-        $container->resolveEnvPlaceholders('%dummy2%', true);
-
-        $this->assertInternalType('array', $container->resolveEnvPlaceholders('%dummy2%', true));
-
-        foreach ($dummyArray as $key => $value) {
-            $this->assertArrayHasKey($key, $container->resolveEnvPlaceholders('%dummy2%', true));
-        }
-
-        unset($_ENV['ANOTHER_DUMMY_ENV_VAR']);
+        unset($_ENV['DUMMY_ENV_VAR']);
     }
 
     public function testCompileWithResolveEnv()
     {
-        putenv('DUMMY_ENV_VAR=du%%y');
-        $_SERVER['DUMMY_SERVER_VAR'] = 'ABC';
-        $_SERVER['HTTP_DUMMY_VAR'] = 'DEF';
+        $_ENV['DUMMY_ENV_VAR'] = 'du%%y';
 
         $container = new ContainerBuilder();
         $container->setParameter('env(FOO)', 'Foo');
-        $container->setParameter('env(DUMMY_ENV_VAR)', 'GHI');
-        $container->setParameter('bar', '%% %env(DUMMY_ENV_VAR)% %env(DUMMY_SERVER_VAR)% %env(HTTP_DUMMY_VAR)%');
+        $container->setParameter('bar', '%% %env(DUMMY_ENV_VAR)%');
         $container->setParameter('foo', '%env(FOO)%');
-        $container->setParameter('baz', '%foo%');
-        $container->setParameter('env(HTTP_DUMMY_VAR)', '123');
-        $container->register('teatime', 'stdClass')
-            ->setProperty('foo', '%env(DUMMY_ENV_VAR)%')
-        ;
         $container->compile(true);
 
-        $this->assertSame('% du%%y ABC 123', $container->getParameter('bar'));
-        $this->assertSame('Foo', $container->getParameter('baz'));
-        $this->assertSame('du%%y', $container->get('teatime')->foo);
+        $this->assertSame('% du%%y', $container->getParameter('bar'));
+        $this->assertSame('Foo', $container->getParameter('foo'));
 
-        unset($_SERVER['DUMMY_SERVER_VAR'], $_SERVER['HTTP_DUMMY_VAR']);
-        putenv('DUMMY_ENV_VAR');
-    }
-
-    /**
-     * @expectedException \Symfony\Component\DependencyInjection\Exception\RuntimeException
-     * @expectedExceptionMessage A string value must be composed of strings and/or numbers, but found parameter "env(ARRAY)" of type array inside string value "ABC %env(ARRAY)%".
-     */
-    public function testCompileWithArrayResolveEnv()
-    {
-        $bag = new TestingEnvPlaceholderParameterBag();
-        $container = new ContainerBuilder($bag);
-        $container->setParameter('foo', '%env(ARRAY)%');
-        $container->setParameter('bar', 'ABC %env(ARRAY)%');
-        $container->compile(true);
+        unset($_ENV['DUMMY_ENV_VAR']);
     }
 
     /**
@@ -685,22 +637,6 @@ class ContainerBuilderTest extends TestCase
         $container = new ContainerBuilder();
         $container->setParameter('foo', '%env(FOO)%');
         $container->compile(true);
-    }
-
-    public function testEnvInId()
-    {
-        $container = include __DIR__.'/Fixtures/containers/container_env_in_id.php';
-        $container->compile(true);
-
-        $expected = array(
-            'service_container',
-            'foo',
-            'bar',
-            'bar_%env(BAR)%',
-        );
-        $this->assertSame($expected, array_keys($container->getDefinitions()));
-
-        $this->assertSame(array('baz_bar'), array_keys($container->getDefinition('foo')->getArgument(1)));
     }
 
     /**
@@ -891,7 +827,7 @@ class ContainerBuilderTest extends TestCase
         $container->setResourceTracking(false);
 
         $container->registerExtension($extension = new \ProjectExtension());
-        $this->assertSame($container->getExtension('project'), $extension, '->registerExtension() registers an extension');
+        $this->assertTrue($container->getExtension('project') === $extension, '->registerExtension() registers an extension');
 
         $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}('LogicException');
         $container->getExtension('no_registered');
@@ -1044,45 +980,6 @@ class ContainerBuilderTest extends TestCase
         $this->assertTrue($classInList);
     }
 
-    public function testInlinedDefinitions()
-    {
-        $container = new ContainerBuilder();
-
-        $definition = new Definition('BarClass');
-
-        $container->register('bar_user', 'BarUserClass')
-            ->addArgument($definition)
-            ->setProperty('foo', $definition);
-
-        $container->register('bar', 'BarClass')
-            ->setProperty('foo', $definition)
-            ->addMethodCall('setBaz', array($definition));
-
-        $barUser = $container->get('bar_user');
-        $bar = $container->get('bar');
-
-        $this->assertSame($barUser->foo, $barUser->bar);
-        $this->assertSame($bar->foo, $bar->getBaz());
-        $this->assertNotSame($bar->foo, $barUser->foo);
-    }
-
-    /**
-     * @expectedException \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
-     * @expectedExceptionMessage Circular reference detected for service "app.test_class", path: "app.test_class -> App\TestClass -> app.test_class".
-     */
-    public function testThrowsCircularExceptionForCircularAliases()
-    {
-        $builder = new ContainerBuilder();
-
-        $builder->setAliases(array(
-            'foo' => new Alias('app.test_class'),
-            'app.test_class' => new Alias('App\\TestClass'),
-            'App\\TestClass' => new Alias('app.test_class'),
-        ));
-
-        $builder->findDefinition('foo');
-    }
-
     public function testInitializePropertiesBeforeMethodCalls()
     {
         $container = new ContainerBuilder();
@@ -1220,13 +1117,5 @@ class B
 {
     public function __construct(A $a)
     {
-    }
-}
-
-class TestingEnvPlaceholderParameterBag extends EnvPlaceholderParameterBag
-{
-    public function get($name)
-    {
-        return 'env(array)' === strtolower($name) ? array(123) : parent::get($name);
     }
 }

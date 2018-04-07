@@ -18,6 +18,8 @@ final class AuthenticationEvents
      * by one provider.
      *
      * @Event("Symfony\Component\Security\Core\Event\AuthenticationEvent")
+     *
+     * @var string
      */
     const AUTHENTICATION_SUCCESS = 'security.authentication.success';
 
@@ -26,6 +28,8 @@ final class AuthenticationEvents
      * authenticated by any of the providers.
      *
      * @Event("Symfony\Component\Security\Core\Event\AuthenticationFailureEvent")
+     *
+     * @var string
      */
     const AUTHENTICATION_FAILURE = 'security.authentication.failure';
 }

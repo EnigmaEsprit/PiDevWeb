@@ -1,0 +1,27 @@
+evenements_index:
+    path:     /
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:index" }
+    methods:  GET
+
+evenements_show:
+    path:     /{id}/show
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:show" }
+    methods:  GET
+
+evenements_new:
+    path:     /new
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:new" }
+    methods:  [GET, POST]
+
+evenements_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:edit" }
+    methods:  [GET, POST]
+
+evenements_delete:
+    path:     /{idevenement}/delete
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:delete" }
+#    methods:  DELETE
+affichermap:
+    path:     /map/{long}/{lat}
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:affichermap"}

@@ -110,7 +110,7 @@ class DataUriNormalizer implements NormalizerInterface, DenormalizerInterface
         $supportedTypes = array(
             \SplFileInfo::class => true,
             \SplFileObject::class => true,
-            File::class => true,
+            'Symfony\Component\HttpFoundation\File\File' => true,
         );
 
         return isset($supportedTypes[$type]);

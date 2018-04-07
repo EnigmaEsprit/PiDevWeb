@@ -13,6 +13,9 @@ namespace Symfony\Bridge\Doctrine\Tests\Fixtures\Type;
 
 class StringWrapper
 {
+    /**
+     * @var string
+     */
     private $string;
 
     /**

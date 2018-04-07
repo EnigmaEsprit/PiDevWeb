@@ -25,7 +25,7 @@ class TranslatorTest extends TestCase
      */
     public function testConstructorInvalidLocale($locale)
     {
-        new Translator($locale, new MessageSelector());
+        $translator = new Translator($locale, new MessageSelector());
     }
 
     /**

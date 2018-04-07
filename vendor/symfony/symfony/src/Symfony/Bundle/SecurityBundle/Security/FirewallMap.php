@@ -12,6 +12,7 @@
 namespace Symfony\Bundle\SecurityBundle\Security;
 
 use Psr\Container\ContainerInterface;
+use Symfony\Bundle\SecurityBundle\Security\FirewallContext;
 use Symfony\Component\Security\Http\FirewallMapInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -47,7 +48,7 @@ class FirewallMap extends _FirewallMap implements FirewallMapInterface
     public function __get($name)
     {
         if ('map' === $name || 'container' === $name) {
-            @trigger_error(sprintf('Using the "%s::$%s" property is deprecated since Symfony 3.3 as it will be removed/private in 4.0.', __CLASS__, $name), E_USER_DEPRECATED);
+            @trigger_error(sprintf('Using the "%s::$%s" property is deprecated since version 3.3 as it will be removed/private in 4.0.', __CLASS__, $name), E_USER_DEPRECATED);
 
             if ('map' === $name && $this->map instanceof \Traversable) {
                 $this->map = iterator_to_array($this->map);
@@ -63,7 +64,7 @@ class FirewallMap extends _FirewallMap implements FirewallMapInterface
     public function __set($name, $value)
     {
         if ('map' === $name || 'container' === $name) {
-            @trigger_error(sprintf('Using the "%s::$%s" property is deprecated since Symfony 3.3 as it will be removed/private in 4.0.', __CLASS__, $name), E_USER_DEPRECATED);
+            @trigger_error(sprintf('Using the "%s::$%s" property is deprecated since version 3.3 as it will be removed/private in 4.0.', __CLASS__, $name), E_USER_DEPRECATED);
 
             $set = \Closure::bind(function ($name, $value) { $this->$name = $value; }, $this, parent::class);
             $set($name, $value);
@@ -78,7 +79,7 @@ class FirewallMap extends _FirewallMap implements FirewallMapInterface
     public function __isset($name)
     {
         if ('map' === $name || 'container' === $name) {
-            @trigger_error(sprintf('Using the "%s::$%s" property is deprecated since Symfony 3.3 as it will be removed/private in 4.0.', __CLASS__, $name), E_USER_DEPRECATED);
+            @trigger_error(sprintf('Using the "%s::$%s" property is deprecated since version 3.3 as it will be removed/private in 4.0.', __CLASS__, $name), E_USER_DEPRECATED);
         }
 
         return isset($this->$name);
@@ -90,7 +91,7 @@ class FirewallMap extends _FirewallMap implements FirewallMapInterface
     public function __unset($name)
     {
         if ('map' === $name || 'container' === $name) {
-            @trigger_error(sprintf('Using the "%s::$%s" property is deprecated since Symfony 3.3 as it will be removed/private in 4.0.', __CLASS__, $name), E_USER_DEPRECATED);
+            @trigger_error(sprintf('Using the "%s::$%s" property is deprecated since version 3.3 as it will be removed/private in 4.0.', __CLASS__, $name), E_USER_DEPRECATED);
 
             $unset = \Closure::bind(function ($name) { unset($this->$name); }, $this, parent::class);
             $unset($name);

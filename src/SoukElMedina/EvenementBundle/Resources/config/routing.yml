@@ -1,3 +1,18 @@
-souk_el_medina_evenement_homepage:
-    path:     /
-    defaults: { _controller: SoukElMedinaEvenementBundle:Default:index }
+#souk_el_medina_evenement_homepage:
+#    path:     /
+#    defaults: { _controller: SoukElMedinaEvenementBundle:Default:index }
+
+souk_el_medina_pidev_evenements:
+    resource: "@SoukElMedinaEvenementBundle/Resources/config/routing/evenements.yml"
+    prefix:   /evenements
+evenements_indexEventClient:
+    path:     /EventClient
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:indexEventClient" }
+    methods:  GET
+evenements_sub:
+    path:     /{idevenement}/subscribe
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:subscribe"}
+evenements_show_INC:
+    path:     /{id}/show
+    defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:showINC" }
+    methods:  GET

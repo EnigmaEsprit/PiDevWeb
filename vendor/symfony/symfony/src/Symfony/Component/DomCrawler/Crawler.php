@@ -20,6 +20,9 @@ use Symfony\Component\CssSelector\CssSelectorConverter;
  */
 class Crawler implements \Countable, \IteratorAggregate
 {
+    /**
+     * @var string The current URI
+     */
     protected $uri;
 
     /**
@@ -55,14 +58,14 @@ class Crawler implements \Countable, \IteratorAggregate
     private $isHtml = true;
 
     /**
-     * @param mixed  $node     A Node to use as the base for the crawling
-     * @param string $uri      The current URI
-     * @param string $baseHref The base href value
+     * @param mixed  $node       A Node to use as the base for the crawling
+     * @param string $currentUri The current URI
+     * @param string $baseHref   The base href value
      */
-    public function __construct($node = null, $uri = null, $baseHref = null)
+    public function __construct($node = null, $currentUri = null, $baseHref = null)
     {
-        $this->uri = $uri;
-        $this->baseHref = $baseHref ?: $uri;
+        $this->uri = $currentUri;
+        $this->baseHref = $baseHref ?: $currentUri;
 
         $this->add($node);
     }
@@ -104,7 +107,7 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * @param \DOMNodeList|\DOMNode|array|string|null $node A node
      *
-     * @throws \InvalidArgumentException when node is not the expected type
+     * @throws \InvalidArgumentException When node is not the expected type.
      */
     public function add($node)
     {
@@ -740,7 +743,7 @@ class Crawler implements \Countable, \IteratorAggregate
     public function selectButton($value)
     {
         $translate = 'translate(@type, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")';
-        $xpath = sprintf('descendant-or-self::input[((contains(%s, "submit") or contains(%1$s, "button")) and contains(concat(\' \', normalize-space(string(@value)), \' \'), %s)) ', $translate, static::xpathLiteral(' '.$value.' ')).
+        $xpath = sprintf('descendant-or-self::input[((contains(%s, "submit") or contains(%s, "button")) and contains(concat(\' \', normalize-space(string(@value)), \' \'), %s)) ', $translate, $translate, static::xpathLiteral(' '.$value.' ')).
                          sprintf('or (contains(%s, "image") and contains(concat(\' \', normalize-space(string(@alt)), \' \'), %s)) or @id=%s or @name=%s] ', $translate, static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value), static::xpathLiteral($value)).
                          sprintf('| descendant-or-self::button[contains(concat(\' \', normalize-space(string(.)), \' \'), %s) or @id=%s or @name=%s]', static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value), static::xpathLiteral($value));
 
@@ -1068,7 +1071,7 @@ class Crawler implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @return \ArrayIterator|\DOMElement[]
+     * @return \ArrayIterator
      */
     public function getIterator()
     {
@@ -1086,7 +1089,7 @@ class Crawler implements \Countable, \IteratorAggregate
         $nodes = array();
 
         do {
-            if ($node !== $this->getNode(0) && 1 === $node->nodeType) {
+            if ($node !== $this->getNode(0) && $node->nodeType === 1) {
                 $nodes[] = $node;
             }
         } while ($node = $node->$siblingDir);

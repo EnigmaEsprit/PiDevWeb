@@ -25,7 +25,6 @@ trait PhpFilesTrait
     use FilesystemCommonTrait;
 
     private $includeHandler;
-    private $zendDetectUnicode;
 
     public static function isSupported()
     {
@@ -40,9 +39,6 @@ trait PhpFilesTrait
         $values = array();
         $now = time();
 
-        if ($this->zendDetectUnicode) {
-            $zmb = ini_set('zend.detect_unicode', 0);
-        }
         set_error_handler($this->includeHandler);
         try {
             foreach ($ids as $id) {
@@ -58,9 +54,6 @@ trait PhpFilesTrait
             }
         } finally {
             restore_error_handler();
-            if ($this->zendDetectUnicode) {
-                ini_set('zend.detect_unicode', $zmb);
-            }
         }
 
         foreach ($values as $id => $value) {

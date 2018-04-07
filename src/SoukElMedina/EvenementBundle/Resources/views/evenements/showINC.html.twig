@@ -1,0 +1,348 @@
+{% extends"base.html.twig" %}
+{% block body %}
+    <!-- Bootstrap -->
+    {#<link href="{{ asset('temp/css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' />#}
+    {#<link href="{{ asset('temp/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />#}
+    {#<meta name="viewport" content="width=device-width, initial-scale=1">#}
+    {#<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>#}
+    {#<!--[if lt IE 9]>#}
+    {#<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>#}
+    {#<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>#}
+    {#<![endif]-->#}
+    {#<!----font-Awesome----->#}
+    {#<link rel="stylesheet" href="{{ asset('temp/fonts/css/font-awesome.min.css') }}">#}
+    {#<!----font-Awesome----->#}
+    {#<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,800italic,400,300,700,800,600' rel='stylesheet' type='text/css'>#}
+    {#<link href="{{  asset('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />#}
+    {#<!-- start plugins -->#}
+    {#<!-- start plugins -->#}
+    {#<script type="text/javascript" src="{{ asset('temp/js/jquery.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('temp/js/bootstrap.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('temp/js/bootstrap.min.js') }}"></script>#}
+
+
+    {#<div class="checkout">#}
+    {#<div class="container">#}
+    {#<div class="row">#}
+    {#<div class="col-lg-6" >#}
+    {#<img src="{{ asset('uploads/Images/3a1bc1ebb469bb5f78125c00f80a0ecff70aaf15.jpeg') }}" width="100%">#}
+    {#</div>#}
+    {#<div class="col-lg-4 offset-2">#}
+    {#<div class="row" style="float: right">#}
+    {#<div class=" col-lg-3" style="margin-top:0px;text-align:center;padding:30px;border:1px solid #f2812f;color:#fff;font-size:16px;background-color:#f2812f;text-transform:capitalize;line-height:35px"  >#}
+    {#<div style="font-size:26px;font-weight:700;padding-bottom:15px">22</div>#}
+    {#<div class="month">mars</div>#}
+    {#</div>#}
+    {#<div class="col-md-9">#}
+    {#<h1>{{ evenement.nomevenement }}</h1>#}
+    {#<div class="row">#}
+    {#<div class="col-md-6 col-sm-6 col-xs-6" style="">#}
+    {#<p style="color:#666;font-size:13px"><i class="artisans" style="content:''"></i>  Le {{ evenement.date }}</p>#}
+    {#</div>#}
+    {#<div class="col-md-6 col-sm-6 col-xs-6">#}
+    {#<p style="color:#666;font-size:13px"><i class="icon-map-marker"></i>  {{ evenement.lieu }}</p>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="row">#}
+    {#<div class="col-md-6 col-sm-6 col-xs-6" style="">#}
+    {#<p style="margin-top:10px;color:#0a0a0a;font-size:14px"><i class="artisans" style="content:''"></i> Nombre des places: {{ evenement.nombredeplaces }}</p>#}
+    {#</div>#}
+    {#<div class="col-md-6 col-sm-6 col-xs-6">#}
+    {#<p style="margin-top: 10px;color:#0a0a0a;font-size:14px"><i class="icon-map-marker"></i>  Nombre des places disponible: {{ evenement.nombredesplacesrestante }}</p>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="col-md-12">#}
+    {#<p class="desc" style="text-align:justify;line-height:20px;font-size:14px">{{ evenement.descriptionevenement }}</p>#}
+    {#</div>#}
+
+    {#<div class="col-lg-3" width="50px">#}
+    {#<span style="background-color: orange" >Date</span>#}
+    {#</div>#}
+    {#<div class="col-lg-9">#}
+    {#Showroom Nouvelles Tunis#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+    {#</div>#}
+    <ul id="demo1">
+        {% for evenement in evenements %}
+            <li>
+                <a href="{{ path('evenements_show', { 'id': evenement.id }) }}"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}" alt="" /></a>
+                <!--Slider Description example-->
+                <div class="slide-desc">
+                    <h3>{{ evenement.nomevenement }}</h3>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <div style="background: white"><!-- start main -->
+        <div class="container">
+            <div style="padding:4% 2%;"><!-- start work -->
+                <div style="text-align:center">
+                    <h3 style="text-align: center;
+	color:#343a40;
+	text-transform: uppercase;
+	font-size: 28px;
+	font-style: italic;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.nomevenement }}</font></font></h3>
+                    <span style="font-size: 11px;
+	color: #0c5460;
+	line-height: 1.8em;" ><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">posté par: Admin | </font><font style="vertical-align: inherit;">le 27 octobre</font></font></span>
+                    <center><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink }}" alt="" class="img-responsive" ></center>
+                </div>
+                {#<p style=" margin-top:10px;font-size: 13px;#}
+                {#color: #0c5460;text-justify: newspaper;#}
+                {#line-height: 1.8em;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem Ipsum est simplement un faux texte de l'industrie de l'impression et de la composition. </font><font style="vertical-align: inherit;">Lorem Ipsum a été le texte factice standard de l'industrie depuis les années 1500, quand une imprimante inconnue a pris une galère de type et l'a brouillée pour faire un livre de spécimen de type. </font><font style="vertical-align: inherit;">Il a survécu non seulement cinq siècles, mais aussi le saut dans la composition électronique, demeurant essentiellement inchangé. </font><font style="vertical-align: inherit;">Il a été popularisé dans les années 1960 avec la sortie de feuilles de Letraset contenant des passages de Lorem Ipsum, et plus récemment avec des logiciels de publication assistée par ordinateur comme Aldus PageMaker, y compris des versions de Lorem Ipsum! </font><font style="vertical-align: inherit;">! </font><font style="vertical-align: inherit;">!</font></font></p>#}
+                {#<p class="para" style="	font-size: 13px;#}
+                {#color: #0c5460;text-justify: newspaper;#}
+                {#line-height: 1.8em;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem Ipsum est simplement un faux texte de l'industrie de l'impression et de la composition. </font><font style="vertical-align: inherit;">Lorem Ipsum a été le texte factice standard de l'industrie depuis les années 1500, quand une imprimante inconnue a pris une galère de type et l'a brouillée pour faire un livre de spécimen de type. </font><font style="vertical-align: inherit;">Il a survécu non seulement cinq siècles, mais aussi le saut dans la composition électronique, demeurant essentiellement inchangé. </font><font style="vertical-align: inherit;">Il a été popularisé dans les années 1960 avec la sortie de feuilles de Letraset contenant des passages de Lorem Ipsum, et plus récemment avec des logiciels de publication assistée par ordinateur comme Aldus PageMaker, y compris des versions de Lorem Ipsum.</font></font></p>#}
+                <div class="clearfix"></div>
+                <div style="padding: 4% 0 0;
+	margin: 4% 0 2%;
+	border-top: 2px solid darkorange;">
+                    <div class="col-md-6" style="padding: 0;">
+                        <h5 style="	color: #2D3E50;
+	background: orange;
+	padding: 10px 20px;
+	display: inline-block;
+	font-size: 24px;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-style: italic;
+	position: relative;
+	top: -44px;
+	margin: 0;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">détails du l'évènement</font></font></h5>
+                        <div style="margin-top: 3%;">
+                            <div class="col-md-3" style="padding: 0;">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">titre:</font></font></span>
+                            </div>
+                            <div class="col-md-9" style="float: left;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                <p style="color: #0b2e13;
+	font-size: 13px;
+	line-height: 1.8em;
+	font-weight: 600;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.nomevenement }}</font></font></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="f_left" style="margin-top: 3%;">
+                            <div class="col-md-3 f_list" style="padding: 0;">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"> <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">date start:</font></font></span>
+                            </div>
+                            <div class="col-md-9 f_list1"style="float: left;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                <p style="color: #0b2e13;
+	font-size: 13px;
+	line-height: 1.8em;
+	font-weight: 600;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Le {{ evenement.date }}</font></font></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="f_left" style="margin-top: 3%;">
+                            <div class="col-md-3 f_list" style="padding: 0;">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">date end:</font></font></span>
+                            </div>
+                            <div class="col-md-9 f_list1" style="float: left;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                <p style="color: #0b2e13;
+	font-size: 13px;
+	line-height: 1.8em;
+	font-weight: 600;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Le {{ evenement.datefin }} </font></font></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="f_left" style="margin-top: 3%;">
+                            <div class="col-md-3 f_list" style="padding: 0;">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">emplacement de l'évènement:</font></font></span>
+                            </div>
+                            <div class="col-md-9 f_list1" style="float: left;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                <p style="color:  #0b2e13;
+                                font-size: 13px;
+                                line-height: 1.8em;
+                                font-weight: 600;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.lieu }}</font></font></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="f_left" style="margin-top: 3%;">
+                            <div class="col-md-3 f_list" style="padding: 0;">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre des places:</font></font></span>
+                            </div>
+                            <div class="col-md-9 f_list1" style="float: left;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                <p style="color:  #0b2e13;
+                                font-size: 13px;
+                                line-height: 1.8em;
+                                font-weight: 600;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.nombredeplaces}}      Place</font></font></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="f_left" style="margin-top: 3%;">
+                            <div class="col-md-3 f_list" style="padding: 0;">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre des places disponible:</font></font></span>
+                            </div>
+                            <div class="col-md-9 f_list1" style="float: left;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                <p style="color:  #0b2e13;
+                                font-size: 13px;
+                                line-height: 1.8em;
+                                font-weight: 600;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.nombredesplacesrestante }}  Place</font></font></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="f_left" style="margin-top: 3%">
+                            <div class="col-md-3 f_list" style="padding: 0;">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">email</font></font></span>
+                            </div>
+                            <div class="col-md-9 f_list1"style="float: left;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                <p style="color: #0b2e13;
+                                font-size: 13px;
+                                line-height: 1.8em;
+                                font-weight: 600;"><a href="mailto:info@mycompany.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.iduser.email }}</font></font></a></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        {#<div class="f_left" style="margin-top: 3%;">#}
+                        {#<div class="col-md-3 f_list"style="padding: 0">#}
+                        {#<span style="display:block;#}
+                        {#text-transform: capitalize;#}
+                        {#color: #97C433;#}
+                        {#font-size: 14px;#}
+                        {#font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">site Internet</font></font></span>#}
+                        {#</div>#}
+                        {#<div class="col-md-9 f_list1" style="float: left;#}
+                        {#width: 64.3333%;#}
+                        {#margin-left: 10px;">#}
+                        {#<p style="color: #ffffff;#}
+                        {#font-size: 13px;#}
+                        {#line-height: 1.8em;#}
+                        {#font-weight: 600;"><a href="mailto:info@mycompany.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">info (à) mycompany.com</font></font></a></p>#}
+                        {#</div>#}
+                        {#<div class="clearfix"></div>#}
+                        {#</div>#}
+                    </div>
+                    <div class="col-md-6 work_left" >
+                        <h5 class="hide" style="color: #2D3E50;
+	background: #95C233;
+	padding: 10px 20px;
+	display: inline-block;
+	font-size: 24px;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-style: italic;
+	position: relative;
+	top: -44px;
+	margin: 0;">work description</h5>
+                        <div style="margin-top: 3%;">
+                            <div class="col-md-3 f_list" style="padding: 0">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tarif:</font></font></span>
+                            </div>
+                            <div class="col-md-9 f_list1">
+                                <p  style="color:#0b2e13;
+                                font-size: 13px;
+                                line-height: 1.8em;
+                                font-weight: 600;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ evenement.tarifevenement }}</font></font></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div style="margin-top: 3%;">
+                            <div class="col-md-3 " style="padding: 0">
+                                <span style="display:block;
+	text-transform: capitalize;
+	color: #0c5460;
+	font-size: 14px;
+	font-weight: 700;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">la description:</font></font></span>
+                            </div>
+                            <div class="col-md-9 f_list1" style="float: left;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                <p  style="color: #0b2e13;
+                                font-size: 13px;
+                                line-height: 1.8em;
+                                font-weight: 600;"> {{ evenement.descriptionevenement }}</p>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div style="margin-top: 3%;">
+                            <div class="col-md-3 " style="padding: 0">
+
+                            </div>
+                            <div class="col-md-9 f_list1" style="float: left;margin-top: 150px;
+		width: 64.3333%;
+		margin-left: 10px;">
+                                {% if var %}
+
+                                    <form method="get">
+                                        <input type="text" value="{{ evenement.id }}" name="id" id="id">
+                                        <a  href="{{ path('evenements_sub',{ 'idevenement': evenement.id }) }}" style="outline: none;
+    border: none;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #fff;
+    display: block;
+    width: 100%;
+    background:#3399cc;
+    margin: 1.5em 0 0;text-align: center">Participer</a>
+                                    </form>
+                                    {% elseif npr != 0 %}
+
+                                    {% endif %}
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

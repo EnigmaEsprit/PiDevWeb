@@ -43,6 +43,8 @@ class PhpEngine implements EngineInterface, \ArrayAccess
     private $evalParameters;
 
     /**
+     * Constructor.
+     *
      * @param TemplateNameParserInterface $parser  A TemplateNameParserInterface instance
      * @param LoaderInterface             $loader  A loader instance
      * @param HelperInterface[]           $helpers An array of helper instances
@@ -424,7 +426,7 @@ class PhpEngine implements EngineInterface, \ArrayAccess
                 /**
                  * Runs the PHP function htmlspecialchars on the value passed.
                  *
-                 * @param string $value The value to escape
+                 * @param string $value the value to escape
                  *
                  * @return string the escaped value
                  */
@@ -439,7 +441,7 @@ class PhpEngine implements EngineInterface, \ArrayAccess
                  * A function that escape all non-alphanumeric characters
                  * into their \xHH or \uHHHH representations.
                  *
-                 * @param string $value The value to escape
+                 * @param string $value the value to escape
                  *
                  * @return string the escaped value
                  */

@@ -24,8 +24,6 @@ trait AbstractTrait
     use LoggerAwareTrait;
 
     private $namespace;
-    private $namespaceVersion = '';
-    private $versioningIsEnabled = false;
     private $deferred = array();
 
     /**
@@ -104,18 +102,10 @@ trait AbstractTrait
      */
     public function clear()
     {
-        if ($cleared = $this->versioningIsEnabled) {
-            $this->namespaceVersion = 2;
-            foreach ($this->doFetch(array('@'.$this->namespace)) as $v) {
-                $this->namespaceVersion = 1 + (int) $v;
-            }
-            $this->namespaceVersion .= ':';
-            $cleared = $this->doSave(array('@'.$this->namespace => $this->namespaceVersion), 0);
-        }
         $this->deferred = array();
 
         try {
-            return $this->doClear($this->namespace) || $cleared;
+            return $this->doClear($this->namespace);
         } catch (\Exception $e) {
             CacheItem::log($this->logger, 'Failed to clear the cache', array('exception' => $e));
 
@@ -169,27 +159,6 @@ trait AbstractTrait
     }
 
     /**
-     * Enables/disables versioning of items.
-     *
-     * When versioning is enabled, clearing the cache is atomic and doesn't require listing existing keys to proceed,
-     * but old keys may need garbage collection and extra round-trips to the back-end are required.
-     *
-     * Calling this method also clears the memoized namespace version and thus forces a resynchonization of it.
-     *
-     * @param bool $enable
-     *
-     * @return bool the previous state of versioning
-     */
-    public function enableVersioning($enable = true)
-    {
-        $wasEnabled = $this->versioningIsEnabled;
-        $this->versioningIsEnabled = (bool) $enable;
-        $this->namespaceVersion = '';
-
-        return $wasEnabled;
-    }
-
-    /**
      * Like the native unserialize() function but throws an exception if anything goes wrong.
      *
      * @param string $value
@@ -220,18 +189,11 @@ trait AbstractTrait
     {
         CacheItem::validateKey($key);
 
-        if ($this->versioningIsEnabled && '' === $this->namespaceVersion) {
-            $this->namespaceVersion = '1:';
-            foreach ($this->doFetch(array('@'.$this->namespace)) as $v) {
-                $this->namespaceVersion = $v;
-            }
-        }
-
         if (null === $this->maxIdLength) {
-            return $this->namespace.$this->namespaceVersion.$key;
+            return $this->namespace.$key;
         }
-        if (strlen($id = $this->namespace.$this->namespaceVersion.$key) > $this->maxIdLength) {
-            $id = $this->namespace.$this->namespaceVersion.substr_replace(base64_encode(hash('sha256', $key, true)), ':', -22);
+        if (strlen($id = $this->namespace.$key) > $this->maxIdLength) {
+            $id = $this->namespace.substr_replace(base64_encode(hash('sha256', $key, true)), ':', -22);
         }
 
         return $id;

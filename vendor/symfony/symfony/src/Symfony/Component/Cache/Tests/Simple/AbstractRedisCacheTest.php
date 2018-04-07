@@ -41,6 +41,7 @@ abstract class AbstractRedisCacheTest extends CacheTestCase
 
     public static function tearDownAfterClass()
     {
+        self::$redis->flushDB();
         self::$redis = null;
     }
 }

@@ -29,12 +29,12 @@ use Twig\Loader\ExistsLoaderInterface;
 class ExceptionController
 {
     protected $twig;
-    protected $debug;
 
     /**
-     * @param Environment $twig
-     * @param bool        $debug Show error (false) or exception (true) pages by default
+     * @var bool Show error (false) or exception (true) pages by default
      */
+    protected $debug;
+
     public function __construct(Environment $twig, $debug)
     {
         $this->twig = $twig;
@@ -47,6 +47,10 @@ class ExceptionController
      * A "showException" request parameter can be used to force display of an error page (when set to false) or
      * the exception page (when true). If it is not present, the "debug" value passed into the constructor will
      * be used.
+     *
+     * @param Request              $request   The request
+     * @param FlattenException     $exception A FlattenException instance
+     * @param DebugLoggerInterface $logger    A DebugLoggerInterface instance
      *
      * @return Response
      *

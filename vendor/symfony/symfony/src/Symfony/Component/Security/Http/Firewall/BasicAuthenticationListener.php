@@ -49,6 +49,8 @@ class BasicAuthenticationListener implements ListenerInterface
 
     /**
      * Handles basic authentication.
+     *
+     * @param GetResponseEvent $event A GetResponseEvent instance
      */
     public function handle(GetResponseEvent $event)
     {

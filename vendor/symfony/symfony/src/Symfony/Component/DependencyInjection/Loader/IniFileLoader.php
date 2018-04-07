@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader;
 
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Config\Util\XmlUtils;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 

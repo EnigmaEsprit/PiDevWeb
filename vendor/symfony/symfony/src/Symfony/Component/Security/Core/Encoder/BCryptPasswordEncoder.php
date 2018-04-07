@@ -21,9 +21,14 @@ class BCryptPasswordEncoder extends BasePasswordEncoder
 {
     const MAX_PASSWORD_LENGTH = 72;
 
+    /**
+     * @var string
+     */
     private $cost;
 
     /**
+     * Constructor.
+     *
      * @param int $cost The algorithmic cost that should be used
      *
      * @throws \RuntimeException         When no BCrypt encoder is available

@@ -24,6 +24,11 @@ class ControllerNameParser
 {
     protected $kernel;
 
+    /**
+     * Constructor.
+     *
+     * @param KernelInterface $kernel A KernelInterface instance
+     */
     public function __construct(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
@@ -136,7 +141,7 @@ class ControllerNameParser
             }
 
             $lev = levenshtein($nonExistentBundleName, $bundleName);
-            if ($lev <= strlen($nonExistentBundleName) / 3 && (null === $alternative || $lev < $shortest)) {
+            if ($lev <= strlen($nonExistentBundleName) / 3 && ($alternative === null || $lev < $shortest)) {
                 $alternative = $bundleName;
                 $shortest = $lev;
             }

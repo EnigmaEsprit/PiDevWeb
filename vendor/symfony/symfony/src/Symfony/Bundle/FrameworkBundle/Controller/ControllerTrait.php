@@ -11,7 +11,6 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Controller;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,9 +23,10 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 
 /**
  * Common features needed in controllers.
@@ -43,7 +43,7 @@ trait ControllerTrait
      * Generates a URL from the given parameters.
      *
      * @param string $route         The name of the route
-     * @param array  $parameters    An array of parameters
+     * @param mixed  $parameters    An array of parameters
      * @param int    $referenceType The type of reference (one of the constants in UrlGeneratorInterface)
      *
      * @return string The generated URL
@@ -136,7 +136,7 @@ trait ControllerTrait
     protected function file($file, $fileName = null, $disposition = ResponseHeaderBag::DISPOSITION_ATTACHMENT)
     {
         $response = new BinaryFileResponse($file);
-        $response->setContentDisposition($disposition, null === $fileName ? $response->getFile()->getFilename() : $fileName);
+        $response->setContentDisposition($disposition, $fileName === null ? $response->getFile()->getFilename() : $fileName);
 
         return $response;
     }
@@ -231,10 +231,10 @@ trait ControllerTrait
     protected function render($view, array $parameters = array(), Response $response = null)
     {
         if ($this->container->has('templating')) {
-            $content = $this->container->get('templating')->render($view, $parameters);
-        } elseif ($this->container->has('twig')) {
-            $content = $this->container->get('twig')->render($view, $parameters);
-        } else {
+            return $this->container->get('templating')->renderResponse($view, $parameters, $response);
+        }
+
+        if (!$this->container->has('twig')) {
             throw new \LogicException('You can not use the "render" method if the Templating Component or the Twig Bundle are not available.');
         }
 
@@ -242,7 +242,7 @@ trait ControllerTrait
             $response = new Response();
         }
 
-        $response->setContent($content);
+        $response->setContent($this->container->get('twig')->render($view, $parameters));
 
         return $response;
     }
@@ -324,7 +324,7 @@ trait ControllerTrait
      * @param mixed  $data    The initial data for the form
      * @param array  $options Options for the form
      *
-     * @return FormInterface
+     * @return Form
      */
     protected function createForm($type, $data = null, array $options = array())
     {
@@ -337,7 +337,7 @@ trait ControllerTrait
      * @param mixed $data    The initial data for the form
      * @param array $options Options for the form
      *
-     * @return FormBuilderInterface
+     * @return FormBuilder
      */
     protected function createFormBuilder($data = null, array $options = array())
     {
@@ -347,7 +347,7 @@ trait ControllerTrait
     /**
      * Shortcut to return the Doctrine Registry service.
      *
-     * @return ManagerRegistry
+     * @return Registry
      *
      * @throws \LogicException If DoctrineBundle is not available
      */
