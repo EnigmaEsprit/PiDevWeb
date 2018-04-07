@@ -21,8 +21,6 @@ use Symfony\Component\Cache\Simple\PhpArrayCache;
 class PhpArrayCacheTest extends CacheTestCase
 {
     protected $skippedTests = array(
-        'testBasicUsageWithLongKey' => 'PhpArrayCache does no writes',
-
         'testDelete' => 'PhpArrayCache does no writes',
         'testDeleteMultiple' => 'PhpArrayCache does no writes',
         'testDeleteMultipleGenerator' => 'PhpArrayCache does no writes',
@@ -59,7 +57,6 @@ class PhpArrayCacheTest extends CacheTestCase
             FilesystemAdapterTest::rmdir(sys_get_temp_dir().'/symfony-cache');
         }
     }
-
     public function createSimpleCache()
     {
         return new PhpArrayCacheWrapper(self::$file, new NullCache());

@@ -11,6 +11,8 @@
 
 namespace Symfony\Component\DependencyInjection\Loader;
 
+use Symfony\Component\Config\Resource\DirectoryResource;
+
 /**
  * DirectoryLoader is a recursive loader to go through directories.
  *

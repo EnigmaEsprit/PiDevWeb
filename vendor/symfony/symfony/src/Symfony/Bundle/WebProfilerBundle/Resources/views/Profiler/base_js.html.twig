@@ -1,6 +1,6 @@
-{# This file is partially duplicated in TwigBundle/Resources/views/base_js.html.twig. If you
-   make any change in this file, verify the same change is needed in the other file. #}
-<script{% if csp_script_nonce is defined and csp_script_nonce %} nonce="{{ csp_script_nonce }}"{% endif %}>/*<![CDATA[*/
+{# This file is duplicated in TwigBundle/Resources/views/base_js.html.twig. If you
+   make any change in this file, do the same change in the other file. #}
+<script{% if csp_script_nonce is defined and csp_script_nonce %} nonce={{ csp_script_nonce }}{% endif %}>/*<![CDATA[*/
     {# Caution: the contents of this file are processed by Twig before loading
                 them as JavaScript source code. Always use '/*' comments instead
                 of '//' comments to avoid impossible-to-debug side-effects #}
@@ -8,7 +8,9 @@
     Sfjs = (function() {
         "use strict";
 
-        if ('classList' in document.documentElement) {
+        var classListIsSupported = 'classList' in document.documentElement;
+
+        if (classListIsSupported) {
             var hasClass = function (el, cssClass) { return el.classList.contains(cssClass); };
             var removeClass = function(el, cssClass) { el.classList.remove(cssClass); };
             var addClass = function(el, cssClass) { el.classList.add(cssClass); };
@@ -250,8 +252,6 @@
                             mode: arguments[0].mode,
                             redirect: arguments[0].redirect
                         };
-                    } else {
-                        url = String(url);
                     }
                     if (!url.match(new RegExp({{ excluded_ajax_paths|json_encode|raw }}))) {
                         var method = 'GET';
@@ -525,7 +525,7 @@
         };
     })();
 
-    Sfjs.addEventListener(document, 'DOMContentLoaded', function() {
+    Sfjs.addEventListener(window, 'load', function() {
         Sfjs.createTabs();
         Sfjs.createToggles();
     });

@@ -14,6 +14,7 @@ namespace Symfony\Bridge\Twig\Tests\Extension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\WorkflowExtension;
 use Symfony\Component\Workflow\Definition;
+use Symfony\Component\Workflow\Marking;
 use Symfony\Component\Workflow\Registry;
 use Symfony\Component\Workflow\SupportStrategy\ClassInstanceSupportStrategy;
 use Symfony\Component\Workflow\Transition;
@@ -25,6 +26,10 @@ class WorkflowExtensionTest extends TestCase
 
     protected function setUp()
     {
+        if (!class_exists(Workflow::class)) {
+            $this->markTestSkipped('The Workflow component is needed to run tests for this extension.');
+        }
+
         $places = array('ordered', 'waiting_for_payment', 'processed');
         $transitions = array(
             new Transition('t1', 'ordered', 'waiting_for_payment'),

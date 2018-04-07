@@ -39,7 +39,6 @@ class SymfonyTestsListenerTrait
     private $testsWithWarnings;
     private $reportUselessTests;
     private $error;
-    private $runsInSeparateProcess = false;
 
     /**
      * @param array $mockedNamespaces List of namespaces, indexed by mocked features (time-sensitive or dns-sensitive)
@@ -47,9 +46,14 @@ class SymfonyTestsListenerTrait
     public function __construct(array $mockedNamespaces = array())
     {
         if (class_exists('PHPUnit_Util_Blacklist')) {
-            \PHPUnit_Util_Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\Legacy\SymfonyTestsListenerTrait'] = 2;
+            \PHPUnit_Util_Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\DeprecationErrorHandler'] = 1;
+            \PHPUnit_Util_Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\SymfonyTestsListener'] = 1;
+            \PHPUnit_Util_Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\Legacy\SymfonyTestsListener'] = 1;
+            \PHPUnit_Util_Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\Legacy\SymfonyTestsListenerTrait'] = 1;
         } else {
-            Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\Legacy\SymfonyTestsListenerTrait'] = 2;
+            Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\DeprecationErrorHandler'] = 1;
+            Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\SymfonyTestsListener'] = 1;
+            Blacklist::$blacklistedClassNames['\Symfony\Bridge\PhpUnit\Legacy\SymfonyTestsListenerTrait'] = 1;
         }
 
         $warn = false;
@@ -106,25 +110,12 @@ class SymfonyTestsListenerTrait
         $suiteName = $suite->getName();
         $this->testsWithWarnings = array();
 
-        foreach ($suite->tests() as $test) {
-            if (!($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase)) {
-                continue;
-            }
-            if (null === $Test::getPreserveGlobalStateSettings(get_class($test), $test->getName(false))) {
-                $test->setPreserveGlobalState(false);
-            }
-        }
-
         if (-1 === $this->state) {
             echo "Testing $suiteName\n";
             $this->state = 0;
 
             if (!class_exists('Doctrine\Common\Annotations\AnnotationRegistry', false) && class_exists('Doctrine\Common\Annotations\AnnotationRegistry')) {
-                if (method_exists('Doctrine\Common\Annotations\AnnotationRegistry', 'registerUniqueLoader')) {
-                    AnnotationRegistry::registerUniqueLoader('class_exists');
-                } else {
-                    AnnotationRegistry::registerLoader('class_exists');
-                }
+                AnnotationRegistry::registerLoader('class_exists');
             }
 
             if ($this->skippedFile = getenv('SYMFONY_PHPUNIT_SKIPPED_TESTS')) {
@@ -192,12 +183,6 @@ class SymfonyTestsListenerTrait
                 $this->reportUselessTests = $test->getTestResultObject()->isStrictAboutTestsThatDoNotTestAnything();
             }
 
-            // This event is triggered before the test is re-run in isolation
-            if ($this->willBeIsolated($test)) {
-                $this->runsInSeparateProcess = tempnam(sys_get_temp_dir(), 'deprec');
-                putenv('SYMFONY_DEPRECATIONS_SERIALIZE='.$this->runsInSeparateProcess);
-            }
-
             if (class_exists('PHPUnit_Util_Blacklist', false)) {
                 $Test = 'PHPUnit_Util_Test';
                 $AssertionFailedError = 'PHPUnit_Framework_AssertionFailedError';
@@ -207,14 +192,12 @@ class SymfonyTestsListenerTrait
             }
             $groups = $Test::getGroups(get_class($test), $test->getName(false));
 
-            if (!$this->runsInSeparateProcess) {
-                if (in_array('time-sensitive', $groups, true)) {
-                    ClockMock::register(get_class($test));
-                    ClockMock::withClockMock(true);
-                }
-                if (in_array('dns-sensitive', $groups, true)) {
-                    DnsMock::register(get_class($test));
-                }
+            if (in_array('time-sensitive', $groups, true)) {
+                ClockMock::register(get_class($test));
+                ClockMock::withClockMock(true);
+            }
+            if (in_array('dns-sensitive', $groups, true)) {
+                DnsMock::register(get_class($test));
             }
 
             $annotations = $Test::parseTestMethodAnnotations(get_class($test), $test->getName(false));
@@ -262,23 +245,15 @@ class SymfonyTestsListenerTrait
             $this->reportUselessTests = null;
         }
 
-        if ($errored = null !== $this->error) {
-            $test->getTestResultObject()->addError($test, $this->error, 0);
-            $this->error = null;
-        }
+        $errored = false;
 
-        if ($this->runsInSeparateProcess) {
-            $deprecations = file_get_contents($this->runsInSeparateProcess);
-            unlink($this->runsInSeparateProcess);
-            putenv('SYMFONY_DEPRECATIONS_SERIALIZE');
-            foreach ($deprecations ? unserialize($deprecations) : array() as $deprecation) {
-                if ($deprecation[0]) {
-                    trigger_error(serialize(array('deprecation' => $deprecation[1], 'class' => $className, 'method' => $test->getName(false))), E_USER_DEPRECATED);
-                } else {
-                    @trigger_error(serialize(array('deprecation' => $deprecation[1], 'class' => $className, 'method' => $test->getName(false))), E_USER_DEPRECATED);
-                }
+        if (null !== $this->error) {
+            if ($BaseTestRunner::STATUS_PASSED === $test->getStatus()) {
+                $test->getTestResultObject()->addError($test, $this->error, 0);
+                $errored = true;
             }
-            $this->runsInSeparateProcess = false;
+
+            $this->error = null;
         }
 
         if ($this->expectedDeprecations) {
@@ -302,7 +277,7 @@ class SymfonyTestsListenerTrait
             $this->expectedDeprecations = $this->gatheredDeprecations = array();
             $this->previousErrorHandler = null;
         }
-        if (!$this->runsInSeparateProcess && -2 < $this->state && ($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase)) {
+        if (-2 < $this->state && ($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase)) {
             if (in_array('time-sensitive', $groups, true)) {
                 ClockMock::withClockMock(false);
             }
@@ -328,39 +303,16 @@ class SymfonyTestsListenerTrait
         }
     }
 
-    public function handleError($type, $msg, $file, $line, $context = array())
+    public function handleError($type, $msg, $file, $line, $context)
     {
         if (E_USER_DEPRECATED !== $type && E_DEPRECATED !== $type) {
             $h = $this->previousErrorHandler;
 
             return $h ? $h($type, $msg, $file, $line, $context) : false;
         }
-        // If the message is serialized we need to extract the message. This occurs when the error is triggered by
-        // by the isolated test path in \Symfony\Bridge\PhpUnit\Legacy\SymfonyTestsListenerTrait::endTest().
-        $parsedMsg = @unserialize($msg);
-        if (is_array($parsedMsg)) {
-            $msg = $parsedMsg['deprecation'];
-        }
         if (error_reporting()) {
             $msg = 'Unsilenced deprecation: '.$msg;
         }
         $this->gatheredDeprecations[] = $msg;
-    }
-
-    /**
-     * @param TestCase $test
-     *
-     * @return bool
-     */
-    private function willBeIsolated($test)
-    {
-        if ($test->isInIsolation()) {
-            return false;
-        }
-
-        $r = new \ReflectionProperty($test, 'runTestInSeparateProcess');
-        $r->setAccessible(true);
-
-        return $r->getValue($test);
     }
 }

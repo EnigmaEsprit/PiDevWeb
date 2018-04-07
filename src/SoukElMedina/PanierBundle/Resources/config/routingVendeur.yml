@@ -1,0 +1,14 @@
+#souk_el_medina_panier_homepage:
+#    path:     /
+#    defaults: { _controller: SoukElMedinaPanierBundle:Default:index }
+souk_el_medina_panier_commande_vendeur:
+    path:     /commandes
+    defaults: { _controller: SoukElMedinaPanierBundle:CommandeVendeur:Commandes }
+
+souk_el_medina_panier_pdf_facture_vendeur:
+    path:     /pdffacture/{id}
+    defaults: { _controller: SoukElMedinaPanierBundle:FactureVendeur:facturesPDF}
+
+souk_el_medina_statistiques_vendeur:
+    path:     /stats
+    defaults: { _controller: SoukElMedinaPanierBundle:Statistiques:index}

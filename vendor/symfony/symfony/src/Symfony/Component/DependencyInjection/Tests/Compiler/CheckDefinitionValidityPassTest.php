@@ -12,7 +12,6 @@
 namespace Symfony\Component\DependencyInjection\Tests\Compiler;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Compiler\CheckDefinitionValidityPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -75,42 +74,6 @@ class CheckDefinitionValidityPassTest extends TestCase
         $container->register('a', 'class')->addTag('foo', array('bar' => array('baz' => 'baz')));
 
         $this->process($container);
-    }
-
-    /**
-     * @expectedException \Symfony\Component\DependencyInjection\Exception\EnvParameterException
-     */
-    public function testDynamicPublicServiceName()
-    {
-        $container = new ContainerBuilder();
-        $env = $container->getParameterBag()->get('env(BAR)');
-        $container->register("foo.$env", 'class')->setPublic(true);
-
-        $this->process($container);
-    }
-
-    /**
-     * @expectedException \Symfony\Component\DependencyInjection\Exception\EnvParameterException
-     */
-    public function testDynamicPublicAliasName()
-    {
-        $container = new ContainerBuilder();
-        $env = $container->getParameterBag()->get('env(BAR)');
-        $container->setAlias("foo.$env", new Alias('class', true));
-
-        $this->process($container);
-    }
-
-    public function testDynamicPrivateName()
-    {
-        $container = new ContainerBuilder();
-        $env = $container->getParameterBag()->get('env(BAR)');
-        $container->register("foo.$env", 'class')->setPublic(false);
-        $container->setAlias("bar.$env", new Alias('class', false));
-
-        $this->process($container);
-
-        $this->addToAssertionCount(1);
     }
 
     protected function process(ContainerBuilder $container)

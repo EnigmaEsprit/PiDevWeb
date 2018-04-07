@@ -54,15 +54,14 @@
             </div>
         </div>
 
-        {% if logger %}
-        <div class="tab {{ logger.logs is empty ? 'disabled' }}">
+        <div class="tab {{ logger is empty ? 'disabled' }}">
             <h3 class="tab-title">
                 Logs
                 {% if logger.counterrors ?? false %}<span class="badge status-error">{{ logger.counterrors }}</span>{% endif %}
             </h3>
 
             <div class="tab-content">
-                {% if logger.logs %}
+                {% if logger %}
                     {{ include('@Twig/Exception/logs.html.twig', { logs: logger.logs }, with_context = false)  }}
                 {% else %}
                     <div class="empty">
@@ -71,7 +70,6 @@
                 {% endif %}
             </div>
         </div>
-        {% endif %}
 
         <div class="tab">
             <h3 class="tab-title">

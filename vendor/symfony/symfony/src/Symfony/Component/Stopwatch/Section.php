@@ -39,6 +39,8 @@ class Section
     private $children = array();
 
     /**
+     * Constructor.
+     *
      * @param float|null $origin Set the origin of the events in this section, use null to set their origin to their start time
      */
     public function __construct($origin = null)
@@ -65,7 +67,7 @@ class Section
     /**
      * Creates or re-opens a child section.
      *
-     * @param string|null $id Null to create a new section, the identifier to re-open an existing one
+     * @param string|null $id null to create a new section, the identifier to re-open an existing one
      *
      * @return self
      */

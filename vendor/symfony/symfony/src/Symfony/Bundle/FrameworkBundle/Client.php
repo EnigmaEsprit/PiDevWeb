@@ -62,7 +62,7 @@ class Client extends BaseClient
     /**
      * Gets the profile associated with the current Response.
      *
-     * @return HttpProfile|false A Profile instance
+     * @return HttpProfile A Profile instance
      */
     public function getProfile()
     {

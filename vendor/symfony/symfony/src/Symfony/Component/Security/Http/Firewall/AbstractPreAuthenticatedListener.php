@@ -49,6 +49,8 @@ abstract class AbstractPreAuthenticatedListener implements ListenerInterface
 
     /**
      * Handles pre-authentication.
+     *
+     * @param GetResponseEvent $event A GetResponseEvent instance
      */
     final public function handle(GetResponseEvent $event)
     {
@@ -95,6 +97,8 @@ abstract class AbstractPreAuthenticatedListener implements ListenerInterface
 
     /**
      * Clears a PreAuthenticatedToken for this provider (if present).
+     *
+     * @param AuthenticationException $exception
      */
     private function clearToken(AuthenticationException $exception)
     {
@@ -110,6 +114,8 @@ abstract class AbstractPreAuthenticatedListener implements ListenerInterface
 
     /**
      * Gets the user and credentials from the Request.
+     *
+     * @param Request $request A Request instance
      *
      * @return array An array composed of the user and the credentials
      */

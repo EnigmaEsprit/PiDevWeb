@@ -1,3 +1,7 @@
+souk_el_medina_user:
+    resource: "@SoukElMedinaUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 souk_el_medina_reclamation:
     resource: "@SoukElMedinaReclamationBundle/Resources/config/routing.yml"
     prefix:   /

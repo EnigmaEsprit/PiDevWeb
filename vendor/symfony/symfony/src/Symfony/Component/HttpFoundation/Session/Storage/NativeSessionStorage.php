@@ -52,6 +52,8 @@ class NativeSessionStorage implements SessionStorageInterface
     protected $metadataBag;
 
     /**
+     * Constructor.
+     *
      * Depending on how you want the storage driver to behave you probably
      * want to override this constructor entirely.
      *
@@ -76,7 +78,6 @@ class NativeSessionStorage implements SessionStorageInterface
      * gc_probability, "1"
      * hash_bits_per_character, "4"
      * hash_function, "0"
-     * lazy_write, "1"
      * name, "PHPSESSID"
      * referer_check, ""
      * serialize_handler, "php"
@@ -102,11 +103,8 @@ class NativeSessionStorage implements SessionStorageInterface
      */
     public function __construct(array $options = array(), $handler = null, MetadataBag $metaBag = null)
     {
-        $options += array(
-            // disable by default because it's managed by HeaderBag (if used)
-            'cache_limiter' => '',
-            'use_cookies' => 1,
-        );
+        session_cache_limiter(''); // disable by default because it's managed by HeaderBag (if used)
+        ini_set('session.use_cookies', 1);
 
         session_register_shutdown();
 
@@ -194,10 +192,6 @@ class NativeSessionStorage implements SessionStorageInterface
             return false;
         }
 
-        if (headers_sent()) {
-            return false;
-        }
-
         if (null !== $lifetime) {
             ini_set('session.cookie_lifetime', $lifetime);
         }
@@ -221,7 +215,7 @@ class NativeSessionStorage implements SessionStorageInterface
     public function save()
     {
         // Register custom error handler to catch a possible failure warning during session write
-        set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext = array()) {
+        set_error_handler(function ($errno, $errstr, $errfile, $errline, $errcontext) {
             throw new ContextErrorException($errstr, $errno, E_WARNING, $errfile, $errline, $errcontext);
         }, E_WARNING);
 
@@ -282,7 +276,7 @@ class NativeSessionStorage implements SessionStorageInterface
             throw new \InvalidArgumentException(sprintf('The SessionBagInterface %s is not registered.', $name));
         }
 
-        if (!$this->started && $this->saveHandler->isActive()) {
+        if ($this->saveHandler->isActive() && !$this->started) {
             $this->loadSession();
         } elseif (!$this->started) {
             $this->start();
@@ -291,6 +285,11 @@ class NativeSessionStorage implements SessionStorageInterface
         return $this->bags[$name];
     }
 
+    /**
+     * Sets the MetadataBag.
+     *
+     * @param MetadataBag $metaBag
+     */
     public function setMetadataBag(MetadataBag $metaBag = null)
     {
         if (null === $metaBag) {
@@ -330,16 +329,12 @@ class NativeSessionStorage implements SessionStorageInterface
      */
     public function setOptions(array $options)
     {
-        if (headers_sent() || \PHP_SESSION_ACTIVE === session_status()) {
-            return;
-        }
-
         $validOptions = array_flip(array(
             'cache_limiter', 'cookie_domain', 'cookie_httponly',
             'cookie_lifetime', 'cookie_path', 'cookie_secure',
             'entropy_file', 'entropy_length', 'gc_divisor',
             'gc_maxlifetime', 'gc_probability', 'hash_bits_per_character',
-            'hash_function', 'lazy_write', 'name', 'referer_check',
+            'hash_function', 'name', 'referer_check',
             'serialize_handler', 'use_strict_mode', 'use_cookies',
             'use_only_cookies', 'use_trans_sid', 'upload_progress.enabled',
             'upload_progress.cleanup', 'upload_progress.prefix', 'upload_progress.name',
@@ -393,10 +388,6 @@ class NativeSessionStorage implements SessionStorageInterface
         }
         $this->saveHandler = $saveHandler;
 
-        if (headers_sent() || \PHP_SESSION_ACTIVE === session_status()) {
-            return;
-        }
-
         if ($this->saveHandler instanceof \SessionHandlerInterface) {
             session_set_save_handler($this->saveHandler, false);
         }
@@ -409,6 +400,8 @@ class NativeSessionStorage implements SessionStorageInterface
      * are set to (either PHP's internal, or a custom save handler set with session_set_save_handler()).
      * PHP takes the return value from the read() handler, unserializes it
      * and populates $_SESSION with the result automatically.
+     *
+     * @param array|null $session
      */
     protected function loadSession(array &$session = null)
     {

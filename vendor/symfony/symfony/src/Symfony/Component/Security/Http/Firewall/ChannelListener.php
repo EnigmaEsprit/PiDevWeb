@@ -37,6 +37,8 @@ class ChannelListener implements ListenerInterface
 
     /**
      * Handles channel management.
+     *
+     * @param GetResponseEvent $event A GetResponseEvent instance
      */
     public function handle(GetResponseEvent $event)
     {

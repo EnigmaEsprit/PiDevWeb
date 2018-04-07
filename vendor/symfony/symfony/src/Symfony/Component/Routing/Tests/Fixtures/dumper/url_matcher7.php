@@ -5,20 +5,25 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\RequestContext;
 
 /**
+ * ProjectUrlMatcher.
+ *
  * This class has been auto-generated
  * by the Symfony Routing Component.
  */
 class ProjectUrlMatcher extends Symfony\Component\Routing\Tests\Fixtures\RedirectableUrlMatcher
 {
+    /**
+     * Constructor.
+     */
     public function __construct(RequestContext $context)
     {
         $this->context = $context;
     }
 
-    public function match($rawPathinfo)
+    public function match($pathinfo)
     {
         $allow = array();
-        $pathinfo = rawurldecode($rawPathinfo);
+        $pathinfo = rawurldecode($pathinfo);
         $trimmedPathinfo = rtrim($pathinfo, '/');
         $context = $this->context;
         $request = $this->request;
@@ -34,7 +39,7 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Tests\Fixtures\Redirec
             // simple_trailing_slash_no_methods
             if ('/trailing/simple/no-methods' === $trimmedPathinfo) {
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($rawPathinfo.'/', 'simple_trailing_slash_no_methods');
+                    return $this->redirect($pathinfo.'/', 'simple_trailing_slash_no_methods');
                 }
 
                 return array('_route' => 'simple_trailing_slash_no_methods');
@@ -48,7 +53,7 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Tests\Fixtures\Redirec
                 }
 
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($rawPathinfo.'/', 'simple_trailing_slash_GET_method');
+                    return $this->redirect($pathinfo.'/', 'simple_trailing_slash_GET_method');
                 }
 
                 return array('_route' => 'simple_trailing_slash_GET_method');
@@ -63,7 +68,7 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Tests\Fixtures\Redirec
                 }
 
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($rawPathinfo.'/', 'simple_trailing_slash_HEAD_method');
+                    return $this->redirect($pathinfo.'/', 'simple_trailing_slash_HEAD_method');
                 }
 
                 return array('_route' => 'simple_trailing_slash_HEAD_method');
@@ -87,7 +92,7 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Tests\Fixtures\Redirec
             // regex_trailing_slash_no_methods
             if (0 === strpos($pathinfo, '/trailing/regex/no-methods') && preg_match('#^/trailing/regex/no\\-methods/(?P<param>[^/]++)/?$#s', $pathinfo, $matches)) {
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($rawPathinfo.'/', 'regex_trailing_slash_no_methods');
+                    return $this->redirect($pathinfo.'/', 'regex_trailing_slash_no_methods');
                 }
 
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'regex_trailing_slash_no_methods')), array ());
@@ -101,7 +106,7 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Tests\Fixtures\Redirec
                 }
 
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($rawPathinfo.'/', 'regex_trailing_slash_GET_method');
+                    return $this->redirect($pathinfo.'/', 'regex_trailing_slash_GET_method');
                 }
 
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'regex_trailing_slash_GET_method')), array ());
@@ -116,7 +121,7 @@ class ProjectUrlMatcher extends Symfony\Component\Routing\Tests\Fixtures\Redirec
                 }
 
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($rawPathinfo.'/', 'regex_trailing_slash_HEAD_method');
+                    return $this->redirect($pathinfo.'/', 'regex_trailing_slash_HEAD_method');
                 }
 
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'regex_trailing_slash_HEAD_method')), array ());

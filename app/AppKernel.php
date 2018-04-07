@@ -26,6 +26,9 @@ class AppKernel extends Kernel
             new SoukElMedina\PanierBundle\SoukElMedinaPanierBundle(),
             new SoukElMedina\ProduitBundle\SoukElMedinaProduitBundle(),
             new SoukElMedina\ReclamationBundle\SoukElMedinaReclamationBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new SoukElMedina\UserBundle\SoukElMedinaUserBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

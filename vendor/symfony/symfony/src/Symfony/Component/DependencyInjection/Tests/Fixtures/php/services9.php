@@ -9,6 +9,8 @@ use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 /**
+ * ProjectServiceContainer.
+ *
  * This class has been auto-generated
  * by the Symfony Dependency Injection Component.
  *
@@ -19,6 +21,9 @@ class ProjectServiceContainer extends Container
     private $parameters;
     private $targetDirs = array();
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         parent::__construct(new ParameterBag($this->getDefaultParameters()));
@@ -275,7 +280,7 @@ class ProjectServiceContainer extends Container
         return $this->services['lazy_context_ignore_invalid_ref'] = new \LazyContext(new RewindableGenerator(function () {
             yield 0 => ${($_ = isset($this->services['foo.baz']) ? $this->services['foo.baz'] : $this->get('foo.baz')) && false ?: '_'};
             if ($this->has('invalid')) {
-                yield 1 => ${($_ = isset($this->services['invalid']) ? $this->services['invalid'] : $this->get('invalid', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'};
+                yield 1 => $this->get('invalid', ContainerInterface::NULL_ON_INVALID_REFERENCE);
             }
         }, function () {
             return 1 + (int) ($this->has('invalid'));
@@ -296,12 +301,12 @@ class ProjectServiceContainer extends Container
         $this->services['method_call1'] = $instance = new \Bar\FooClass();
 
         $instance->setBar(${($_ = isset($this->services['foo']) ? $this->services['foo'] : $this->get('foo')) && false ?: '_'});
-        $instance->setBar(${($_ = isset($this->services['foo2']) ? $this->services['foo2'] : $this->get('foo2', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        $instance->setBar($this->get('foo2', ContainerInterface::NULL_ON_INVALID_REFERENCE));
         if ($this->has('foo3')) {
-            $instance->setBar(${($_ = isset($this->services['foo3']) ? $this->services['foo3'] : $this->get('foo3', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+            $instance->setBar($this->get('foo3', ContainerInterface::NULL_ON_INVALID_REFERENCE));
         }
         if ($this->has('foobaz')) {
-            $instance->setBar(${($_ = isset($this->services['foobaz']) ? $this->services['foobaz'] : $this->get('foobaz', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+            $instance->setBar($this->get('foobaz', ContainerInterface::NULL_ON_INVALID_REFERENCE));
         }
         $instance->setBar((${($_ = isset($this->services['foo']) ? $this->services['foo'] : $this->get('foo')) && false ?: '_'}->foo() . (($this->hasParameter("foo")) ? ($this->getParameter("foo")) : ("default"))));
 

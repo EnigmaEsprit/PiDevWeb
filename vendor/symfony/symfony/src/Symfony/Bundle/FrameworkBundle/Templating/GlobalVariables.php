@@ -25,6 +25,9 @@ class GlobalVariables
 {
     protected $container;
 
+    /**
+     * @param ContainerInterface $container The DI container
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;

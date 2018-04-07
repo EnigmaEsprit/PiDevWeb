@@ -12,7 +12,6 @@
 namespace Symfony\Component\VarDumper\Dumper;
 
 use Symfony\Component\VarDumper\Cloner\Cursor;
-use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * CliDumper dumps variables for command line output.
@@ -329,7 +328,6 @@ class CliDumper extends AbstractDumper
                         break;
                     }
                     $style = 'index';
-                    // no break
                 case Cursor::HASH_ASSOC:
                     if (is_int($key)) {
                         $this->line .= $this->style($style, $key).' => ';
@@ -340,7 +338,7 @@ class CliDumper extends AbstractDumper
 
                 case Cursor::HASH_RESOURCE:
                     $key = "\0~\0".$key;
-                    // no break
+                    // No break;
                 case Cursor::HASH_OBJECT:
                     if (!isset($key[0]) || "\0" !== $key[0]) {
                         $this->line .= '+'.$bin.$this->style('public', $key).': ';
@@ -495,12 +493,10 @@ class CliDumper extends AbstractDumper
 
     protected function endValue(Cursor $cursor)
     {
-        if (Stub::ARRAY_INDEXED === $cursor->hashType || Stub::ARRAY_ASSOC === $cursor->hashType) {
-            if (self::DUMP_TRAILING_COMMA & $this->flags && 0 < $cursor->depth) {
-                $this->line .= ',';
-            } elseif (self::DUMP_COMMA_SEPARATOR & $this->flags && 1 < $cursor->hashLength - $cursor->hashIndex) {
-                $this->line .= ',';
-            }
+        if (self::DUMP_TRAILING_COMMA & $this->flags && 0 < $cursor->depth) {
+            $this->line .= ',';
+        } elseif (self::DUMP_COMMA_SEPARATOR & $this->flags && 1 < $cursor->hashLength - $cursor->hashIndex) {
+            $this->line .= ',';
         }
 
         $this->dumpLine($cursor->depth, true);

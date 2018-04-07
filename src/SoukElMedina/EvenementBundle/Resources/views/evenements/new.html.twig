@@ -1,0 +1,291 @@
+{% extends 'baseVendeur.html.twig' %}
+
+{% block body %}
+     {#<link rel="stylesheet" type="text/css" href="{{ asset('Front/css/util.css') }}">#}
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('Front/css/main.css') }}">#}
+    <link href="{{ asset('Datepiker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="{{ path('souk_el_medina_pidev_homepage_Vendeur') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">Register Page</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- register -->
+<div class="register">
+    <div class="container">
+    <h1>Evenement creation</h1>
+
+    {{ form_start(form) }}
+
+        <div class="login-form-grids">
+
+
+
+            <form method="POST" >
+
+                <table>
+    <tr>
+        {#<td>{{ form_label(Form.lieu,'Lieux')}}</td>#}
+        {#<td>{{ form_widget(Form.lieu) }}</td>#}
+        {#<td><input type="text" name="L"></td>#}
+        <div class="wrap-input100 validate-input" data-validate="Phone is required">
+
+
+            <span class="label-input100"></span>
+            {{ form_widget(form.nomevenement, {'attr': {'class': 'input100', 'placeholder': "Nom de Evenement"}}) }}
+            <span class="focus-input100"></span>
+        </div>
+
+
+
+        <div class="wrap-input100 validate-input">
+
+            <center><input  id="lieu" name ="lieu"  class="wrap-input100 validate-input" type="text" placeholder="Entrez l'emplacement">
+            </center>      </div>
+
+
+        <input type="hidden" id="l1" name="l1">
+        <input type="hidden" id="la1" name="la1">
+
+
+        <div id="map" hidden></div>
+        <script>
+
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: -33.8688, lng: 151.2195},
+                    zoom: 13
+                });
+                var input = /** @type {!HTMLInputElement} */(
+                    document.getElementById('lieu'));
+
+                var types = document.getElementById('type-selector');
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo('bounds', map);
+
+                var infowindow = new google.maps.InfoWindow();
+                var marker = new google.maps.Marker({
+                    map: map,
+                    anchorPoint: new google.maps.Point(0, -29)
+                });
+
+                autocomplete.addListener('place_changed', function() {
+                    infowindow.close();
+                    marker.setVisible(false);
+                    var place = autocomplete.getPlace();
+                    if (!place.geometry) {
+                        // User entered the name of a Place that was not suggested and
+                        // pressed the Enter key, or the Place Details request failed.
+                        window.alert("No details available for input: '" + place.name + "'");
+                        return;
+                    }
+
+                    // If the place has a geometry, then present it on a map.
+                    if (place.geometry.viewport) {
+                        map.fitBounds(place.geometry.viewport);
+                    } else {
+                        map.setCenter(place.geometry.location);
+                        map.setZoom(17);  // Why 17? Because it looks good.
+                    }
+                    marker.setIcon(/** @type {google.maps.Icon} */({
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(35, 35)
+                    }));
+                    marker.setPosition(place.geometry.location);
+                    marker.setVisible(true);
+                    var lat = place.geometry.location.lat();
+                    var long = place.geometry.location.lng();
+                    document.getElementById("l1").value = lat;
+                    document.getElementById("la1").value = long;
+                    document.getElementById("l1").innerHTML = lat;
+                    document.getElementById("la1").innerHTML = long;
+                    console.log(lat);
+                    console.log(document.getElementById("l1").innerHTML);
+
+
+                    var address = '';
+                    if (place.address_components) {
+                        address = [
+                            (place.address_components[0] && place.address_components[0].short_name || ''),
+                            (place.address_components[1] && place.address_components[1].short_name || ''),
+                            (place.address_components[2] && place.address_components[2].short_name || '')
+                        ].join(' ');
+                    }
+
+                    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                    infowindow.open(map, marker);
+                });
+
+                // Sets a listener on a radio button to change the filter type on Places
+                // Autocomplete.
+                function setupClickListener(id, types) {
+                    var radioButton = document.getElementById(id);
+                    radioButton.addEventListener('click', function() {
+                        autocomplete.setTypes(types);
+                    });
+                }
+
+                setupClickListener('changetype-all', []);
+                setupClickListener('changetype-address', ['address']);
+                setupClickListener('changetype-establishment', ['establishment']);
+                setupClickListener('changetype-geocode', ['geocode']);
+            }
+        </script>
+
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSPDzKwehHSwy5IoNwVyCf5fYEx5wThjY&libraries=places&callback=initMap">
+        </script>
+
+
+        </center>
+        {#<div class="wrap-input100 validate-input" data-validate="Phone is required">#}
+
+
+            {#<span class="label-input100"></span>#}
+            {#{{ form_widget(form.date, {'attr': {'class': 'input100', 'placeholder': "Date"}}) }}#}
+            {#<span class="focus-input100"></span>#}
+        {#</div>#}
+        {#<div class="wrap-input100 validate-input" data-validate="Phone is required">#}
+
+
+            {#<span class="label-input100"></span>#}
+            {#{{ form_widget(form.date, {'attr': {'class': 'input100','id': 'date'}}) }}#}
+            {#<span class="focus-input100"></span>#}
+        {#</div>#}
+
+        <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-control-wrapper">
+                            <input type="text" id="date-start" name="date-start" class="wrap-input100 validate-input" placeholder="Start Date" required="true">
+                        </div>
+                    </div>
+                </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-control-wrapper">
+                    <input type="text" id="date-end" name="date-end" class="wrap-input100 validate-input" placeholder="End Date">
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Phone is required">
+
+
+            <span class="label-input100"></span>
+            {{ form_widget(form.nombredeplaces, {'attr': {'class': 'input100', 'placeholder': "Nombre des places"}}) }}
+            <span class="focus-input100"></span>
+        </div>
+        {#<div class="wrap-input100 validate-input" data-validate="Phone is required">#}
+
+
+            {#<span class="label-input100"></span>#}
+            {#<input type="number" name="NP" id="NP"required="true" class="wrap-input100 validate-input" placeholder="Nombre des places">#}
+            {#<span class="focus-input100"></span>#}
+        {#</div>#}
+
+        <div class="wrap-input100 validate-input" data-validate="Phone is required">
+
+
+            <span class="label-input100"></span>
+            {{ form_widget(form.tarifevenement, {'attr': {'class': 'input100', 'placeholder': "Tarif"}}) }}
+            <span class="focus-input100"></span>
+        </div>
+        {#<div class="wrap-input100 validate-input" data-validate="Phone is required">#}
+
+
+            {#<span class="label-input100"></span>#}
+            {#<input type="number" name="NP" id="NP"required="true" class="wrap-input100 validate-input" placeholder="Nombre des places">#}
+            {#<span class="focus-input100"></span>#}
+        {#</div>#}
+        <div class="wrap-input100 validate-input" data-validate="Phone is required">
+
+
+            <span class="label-input100"></span>
+            <textarea id="description" name="description" placeholder="Description" class="wrap-input100 validate-input"></textarea>
+            <span class="focus-input100"></span>
+        </div>
+    </tr>
+                    <tr>
+                        {{ form_widget(form) }}
+                    </tr>
+
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('evenements_index') }}">Back to the list</a>
+        </li>
+    </ul>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    {#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>#}
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script src="{{ asset('Datepiker/js/bootstrap-material-datetimepicker.js') }}"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#date').bootstrapMaterialDatePicker
+            ({
+                time: false,
+                clearButton: true
+            });
+
+            $('#time').bootstrapMaterialDatePicker
+            ({
+                date: false,
+                shortTime: false,
+                format: 'HH:mm'
+            });
+
+            $('#date-format').bootstrapMaterialDatePicker
+            ({
+                format: 'dddd DD MMMM YYYY - HH:mm'
+            });
+            $('#date-fr').bootstrapMaterialDatePicker
+            ({
+                format: 'DD/MM/YYYY HH:mm',
+                lang: 'fr',
+                weekStart: 1,
+                cancelText : 'ANNULER',
+                nowButton : true,
+                switchOnClick : true
+            });
+
+            $('#date-end').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+            });
+            $('#date-start').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+            }).on('change', function(e, date)
+            {
+                $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+            });
+
+            $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+            $.material.init()
+        });
+    </script>
+{% endblock %}

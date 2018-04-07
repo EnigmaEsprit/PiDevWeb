@@ -99,10 +99,10 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
 
         $rootNode = null;
         foreach ($dom->childNodes as $child) {
-            if (XML_DOCUMENT_TYPE_NODE === $child->nodeType) {
+            if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
                 throw new UnexpectedValueException('Document types are not allowed.');
             }
-            if (!$rootNode && XML_PI_NODE !== $child->nodeType) {
+            if (!$rootNode && $child->nodeType !== XML_PI_NODE) {
                 $rootNode = $child;
             }
         }
@@ -159,7 +159,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
     /**
      * Sets the root node name.
      *
-     * @param string $name Root node name
+     * @param string $name root node name
      */
     public function setRootNodeName($name)
     {
@@ -257,6 +257,8 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
     /**
      * Parse the input DOMNode into an array or a string.
      *
+     * @param \DOMNode $node xml to parse
+     *
      * @return array|string
      */
     private function parseXml(\DOMNode $node)
@@ -291,6 +293,8 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
     /**
      * Parse the input DOMNode attributes into an array.
      *
+     * @param \DOMNode $node xml to parse
+     *
      * @return array
      */
     private function parseXmlAttributes(\DOMNode $node)
@@ -323,6 +327,8 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
     /**
      * Parse the input DOMNode value (content and children) into an array or a string.
      *
+     * @param \DOMNode $node xml to parse
+     *
      * @return array|string
      */
     private function parseXmlValue(\DOMNode $node)
@@ -338,7 +344,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
         $value = array();
 
         foreach ($node->childNodes as $subnode) {
-            if (XML_PI_NODE === $subnode->nodeType) {
+            if ($subnode->nodeType === XML_PI_NODE) {
                 continue;
             }
 
@@ -387,7 +393,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
                         $data = $this->serializer->normalize($data, $this->format, $this->context);
                     }
                     $parentNode->setAttribute($attributeName, $data);
-                } elseif ('#' === $key) {
+                } elseif ($key === '#') {
                     $append = $this->selectNodeType($parentNode, $data);
                 } elseif (is_array($data) && false === is_numeric($key)) {
                     // Is this array fully numeric keys?
@@ -510,6 +516,8 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
     /**
      * Get real XML root node name, taking serializer options into account.
      *
+     * @param array $context
+     *
      * @return string
      */
     private function resolveXmlRootName(array $context = array())
@@ -522,7 +530,7 @@ class XmlEncoder extends SerializerAwareEncoder implements EncoderInterface, Dec
     /**
      * Create a DOM document, taking serializer options into account.
      *
-     * @param array $context Options that the encoder has access to
+     * @param array $context options that the encoder has access to
      *
      * @return \DOMDocument
      */

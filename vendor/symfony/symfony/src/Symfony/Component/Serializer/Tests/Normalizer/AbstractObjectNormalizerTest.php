@@ -11,10 +11,7 @@
 
 namespace Symfony\Component\Serializer\Tests\Normalizer;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 
 class AbstractObjectNormalizerTest extends TestCase
@@ -54,21 +51,6 @@ class AbstractObjectNormalizerTest extends TestCase
             array('allow_extra_attributes' => false)
         );
     }
-
-    /**
-     * @expectedException \Symfony\Component\Serializer\Exception\ExtraAttributesException
-     * @expectedExceptionMessage Extra attributes are not allowed ("fooFoo", "fooBar" are unknown).
-     */
-    public function testDenormalizeWithExtraAttributesAndNoGroupsWithMetadataFactory()
-    {
-        $normalizer = new AbstractObjectNormalizerWithMetadata();
-        $normalizer->denormalize(
-            array('fooFoo' => 'foo', 'fooBar' => 'bar', 'bar' => 'bar'),
-            Dummy::class,
-            'any',
-            array('allow_extra_attributes' => false)
-        );
-    }
 }
 
 class AbstractObjectNormalizerDummy extends AbstractObjectNormalizer
@@ -102,25 +84,4 @@ class Dummy
     public $foo;
     public $bar;
     public $baz;
-}
-
-class AbstractObjectNormalizerWithMetadata extends AbstractObjectNormalizer
-{
-    public function __construct()
-    {
-        parent::__construct(new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader())));
-    }
-
-    protected function extractAttributes($object, $format = null, array $context = array())
-    {
-    }
-
-    protected function getAttributeValue($object, $attribute, $format = null, array $context = array())
-    {
-    }
-
-    protected function setAttributeValue($object, $attribute, $value, $format = null, array $context = array())
-    {
-        $object->$attribute = $value;
-    }
 }

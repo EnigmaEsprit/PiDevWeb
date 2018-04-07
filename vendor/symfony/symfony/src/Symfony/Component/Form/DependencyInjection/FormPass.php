@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\Compiler\PriorityTaggedServiceTrait;
 use Symfony\Component\DependencyInjection\Compiler\ServiceLocatorTagPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -52,12 +53,12 @@ class FormPass implements CompilerPassInterface
         if (new IteratorArgument(array()) != $definition->getArgument(2)) {
             return;
         }
-        $definition->replaceArgument(0, $this->processFormTypes($container));
+        $definition->replaceArgument(0, $this->processFormTypes($container, $definition));
         $definition->replaceArgument(1, $this->processFormTypeExtensions($container));
         $definition->replaceArgument(2, $this->processFormTypeGuessers($container));
     }
 
-    private function processFormTypes(ContainerBuilder $container)
+    private function processFormTypes(ContainerBuilder $container, Definition $definition)
     {
         // Get service locator argument
         $servicesMap = array();

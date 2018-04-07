@@ -69,18 +69,6 @@ class GuardListenerTest extends TestCase
         $this->assertTrue($event->isBlocked());
     }
 
-    /**
-     * @expectedException \Symfony\Component\Workflow\Exception\InvalidTokenConfigurationException
-     * @expectedExceptionMessage There are no tokens available for workflow unnamed.
-     */
-    public function testWithNoTokensInTokenStorage()
-    {
-        $event = $this->createEvent();
-        $this->tokenStorage->setToken(null);
-
-        $this->listener->onTransition($event, 'event_name_a');
-    }
-
     private function createEvent()
     {
         $subject = new \stdClass();

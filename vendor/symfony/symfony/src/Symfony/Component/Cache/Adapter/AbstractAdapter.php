@@ -38,7 +38,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
      */
     protected function __construct($namespace = '', $defaultLifetime = 0)
     {
-        $this->namespace = '' === $namespace ? '' : CacheItem::validateKey($namespace).':';
+        $this->namespace = '' === $namespace ? '' : $this->getId($namespace).':';
         if (null !== $this->maxIdLength && strlen($namespace) > $this->maxIdLength - 24) {
             throw new InvalidArgumentException(sprintf('Namespace must be %d chars max, %d given ("%s")', $this->maxIdLength - 24, strlen($namespace), $namespace));
         }
@@ -55,20 +55,19 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
             null,
             CacheItem::class
         );
-        $getId = function ($key) { return $this->getId((string) $key); };
         $this->mergeByLifetime = \Closure::bind(
-            function ($deferred, $namespace, &$expiredIds) use ($getId) {
+            function ($deferred, $namespace, &$expiredIds) {
                 $byLifetime = array();
                 $now = time();
                 $expiredIds = array();
 
                 foreach ($deferred as $key => $item) {
                     if (null === $item->expiry) {
-                        $byLifetime[0 < $item->defaultLifetime ? $item->defaultLifetime : 0][$getId($key)] = $item->value;
+                        $byLifetime[0 < $item->defaultLifetime ? $item->defaultLifetime : 0][$namespace.$key] = $item->value;
                     } elseif ($item->expiry > $now) {
-                        $byLifetime[$item->expiry - $now][$getId($key)] = $item->value;
+                        $byLifetime[$item->expiry - $now][$namespace.$key] = $item->value;
                     } else {
-                        $expiredIds[] = $getId($key);
+                        $expiredIds[] = $namespace.$key;
                     }
                 }
 
@@ -116,7 +115,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
         }
 
         $apcu = new ApcuAdapter($namespace, (int) $defaultLifetime / 5, $version);
-        if ('cli' === \PHP_SAPI && !ini_get('apc.enable_cli')) {
+        if ('cli' === PHP_SAPI && !ini_get('apc.enable_cli')) {
             $apcu->setLogger(new NullLogger());
         } elseif (null !== $logger) {
             $apcu->setLogger($logger);

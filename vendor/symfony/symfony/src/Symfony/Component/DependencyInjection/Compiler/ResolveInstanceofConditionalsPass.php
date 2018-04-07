@@ -119,7 +119,6 @@ class ResolveInstanceofConditionalsPass implements CompilerPassInterface
             $abstract
                 ->setArguments(array())
                 ->setMethodCalls(array())
-                ->setDecoratedService(null)
                 ->setTags(array())
                 ->setAbstract(true);
         }

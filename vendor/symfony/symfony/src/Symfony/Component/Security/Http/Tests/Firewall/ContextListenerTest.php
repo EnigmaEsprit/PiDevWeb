@@ -177,8 +177,6 @@ class ContextListenerTest extends TestCase
     public function provideInvalidToken()
     {
         return array(
-            array('foo'),
-            array('O:8:"NotFound":0:{}'),
             array(serialize(new \__PHP_Incomplete_Class())),
             array(serialize(null)),
             array(null),
@@ -293,7 +291,7 @@ class ContextListenerTest extends TestCase
     {
         $session = new Session(new MockArraySessionStorage());
 
-        if (null !== $original) {
+        if ($original !== null) {
             $session->set('_security_session', $original);
         }
 

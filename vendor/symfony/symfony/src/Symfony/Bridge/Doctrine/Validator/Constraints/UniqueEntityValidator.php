@@ -26,6 +26,9 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class UniqueEntityValidator extends ConstraintValidator
 {
+    /**
+     * @var ManagerRegistry
+     */
     private $registry;
 
     public function __construct(ManagerRegistry $registry)

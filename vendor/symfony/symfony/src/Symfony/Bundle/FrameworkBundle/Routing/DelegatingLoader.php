@@ -30,6 +30,8 @@ class DelegatingLoader extends BaseDelegatingLoader
     private $loading = false;
 
     /**
+     * Constructor.
+     *
      * @param ControllerNameParser    $parser   A ControllerNameParser instance
      * @param LoaderResolverInterface $resolver A LoaderResolverInterface instance
      */
@@ -73,7 +75,7 @@ class DelegatingLoader extends BaseDelegatingLoader
         }
 
         foreach ($collection->all() as $route) {
-            if (!is_string($controller = $route->getDefault('_controller')) || !$controller) {
+            if (!$controller = $route->getDefault('_controller')) {
                 continue;
             }
 

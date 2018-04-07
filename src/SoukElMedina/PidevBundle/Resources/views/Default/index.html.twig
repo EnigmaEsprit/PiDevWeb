@@ -3,28 +3,17 @@
  {% block body %}
   <!-- //navigation -->
   <!-- main-slider -->
-  <ul id="demo1">
-   <li>
-    <img src="{{ asset('images/11.jpg') }}" alt="" />
-    <!--Slider Description example-->
-    <div class="slide-desc">
-     <h3>Buy Rice Products Are Now On Line With Us</h3>
-    </div>
-   </li>
-   <li>
-    <img src="{{ asset('images/22.jpg') }}" alt="" />
-    <div class="slide-desc">
-     <h3>Whole Spices Products Are Now On Line With Us</h3>
-    </div>
-   </li>
-
-   <li>
-    <img src="{{ asset('images/44.jpg') }}" alt="" />
-    <div class="slide-desc">
-     <h3>Whole Spices Products Are Now On Line With Us</h3>
-    </div>
-   </li>
-  </ul>
+<ul id="demo1">
+    {% for evenement in evenements %}
+     <li>
+      <a href="{{ path('evenements_show', { 'id': evenement.id }) }}"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}" alt="" /></a>
+      <!--Slider Description example-->
+      <div class="slide-desc">
+       <h3>{{ evenement.nomevenement }}</h3>
+      </div>
+     </li>
+    {% endfor %}
+</ul>
   <!-- //main-slider -->
   <!-- top-brands -->
   <div class="top-brands">
@@ -42,546 +31,151 @@
          <h5>Advertised this week</h5>
          <p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
         </div>
-        <div class="agile_top_brands_grids">
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block" >
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img title=" " alt=" " src="{{ asset('images/1.png') }}" /></a>
-                <p>Tata-salt</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
+
+
+           {% set counter =0 %}
+
+
+           {% for produit in Produits %}
+
+               {% set counter=counter+1 %}
+
+
+            <div class="agile_top_brands_grids">
+             <div class="col-md-4 top_brand_left">
+              <div class="hover14 column">
+               <div class="agile_top_brand_left_grid">
+                <div class="agile_top_brand_left_grid_pos">
+                 <img src="images/offer.png" alt=" " class="img-responsive" />
                 </div>
-                <h4>$20.99 <span>$35.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-                  <input type="hidden" name="amount" value="20.99" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
+                <div class="agile_top_brand_left_grid1">
+                 <figure>
+                  <div class="snipcart-item block" >
+                   <div class="snipcart-thumb">
+                    <a href="{{ path('souk_el_medina_pidev_detail',{'id':produit.idproduit}) }}"><img title=" " alt=" " src="{{ asset('images/' ~produit.idproduit~ '.png') }}" /></a>
+                    <p>{{ produit.nomproduit }}</p>
+                    <div class="stars">
+                     <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                     <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                     <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                     <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                     <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                    </div>
+                    <h4>${{ produit.prixproduit }}.00<span>$55.00</span></h4>
+                   </div>
+                   <div class="snipcart-details top_brand_home_details">
+                    <form action="{{ path('souk_el_medina_panier_ajouter_panier',{'id': produit.idproduit}) }}"  method="get">
+                     <fieldset>
+                      <input type="hidden" name="cmd" value="" />
+                      <input type="hidden" name="add" value="{{ produit.idproduit }}" />
+                      <input type="hidden" name="business" value=" " />
+                      <input type="hidden" name="item_name" value="{{ produit.nomproduit }}" />
+                      <input type="hidden" name="amount" value="{{ produit.prixproduit }}" />
+                      <input type="hidden" name="discount_amount" value="1.00" />
+                      <input type="hidden" name="currency_code" value="USD" />
+                      <input type="hidden" name="return" value=" " />
+                      <input type="hidden" name="cancel_return" value=" " />
+                         {% if panier[produit.idproduit] is not defined %}
+                          <input type="submit" name="submit" value="Add to cart" class="button" />
+                         {% else %}
+                          <a href="{{ path('souk_el_medina_panier_homepage') }}">  <input type="submit" name="submit" value="IN CART" class="button" /></a>
+
+                         {% endif %}
+                     </fieldset>
+                    </form>
+                   </div>
+                  </div>
+                 </figure>
+                </div>
                </div>
               </div>
-             </figure>
+             </div>
+
+                {% if counter ==3 %}
+                 <div class="clearfix"> </div>
+                    {% set counter=0 %}
+                {% endif %}
             </div>
-           </div>
-          </div>
-         </div>
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block" >
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img title=" " alt=" " src="{{ asset('images/2.png') }}" /></a>
-                <p>Fortune-sunflower</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$20.99 <span>$35.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="basmati rise" />
-                  <input type="hidden" name="amount" value="20.99" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block">
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img src="{{ asset('images/3.png') }}" alt=" " class="img-responsive" /></a>
-                <p>Aashirvaad-atta</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$40.99 <span>$65.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="Pepsi soft drink" />
-                  <input type="hidden" name="amount" value="40.00" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="clearfix"> </div>
-        </div>
-        <div class="agile_top_brands_grids">
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block" >
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img title=" " alt=" " src="{{ asset('images/4.png') }}" /></a>
-                <p>Sampann-toor-dal</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$35.99 <span>$55.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-                  <input type="hidden" name="amount" value="35.99" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block" >
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img title=" " alt=" " src="{{ asset('images/5.png') }}" /></a>
-                <p>Parryss-sugar</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$30.99 <span>$45.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="basmati rise" />
-                  <input type="hidden" name="amount" value="30.99" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block">
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img src="{{ asset('images/6.png') }}" alt=" " class="img-responsive" /></a>
-                <p>Saffola-gold</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$80.99 <span>$105.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="Pepsi soft drink" />
-                  <input type="hidden" name="amount" value="80.00" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="clearfix"> </div>
-        </div>
+
+           {% endfor %}
+        <div class="clearfix"> </div>
+
        </div>
+
+
        <div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
         <div class="agile-tp">
          <h5>This week</h5>
          <p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
         </div>
-        <div class="agile_top_brands_grids">
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block" >
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img title=" " alt=" " src="{{ asset('images/7.png') }}" /></a>
-                <p>Sona-masoori-rice</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
+
+
+           {% set counter2 =0 %}
+
+           {% for produit in Produits %}
+
+               {% set counter2=counter2+1 %}
+
+            <div class="agile_top_brands_grids">
+             <div class="col-md-4 top_brand_left">
+              <div class="hover14 column">
+               <div class="agile_top_brand_left_grid">
+                <div class="agile_top_brand_left_grid_pos">
+                 <img src="images/offer.png" alt=" " class="img-responsive" />
                 </div>
-                <h4>$35.99 <span>$55.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-                  <input type="hidden" name="amount" value="35.99" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
+                <div class="agile_top_brand_left_grid1">
+                 <figure>
+                  <div class="snipcart-item block" >
+                   <div class="snipcart-thumb">
+                    <a href="{{ path('souk_el_medina_pidev_detail',{'id':produit.idproduit}) }}"><img title=" " alt=" " src="images/4.png" /></a>
+                    <p>Sampann-toor-dal</p>
+                    <div class="stars">
+                     <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                     <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                     <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                     <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                     <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                    </div>
+                    <h4>$35.99 <span>$55.00</span></h4>
+                   </div>
+                   <div class="snipcart-details top_brand_home_details">
+                    <form action="#" method="post">
+                     <fieldset>
+                      <input type="hidden" name="cmd" value="_cart" />
+                      <input type="hidden" name="add" value="1" />
+                      <input type="hidden" name="business" value=" " />
+                      <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
+                      <input type="hidden" name="amount" value="35.99" />
+                      <input type="hidden" name="discount_amount" value="1.00" />
+                      <input type="hidden" name="currency_code" value="USD" />
+                      <input type="hidden" name="return" value=" " />
+                      <input type="hidden" name="cancel_return" value=" " />
+                         {% if panier[produit.idproduit] is not defined %}
+                          <input type="submit" name="submit" value="Add to cart" class="button" />
+                         {% else %}
+                          <a href="{{ path('souk_el_medina_panier_homepage') }}">  <input type="submit" name="submit" value="IN CART" class="button" /></a>
+
+                         {% endif %}
+                     </fieldset>
+                    </form>
+                   </div>
+                  </div>
+                 </figure>
+                </div>
                </div>
               </div>
-             </figure>
+             </div>
+
+                {% if counter2 ==3 %}
+                 <div class="clearfix"> </div>
+                    {% set counter2=0 %}
+                {% endif %}
             </div>
-           </div>
-          </div>
-         </div>
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block" >
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img title=" " alt=" " src="{{ asset('images/8.png') }}" /></a>
-                <p>Milky-mist-paneer</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$30.99 <span>$45.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="basmati rise" />
-                  <input type="hidden" name="amount" value="30.99" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block">
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img src="{{ asset('images/9.png') }}" alt=" " class="img-responsive" /></a>
-                <p>Basmati-Rice</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$80.99 <span>$105.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="Pepsi soft drink" />
-                  <input type="hidden" name="amount" value="80.00" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="clearfix"> </div>
-        </div>
-        <div class="agile_top_brands_grids">
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block" >
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img title=" " alt=" " src="{{ asset('images/10.png') }}" /></a>
-                <p>Fortune-sunflower</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$20.99 <span>$35.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-                  <input type="hidden" name="amount" value="20.99" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block" >
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img title=" " alt=" " src="{{ asset('images/12.png') }}" /></a>
-                <p>Nestle-a-slim</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$20.99 <span>$35.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="basmati rise" />
-                  <input type="hidden" name="amount" value="20.99" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="col-md-4 top_brand_left">
-          <div class="hover14 column">
-           <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-             <img src="{{ asset('images/offer.png') }}" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-             <figure>
-              <div class="snipcart-item block">
-               <div class="snipcart-thumb">
-                <a href="{{ path('souk_el_medina_pidev_produit') }}"><img src="{{ asset('images/13.png') }}" alt=" " class="img-responsive" /></a>
-                <p>Bread-sandwich</p>
-                <div class="stars">
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star blue-star" aria-hidden="true"></i>
-                 <i class="fa fa-star gray-star" aria-hidden="true"></i>
-                </div>
-                <h4>$40.99 <span>$65.00</span></h4>
-               </div>
-               <div class="snipcart-details top_brand_home_details">
-                <form action="#" method="post">
-                 <fieldset>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="add" value="1" />
-                  <input type="hidden" name="business" value=" " />
-                  <input type="hidden" name="item_name" value="Pepsi soft drink" />
-                  <input type="hidden" name="amount" value="40.00" />
-                  <input type="hidden" name="discount_amount" value="1.00" />
-                  <input type="hidden" name="currency_code" value="USD" />
-                  <input type="hidden" name="return" value=" " />
-                  <input type="hidden" name="cancel_return" value=" " />
-                  <input type="submit" name="submit" value="Add to cart" class="button" />
-                 </fieldset>
-                </form>
-               </div>
-              </div>
-             </figure>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="clearfix"> </div>
-        </div>
+
+           {% endfor %}
+        <div class="clearfix"> </div>
+
+
        </div>
       </div>
      </div>

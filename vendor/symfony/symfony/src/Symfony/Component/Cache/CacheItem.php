@@ -148,8 +148,6 @@ final class CacheItem implements CacheItemInterface
      *
      * @param string $key The key to validate
      *
-     * @return string
-     *
      * @throws InvalidArgumentException When $key is not valid
      */
     public static function validateKey($key)
@@ -163,8 +161,6 @@ final class CacheItem implements CacheItemInterface
         if (false !== strpbrk($key, '{}()/\@:')) {
             throw new InvalidArgumentException(sprintf('Cache key "%s" contains reserved characters {}()/\@:', $key));
         }
-
-        return $key;
     }
 
     /**

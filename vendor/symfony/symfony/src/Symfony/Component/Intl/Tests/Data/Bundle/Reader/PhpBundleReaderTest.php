@@ -35,7 +35,7 @@ class PhpBundleReaderTest extends TestCase
 
         $this->assertInternalType('array', $data);
         $this->assertSame('Bar', $data['Foo']);
-        $this->assertArrayNotHasKey('ExistsNot', $data);
+        $this->assertFalse(isset($data['ExistsNot']));
     }
 
     /**
@@ -60,13 +60,5 @@ class PhpBundleReaderTest extends TestCase
     public function testReadFailsIfNotAFile()
     {
         $this->reader->read(__DIR__.'/Fixtures/NotAFile', 'en');
-    }
-
-    /**
-     * @expectedException \Symfony\Component\Intl\Exception\ResourceBundleNotFoundException
-     */
-    public function testReaderDoesNotBreakOutOfGivenPath()
-    {
-        $this->reader->read(__DIR__.'/Fixtures/php', '../invalid_directory/en');
     }
 }

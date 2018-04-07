@@ -133,6 +133,8 @@ class XmlDescriptor extends Descriptor
     /**
      * Writes DOM document.
      *
+     * @param \DOMDocument $dom
+     *
      * @return \DOMDocument|string
      */
     private function writeDocument(\DOMDocument $dom)
@@ -142,6 +144,8 @@ class XmlDescriptor extends Descriptor
     }
 
     /**
+     * @param RouteCollection $routes
+     *
      * @return \DOMDocument
      */
     private function getRouteCollectionDocument(RouteCollection $routes)
@@ -227,6 +231,8 @@ class XmlDescriptor extends Descriptor
     }
 
     /**
+     * @param ParameterBag $parameters
+     *
      * @return \DOMDocument
      */
     private function getContainerParametersDocument(ParameterBag $parameters)
@@ -409,6 +415,8 @@ class XmlDescriptor extends Descriptor
     }
 
     /**
+     * @param array $arguments
+     *
      * @return \DOMNode[]
      */
     private function getArgumentNodes(array $arguments, \DOMDocument $dom)
@@ -475,6 +483,9 @@ class XmlDescriptor extends Descriptor
     }
 
     /**
+     * @param string $parameter
+     * @param array  $options
+     *
      * @return \DOMDocument
      */
     private function getContainerParameterDocument($parameter, $options = array())
@@ -519,6 +530,10 @@ class XmlDescriptor extends Descriptor
         return $dom;
     }
 
+    /**
+     * @param \DOMElement $element
+     * @param array       $eventListeners
+     */
     private function appendEventListenerDocument(EventDispatcherInterface $eventDispatcher, $event, \DOMElement $element, array $eventListeners)
     {
         foreach ($eventListeners as $listener) {

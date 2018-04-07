@@ -24,6 +24,8 @@ class CollectionToArrayTransformer implements DataTransformerInterface
     /**
      * Transforms a collection into an array.
      *
+     * @param Collection $collection A collection of entities
+     *
      * @return mixed An array of entities
      *
      * @throws TransformationFailedException

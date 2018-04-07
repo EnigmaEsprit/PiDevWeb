@@ -83,8 +83,8 @@ class Filesystem
     /**
      * Creates a directory recursively.
      *
-     * @param string|iterable $dirs The directory path
-     * @param int             $mode The directory mode
+     * @param string|array|\Traversable $dirs The directory path
+     * @param int                       $mode The directory mode
      *
      * @throws IOException On any directory creation failure
      */
@@ -111,17 +111,15 @@ class Filesystem
     /**
      * Checks the existence of files or directories.
      *
-     * @param string|iterable $files A filename, an array of files, or a \Traversable instance to check
+     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to check
      *
      * @return bool true if the file exists, false otherwise
      */
     public function exists($files)
     {
-        $maxPathLength = PHP_MAXPATHLEN - 2;
-
         foreach ($this->toIterator($files) as $file) {
-            if (strlen($file) > $maxPathLength) {
-                throw new IOException(sprintf('Could not check if file exist because path length exceeds %d characters.', $maxPathLength), 0, null, $file);
+            if ('\\' === DIRECTORY_SEPARATOR && strlen($file) > 258) {
+                throw new IOException('Could not check if file exist because path length exceeds 258 characters.', 0, null, $file);
             }
 
             if (!file_exists($file)) {
@@ -135,9 +133,9 @@ class Filesystem
     /**
      * Sets access and modification time of file.
      *
-     * @param string|iterable $files A filename, an array of files, or a \Traversable instance to create
-     * @param int             $time  The touch time as a Unix timestamp
-     * @param int             $atime The access time as a Unix timestamp
+     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to create
+     * @param int                       $time  The touch time as a Unix timestamp
+     * @param int                       $atime The access time as a Unix timestamp
      *
      * @throws IOException When touch fails
      */
@@ -154,7 +152,7 @@ class Filesystem
     /**
      * Removes files or directories.
      *
-     * @param string|iterable $files A filename, an array of files, or a \Traversable instance to remove
+     * @param string|array|\Traversable $files A filename, an array of files, or a \Traversable instance to remove
      *
      * @throws IOException When removal fails
      */
@@ -190,10 +188,10 @@ class Filesystem
     /**
      * Change mode for an array of files or directories.
      *
-     * @param string|iterable $files     A filename, an array of files, or a \Traversable instance to change mode
-     * @param int             $mode      The new mode (octal)
-     * @param int             $umask     The mode mask (octal)
-     * @param bool            $recursive Whether change the mod recursively or not
+     * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change mode
+     * @param int                       $mode      The new mode (octal)
+     * @param int                       $umask     The mode mask (octal)
+     * @param bool                      $recursive Whether change the mod recursively or not
      *
      * @throws IOException When the change fail
      */
@@ -212,9 +210,9 @@ class Filesystem
     /**
      * Change the owner of an array of files or directories.
      *
-     * @param string|iterable $files     A filename, an array of files, or a \Traversable instance to change owner
-     * @param string          $user      The new owner user name
-     * @param bool            $recursive Whether change the owner recursively or not
+     * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change owner
+     * @param string                    $user      The new owner user name
+     * @param bool                      $recursive Whether change the owner recursively or not
      *
      * @throws IOException When the change fail
      */
@@ -239,9 +237,9 @@ class Filesystem
     /**
      * Change the group of an array of files or directories.
      *
-     * @param string|iterable $files     A filename, an array of files, or a \Traversable instance to change group
-     * @param string          $group     The group name
-     * @param bool            $recursive Whether change the group recursively or not
+     * @param string|array|\Traversable $files     A filename, an array of files, or a \Traversable instance to change group
+     * @param string                    $group     The group name
+     * @param bool                      $recursive Whether change the group recursively or not
      *
      * @throws IOException When the change fail
      */
@@ -303,10 +301,8 @@ class Filesystem
      */
     private function isReadable($filename)
     {
-        $maxPathLength = PHP_MAXPATHLEN - 2;
-
-        if (strlen($filename) > $maxPathLength) {
-            throw new IOException(sprintf('Could not check if file is readable because path length exceeds %d characters.', $maxPathLength), 0, null, $filename);
+        if ('\\' === DIRECTORY_SEPARATOR && strlen($filename) > 258) {
+            throw new IOException('Could not check if file is readable because path length exceeds 258 characters.', 0, null, $filename);
         }
 
         return is_readable($filename);
@@ -456,28 +452,25 @@ class Filesystem
             $startPath = str_replace('\\', '/', $startPath);
         }
 
-        $stripDriveLetter = function ($path) {
-            if (strlen($path) > 2 && ':' === $path[1] && '/' === $path[2] && ctype_alpha($path[0])) {
-                return substr($path, 2);
-            }
-
-            return $path;
-        };
-
-        $endPath = $stripDriveLetter($endPath);
-        $startPath = $stripDriveLetter($startPath);
-
         // Split the paths into arrays
         $startPathArr = explode('/', trim($startPath, '/'));
         $endPathArr = explode('/', trim($endPath, '/'));
 
-        $normalizePathArray = function ($pathSegments, $absolute) {
+        if ('/' !== $startPath[0]) {
+            array_shift($startPathArr);
+        }
+
+        if ('/' !== $endPath[0]) {
+            array_shift($endPathArr);
+        }
+
+        $normalizePathArray = function ($pathSegments) {
             $result = array();
 
             foreach ($pathSegments as $segment) {
-                if ('..' === $segment && ($absolute || count($result))) {
+                if ('..' === $segment) {
                     array_pop($result);
-                } elseif ('.' !== $segment) {
+                } else {
                     $result[] = $segment;
                 }
             }
@@ -485,8 +478,8 @@ class Filesystem
             return $result;
         };
 
-        $startPathArr = $normalizePathArray($startPathArr, static::isAbsolutePath($startPath));
-        $endPathArr = $normalizePathArray($endPathArr, static::isAbsolutePath($endPath));
+        $startPathArr = $normalizePathArray($startPathArr);
+        $endPathArr = $normalizePathArray($endPathArr);
 
         // Find for which directory the common path stops
         $index = 0;
@@ -495,14 +488,19 @@ class Filesystem
         }
 
         // Determine how deep the start path is relative to the common path (ie, "web/bundles" = 2 levels)
-        if (1 === count($startPathArr) && '' === $startPathArr[0]) {
+        if (count($startPathArr) === 1 && $startPathArr[0] === '') {
             $depth = 0;
         } else {
             $depth = count($startPathArr) - $index;
         }
 
-        // Repeated "../" for each level need to reach the common path
-        $traverser = str_repeat('../', $depth);
+        // When we need to traverse from the start, and we are starting from a root path, don't add '../'
+        if ('/' === $startPath[0] && 0 === $index && 0 === $depth) {
+            $traverser = '';
+        } else {
+            // Repeated "../" for each level need to reach the common path
+            $traverser = str_repeat('../', $depth);
+        }
 
         $endPathRemainder = implode('/', array_slice($endPathArr, $index));
 
@@ -530,7 +528,6 @@ class Filesystem
     {
         $targetDir = rtrim($targetDir, '/\\');
         $originDir = rtrim($originDir, '/\\');
-        $originDirLen = strlen($originDir);
 
         // Iterate in destination folder to remove obsolete entries
         if ($this->exists($targetDir) && isset($options['delete']) && $options['delete']) {
@@ -539,9 +536,8 @@ class Filesystem
                 $flags = \FilesystemIterator::SKIP_DOTS;
                 $deleteIterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($targetDir, $flags), \RecursiveIteratorIterator::CHILD_FIRST);
             }
-            $targetDirLen = strlen($targetDir);
             foreach ($deleteIterator as $file) {
-                $origin = $originDir.substr($file->getPathname(), $targetDirLen);
+                $origin = str_replace($targetDir, $originDir, $file->getPathname());
                 if (!$this->exists($origin)) {
                     $this->remove($file);
                 }
@@ -563,7 +559,7 @@ class Filesystem
         }
 
         foreach ($iterator as $file) {
-            $target = $targetDir.substr($file->getPathname(), $originDirLen);
+            $target = str_replace($originDir, $targetDir, $file->getPathname());
 
             if ($copyOnWindows) {
                 if (is_file($file)) {
@@ -598,7 +594,7 @@ class Filesystem
     {
         return strspn($file, '/\\', 0, 1)
             || (strlen($file) > 3 && ctype_alpha($file[0])
-                && ':' === substr($file, 1, 1)
+                && substr($file, 1, 1) === ':'
                 && strspn($file, '/\\', 2, 1)
             )
             || null !== parse_url($file, PHP_URL_SCHEME)
@@ -663,7 +659,7 @@ class Filesystem
      * @param string $filename The file to be written to
      * @param string $content  The data to write into the file
      *
-     * @throws IOException if the file cannot be written to
+     * @throws IOException If the file cannot be written to
      */
     public function dumpFile($filename, $content)
     {

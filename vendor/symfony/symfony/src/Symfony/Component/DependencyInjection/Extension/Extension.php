@@ -25,8 +25,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 abstract class Extension implements ExtensionInterface, ConfigurationExtensionInterface
 {
-    private $processedConfigs = array();
-
     /**
      * {@inheritdoc}
      */
@@ -66,7 +64,7 @@ abstract class Extension implements ExtensionInterface, ConfigurationExtensionIn
     public function getAlias()
     {
         $className = get_class($this);
-        if ('Extension' != substr($className, -9)) {
+        if (substr($className, -9) != 'Extension') {
             throw new BadMethodCallException('This extension does not follow the naming convention; you must overwrite the getAlias() method.');
         }
         $classBaseName = substr(strrchr($className, '\\'), 1, -9);
@@ -93,22 +91,13 @@ abstract class Extension implements ExtensionInterface, ConfigurationExtensionIn
     {
         $processor = new Processor();
 
-        return $this->processedConfigs[] = $processor->processConfiguration($configuration, $configs);
+        return $processor->processConfiguration($configuration, $configs);
     }
 
     /**
-     * @internal
-     */
-    final public function getProcessedConfigs()
-    {
-        try {
-            return $this->processedConfigs;
-        } finally {
-            $this->processedConfigs = array();
-        }
-    }
-
-    /**
+     * @param ContainerBuilder $container
+     * @param array            $config
+     *
      * @return bool Whether the configuration is enabled
      *
      * @throws InvalidArgumentException When the config is not enableable

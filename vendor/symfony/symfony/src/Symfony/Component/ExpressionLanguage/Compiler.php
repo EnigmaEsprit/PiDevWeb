@@ -51,6 +51,8 @@ class Compiler
     /**
      * Compiles a node.
      *
+     * @param Node\Node $node The node to compile
+     *
      * @return $this
      */
     public function compile(Node\Node $node)

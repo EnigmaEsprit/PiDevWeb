@@ -22,8 +22,19 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class PropertyInfoCacheExtractor implements PropertyInfoExtractorInterface
 {
+    /**
+     * @var PropertyInfoExtractorInterface
+     */
     private $propertyInfoExtractor;
+
+    /**
+     * @var CacheItemPoolInterface
+     */
     private $cacheItemPool;
+
+    /**
+     * @var array
+     */
     private $arrayCache = array();
 
     public function __construct(PropertyInfoExtractorInterface $propertyInfoExtractor, CacheItemPoolInterface $cacheItemPool)

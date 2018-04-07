@@ -45,9 +45,6 @@ class AppVariableTest extends TestCase
         $this->assertEquals('dev', $this->appVariable->getEnvironment());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testGetSession()
     {
         $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->getMock();
@@ -168,9 +165,6 @@ class AppVariableTest extends TestCase
         $this->assertEquals(array(), $this->appVariable->getFlashes());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testGetFlashesWithNoSessionStarted()
     {
         $request = $this->getMockBuilder('Symfony\Component\HttpFoundation\Request')->getMock();
@@ -181,9 +175,6 @@ class AppVariableTest extends TestCase
         $this->assertEquals(array(), $this->appVariable->getFlashes());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testGetFlashes()
     {
         $flashMessages = $this->setFlashMessages();
