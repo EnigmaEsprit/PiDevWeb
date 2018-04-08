@@ -397,6 +397,18 @@ class EvenementsController extends Controller
         $deleteForm = $this->createDeleteForm($evenement);
         $editForm = $this->createForm('SoukElMedina\EvenementBundle\Form\EvenementsType', $evenement);
         $editForm->handleRequest($request);
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('SoukElMedinaPidevBundle:Evenements');
+        $Event = $repository->findOneBy(array('id' => $evenement->getId()));
+        $ver = $Event->getNombredeplaces();
+        var_dump($ver);
+        var_dump($request->get('nbp'));
+
+        echo "llll";
+        var_dump($evenement->getNombredesplacesrestante());
+
+
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -404,6 +416,23 @@ class EvenementsController extends Controller
             $evenement->setDescriptionevenement($request->get('description'));
             $evenement->setDate($request->get('date-start'));
             $evenement->setDateFin($request->get('date-end'));
+            var_dump($request->get('nbp'));
+            var_dump($evenement->getNombredesplacesrestante());
+            var_dump($evenement->getNombredesplacesrestante()+($evenement->getNombredeplaces()-(int)$request->get('nbp')));
+            $rest=$evenement->getNombredesplacesrestante()+($evenement->getNombredeplaces()-(int)$request->get('nbp'));
+            var_dump((int)$request->get('nbp')>$evenement->getNombredeplaces());
+            var_dump($evenement->getNombredesplacesrestante()==0);
+            var_dump($rest<0);
+
+            if(((int)$request->get('nbp')>$evenement->getNombredeplaces()) && ($evenement->getNombredesplacesrestante()==0)||($rest<0))
+            {
+                return $this->redirectToRoute('evenements_edit', array('id' => $evenement->getId()));
+            }
+            else
+            {
+                $evenement->setNombredesplacesrestante($evenement->getNombredesplacesrestante()+($evenement->getNombredeplaces()-(int)$request->get('nbp')));
+            }
+
             $evenement->setVerifier(0);
             $em->persist($evenement);
             $em->flush();

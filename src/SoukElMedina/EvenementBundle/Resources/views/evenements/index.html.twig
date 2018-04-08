@@ -1,10 +1,19 @@
 {% extends 'baseVendeur.html.twig' %}
 
 {% block body %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="{{ path('souk_el_medina_pidev_homepage_Vendeur') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Evenements list</li>
+            </ol>
+        </div>
+    </div>
 
     <div class="checkout">
         <div class="container">
             <h1>Evenements list</h1>
+            <BR>
             <div class="checkout-right">
                 <table  class="timetable_sub">
                     <thead>
@@ -17,6 +26,7 @@
                         <th>Date Fin</th>
                         <th>Lieu</th>
                         <th>Nombre de places</th>
+                        <th>Nombre de places restante</th>
                         <th>Tarif evenement</th>
                         <th>Description evenement</th>
                         <th>Actions</th>
@@ -49,6 +59,7 @@
                             <td class="invert">{{ evenement.datefin }}</td>
                             <td class="invert">{{ evenement.lieu }}</td>
                             <td class="invert">{{ evenement.nombredeplaces }}</td>
+                            <td class="invert">{{ evenement.nombredesplacesrestante }}</td>
                             <td class="invert">{{ evenement.tarifevenement }}</td>
                             <td class="invert">{{ evenement.descriptionevenement }}</td>
                             {#{% if evenement.date %}{{ evenement.date|date('Y-m-d H:i:s') }}{% endif %}#}

@@ -1,7 +1,7 @@
 {% extends 'baseVendeur.html.twig' %}
 
 {% block body %}
-    <h1>Evenement edit</h1>
+    {#<h1>Evenement edit</h1>#}
     <link href="{{ asset('Datepiker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
     <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
 
@@ -10,7 +10,7 @@
         <div class="container">
             <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
                 <li><a href="{{ path('souk_el_medina_pidev_homepage_Vendeur') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-                <li class="active">Register Page</li>
+                <li class="active">Edit Page</li>
             </ol>
         </div>
     </div>
@@ -169,14 +169,21 @@
                                         <input type="text" id="date-end" name="date-end" class="wrap-input100 validate-input" placeholder="End Date" value="{{ evenement.dateFin }}">
                                     </div>
                                 </div>
-                            </div>
+                            </div><BR>
 
                             <div class="wrap-input100 validate-input" data-validate="Phone is required">
 
 
                                 <span class="label-input100"></span>
-                                {{ form_widget(form.nombredeplaces, {'attr': {'class': 'input100', 'placeholder': "Nombre des places"}}) }}
+                                {{ form_widget(form.nombredeplaces, {'attr': {'class': 'input100', 'placeholder': "Nombre des places",'style':'	outline: none;
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 100%;'}}) }}
                                 <span class="focus-input100"></span>
+                                <input type="number" id="nbp" name="nbp" value="{{ evenement.nombredeplaces }}" style="display: none">
                             </div>
                             <div class="wrap-input100 validate-input" data-validate="Phone is required">
 
@@ -272,4 +279,5 @@
             $.material.init()
         });
     </script>
+
 {% endblock %}
