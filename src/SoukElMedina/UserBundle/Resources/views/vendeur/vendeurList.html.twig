@@ -5,7 +5,7 @@
 
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Liste des Clients</h3>
+            <h3 class="box-title">Liste des Vendeurs</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -22,33 +22,26 @@
                         <th>Nom & Prénom</th>
                         <th>Email</th>
                         <th>Status</th>
+                        <th>Enabled</th>
                         <th>Numéro</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for user in users %}
-                        {% if "ROLE_CLIENT" in user.roles  %}
+                    {% for user in vendeurs %}
+                        {% if "ROLE_VENDEUR" in user.roles %}
 
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">{{ user.nom }} {{ user.prenom }}</a></td>
-                        <td>{{ user.email }}</td>
-                        {% if user.enabled == true %}
-                        <td><span class="label label-success">Enabled</span></td>
-                           {% else %}
-                               <td><span class="label label-danger">Disabled</span></td>
-                               {% endif %}
-                        <td>{{ user.numerodutelephone }}</td>
-                        <td><a href="{{ path('souk_el_medina_user_bloqueraction',{'id':user.id}) }}" ><span ></span>bloquer</a>
-                            <a href="{{ path('souk_el_medina_user_activeraction',{'id':user.id}) }}" >Activer</a>
-                            <a href="{{ path('souk_el_medina_user_supprimeraction',{'id':user.id}) }}" title="Supprimer" >Supprimer</a></td>
+                            <tr>
+                                <td><a href="pages/examples/invoice.html">{{ user.nom }} {{ user.prenom }}</a></td>
+                                <td>{{ user.email }}</td>
+                                <td><span class="label label-success">Shipped</span></td>
+                                <td>{{ user.enabled }}</td>
+                                <td>{{ user.numerodutelephone }}</td>
+                                <td></td>
+                            </tr>
+                        {%endif%}
+                    {% endfor %}
 
-                        </td>
-
-                    </tr>
-
-                    {% endif %}
-                    {%endfor%}
                     </tbody>
                 </table>
             </div>
