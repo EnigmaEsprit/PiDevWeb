@@ -102,7 +102,7 @@ nomaya_social:
         twitter:
             url:            null
             locale:         "fr"
-            message:        "Je veux partager ça avec vous"
+            message:        "Soyer a l'heure pour vivre les plus beaux moment de notre vie avec notre evenement"
             text:           "Tweet"
             via:            "L'Equipe cartedevisitevirtuelle.fr"
             tag:            "ttot"

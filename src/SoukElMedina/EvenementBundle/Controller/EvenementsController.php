@@ -136,39 +136,26 @@ class EvenementsController extends Controller
      public function SearchAction(Request $request)
      {
          $em = $this->getDoctrine()->getManager();
-
-
-//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
+//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>1));
 //         $paginator  = $this->get('knp_paginator');
 //         $evenements = $paginator->paginate(
 //             $evenements, /* query NOT result */
 //             $request->query->getInt('page', 1)/*page number*/,
-//             5/*limit per page*/
-//         )
-//         if(empty($request->get('name')))
-//         {
-
-//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
-//         $paginator  = $this->get('knp_paginator');
-//         $evenements = $paginator->paginate(
-//             $evenements, /* query NOT result */
-//             $request->query->getInt('page', 1)/*page number*/,
-//             5/*limit per page*/
+//             1/*limit per page*/
 //         );
-//
-//         return $this->render('@SoukElMedinaEvenement/evenements/indexEventClient.html.twig', array(
-//             'evenements' => $evenements
-//         ));
-//         }
-//
-//         elseif ($request->isXmlHttpRequest() ) {
-//
-
+//         if ($request->get('name') != "")
+//         {
              $user = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findEventDql($request->get('name'));
              $serializer = SerializerBuilder::create()->build();
              $response = $serializer->serialize($user, 'json');
              return new JsonResponse($response);
 //         }
+
+//         return $this->render('@SoukElMedinaEvenement/evenements/indexEventClient.html.twig', array(
+//             'evenements' => $evenements,new JsonResponse(array())
+//         ));
+
+
 
      }
 
