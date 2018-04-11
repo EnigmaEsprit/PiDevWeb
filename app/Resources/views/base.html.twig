@@ -17,6 +17,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
         <!-- font-awesome icons -->
         <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+        <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+        <link href="{{ asset('css/rating.css') }}" media="all" rel="stylesheet" type="text/css"/>
+        <script src="{{ asset('js/rating.js') }}" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/js/star-rating.min.js"></script>
         <!-- //font-awesome icons -->
         <!-- js -->
         <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
@@ -34,7 +40,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 });
             });
         </script>
-        <!-- header -->
+        {#<meta http-equiv="content-type" content="text/html; charset=UTF-8">#}
+        {#<meta name="viewport" content="width=device-width, initial-scale=1">#}
+        {#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />#}
+
+        {#<link rel="stylesheet"#}
+              {#href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css"/>#}
+        {#<link rel="stylesheet"#}
+              {#href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"/>#}
+
+        {#<link rel="stylesheet" href="{{ asset('DatePiker/css/bootstrap-material-datetimepicker.css') }}" />#}
+        {#<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>#}
+        {#<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">#}
+
+        {#<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>#}
+        {#<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>#}
+        {#<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>#}
+        {#<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>#}
+        {#<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>#}
+        {#<script type="text/javascript" src="{{ asset('Datepiker/js/bootstrap-material-datetimepicker.js') }}"></script>#}
+        {#<!-- header -->#}
         <div class="agileits_header">
             <div class="container">
                 <div class="w3l_offers">
@@ -48,17 +73,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             {% endif %}
                            </li>
-                        <li><div>
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                                <a href="{{ path('fos_user_security_logout') }}">
-                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                </a>
-                            {% else %}
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                            {% endif %}
-                </div>
-                </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Compte<b class="caret"></b></a>
+                            <ul class="dropdown-menu multi-column columns-3">
+                                <div class="row">
+                                    <div class="multi-gd-img">
+                                        <ul class="multi-column-dropdown">
+                                            <h6>All</h6>
+                                            <li>{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                                                        <a href="{{ path('fos_user_profile_show') }}">Profile</a>
+                                                    </a>
+
+                                                {% endif %}
+                                                </li>
+                                            <li><div>
+                                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                                        <a href="{{ path('fos_user_security_logout') }}">
+                                                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                                        </a>
+                                                    {% else %}
+                                                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                                    {% endif %}
+                                                </div></li>
+
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+                            </ul>
+                        </li>
+
+
                         <li><a href="{{ path('souk_el_medina_pidev_contact') }}">Help</a></li>
 
                     </ul>
@@ -83,7 +131,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </div>
                 <div class="w3ls_logo_products_left">
-                    <h1><a href=" {{ path('souk_el_medina_pidev_homepage') }}">Souk El Medina</a></h1>
+
+                        <h1><a href=" {{ path('souk_el_medina_pidev_homepage') }}">Souk El Medina</a></h1>
+
                 </div>
                 <div class="w3l_search">
                     <form action="#" method="post">
@@ -136,28 +186,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Magasin<b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="row">
-                                        <div class="multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <h6>All Household</h6>
-                                                <li><a href="household.html">Cookware</a></li>
-                                                <li><a href="household.html">Dust Pans</a></li>
-                                                <li><a href="household.html">Scrubbers</a></li>
-                                                <li><a href="household.html">Dust Cloth</a></li>
-                                                <li><a href="household.html"> Mops </a></li>
-                                                <li><a href="household.html">Kitchenware</a></li>
-                                            </ul>
-                                        </div>
-
-
-                                    </div>
-                                </ul>
+                                <a href="{{ path('magasins_homepage') }}" >Magasins</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="{{ path('souk_el_medina_produit') }}" >Produits</a>
                             </li>
 
 
-                            <li><a href="gourmet.html">Evenement</a></li>
+                            <li><a href="{{ path('evenements_indexEventClient') }}">Evenement</a></li>
                             <li><a href="offers.html">Offers</a></li>
                             <li><a href="{{ path('souk_el_medina_pidev_contact') }}">Contact</a></li>
                         </ul>
@@ -194,6 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     {% block body %}
         {% endblock %}
+
         {% block javascripts %}{% endblock %}
         <!-- //footer -->
         <div class="footer">

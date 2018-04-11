@@ -57,16 +57,6 @@ class Reclamations
     private $datereponsereclamation;
 
     /**
-     * @var \Users
-     *
-     * @ORM\ManyToOne(targetEntity="Users")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
-     * })
-     */
-    private $iduser;
-
-    /**
      * @var \Magasins
      *
      * @ORM\ManyToOne(targetEntity="Magasins")
@@ -75,6 +65,16 @@ class Reclamations
      * })
      */
     private $idmagasin;
+
+    /**
+     * @var \Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * })
+     */
+    private $iduser;
 
 
 }

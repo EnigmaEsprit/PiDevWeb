@@ -26,6 +26,13 @@ class AppKernel extends Kernel
             new SoukElMedina\PanierBundle\SoukElMedinaPanierBundle(),
             new SoukElMedina\ProduitBundle\SoukElMedinaProduitBundle(),
             new SoukElMedina\ReclamationBundle\SoukElMedinaReclamationBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+
+
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -921,6 +921,15 @@ a.w3_agile_vimeo:hover{
 .login-form-grids input[type="password"]{
 	margin:1em 0 0;
 }
+.login-form-grids textarea{
+    min-height: 115px;
+    padding-top: 14px;
+    padding-bottom: 13px;
+    width: 100%;
+}
+
+
+
 .forgot {
     margin: 1.5em 0 0;
 }
@@ -3390,4 +3399,5 @@ td.invert-image a img {
 .w3agile_description p {
     font-size: 13px;
 }
+
 }

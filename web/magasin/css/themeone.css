@@ -1,0 +1,45 @@
+* {margin: 0; padding: 0;}
+ 
+
+ 
+.list ul {
+  list-style-type: none;
+  width: 100%;
+}
+ 
+.list h3 {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+
+}
+
+.list h3:hover {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+  color: #ff1748;
+}
+ 
+.list li img {
+  float: left;
+  margin: 0 15px 0 0;
+  height:120px;
+  width:120px;
+
+}
+
+.object-fit_cover { object-fit: cover }
+
+ 
+.list li p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+ 
+.list li {
+  padding: 10px;
+  overflow: auto;
+}
+
+
+ 
+.list li:hover {
+  background: #eee;
+  cursor: pointer;
+}

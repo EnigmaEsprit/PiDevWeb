@@ -1,3 +1,21 @@
-souk_el_medina_magasins_homepage:
-    path:     /
-    defaults: { _controller: SoukElMedinaMagasinsBundle:Default:index }
+magasins_homepage:
+    path:     /ListerMagasin
+    defaults: { _controller: SoukElMedinaMagasinsBundle:Magasins:ListerMagasins }
+
+
+souk_el_medina_detail_magasin:
+    path:     /DetailsMagasins/{idmagasin}
+    defaults: { _controller: SoukElMedinaMagasinsBundle:Magasins:ShowDetail }
+
+
+souk_el_medina_produits_magasins:
+    path:     /ProduitsMagasin/{idmagasin}
+    defaults: { _controller: SoukElMedinaMagasinsBundle:Magasins:showProduits }
+
+generate_pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: SoukElMedinaMagasinsBundle:Magasins:GeneratePdf }
+
+souk_el_medina_detail_MonMagasin:
+    path:     /MonMagasinDetail
+    defaults: { _controller: SoukElMedinaMagasinsBundle:Magasins:MonMagasinDetail }

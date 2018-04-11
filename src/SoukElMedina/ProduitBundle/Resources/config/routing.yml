@@ -1,3 +1,13 @@
-souk_el_medina_produit_homepage:
-    path:     /
-    defaults: { _controller: SoukElMedinaProduitBundle:Default:index }
+souk_el_medina_produit:
+    path:     /ListerProduit
+    defaults: { _controller: SoukElMedinaProduitBundle:Produit:ListerProduit }
+
+categorie_mag:
+    path:     /categoriemag/{categorie}
+    defaults: { _controller: "SoukElMedinaProduitBundle:Produit:RechercheParcategorie" }
+    methods:  [GET, POST]
+
+
+souk_el_medina_detail_produit:
+    path:     /DetailsProduits/{idproduit}
+    defaults: { _controller: SoukElMedinaProduitBundle:Produit:ShowDetail }

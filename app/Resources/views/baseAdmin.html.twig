@@ -14,10 +14,39 @@
     <link rel="stylesheet" href="{{ asset('bower_components/Ionicons/css/ionicons.min.css') }}">
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{ asset('bower_components/jvectormap/jquery-jvectormap.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap-theme.css.map') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap-theme.min.css.map') }}">
+
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/themify-icons/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/animate.css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/jscrollpane/jquery.jscrollpane.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/waves/waves.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/chartist/chartist.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/switchery/dist/switchery.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/morris/morris.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/jvectormap/jquery-jvectormap-2.0.3.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/DataTables/css/dataTables.bootstrap4.min.css') }}">>
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/DataTables/Responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/DataTables/Buttons/css/buttons.dataTables.min.css') }}">>
+    <link rel="stylesheet" href="{{ asset('bundles/vendor/DataTables/Buttons/css/buttons.bootstrap4.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('bundles/css/core.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mycss.css') }}">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
+    <!--mycss-->
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/mycss.css') }}">
+
     <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -391,31 +420,27 @@
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-laptop"></i>
-                        <span>UI Elements</span>
+                        <span>Espace magasin</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-                        <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-                        <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                        <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                        <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                        <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                        <li><a href="{{ path('magasins_new') }}"><i class="fa fa-circle-o"></i> Ajouter  magasin</a></li>
+                        <li><a href="{{ path('magasins_index') }}"><i class="fa fa-circle-o"></i> List magasins</a></li>
+
                     </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i> <span>Forms</span>
+                        <i class="fa fa-edit"></i> <span>Espace produits</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                        <li><a href="{{path ("produits_new") }}"><i class="fa fa-circle-o"></i> Ajouter Produit</a></li>
+                        <li><a href="{{ path("produits_index") }}"><i class="fa fa-circle-o"></i> Afficher les produits</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -577,6 +602,9 @@
                 </div>
                 <!-- /.col -->
             </div>
+            {% block body %}
+            {% endblock %}
+            {% block javascripts %}{% endblock %}
             <!-- /.row -->
 
             <div class="row">
@@ -612,8 +640,10 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.0
         </div>
-        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-        reserved.
+        <!-- Footer -->
+
+              <strong>  &copy; 2018 Souk El Medina. All rights reserved, with love.</strong>
+
     </footer>
 
     <!-- Control Sidebar -->

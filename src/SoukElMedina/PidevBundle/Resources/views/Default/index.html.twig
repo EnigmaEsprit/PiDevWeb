@@ -3,28 +3,17 @@
  {% block body %}
   <!-- //navigation -->
   <!-- main-slider -->
-  <ul id="demo1">
-   <li>
-    <img src="{{ asset('images/11.jpg') }}" alt="" />
-    <!--Slider Description example-->
-    <div class="slide-desc">
-     <h3>Buy Rice Products Are Now On Line With Us</h3>
-    </div>
-   </li>
-   <li>
-    <img src="{{ asset('images/22.jpg') }}" alt="" />
-    <div class="slide-desc">
-     <h3>Whole Spices Products Are Now On Line With Us</h3>
-    </div>
-   </li>
-
-   <li>
-    <img src="{{ asset('images/44.jpg') }}" alt="" />
-    <div class="slide-desc">
-     <h3>Whole Spices Products Are Now On Line With Us</h3>
-    </div>
-   </li>
-  </ul>
+<ul id="demo1">
+    {% for evenement in evenements %}
+     <li>
+      <a href="{{ path('evenements_show', { 'id': evenement.id }) }}"><img src="{{ asset('uploads/Images/') }}{{ evenement.imagelink}}" alt="" /></a>
+      <!--Slider Description example-->
+      <div class="slide-desc">
+       <h3>{{ evenement.nomevenement }}</h3>
+      </div>
+     </li>
+    {% endfor %}
+</ul>
   <!-- //main-slider -->
   <!-- top-brands -->
   <div class="top-brands">

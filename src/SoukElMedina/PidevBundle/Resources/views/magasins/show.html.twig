@@ -1,0 +1,59 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+
+
+
+    <div class="box box-block bg-white">
+
+        <div class="form-group row m-b-0">
+
+            <label class="col-sm-5 form-control-label"></label>
+            <div class="col-sm-7" style="margin-right: 200px">
+
+                <img src="{{ asset('uploads/images/') }}{{ form.photomagasin }}" style="width: 500px;height: 300px" align="left" />
+            </div>
+        </div>
+
+        </br>        </br>
+        </br>
+        </br>
+        </br>
+
+        <div class="form-group row">
+            <label class="col-sm-5 form-control-label">nom magasin</label>
+            <div class="col-sm-7">
+                <span id="inline-username" data-type="text" data-pk="1" data-title="Enter username" class="editable editable-click">{{ form.nommagasin }}</span>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 form-control-label">Description</label>
+            <div class="col-sm-7">
+                <span id="inline-username" data-type="text" data-pk="1" data-title="Enter username" class="editable editable-click">{{ form.descriptionmagasin }}</span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 form-control-label">contact</label>
+            <div class="col-sm-7">
+                <span id="inline-username" data-type="text" data-pk="1" data-title="Enter username" class="editable editable-click">{{ form.contactmagasin }}</span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 form-control-label">vendeur</label>
+            <div class="col-sm-7">
+                <span id="inline-username" data-type="text" data-pk="1" data-title="Enter username" class="editable editable-click">{{ form.iduser.nom }}</span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-5 form-control-label">date creation</label>
+            <div class="col-sm-7">
+                <span id="inline-username" data-type="text" data-pk="1" data-title="Enter username" class="editable editable-click">{% if form.datecreationmagasin %}{{ form.datecreationmagasin|date('Y-m-d H:i:s') }}{% endif %}</span>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

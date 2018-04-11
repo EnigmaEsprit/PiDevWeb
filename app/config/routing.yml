@@ -1,3 +1,7 @@
+souk_el_medina_pidev_magasins:
+    resource: "@SoukElMedinaPidevBundle/Controller/MagasinsController.php"
+    type:     annotation
+
 souk_el_medina_reclamation:
     resource: "@SoukElMedinaReclamationBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,78 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+
+
+    <div class="box box-block bg-white" >
+        {{form_start(form) }}
+         <div class="form-group row">
+            <label for="example-text-input" class="col-xs-2 col-form-label textalign">Nom magasin</label>
+             <center>
+             <div class="col-xs-10">
+
+                {{ form_widget(form.nommagasin,{'attr': {'class': 'form-control example-text-input myforms'}}) }}
+            </div>
+             </center>
+        </div>
+
+     <div class="form-group row">
+            <label for="example-search-input" class="col-xs-2 col-form-label textalign">Description</label>
+         <center>
+
+            <div class="col-xs-10">
+                {{ form_widget(form.descriptionmagasin,{'attr': {'class': 'form-control example-text-input myforms'}}) }}
+
+            </div>
+         </center>
+
+     </div>
+        <div class="form-group row">
+
+            <label for="example-search-input" class="col-xs-2 col-form-label textalign">Vendeur</label>
+            <center>
+
+            <div class="col-xs-10">
+            {{ form_widget(form.iduser,{'attr': {'class': 'form-control example-text-input myforms'}}) }}
+            </div>
+        </center>
+        </div>
+        <div class="form-group row">
+            <label for="example-search-input" class="col-xs-2 col-form-label textalign">Contact magasin</label>
+            <center>
+            <div class="col-xs-10">
+                {{ form_widget(form.contactmagasin,{'attr': {'class': 'form-control example-text-input myforms'}}) }}
+
+            </div>
+            </center>
+        </div>
+        <div class="form-group row">
+            <label for="example-email-input" class="col-xs-2 col-form-label textalign">Date creation magasin</label>
+            <center>
+            <div class="col-xs-10">
+                {{ form_widget(form.datecreationmagasin,{'attr': {'class': 'form-control example-date-input myforms'}}) }}
+
+            </div>
+            </center>
+        </div>
+        <div class="form-group row">
+            <label for="example-url-input" class="col-xs-2 col-form-label textalign">Ajouter photo</label>
+            <center>
+            <div class="col-xs-10">
+                {{ form_widget(form.file,{'attr': {'style': 'margin-right:160px'}})  }}
+            </div>
+            </center>
+        </div>
+
+        {{ form_end(form) }}
+        {{ form_start(form, {'attr': {'class': 'form form--flex form--property-add js-form js-form-property'}}) }}
+        <div class="row">
+
+            {{ form_widget(form.Ajouter,{'attr': {'class': 'form__submit'}}) }}
+
+
+
+        </div>
+    </div>
+
+    </div>
+{% endblock %}

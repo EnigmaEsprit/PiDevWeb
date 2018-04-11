@@ -43,16 +43,6 @@ class Commentaires
     private $datemodificationcommentaire;
 
     /**
-     * @var \Users
-     *
-     * @ORM\ManyToOne(targetEntity="Users")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
-     * })
-     */
-    private $iduser;
-
-    /**
      * @var \Produits
      *
      * @ORM\ManyToOne(targetEntity="Produits")
@@ -61,6 +51,16 @@ class Commentaires
      * })
      */
     private $idproduit;
+
+    /**
+     * @var \Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * })
+     */
+    private $iduser;
 
 
 }

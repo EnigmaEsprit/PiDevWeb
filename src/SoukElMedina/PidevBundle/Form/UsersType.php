@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class UsersType extends AbstractType
 {
@@ -16,7 +17,7 @@ class UsersType extends AbstractType
     {
         $builder->add('nom')
             ->add('prenom')
-            ->add('datedenaissance')
+            ->add('datedenaissance',DateType::class)
             ->add('sexe')
             ->add('adresse')
             ->add('ville')

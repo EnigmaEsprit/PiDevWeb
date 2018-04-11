@@ -40,7 +40,17 @@ class Lignecommandes
      *
      * @ORM\Column(name="prixUnitaire", type="float", precision=10, scale=0, nullable=false)
      */
-    private $prixunitaire = '0';
+    private $prixunitaire;
+
+    /**
+     * @var \Produits
+     *
+     * @ORM\ManyToOne(targetEntity="Produits")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idProduit", referencedColumnName="idProduit")
+     * })
+     */
+    private $idproduit;
 
     /**
      * @var \Commandes
@@ -61,16 +71,6 @@ class Lignecommandes
      * })
      */
     private $idmagasin;
-
-    /**
-     * @var \Produits
-     *
-     * @ORM\ManyToOne(targetEntity="Produits")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idProduit", referencedColumnName="idProduit")
-     * })
-     */
-    private $idproduit;
 
 
 }

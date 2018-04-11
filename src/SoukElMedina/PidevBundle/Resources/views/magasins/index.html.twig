@@ -1,0 +1,65 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+
+
+<div class="content-area p-y-1">
+    <div class="container-fluid">
+        <h4>Liste des Evenements</h4>
+        <ol class="breadcrumb no-bg m-b-1">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+            <li class="breadcrumb-item active">Data Tables</li>
+        </ol>
+        <div class="box box-block bg-white">
+            <h5 class="m-b-1">Default Table</h5>
+            <table class="table table-striped table-bordered dataTable" id="table-1">
+                    <thead>
+            <tr>
+                <th>Id magasin</th>
+                <th>Nom</th>
+                <th>Photo</th>
+                <th>Description</th>
+                <th>Date creation</th>
+                <th>Contact</th>
+                <th>vendeur</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for magasin in magasins %}
+            <tr>
+                <td><a href="{{ path('magasins_show', { 'idmagasin': magasin.idmagasin }) }}">{{ magasin.idmagasin }}</a></td>
+                <td>{{ magasin.nommagasin }}</td>
+                <td><img src="{{ asset('uploads/images/') }}{{ magasin.photomagasin }}" style="width: 50px;height: 50px"/></td>
+                <td>{{ magasin.descriptionmagasin }}</td>
+                <td>{% if magasin.datecreationmagasin %}{{ magasin.datecreationmagasin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ magasin.contactmagasin }}</td>
+                <td>{{ magasin.iduser.nom }} {{ magasin.iduser.prenom }}</td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('magasins_show', { 'idmagasin': magasin.idmagasin }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('magasins_edit', { 'idmagasin': magasin.idmagasin }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('magasins_delete', { 'idmagasin': magasin.idmagasin }) }}">supprimer</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('magasins_new') }}">Create a new magasin</a>
+        </li>
+    </ul>
+
+{% endblock %}

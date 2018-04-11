@@ -1,3 +1,15 @@
+souk_el_medina_pidev_produits:
+    resource: "@SoukElMedinaPidevBundle/Resources/config/routing/produits.yml"
+    prefix:   /produits
+
+souk_el_medina_pidev_promotions:
+    resource: "@SoukElMedinaPromotionBundle/Resources/config/routing/promotions.yml"
+    prefix:   /promotions
+
+souk_el_medina_pidev_evenements:
+    resource: "@SoukElMedinaEvenementBundle/Resources/config/routing/evenements.yml"
+    prefix:   /evenements
+
 souk_el_medina_pidev_homepage:
     path:     /
     defaults: { _controller: SoukElMedinaPidevBundle:Default:index }
