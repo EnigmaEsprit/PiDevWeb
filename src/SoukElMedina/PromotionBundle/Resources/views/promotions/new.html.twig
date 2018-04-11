@@ -76,19 +76,35 @@
                         </div>
 <br>
 
+
                         <div class="wrap-input100 validate-input" data-validate="Phone is required" id="div">
+                            <select id="produits" name="produits" style="	outline: none;
+                            border: 1px solid #DBDBDB;
+                            padding: 10px 10px 10px 10px;
+                            font-size: 14px;
+                            color: #999;
+                            display: block;
+                            width: 100%;">
+                                {% for produit in produits %}
+                                <option value="{{ produit.idproduit }}" id="pr" name="pr">
+                                    {{ produit.nomproduit }}
+                                </option>
+                                {% endfor%}
+
+                            </select>
                             {#<input type="number" id="new_prix" name="new_prix" value="">#}
 
-                            <span class="label-input100"></span>
-                            {{ form_widget(form.idproduit, {'attr': {'class': 'input100', 'placeholder': "Produit",'id':'produit','style':'outline: none;
-    border: 1px solid #DBDBDB;
-    padding: 10px 10px 10px 10px;
-    font-size: 14px;
-    color: #999;
-    display: block;
-    width: 100%;','name':'produit'}}) }}
-                            <span class="focus-input100"></span>
+                            {#<span class="label-input100"></span>#}
+                            {#{{ form_widget(form.idproduit, {'attr': {'class': 'input100', 'placeholder': "Produit",'id':'produit','style':'outline: none;#}
+    {#border: 1px solid #DBDBDB;#}
+    {#padding: 10px 10px 10px 10px;#}
+    {#font-size: 14px;#}
+    {#color: #999;#}
+    {#display: block;#}
+    {#width: 100%;','name':'produit'}}) }}#}
+                            {#<span class="focus-input100"></span>#}
                         </div>
+
                         <br>
                         <div id="last"></div>
                         <br>

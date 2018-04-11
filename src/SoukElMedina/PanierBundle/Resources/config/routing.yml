@@ -1,3 +1,48 @@
 #souk_el_medina_panier_homepage:
 #    path:     /
 #    defaults: { _controller: SoukElMedinaPanierBundle:Default:index }
+souk_el_medina_panier_homepage:
+    path:     /panier
+    defaults: { _controller: SoukElMedinaPanierBundle:Panier:index }
+
+souk_el_medina_panier_ajouter_panier:
+    path:     /ajouterpanier/{id}
+    defaults: { _controller: SoukElMedinaPanierBundle:Panier:ajouterPanier }
+
+souk_el_medina_panier_supprimer_panier:
+    path:     /supprimerpanier/{id}
+    defaults: { _controller: SoukElMedinaPanierBundle:Panier:supprimerPanier }
+
+souk_el_medina_panier_valider_panier:
+    path:     /validerpanier
+    defaults: { _controller: SoukElMedinaPanierBundle:Panier:validerPanier}
+
+souk_el_medina_panier_prepare_commande:
+    path:     /preparecommande
+    defaults: { _controller: SoukElMedinaPanierBundle:Panier:prepareCommande}
+
+souk_el_medina_panier_cancel_commande:
+    path:     /cancelcommande
+    defaults: { _controller: SoukElMedinaPanierBundle:Panier:cancelCommande}
+
+
+souk_el_medina_panier_index_facture:
+    path:     /indexfacture
+    defaults: { _controller: SoukElMedinaPanierBundle:Facture:index}
+
+souk_el_medina_panier_pdf_facture:
+    path:     /pdffacture/{id}
+    defaults: { _controller: SoukElMedinaPanierBundle:Facture:facturesPDF}
+
+souk_el_medina_panier_payment:
+    path:     /payment
+    defaults: { _controller: SoukElMedinaPanierBundle:PaypalApi:payment}
+
+souk_el_medina_panier_paypal_id:
+    path:     /paypalid
+    defaults: { _controller: SoukElMedinaPanierBundle:Panier:paypal}
+
+routingVendeur:
+    resource: "routingVendeur.yml"
+    prefix: /vendeur
+

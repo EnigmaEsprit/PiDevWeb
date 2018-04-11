@@ -6,6 +6,7 @@ use DateTime;
 use SoukElMedina\EvenementBundle\Form\RechercheAjaxType;
 use SoukElMedina\PidevBundle\Entity\Evenements;
 use SoukElMedina\PidevBundle\Entity\Participations;
+use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,23 +31,31 @@ class EvenementsController extends Controller
     public function indexAction(Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
-        $em = $this->getDoctrine()->getManager();
+        if($this->isGranted('ROLE_VENDEUR')) {
+            $em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('iduser' => $this->getUser()->getId()));
-        $paginator  = $this->get('knp_paginator');
-        $evenements = $paginator->paginate(
-            $evenements, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            5/*limit per page*/
-        );
+            $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('iduser' => $this->getUser()->getId()));
+            $paginator = $this->get('knp_paginator');
+            $evenements = $paginator->paginate(
+                $evenements, /* query NOT result */
+                $request->query->getInt('page', 1)/*page number*/,
+                5/*limit per page*/
+            );
 
-        return $this->render('@SoukElMedinaEvenement/evenements/index.html.twig', array(
-            'evenements' => $evenements,
-        ));
+            return $this->render('@SoukElMedinaEvenement/evenements/index.html.twig', array(
+                'evenements' => $evenements,
+            ));
+        }
+        else
+            {
+                return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+            }
+
     }
     public function indexParticipantAction(Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_VENDEUR')) {
         $em = $this->getDoctrine()->getManager();
 
         $participants = $em->getRepository('SoukElMedinaPidevBundle:Participations')->SelectListParticipant($this->getUser()->getId());
@@ -56,17 +65,21 @@ class EvenementsController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             5/*limit per page*/
         );
-//        var_dump($this->getUser()->getId());
-//        var_dump($participants);
         return $this->render('@SoukElMedinaEvenement/evenements/Participents.html.twig', array(
             'participants' => $participants,
         ));
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
     public function indexParticipantevntAction(Evenements $evenements,Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_VENDEUR')) {
         $em = $this->getDoctrine()->getManager();
-//        var_dump($evenements->getId());
+
 
         $participants = $em->getRepository('SoukElMedinaPidevBundle:Participations')->SelectListParticipantEvnt($evenements->getId());
         $paginator  = $this->get('knp_paginator');
@@ -75,20 +88,24 @@ class EvenementsController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             5/*limit per page*/
         );
-//
-//        var_dump($participants);
-//        die();
+
         return $this->render('@SoukElMedinaEvenement/evenements/Participents.html.twig', array(
             'participants' => $participants,
         ));
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
     public function indexAdminAction(Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
-        $em = $this->getDoctrine()->getManager();
+        if ($this->isGranted('ROLE_ADMIN')){
+            $em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>1));
-        $paginator  = $this->get('knp_paginator');
+        $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier' => 1));
+        $paginator = $this->get('knp_paginator');
         $evenements = $paginator->paginate(
             $evenements, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
@@ -99,9 +116,15 @@ class EvenementsController extends Controller
             'evenements' => $evenements,
         ));
     }
+    else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
+    }
     public function DemandeAction(Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if ($this->isGranted('ROLE_ADMIN')){
         $em = $this->getDoctrine()->getManager();
 
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>0));
@@ -115,10 +138,16 @@ class EvenementsController extends Controller
         return $this->render('@SoukElMedinaEvenement/evenements/demande.html.twig', array(
             'evenements' => $evenements,
         ));
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
     public function indexBlokAction(Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if ($this->isGranted('ROLE_ADMIN')){
         $em = $this->getDoctrine()->getManager();
 
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>3));
@@ -132,28 +161,20 @@ class EvenementsController extends Controller
         return $this->render('@SoukElMedinaEvenement/evenements/ListeBlock.html.twig', array(
             'evenements' => $evenements,
         ));
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
      public function SearchAction(Request $request)
      {
          $em = $this->getDoctrine()->getManager();
-//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('verifier'=>1));
-//         $paginator  = $this->get('knp_paginator');
-//         $evenements = $paginator->paginate(
-//             $evenements, /* query NOT result */
-//             $request->query->getInt('page', 1)/*page number*/,
-//             1/*limit per page*/
-//         );
-//         if ($request->get('name') != "")
-//         {
+
              $user = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findEventDql($request->get('name'));
              $serializer = SerializerBuilder::create()->build();
              $response = $serializer->serialize($user, 'json');
              return new JsonResponse($response);
-//         }
-
-//         return $this->render('@SoukElMedinaEvenement/evenements/indexEventClient.html.twig', array(
-//             'evenements' => $evenements,new JsonResponse(array())
-//         ));
 
 
 
@@ -163,34 +184,6 @@ class EvenementsController extends Controller
     public function SearchRequestAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-
-//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
-//         $paginator  = $this->get('knp_paginator');
-//         $evenements = $paginator->paginate(
-//             $evenements, /* query NOT result */
-//             $request->query->getInt('page', 1)/*page number*/,
-//             5/*limit per page*/
-//         )
-//         if(empty($request->get('name')))
-//         {
-
-//         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
-//         $paginator  = $this->get('knp_paginator');
-//         $evenements = $paginator->paginate(
-//             $evenements, /* query NOT result */
-//             $request->query->getInt('page', 1)/*page number*/,
-//             5/*limit per page*/
-//         );
-//
-//         return $this->render('@SoukElMedinaEvenement/evenements/indexEventClient.html.twig', array(
-//             'evenements' => $evenements
-//         ));
-//         }
-//
-//         elseif ($request->isXmlHttpRequest() ) {
-//
-
         $user = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findEventRequestDql($request->get('name'));
         $serializer = SerializerBuilder::create()->build();
         $response = $serializer->serialize($user, 'json');
@@ -242,6 +235,7 @@ class EvenementsController extends Controller
     public function newAction(Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_VENDEUR')) {
         $evenement = new Evenements();
         $form = $this->createForm('SoukElMedina\EvenementBundle\Form\EvenementsType', $evenement);
         $form->handleRequest($request);
@@ -256,7 +250,6 @@ class EvenementsController extends Controller
             $evenement->setDate($request->get('date-start'));
             $evenement->setDateFin($request->get('date-end'));
             $evenement->setVerifier(0);
-            $subject=$evenement->getNomevenement();
             $em->persist($evenement);
             $em->flush();
 
@@ -268,9 +261,15 @@ class EvenementsController extends Controller
             'form' => $form->createView(),
         ));
     }
+else
+{
+return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+}
+    }
     public function AccepterAction(Evenements $evenements)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if ($this->isGranted('ROLE_ADMIN')){
         $em = $this->getDoctrine()->getManager();
         $evenements->setVerifier(1);
         $em->persist($evenements);
@@ -292,12 +291,18 @@ class EvenementsController extends Controller
         }
 
         return $this->redirectToRoute('evenements_demande');
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
 
 
     }
     public function UnlockAction(Evenements $evenements)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if ($this->isGranted('ROLE_ADMIN')){
         $em = $this->getDoctrine()->getManager();
         $evenements->setVerifier(1);
         $em->persist($evenements);
@@ -319,12 +324,17 @@ class EvenementsController extends Controller
         }
 
         return $this->redirectToRoute('evenements_Listblock');
-
+    }
+else
+{
+return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+}
 
     }
     public function RefuserAction(Evenements $evenements)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if ($this->isGranted('ROLE_ADMIN')){
         $em = $this->getDoctrine()->getManager();
         $evenements->setVerifier(2);
         $em->persist($evenements);
@@ -333,17 +343,27 @@ class EvenementsController extends Controller
         return $this->redirectToRoute('evenements_demande');
 
 //        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
-
+    }
+else
+{
+return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+}
     }
     public function BlockAction(Evenements $evenements)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if ($this->isGranted('ROLE_ADMIN')){
         $em = $this->getDoctrine()->getManager();
         $evenements->setVerifier(3);
         $em->persist($evenements);
         $em->flush();
 
         return $this->redirectToRoute('evenements_index_admin');
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
     /**
      * //     * Finds and displays a evenement entity.
@@ -362,16 +382,22 @@ class EvenementsController extends Controller
     public function showAction(Evenements $evenement)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_VENDEUR')) {
         $em = $this->getDoctrine()->getManager();
 
         $DC = (new \DateTime('now'))->format("d/m/Y H:i");
-        var_dump($DC);
+
 
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC);
 
         return $this->render('SoukElMedinaEvenementBundle:evenements:show.html.twig', array(
             'evenement' => $evenement, 'evenements' => $evenements
         ));
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
 
     /**
@@ -381,6 +407,7 @@ class EvenementsController extends Controller
     public function editAction(Request $request, Evenements $evenement)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_VENDEUR')) {
         $deleteForm = $this->createDeleteForm($evenement);
         $editForm = $this->createForm('SoukElMedina\EvenementBundle\Form\EvenementsType', $evenement);
         $editForm->handleRequest($request);
@@ -389,12 +416,6 @@ class EvenementsController extends Controller
             ->getRepository('SoukElMedinaPidevBundle:Evenements');
         $Event = $repository->findOneBy(array('id' => $evenement->getId()));
         $ver = $Event->getNombredeplaces();
-        var_dump($ver);
-        var_dump($request->get('nbp'));
-
-        echo "llll";
-        var_dump($evenement->getNombredesplacesrestante());
-
 
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -403,13 +424,8 @@ class EvenementsController extends Controller
             $evenement->setDescriptionevenement($request->get('description'));
             $evenement->setDate($request->get('date-start'));
             $evenement->setDateFin($request->get('date-end'));
-            var_dump($request->get('nbp'));
-            var_dump($evenement->getNombredesplacesrestante());
-            var_dump($evenement->getNombredesplacesrestante()+($evenement->getNombredeplaces()-(int)$request->get('nbp')));
+
             $rest=$evenement->getNombredesplacesrestante()+($evenement->getNombredeplaces()-(int)$request->get('nbp'));
-            var_dump((int)$request->get('nbp')>$evenement->getNombredeplaces());
-            var_dump($evenement->getNombredesplacesrestante()==0);
-            var_dump($rest<0);
 
             if(((int)$request->get('nbp')>$evenement->getNombredeplaces()) && ($evenement->getNombredesplacesrestante()==0)||($rest<0))
             {
@@ -433,24 +449,41 @@ class EvenementsController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+else
+{
+return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+}
+    }
 
     public function deleteAction($idevenement)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_VENDEUR')) {
         $EM = $this->getDoctrine()->getManager();
         $Evenement = $EM->getRepository("SoukElMedinaPidevBundle:Evenements")->find($idevenement);
         $EM->remove($Evenement);
         $EM->flush();
         return $this->redirectToRoute('evenements_index');
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
     public function deleteParticipantAction($id)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_VENDEUR')) {
         $EM = $this->getDoctrine()->getManager();
         $Participant = $EM->getRepository("SoukElMedinaPidevBundle:Participations")->find($id);
         $EM->remove($Participant);
         $EM->flush();
         return $this->redirectToRoute('evenements_index_sub');
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
 
 //    /**
@@ -486,13 +519,6 @@ class EvenementsController extends Controller
             ->getForm();
     }
 
-
-    public function affichermapAction($long, $lat)
-    {
-
-        return $this->render('@SoukElMedinaEvenement/evenements/map.html.twig', array('long' => $long, 'lat' => $lat));
-    }
-
     public function subscribePageAction()
     {
         return $this->render('@SoukElMedinaEvenement/evenements/participation.html.twig');
@@ -502,13 +528,14 @@ class EvenementsController extends Controller
     {
 
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_CLIENT')) {
         $EM = $this->getDoctrine()->getManager();
         $event = $request->get('idevenement');
         $user = $this->getUser();
         $Participent = $EM->getRepository("SoukElMedinaPidevBundle:Participations")->FindParticipation($event, $user);
         if (empty($Participent)&& $this->isGranted('ROLE_CLIENT')) {
             $Participer = new Participations();
-            var_dump($request->get('idevenement'));
+
             $repository = $this->getDoctrine()
                 ->getManager()
                 ->getRepository('SoukElMedinaPidevBundle:Evenements');
@@ -523,18 +550,23 @@ class EvenementsController extends Controller
             $EM->flush();
 
             return $this->render("@SoukElMedinaEvenement/evenements/participation.html.twig");
-        } elseif ($this->isGranted('ROLE_VENDEUR')) {
-            $userID = $this->getUser()->getId();
-            $em = $this->getDoctrine()->getManager();
-            $prompotion =$em->getRepository('SoukElMedinaPidevBundle:Promotions')->findBy(array('iduser'=>$userID));
-
-            $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('iduser'=>$userID));
-
-            return $this->render('@SoukElMedinaPidev/Default/indexVendeur.html.twig', array(
-                'evenements' => $evenements,'promotionsO'=>$prompotion,
-            ));
+//        } elseif ($this->isGranted('ROLE_VENDEUR')) {
+//            $userID = $this->getUser()->getId();
+//            $em = $this->getDoctrine()->getManager();
+//            $prompotion =$em->getRepository('SoukElMedinaPidevBundle:Promotions')->findBy(array('iduser'=>$userID));
+//
+//            $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findBy(array('iduser'=>$userID));
+//
+//            return $this->render('@SoukElMedinaPidev/Default/indexVendeur.html.twig', array(
+//                'evenements' => $evenements,'promotionsO'=>$prompotion,
+//            ));
         }else{
             return $this->render("@SoukElMedinaEvenement/evenements/echec.html.twig");
+        }
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
         }
     }
 
@@ -547,17 +579,11 @@ class EvenementsController extends Controller
         $DC = (new \DateTime('now'));
         $DC2=(new \DateTime('now'))->format("d/m/Y H:i");
 
-//        var_dump($DC);
         $NPR=$evenement->getNombredesplacesrestante();
         $DD=$evenement->getDate();
         $DF=$evenement->getDatefin();
         $D= DateTime::createFromFormat('d/m/Y H:i', $DD);
         $D2= DateTime::createFromFormat('d/m/Y H:i', $DF);
-        var_dump($D);
-        var_dump("-----------------------------");
-        var_dump($D2);
-        $plan=("http://www.localhost/pidevweb/web/");
-
         if($DC<=$D)
             {
                 $var=true;
@@ -566,16 +592,17 @@ class EvenementsController extends Controller
             {
                 $var=false;
             }
-            var_dump($var);
+
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC2);
 
         return $this->render('SoukElMedinaEvenementBundle:evenements:showINC.html.twig', array(
-            'evenement' => $evenement, 'evenements' => $evenements,'var'=>$var,'npr'=>$NPR,'p'=>$plan
+            'evenement' => $evenement, 'evenements' => $evenements,'var'=>$var,'npr'=>$NPR,
         ));
     }
     public function showAdminAction(Evenements $evenement)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_ADMIN')) {
         $em = $this->getDoctrine()->getManager();
         $DC = (new \DateTime('now'))->format("d/m/Y H:i");
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC);
@@ -583,15 +610,26 @@ class EvenementsController extends Controller
         return $this->render('SoukElMedinaEvenementBundle:evenements:showAdmin.html.twig', array(
             'evenement' => $evenement, 'evenements' => $evenements
         ));
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
     public function deleteAdminAction($idevenement)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        if($this->isGranted('ROLE_ADMIN')) {
         $EM = $this->getDoctrine()->getManager();
         $Evenement = $EM->getRepository("SoukElMedinaPidevBundle:Evenements")->find($idevenement);
         $EM->remove($Evenement);
         $EM->flush();
         return $this->redirectToRoute('evenements_index_admin');
+        }
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
     public function rechercheAjaxDqlAction(Request $request)
     {
@@ -605,9 +643,7 @@ class EvenementsController extends Controller
             $serializer = new Serializer(array(new ObjectNormalizer()));
             $Evenements=$em->getRepository('SoukElMedinaPidevBundle:Evenements')
                 ->findDql($request->get('chercher'));
-            var_dump($Evenements);
-            var_dump($request->get('chercher'));
-            // var_dump($voitures);
+
             $data = $serializer->normalize($Evenements);
             return new JsonResponse($data);
         }
@@ -620,46 +656,44 @@ class EvenementsController extends Controller
     public function PDFParticiapantsAction(Evenements $evenements,Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
-        $em = $this->getDoctrine()->getManager();
-//        var_dump($evenements->getId());
+        if($this->isGranted('ROLE_VENDEUR')) {
+            $em = $this->getDoctrine()->getManager();
+            $Participent = $em->getRepository('SoukElMedinaPidevBundle:Participations')->SelectListParticipantEvnt($evenements->getId());
+            if (!$Participent) {
+                return $this->redirectToRoute('evenements_index');
+            }
 
-        $Participent = $em->getRepository('SoukElMedinaPidevBundle:Participations')->SelectListParticipantEvnt($evenements->getId());
-        if (!$Participent) {
-            return $this->redirectToRoute('evenements_index');
-        }
+            $html = $this->renderView('SoukElMedinaEvenementBundle:evenements:pdfParticipants.html.twig', array(
+                'Particiapants' => $Participent, 'Evenement' => $evenements));
 
-        $html = $this->renderView('SoukElMedinaEvenementBundle:evenements:pdfParticipants.html.twig',array(
-            'Particiapants'=>$Participent,'Evenement'=>$evenements));
-
-        try{
-            $pdf = new \HTML2PDF('P','A4','fr');
-            $pdf->pdf->SetAuthor('SoukElMedina');
-            $pdf->pdf->SetTitle('Participant ');
-            $pdf->pdf->SetSubject('Participant SoukElMedina');
-            $pdf->pdf->SetKeywords('Participant,soukelmedina');
-            $pdf->pdf->SetDisplayMode('real');
-            $pdf->writeHTML($html);
-            $pdf->Output('Participant.pdf');
+            try {
+                $pdf = new Html2Pdf('P', 'A4', 'fr');
+                $pdf->pdf->SetAuthor('SoukElMedina');
+                $pdf->pdf->SetTitle('Participant ');
+                $pdf->pdf->SetSubject('Participant SoukElMedina');
+                $pdf->pdf->SetKeywords('Participant,soukelmedina');
+                $pdf->pdf->SetDisplayMode('real');
+                $pdf->writeHTML($html);
+                $pdf->Output('Participant.pdf');
 
 
 //require 'phpmailer.php';
 
-        }catch(\HTML2PDF_exception $e){
-            die($e);
+            } catch (HTML2PDF_exception $e) {
+                die($e);
+            }
+
+            $response = new Response();
+            $response->headers->set('Content-type', 'application/pdf');
+
+            return $response;
         }
-
-        $response = new Response();
-        $response->headers->set('Content-type' , 'application/pdf');
-
-        return $response;
+        else
+        {
+            return $this->redirectToRoute('souk_el_medina_pidev_homepage');
+        }
     }
 
 
-//    public function sendMailAction(Request $request)
-//    {
-//        if($request->getMethod()=="POST")
-//        {
-//            $Subject=$request->get()
-//        }
-//    }
+
 }

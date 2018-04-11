@@ -22,7 +22,7 @@ class EvenementsController extends Controller
 
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->findAll();
 
-        return $this->render('evenements/index.html.twig', array(
+        return $this->render('evenements/index2.html.twig', array(
             'evenements' => $evenements,
         ));
     }

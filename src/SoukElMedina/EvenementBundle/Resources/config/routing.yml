@@ -2,12 +2,12 @@
 #    path:     /
 #    defaults: { _controller: SoukElMedinaEvenementBundle:Default:index }
 
-souk_el_medina_pidev_evenements:
-    resource: "@SoukElMedinaEvenementBundle/Resources/config/routing/evenements.yml"
-    prefix:   /evenements
+#souk_el_medina_pidev_evenements:
+#    resource: "@SoukElMedinaEvenementBundle/Resources/config/routing/evenements.yml"
+#    prefix:   /evenements
 souk_el_medina_pidev_evenements_admin:
     resource: "@SoukElMedinaEvenementBundle/Resources/config/routing/admin.yml"
-    prefix:   /adminevent
+    prefix:   /administrateur/adminevent
 evenements_indexEventClient:
     path:     /EventClient
     defaults: { _controller: "SoukElMedinaEvenementBundle:Evenements:indexEventClient" }

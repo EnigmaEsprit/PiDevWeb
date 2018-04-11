@@ -22,7 +22,7 @@ class ProduitsController extends Controller
 
         $produits = $em->getRepository('SoukElMedinaPidevBundle:Produits')->findAll();
 
-        return $this->render('produits/index.html.twig', array(
+        return $this->render('produits/index2.html.twig', array(
             'produits' => $produits,
         ));
     }

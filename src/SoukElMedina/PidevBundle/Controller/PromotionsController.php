@@ -22,7 +22,7 @@ class PromotionsController extends Controller
 
         $promotions = $em->getRepository('SoukElMedinaPidevBundle:Promotions')->findAll();
 
-        return $this->render('promotions/index.html.twig', array(
+        return $this->render('promotions/index2.html.twig', array(
             'promotions' => $promotions,
         ));
     }

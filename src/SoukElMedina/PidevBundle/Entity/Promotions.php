@@ -33,16 +33,16 @@ class Promotions
 
 
     /**
-     * @var string
+     * @var \datetime
      *
-     * @ORM\Column(name="dateDebut", type="string", nullable=false)
+     * @ORM\Column(name="dateDebut", type="datetime", nullable=false)
      */
     private $datedebut;
 
     /**
-     * @var string
+     * @var \datetime
      *
-     * @ORM\Column(name="dateFin", type="string", nullable=false)
+     * @ORM\Column(name="dateFin", type="datetime", nullable=false)
      */
     private $datefin;
     /**
@@ -51,12 +51,7 @@ class Promotions
      * @ORM\Column(name="pourcentage", type="string", nullable=false)
      */
     private $pourcentage;
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="new_prix", type="float", precision=10, scale=0, nullable=false)
-     */
-    private $newPrix;
+
 
     /**
      * @var \Produits
@@ -77,6 +72,7 @@ class Promotions
      * })
      */
     private $iduser;
+
     /**
      * @ORM\Column(name="image_link",type="string", length=255, nullable=false)
      */
@@ -330,6 +326,22 @@ class Promotions
         return $this->nompromotion;
         // to show the id of the Category in the select
         // return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEnnable()
+    {
+        return $this->ennable;
+    }
+
+    /**
+     * @param int $ennable
+     */
+    public function setEnnable($ennable)
+    {
+        $this->ennable = $ennable;
     }
 
 

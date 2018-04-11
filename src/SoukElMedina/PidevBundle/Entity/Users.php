@@ -132,6 +132,14 @@ class Users extends BaseUser
      */
     private $pub;
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="nombreDeReclamations", type="smallint", nullable=false)
+     *
+     *
+     */
+    private $nombredereclamations;
+    /**
      * Users constructor.
      */
     public function __construct()
@@ -394,6 +402,38 @@ class Users extends BaseUser
     public function setPub($pub)
     {
         $this->pub = $pub;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNombredereclamations()
+    {
+        return $this->nombredereclamations;
+    }
+
+    /**
+     * @param int $nombredereclamations
+     */
+    public function setNombredereclamations($nombredereclamations)
+    {
+        $this->nombredereclamations = $nombredereclamations;
     }
 
 

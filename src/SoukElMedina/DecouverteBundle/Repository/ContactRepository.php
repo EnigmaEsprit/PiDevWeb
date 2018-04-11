@@ -24,4 +24,12 @@ class ContactRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function findMagasinID($idVendeur) {
+        $query = $this -> getEntityManager()
+            -> createQuery("select v.idmagasin from SoukElMedinaPidevBundle:Magasins v WHERE v.iduser = :serie")
+            -> setParameter('serie', $idVendeur);
+        return $query -> getResult();
+    }
+
+
 }

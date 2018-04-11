@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Produits
  *
  * @ORM\Table(name="produits", indexes={@ORM\Index(name="idMagasin", columns={"idMagasin"})})
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="SoukElMedina\PanierBundle\Repository\panierRepository")
  */
 class Produits
 {
@@ -66,7 +66,7 @@ class Produits
     /**
      * @var integer
      *
-     * @ORM\Column(name="idpromotion", type="integer", nullable=false)
+     * @ORM\Column(name="idpromotion", type="integer", nullable=true)
      */
     private $idpromotion;
 
@@ -86,6 +86,25 @@ class Produits
      * })
      */
     private $idmagasin;
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="new_prix", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $newPrix;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="valid", type="integer", nullable=false)
+     */
+    private $valid;
+
+    /**
+     * Produits constructor.
+     */
+    public function __construct()
+    {
+    }
 
     /**
      * @return int
@@ -255,6 +274,38 @@ class Produits
         return $this->nomproduit;
         // to show the id of the Category in the select
         // return $this->id;
+    }
+
+    /**
+     * @return float
+     */
+    public function getNewPrix()
+    {
+        return $this->newPrix;
+    }
+
+    /**
+     * @param float $newPrix
+     */
+    public function setNewPrix($newPrix)
+    {
+        $this->newPrix = $newPrix;
+    }
+
+    /**
+     * @return int
+     */
+    public function getValid()
+    {
+        return $this->valid;
+    }
+
+    /**
+     * @param int $valid
+     */
+    public function setValid($valid)
+    {
+        $this->valid = $valid;
     }
 
 

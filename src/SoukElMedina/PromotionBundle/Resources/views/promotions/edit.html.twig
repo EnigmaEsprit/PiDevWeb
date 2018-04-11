@@ -83,7 +83,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-control-wrapper">
-                                        <input type="text" id="date-start" name="date-start" class="wrap-input100 validate-input" value="{{ promotion.datedebut }}" placeholder="Start Date" required="true">
+                                        <input type="text" id="date-start" name="date-start" class="wrap-input100 validate-input" value="{{ promotion.datedebut | date('d/m/Y H:i')}}" placeholder="Start Date" required="true">
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-control-wrapper">
-                                        <input type="text" id="date-end" name="date-end" class="wrap-input100 validate-input" value="{{ promotion.datefin }}" placeholder="End Date">
+                                        <input type="text" id="date-end" name="date-end" class="wrap-input100 validate-input" value="{{ promotion.datefin | date('d/m/Y H:i')}}" placeholder="End Date">
                                     </div>
                                 </div>
                             </div>
@@ -101,13 +101,36 @@
                                 {#<input type="number" id="new_prix" name="new_prix" value="">#}
 
                                 <span class="label-input100"></span>
-                                {{ form_widget(edit_form.idproduit, {'attr': {'class': 'input100', 'placeholder': "Produit",'id':'produit','style':'outline: none;
-    border: 1px solid #DBDBDB;
-    padding: 10px 10px 10px 10px;
-    font-size: 14px;
-    color: #999;
-    display: block;
-    width: 100%;','name':'produit'}}) }}
+                                <select id="produits" name="produits" style="	outline: none;
+                            border: 1px solid #DBDBDB;
+                            padding: 10px 10px 10px 10px;
+                            font-size: 14px;
+                            color: #999;
+                            display: block;
+                            width: 100%;">
+                                    {% for produit in produits %}
+                                        {% if  produit.idproduit == promotion.idproduit.idproduit  %}
+                                        <option value="{{ produit.idproduit }}" selected="selected" id="pr" name="pr">
+                                            {{ produit.nomproduit }}
+                                        </option>
+                                        {% else %}
+                                            <option value="{{ produit.idproduit }}"  id="pr" name="pr">
+                                                {{ produit.nomproduit }}
+                                            </option>
+                                        {% endif %}
+                                    {% endfor%}
+                                    <script type="text/javascript">
+                                        $('#pr')[{{promotion.idproduit}}].selected = true;
+                                    </script>
+
+                                </select>
+                                {#{{ form_widget(edit_form.idproduit, {'attr': {'class': 'input100', 'placeholder': "Produit",'id':'produit','style':'outline: none;#}
+    {#border: 1px solid #DBDBDB;#}
+    {#padding: 10px 10px 10px 10px;#}
+    {#font-size: 14px;#}
+    {#color: #999;#}
+    {#display: block;#}
+    {#width: 100%;','name':'produit'}}) }}#}
                                 <span class="focus-input100"></span>
                             </div>
                             <br>

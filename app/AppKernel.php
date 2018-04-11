@@ -31,6 +31,9 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Nomaya\SocialBundle\NomayaSocialBundle(),
             new ScayTrase\SmsDeliveryBundle\SmsDeliveryBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new SoukElMedina\UserBundle\SoukElMedinaUserBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

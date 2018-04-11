@@ -22,7 +22,7 @@ class MagasinsController extends Controller
 
         $magasins = $em->getRepository('SoukElMedinaPidevBundle:Magasins')->findAll();
 
-        return $this->render('magasins/index.html.twig', array(
+        return $this->render('magasins/index2.html.twig', array(
             'magasins' => $magasins,
         ));
     }

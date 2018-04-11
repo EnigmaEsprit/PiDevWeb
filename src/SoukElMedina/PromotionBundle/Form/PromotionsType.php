@@ -23,8 +23,8 @@ class PromotionsType extends AbstractType
 //            ->add('datedebut')
 //            ->add('datefin')
             ->add('pourcentage',IntegerType::class,array('attr'=>array('min'=>1,'max'=>100)))
-            ->add('file')
-            ->add('idproduit');
+            ->add('file');
+//            ->add('idproduit');
 //        ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
 //            $projet = $event->getData(); //ici tu récupère ton objet Projet avec l'entreprise que tu lui as assigné.
 //            var_dump($projet);

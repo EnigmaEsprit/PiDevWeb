@@ -1,3 +1,107 @@
 #souk_el_medina_reclamation_homepage:
 #    path:     /
 #    defaults: { _controller: SoukElMedinaReclamationBundle:Default:index }
+
+
+############     Client    ################
+
+reclamations_envoiClient:
+    path:     /envoiReclamations
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:indexClientSide }
+
+reclamations_suivi_client:
+    path:     /consulterReclamationsClient
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:suiviReclamations }
+    methods:  GET
+
+
+
+############     Vendeur    ################
+
+reclamations_consultationVendeur:
+    path:     /vendeur/consulterReclamationsVendeur
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:indexVendeurSide }
+    methods:  GET
+
+reclamations_consultationVendeur2:
+    path:     /vendeur/consulterReclamationsVendeur2
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:indexVendeurSide2 }
+    methods:  GET
+
+reclamations_consultationVendeur3:
+    path:     /vendeur/consulterReclamationsVendeur3
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:indexVendeurSide3 }
+    methods:  GET
+
+reclamations_consultationVendeur4:
+    path:     /vendeur/consulterReclamationsVendeur4
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:indexVendeurSide4 }
+    methods:  GET
+
+reclamation_show:
+    path:     /vendeur/{id}/detailsReclamations
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:detailsReclamation }
+    methods:  GET
+
+reclamation_delete:
+    path:     /vendeur/{id}/supprimerReclamations
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:deleteReclamation }
+    methods:  GET
+
+reponse_reclamation:
+    path:     /vendeur/{id}/repondreReclamations
+    defaults: { _controller: MailBundle:Mail:repondreReclamation }
+
+my_app_mail_accuse:
+    path: /success
+    defaults: { _controller: MailBundle:Mail:success }
+
+
+
+############     Admin    ################
+
+reclamations_consultationAdmin:
+    path:     /administrateur/consulterReclamationsAdmin
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:reclamationsShowAdmin }
+    methods:  GET
+
+reclamations_consultationAdmin2:
+    path:     /administrateur/consulterReclamationsAdmin2
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:reclamationsShowAdmin2 }
+    methods:  GET
+
+reclamations_consultationAdmin3:
+    path:     /administrateur/consulterReclamationsAdmin3
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:reclamationsShowAdmin3 }
+    methods:  GET
+
+reclamations_consultationAdmin4:
+    path:     /administrateur/consulterReclamationsAdmin4
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:reclamationsShowAdmin4 }
+    methods:  GET
+
+reclamations_consultationAdmin5:
+    path:     /administrateur/consulterReclamationsAdmin5
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:reclamationsShowAdmin5 }
+    methods:  GET
+
+reclamations_consultationAdmin6:
+    path:     /administrateur/consulterReclamationsAdmin6
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:reclamationsShowAdmin6 }
+    methods:  GET
+
+reclamation_show_admin:
+    path:     /administrateur/{id}/detailsReclamations
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:detailsReclamationAdmin }
+    methods:  GET
+
+reclamation_delete_admin:
+    path:     /administrateur/{id}/supprimerReclamations
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:deleteReclamation }
+    methods:  GET
+
+reclamation_envoyer_vendeur:
+    path:     /administrateur/{id}/acheminerReclamations
+    defaults: { _controller: SoukElMedinaReclamationBundle:Reclamations:faireSuivreReclamation }
+    methods:  GET
+

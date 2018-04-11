@@ -10,7 +10,7 @@ souk_el_medina_pidev_promotions:
 
 souk_el_medina_pidev_evenements:
     resource: "@SoukElMedinaEvenementBundle/Resources/config/routing/evenements.yml"
-    prefix:   /evenements
+    prefix:   /vendeur/evenements
 
 souk_el_medina_pidev_homepage:
     path:     /
@@ -36,9 +36,9 @@ souk_el_medina_pidev_faq:
     path:     /faq
     defaults: { _controller: SoukElMedinaPidevBundle:faq:faq }
 
-souk_el_medina_pidev_panier:
-    path:     /panier
-    defaults: { _controller: SoukElMedinaPidevBundle:Commande:panier }
+#souk_el_medina_pidev_panier:
+#    path:     /panier
+#    defaults: { _controller: SoukElMedinaPidevBundle:Commande:panier }
 
 souk_el_medina_pidev_produit:
     path:     /produit
@@ -52,6 +52,11 @@ souk_el_medina_pidev_beverages:
     path:     /beverages
     defaults: { _controller: SoukElMedinaPidevBundle:Categorie:beverages }
 souk_el_medina_pidev_detail:
-    path:     /detail
+    path:     /detail/{id}
     defaults: { _controller: SoukElMedinaPidevBundle:Produit:detail }
+
+promotions_detaisPROM:
+    path:     /detailprom/{id}
+    defaults: { _controller: SoukElMedinaPidevBundle:Produit:detailPROM }
+    methods:  GET
 

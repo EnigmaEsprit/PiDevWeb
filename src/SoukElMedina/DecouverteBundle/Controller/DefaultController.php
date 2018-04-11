@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SoukElMedinaDecouverteBundle:Default:index.html.twig');
+        return $this->render('SoukElMedinaDecouverteBundle:Default:index2.html.twig');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace SoukElMedina\PromotionBundle\Controller;
 
+use DateTime;
 use JMS\Serializer\SerializerBuilder;
 use SoukElMedina\PidevBundle\Entity\Promotions;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,13 +19,18 @@ class PromotionsController extends Controller
      * Lists all promotion entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $em = $this->getDoctrine()->getManager();
 
-        $promotions = $em->getRepository('SoukElMedinaPidevBundle:Promotions')->findBy(array('iduser' => $this->getUser()->getId()));
-
+        $promotion = $em->getRepository('SoukElMedinaPidevBundle:Promotions')->findBy(array('iduser' => $this->getUser()->getId()));
+        $paginator  = $this->get('knp_paginator');
+        $promotions = $paginator->paginate(
+            $promotion, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            1/*limit per page*/
+        );
 
         return $this->render('@SoukElMedinaPromotion/promotions/index.html.twig', array(
             'promotions' => $promotions,
@@ -38,25 +44,40 @@ class PromotionsController extends Controller
     public function newAction(Request $request)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
         $promotion = new Promotions();
+        $produit = $em->getRepository('SoukElMedinaPidevBundle:Produits')->findProduit($this->getUser());
+
         $form = $this->createForm('SoukElMedina\PromotionBundle\Form\PromotionsType', $promotion);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $repository = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('SoukElMedinaPidevBundle:Produits');
+            $Produits = $repository->findOneBy(array('idproduit' => $request->get('produits')));
+            $promotion->setIdproduit($Produits);
 
-            var_dump(($promotion->getPourcentage()/100)*$promotion->getIdproduit()->getPrixproduit());
 
-            $em = $this->getDoctrine()->getManager();
-//            var_dump($promotion->getPourcentage());
 
-            $promotion->setDatedebut($request->get('date-start'));
-            $promotion->setDatefin($request->get('date-end'));
-            $promotion->setNewPrix(($promotion->getIdproduit()->getPrixproduit()-(($promotion->getPourcentage()/100)*$promotion->getIdproduit()->getPrixproduit())));
+
+            $DD= DateTime::createFromFormat('d/m/Y H:i', $request->get('date-start'));
+            $DF= DateTime::createFromFormat('d/m/Y H:i', $request->get('date-end'));
+
+            $promotion->setDatedebut($DD);
+            $promotion->setDatefin($DF);
+            $Produits->setNewPrix(($Produits->getPrixproduit()-(($promotion->getPourcentage()/100)*$Produits->getPrixproduit())));
             $promotion->setIduser($this->getUser());
+            $Produits->setValid(1);
             $users=$em->getRepository('SoukElMedinaPidevBundle:Users')->FindUsers();
+
+
 
             $em->persist($promotion);
             $em->flush();
+            $Produits->setIdpromotion($promotion);
+
             foreach ($users as $user) {
 
                 $message = \Swift_Message::newInstance()
@@ -77,6 +98,7 @@ class PromotionsController extends Controller
         return $this->render('SoukElMedinaPromotionBundle:promotions:new.html.twig', array(
             'promotion' => $promotion,
             'form' => $form->createView(),
+            'produits'=>$produit
         ));
     }
 
@@ -101,18 +123,30 @@ class PromotionsController extends Controller
      */
     public function editAction(Request $request, Promotions $promotion)
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($promotion);
         $editForm = $this->createForm('SoukElMedina\PromotionBundle\Form\PromotionsType', $promotion);
+        $produit = $em->getRepository('SoukElMedinaPidevBundle:Produits')->findProduit($this->getUser());
         $editForm->handleRequest($request);
 
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $promotion->setDatedebut($request->get('date-start'));
-            $promotion->setDatefin($request->get('date-end'));
-            $promotion->setNewPrix(($promotion->getIdproduit()->getPrixproduit()-(($promotion->getPourcentage()/100)*$promotion->getIdproduit()->getPrixproduit())));
+            $repository = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('SoukElMedinaPidevBundle:Produits');
+            $Produits = $repository->findOneBy(array('idproduit' => $request->get('produits')));
+            $promotion->setIdproduit($Produits);
+            $DD= DateTime::createFromFormat('d/m/Y H:i', $request->get('date-start'));
+            $DF= DateTime::createFromFormat('d/m/Y H:i', $request->get('date-end'));
+
+            $promotion->setDatedebut($DD);
+            $promotion->setDatefin($DF);
+            $Produits->setNewPrix(($Produits->getPrixproduit()-(($promotion->getPourcentage()/100)*$Produits->getPrixproduit())));
             $promotion->setIduser($this->getUser());
             $em->persist($promotion);
             $em->flush();
+
 
             return $this->redirectToRoute('promotions_index');
         }
@@ -121,13 +155,17 @@ class PromotionsController extends Controller
             'promotion' => $promotion,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'produits'=>$produit
         ));
     }
-    public function deleteAction($idpromotion)
+    public function deleteAction(Promotions $promotions)
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $EM = $this->getDoctrine()->getManager();
-        $Promotion = $EM->getRepository("SoukElMedinaPidevBundle:Promotions")->find($idpromotion);
+        $Prosuits = $EM->getRepository('SoukElMedinaPidevBundle:Produits')->findProduit($promotions->getIdproduit());
+        $Prosuits->setNewPrix(NULL);
+        $Prosuits->setValid(NULL);
+        $Promotion = $EM->getRepository("SoukElMedinaPidevBundle:Promotions")->find($promotions->getIdproduit());
         $EM->remove($Promotion);
         $EM->flush();
         return $this->redirectToRoute('promotions_index');
@@ -197,33 +235,10 @@ class PromotionsController extends Controller
     public function findProduitAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        var_dump($request->get('produitv'));
-
         $user = $em->getRepository('SoukElMedinaPidevBundle:Produits')->findOneBy(array('nomproduit'=>$request->get('produitv')));
         $serializer = SerializerBuilder::create()->build();
         $response = $serializer->serialize($user, 'json');
         return new JsonResponse($response);
     }
 
-//    public function PrixAjaxAction(Request $request)
-//    {
-//        $voiture = new Voiture();
-//        $em = $this->getDoctrine()->getManager();
-//        $voitures = $em->getRepository('EspritParcBundle:Voiture')->findAll();
-//
-//        if($request->isXmlHttpRequest())
-//        {
-//            $serializer = new Serializer(array(new ObjectNormalizer()));
-//            $voitures=$em->getRepository('EspritParcBundle:Voiture')
-//                ->findSerieDql($request->get('serie'));
-//            // var_dump($voitures);
-//            $data = $serializer->normalize($voitures);
-//            return new JsonResponse($data);
-//        }
-//        return $this->render(
-//            'EspritParcBundle:Voiture:RechercheAjax.html.twig',
-//            array("voitures"=>$voitures,
-//                "form" =>$Form->createView())
-//        );
-//    }
 }

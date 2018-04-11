@@ -77,13 +77,13 @@
                                 <td class="invert"><a href="{{ path('promotions_show', { 'idpromotion': promotion.idpromotion }) }}">{{ promotion.idpromotion }}</a></td>
                                 <td class="invert"><img src="{{ asset('uploads/Images/') }}{{ promotion.imagelink }}"style="width: 50px;height: 50px"></td>
                                 <td class="invert">{{ promotion.nompromotion }}</td>
-                                <td class="invert">{{ promotion.datedebut }}</td>
-                                <td class="invert">{{ promotion.datefin }}</td>
+                                <td class="invert">{{ promotion.datedebut | date('Y-m-d H:i')}}</td>
+                                <td class="invert">{{ promotion.datefin | date('Y-m-d H:i')}}</td>
                                 <td class="invert">{{ promotion.idproduit.nomproduit }}</td>
                                 <td class="invert">{{ promotion.idproduit.referenceproduit }}</td>
                                 <td class="invert"><img src="{{ asset('uploads/Images/') }}{{ promotion.idproduit.photoproduit }}"style="width: 50px;height: 50px"></td>
                                 <td class="invert">{{ promotion.idproduit.prixproduit }}</td>
-                                <td class="invert">{{ promotion.newPrix }}</td>
+                                <td class="invert">{{ promotion.idproduit.newPrix }}</td>
                                 <td class="invert">{{ promotion.pourcentage }}</td>
 
                                 <td class="invert">
@@ -112,7 +112,11 @@
                 </div>
             </div>
         </div>
-
+    <center>
+        <div class="navigation">
+            {{ knp_pagination_render(promotions) }}
+        </div>
+    </center>
 
 
 

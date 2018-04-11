@@ -284,7 +284,11 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default btn-flat">Profile</a>
+
+                            {% endif %}
                                 </div>
                                 <div class="pull-right">
                                      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -429,6 +433,7 @@
                         <li><a href="{{ path('evenements_index_admin') }}"><i class="fa fa-circle-o"></i> Evenements</a></li>
                         <li><a href="{{ path('evenements_demande') }}"><i class="fa fa-circle-o"></i> Les Demandes</a></li>
                         <li><a href="{{ path('evenements_Listblock') }}"><i class="fa fa-circle-o"></i> Liste Block</a></li>
+                        <li><a href="{{ path('reclamations_consultationAdmin') }}"><i class="fa fa-circle-o"></i> Reclamations</a></li>
                     </ul>
                 </li>
                 <li>

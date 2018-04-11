@@ -9,7 +9,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SoukElMedinaEvenementBundle:Default:index.html.twig');
+        return $this->render('SoukElMedinaEvenementBundle:Default:index2.html.twig');
     }
     // when the user is mandatory (e.g. behind a firewall)
     public function fooAction(UserInterface $user)

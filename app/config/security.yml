@@ -30,12 +30,14 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/administrateur/, role: ROLE_ADMIN }
-        - { path: ^/adminevent/, role: ROLE_ADMIN }
-        - { path: ^/client/, role: ROLE_USER }
-        - { path: ^/vendeur/, role: ROLE_VENDEUR }
-        - { path: ^/evenements/, role: ROLE_VENDEUR }
-        - { path: ^/promotions/, role: ROLE_VENDEUR }
+#        - { path: ^/administrateur/, role: ROLE_ADMIN }
+#        - { path: ^/adminevent/, role: ROLE_ADMIN }
+#        - { path: ^/client/, role: ROLE_USER }
+#        - { path: ^/ReclamationsC/, role: ROLE_CLIENT }
+#        - { path: ^/vendeur/, role: ROLE_VENDEUR }
+#        - { path: ^/evenements/, role: ROLE_VENDEUR }
+#        - { path: ^/promotions/, role: ROLE_VENDEUR }
+#        - { path: ^/promotions/, role: ROLE_VENDEUR }
 #        - { path: ^/evenements/{idevenement}/show, role: ROLE_VENDEUR }
 #        - { path: ^/evenements/add, role: ROLE_VENDEUR }
 #        - { path: ^/evenements/{idevenement}/delete, role: ROLE_VENDEUR }
