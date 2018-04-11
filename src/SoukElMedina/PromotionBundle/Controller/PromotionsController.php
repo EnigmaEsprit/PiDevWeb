@@ -210,7 +210,7 @@ class PromotionsController extends Controller
 //        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $em = $this->getDoctrine()->getManager();
 
-        $promotions = $em->getRepository('SoukElMedinaPidevBundle:Promotions')->findAll();
+        $promotions = $em->getRepository('SoukElMedinaPidevBundle:Promotions')->FindAllOffresEX();
         $paginator  = $this->get('knp_paginator');
         $prompotions1 = $paginator->paginate(
             $promotions, /* query NOT result */

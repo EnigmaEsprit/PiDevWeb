@@ -49,4 +49,14 @@ class PromotionRepository extends EntityRepository
 
         return $query->getResult();
     }
+    public function FindAllOffresEX()
+
+    {
+        $query = $this->getEntityManager()->createQuery(
+
+            "select m from  SoukElMedinaPidevBundle:Promotions m, SoukElMedinaPidevBundle:Produits p WHERE m.idproduit=p.idproduit and p.valid=1 "
+
+        );
+        return $query->getResult();
+    }
 }

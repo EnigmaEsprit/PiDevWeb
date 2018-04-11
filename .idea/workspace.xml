@@ -2,73 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97942a8e-6622-4003-9c8a-a3f3572f4747" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/detais.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/SoukElMedinaUserBundle/Controller/DefaultControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PiDevWeb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PiDevWeb.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/baseAdmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/baseVendeur.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/baseVendeur.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/security.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/CommentairesBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/CommentairesBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Repository/ContactRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/DecouverteBundle/Repository/ContactRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Controller/EvenementsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/indexAdmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/showINC.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/showINC.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/MagasinsBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/MagasinsBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Resources/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Resources/config/services.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/EvenementsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/EvenementsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/MagasinsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/MagasinsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/ProduitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/ProduitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/ProduitsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/ProduitsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/PromotionsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/PromotionsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Commandes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Commandes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Lignecommandes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Lignecommandes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Produits.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Produits.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Promotions.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Promotions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Reclamations.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Reclamations.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/detail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/detail.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Controller/DefaultController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Resources/views/Default/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/DefaultController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/PromotionsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/PromotionsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Form/PromotionsType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Form/PromotionsType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Repository/PromotionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Repository/PromotionRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/promotionINC.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/promotionINC.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoukElMedina/ReclamationBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bower_components/bootstrap/Gruntfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/bower_components/bootstrap/Gruntfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -127,11 +63,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+            <state relative-caret-position="391">
+              <caret line="23" column="12" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PromotionsController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/PromotionsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="212" column="97" selection-start-line="212" selection-start-column="97" selection-end-line="212" selection-end-column="97" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PromotionRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Repository/PromotionRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="461">
+              <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -283,7 +237,6 @@
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/new.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Form/PromotionsType.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PanierBundle/Repository/panierRepository.php" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Repository/PromotionRepository.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/edit.html.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/confirmed.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/EvenementBundle/Resources/views/evenements/showINC.html.twig" />
@@ -292,7 +245,6 @@
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/detais.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Promotions.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/PromotionsController.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/index.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Controller/ProduitController.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Resources/views/promotions/promotionINC.html.twig" />
@@ -325,6 +277,8 @@
         <option value="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Resources/views/Default/ShowAllProduit.html.twig" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/ProduitBundle/Controller/ProduitController.php" />
         <option value="$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Repository/PromotionRepository.php" />
+        <option value="$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/PromotionsController.php" />
       </list>
     </option>
   </component>
@@ -399,7 +353,7 @@
       <path value="$PROJECT_DIR$/vendor/blackknight467/star-rating-bundle" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="331" />
     <option name="y" value="-15" />
     <option name="width" value="1205" />
@@ -561,117 +515,7 @@
               <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Entity" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="PidevBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Default" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ProduitBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ProduitBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ProduitBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Form" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ProduitBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ProduitBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ProduitBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ProduitBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ProduitBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Default" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="PromotionBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -679,6 +523,15 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="PromotionBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PiDevWeb" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="SoukElMedina" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="PromotionBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="PiDevWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -771,7 +624,7 @@
       <workItem from="1523117429286" duration="10067000" />
       <workItem from="1523208603621" duration="1631000" />
       <workItem from="1523211889182" duration="62176000" />
-      <workItem from="1523416043344" duration="251000" />
+      <workItem from="1523416043344" duration="987000" />
     </task>
     <task id="LOCAL-00001" summary="oussema bundle">
       <created>1523095763511</created>
@@ -794,11 +647,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523150883001</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="integration">
+      <created>1523416585490</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1523416585490</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="689076000" />
+    <option name="totallyTimeSpent" value="689812000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -813,16 +673,17 @@
     <frame x="-7" y="-7" width="1550" height="846" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4869762" visible="true" weight="0.25503355" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.3282123" />
-      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32960895" />
       <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.5080537" side_tool="true" weight="0.33519554" />
-      <window_info anchor="right" id="Database" order="3" weight="0.15167785" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="2" weight="0.32922733" />
+      <window_info anchor="bottom" id="Version Control" order="2" weight="0.3282123" />
       <window_info anchor="bottom" id="Run" order="7" />
-      <window_info id="Structure" order="2" sideWeight="0.49603623" side_tool="true" weight="0.24758324" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.48444444" weight="0.25418994" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4869762" visible="true" weight="0.25503355" />
+      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" weight="0.15167785" />
+      <window_info id="Structure" order="2" sideWeight="0.49603623" side_tool="true" weight="0.24758324" />
       <window_info id="Favorites" order="0" sideWeight="0.5130238" side_tool="true" weight="0.7811111" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -830,7 +691,6 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="1" sideWeight="0.4919463" weight="0.36731842" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32960895" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.325419" />
@@ -848,7 +708,8 @@
     <MESSAGE value="fos" />
     <MESSAGE value="final" />
     <MESSAGE value="finallllllllllll" />
-    <option name="LAST_COMMIT_MESSAGE" value="finallllllllllll" />
+    <MESSAGE value="integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="integration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -977,6 +838,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="116" selection-start-line="4" selection-start-column="116" selection-end-line="4" selection-end-column="116" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#font#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1007,6 +898,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="23" column="105" selection-start-line="23" selection-start-column="105" selection-end-line="23" selection-end-column="105" />
+          <folding>
+            <element signature="e#55#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1147,6 +1041,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Repository/PromotionRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Entity/Promotions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1154,10 +1062,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/views/Default/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PromotionBundle/Controller/PromotionsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        <state relative-caret-position="323">
+          <caret line="212" column="97" selection-start-line="212" selection-start-column="97" selection-end-line="212" selection-end-column="97" />
         </state>
       </provider>
     </entry>
