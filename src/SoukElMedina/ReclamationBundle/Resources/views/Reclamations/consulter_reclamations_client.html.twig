@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Suivre l'état d'avancement des réclamations | Souk El Medina!{% endblock %}
+
+{% block body %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="{{ path('souk_el_medina_pidev_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Etat d'avancement des réclamations</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <div class="checkout">
+        <div class="container">
+            <div class="checkout-right">
+                <table class="timetable_sub">
+                    <thead>
+                    <tr>
+                        <th>N° de la réclamation</th>
+                        <th>Objet de la réclamation</th>
+                        <th>Date d'envoi</th>
+                        <th colspan="2">Contenu de la réclamation</th>
+                        <th>Statut de la réclamation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reclamation in reclamations %}
+                        <tr  class="rem1">
+                            <td class="invert">{{ reclamation.idreclamation }}</td>
+                            <td class="invert">{{ reclamation.objetreclamation }}</td>
+                            <td class="invert">{{ reclamation.dateenvoireclamation|date('Y-m-d H:i:s') }}</td>
+                            <td colspan="2" class="invert">{{ reclamation.contenureclamation }}</td>
+                            <td class="invert statut"><b>{{ reclamation.suivireclamation }}</b></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div align="center" style="margin-top: 10%">
+                    <a href="{{ path('souk_el_medina_pidev_homepage') }}"><button style="
+        background-color: #3399cc; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;"><span class="spannn glyphicon glyphicon-chevron-left" id="c"></span><span> Retour à la page d'accueil</span></button></a>
+                    <a href="{{ path('reclamations_envoiClient') }}"><button style="
+        background-color: #3399cc; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;"><span>Envoyer une nouvelle réclamation </span><span class="spannn glyphicon glyphicon-chevron-right"></span></button></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function($){
+            $('.statut').change(function() {
+                if ($(this).text() === "Traité")
+                {
+                    $(this).css({"background-color":"#28a745", "color":"white"});
+                    $('.spannn').css("color","white")
+                }
+                else if ($(this).text() === "Rejété")
+                {
+                    $(this).css({"background-color":"#dc3545", "color":"white"});
+                    $('.spannn').css("color","white")
+                }
+                else {
+                    $(this).css({"background-color":"#f6f7f6", "color":"black"});
+                    $('.spannn').css("color","white")
+                }
+            }).change();
+        });
+    </script>
+
+{% endblock %}
+
+

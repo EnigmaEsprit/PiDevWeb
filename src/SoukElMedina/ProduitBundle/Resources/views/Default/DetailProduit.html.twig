@@ -1,0 +1,73 @@
+
+{% extends "base.html.twig" %}
+{% block body %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/ahmed/rating.css') }}" />
+    <script src="{{ asset('/css/ahmed/jquery.min.js') }}"></script>
+    <script src="{{ asset('/css/ahmed/rating.js') }}"></script>
+<div class="products">
+    <div class="container">
+        <div class="agileinfo_single">
+
+
+        <div class="col-md-4 agileinfo_single_left">
+            <img style="height: 80%; width: 80%;" src="{{ asset('uploads/Images/'~produits.photoproduit) }}" alt="">
+        </div>
+
+            <div class="col-md-8 agileinfo_single_right">
+                <h2> {{ produits.nomproduit }} </h2>
+
+                <div>
+                    <h4>Reference :</h4>
+                    <p> {{ produits.referenceproduit }}</p>
+                </div>
+                <div class="snipcart-item block">
+                    <h4>Prix :</h4>
+
+                    <div class="snipcart-thumb agileinfo_single_right_snipcart">
+                        <h4 class="m-sing"> {{ produits.prixproduit }} DNT</h4>
+                    </div>
+                    <h4>Quantite:</h4>
+                    <div class="snipcart-thumb agileinfo_single_right_snipcart">
+
+                        <h4 class="m-sing"> {{ produits.quantiteproduit }} </h4>
+                </div>
+                    <div class="snipcart-thumb agileinfo_single_right_snipcart">
+
+                        <h4 class="m-sing"> {{ produits.note|rating(4) }} </h4>jjjj
+                    </div>
+                    <div class="snipcart-thumb agileinfo_single_right_snipcart">
+                            {{ form_start(rech) }}
+                        <h4 class="m-sing"> {{ form_widget(rech.note) }} </h4>
+                        {{ form_widget(rech.evaluer) }}
+                        {{ form_end(rech) }}
+                    </div>
+
+                    <div class="snipcart-details agileinfo_single_right_details">
+
+                        <form action="#" method="post">
+                            <fieldset>
+                                <input type="hidden" name="cmd" value="_cart">
+                                <input type="hidden" name="add" value="1">
+                                <input type="hidden" name="business" value=" ">
+                                <input type="hidden" name="item_name" value="pulao basmati rice">
+                                <input type="hidden" name="amount" value="21.00">
+                                <input type="hidden" name="discount_amount" value="1.00">
+                                <input type="hidden" name="currency_code" value="USD">
+                                <input type="hidden" name="return" value=" ">
+                                <input type="hidden" name="cancel_return" value=" ">
+                                <input type="submit" name="submit" value="Add to cart" class="button">
+                            </fieldset>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

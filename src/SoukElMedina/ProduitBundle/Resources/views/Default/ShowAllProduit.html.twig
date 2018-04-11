@@ -1,0 +1,155 @@
+{% extends "SoukElMedinaProduitBundle:Default:Produit.html.twig" %}
+
+{% block prod %}
+    <div class="main">
+        <div class="form-group row" style="margin-top: 30px; margin-bottom: 30px;  width:300px; margin-left: 30px" >
+
+            <div class="row">
+                {{ form_start(form) }}
+
+                <div>
+                    <label> Choisissez une categorie</label>
+                    {{ form_widget(form.categoriemagasin,{'attr': {'class': 'form-control '}}) }}
+
+                </div>
+
+                <div style="margin-top: -57px; margin-left: 400px; width:300px" >
+                    <label> Prix </label>
+
+                    {{ form_widget(form.prixproduit,{'attr': {'class': 'form-control'}}) }}
+                    <span id="price_range"></span>
+                </div>
+                {{ form_end(form) }}
+
+
+            </div>
+        </div>
+    </div>
+    <div class="list">
+        {% for produit in produits %}
+
+            <div class="col-md-4 top_brand_left">
+                <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid">
+                        <div class="agile_top_brand_left_grid_pos">
+                            <img src="images/offer.png" alt=" " class="img-responsive">
+                        </div>
+                        <div class="agile_top_brand_left_grid1">
+                            <figure>
+                                <div class="snipcart-item block">
+                                    <div class="snipcart-thumb">
+
+                                        <div class="preview-box">
+
+                                            <a href="{{ path('souk_el_medina_detail_produit',{'idproduit':produit.idproduit}) }}" type="submit"  >
+                                                <img style="height: 80%; width: 80%;" src="{{ asset('uploads/Images/'~produit.photoproduit) }}" alt=""></a>
+                                        </div>
+                                        <p>{{  produit.nomproduit }}</p>
+                                        <h4> {{  produit.prixproduit }} DNT</h4>
+                                    </div>
+                                    <div class="snipcart-details top_brand_home_details">
+                                        <form action="#" method="post">
+                                            <fieldset>
+                                                <input type="hidden" name="cmd" value="_cart">
+                                                <input type="hidden" name="add" value="1">
+                                                <input type="hidden" name="business" value=" ">
+                                                <input type="hidden" name="item_name" value="Commander Produit">
+                                                <input type="hidden" name="amount" value="{{  produit.prixproduit }}">
+                                                <input type="hidden" name="discount_amount" value="{{  produit.prixproduit }}">
+                                                <input type="hidden" name="currency_code" value="DNT">
+                                                <input type="hidden" name="return" value=" ">
+                                                <input type="hidden" name="cancel_return" value=" ">
+                                                <input type="submit" name="submit" value="Ajouter au Panier" class="button">
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(produits) }}
+        </div>
+    </div>
+    </div>
+
+
+    {% block javascripts %}
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script>
+            $(document).ready(function(){
+                $('#soukelmedina_pidevbundle_produits_prixproduit').change(function(){
+                    var price = $(this).val();
+                    $("#price_range").text("Product under Price Rs." + price);
+                    $.ajax({
+                        url:'http://localhost/pidevweb/web/produits/maxprix/' + $(this).val(),
+
+                        type: 'get',
+                        dataType: 'json',
+                        success:resultat
+
+                    });
+                });
+                function resultat (data) {
+                    $('.list').html('');
+
+                    for (i in data) {
+                        x = data[i];
+                        $('.list').append(
+                            '  <div class="col-md-4 top_brand_left">'+
+                            '  <div class="hover14 column">'+
+                            '<div class="agile_top_brand_left_grid">'+
+                            ' <div class="agile_top_brand_left_grid_pos">'+
+                            '  <img src="images/offer.png" alt=" " class="img-responsive"> </div>'+
+                            '  <div class="agile_top_brand_left_grid1">'+
+                            '  <figure>'+
+                            '  <div class="snipcart-item block">'+
+                            '  <div class="snipcart-thumb">'+
+                            '  <div class="preview-box">'+
+                            '  <a href="http://localhost/pidevweb/web/DetailsProduits/'+x[9]+'" type="submit" >'+
+
+                            '  <img src="http://localhost/pidevweb/web/uploads/images/'+x[3]+'" style="height: 80%; width: 80%;"/>'+
+
+                            '  </div>'+
+
+                            ' <p>'+x[1]+'</p>'+
+                            ' <h4> '+x[2]+' DNT</h4>'+
+                            '   </div>'+
+                            '  <div class="snipcart-details top_brand_home_details">'+
+                            '   <form action="#" method="post">'+
+                            '   <fieldset>'+
+
+                            '    <input type="hidden" name="cmd" value="_cart">'+
+                            '   <input type="hidden" name="add" value="1">'+
+                            '   <input type="hidden" name="business" value=" ">'+
+                            '  <input type="hidden" name="item_name" value="Commander Produit">'+
+                            '   <input type="hidden" name="amount" value="'+x[2]+'">'+
+                            ' <input type="hidden" name="currency_code" value="DNT">'+
+
+                            '   <input type="hidden" name="return" value=" ">'+
+                            '   <input type="hidden" name="cancel_return" value=" ">'+
+                            ' <input type="submit" name="submit" value="Ajouter au Panier" class="button">'+
+                            '  </fieldset>'+
+                            ' </form>'+
+                            '   </div>'+
+                            '   </div>'+
+                            '    </figure>'+
+                            '   </div>'+
+                            '   </div>'+
+                            '   </div>'+
+                            '   </div>'
+                        );
+                    }
+                }
+            });
+        </script>
+
+
+    {% endblock %}
+
+
+
+{% endblock %}

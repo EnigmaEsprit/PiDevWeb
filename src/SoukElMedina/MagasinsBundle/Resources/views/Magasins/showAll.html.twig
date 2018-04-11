@@ -1,0 +1,70 @@
+{% extends "SoukElMedinaMagasinsBundle:Magasins:Magasin.html.twig" %}
+
+{% block mag %}
+
+    {#{{ form_start(f) }}#}
+    {#<div>{{ form_widget(f.rating) }}#}
+
+        {#{{ form_widget(f.valider) }}#}
+    {#</div>#}
+    {#{{ form_end(f) }}#}
+
+    {% for magasin in page %}
+
+        <div class="col-md-4 top_brand_left" >
+
+            <div class="hover14 column">
+                <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid_pos">
+                        <img src="images/offer.png" alt=" " class="img-responsive">
+                    </div>
+                    <div class="agile_top_brand_left_grid1">
+                        <figure>
+                            <div class="snipcart-item block">
+                                <div class="snipcart-thumb">
+                                    <a href="{{ path('souk_el_medina_detail_magasin',{'idmagasin':magasin.idmagasin}) }}" type="submit" class="btn btn-primary btn-circle btn-lg" >
+
+                                        <div class="preview-box">
+
+                                            <img style="height: 80%; width: 80%;" src="{{ asset('uploads/Images/'~magasin.photomagasin ) }}" alt="">
+                                        </div>
+                                    </a>
+                                    <p>{{  magasin.nommagasin }}</p>
+                                    <h4> {{  magasin.descriptionmagasin }} </h4>
+
+                                </div>
+                                <div class="snipcart-details top_brand_home_details">
+                                    <a href="{{ path('souk_el_medina_produits_magasins',{'idmagasin':magasin.idmagasin}) }}" type="submit" class="btn btn-primary btn-circle btn-lg" >    <input type="submit" name="submit" value="Voir Produit" class="button"></a>
+                                  <div>                                  <div>
+                                      </div>
+                                      {{ twitterButton() }}
+
+
+                                  </div>
+                                    <form action="#" method="post">
+                                        <fieldset>
+                                            <input type="hidden" name="cmd" value="_cart">
+                                            <input type="hidden" name="add" value="1">
+                                            <input type="hidden" name="business" value=" ">
+                                            <input type="hidden" name="item_name" value="Commander Produit">
+                                            <input type="hidden" name="amount" value="{{  magasin.nommagasin }}">
+                                            <input type="hidden" name="currency_code" value="DNT">
+                                            <input type="hidden" name="return" value=" ">
+                                            <input type="hidden" name="cancel_return" value=" ">
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(page) }}
+    </div>
+
+{% endblock %}

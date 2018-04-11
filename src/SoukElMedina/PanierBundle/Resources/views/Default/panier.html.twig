@@ -1,0 +1,135 @@
+
+{% extends"base.html.twig" %}
+
+{% set totalHT=0 %}
+{% set totalTTC=0 %}
+
+
+{% block body %}
+
+    <!-- breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1">
+                <li><a href="{{ path('souk_el_medina_pidev_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Checkout Page</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <!-- checkout -->
+    <div class="checkout">
+        <div class="container">
+
+            <h2>Your shopping cart contains: <span>{{ qteProduitPanier }} Products</span></h2>
+            <div class="checkout-right">
+
+                <div class="clearfix"> </div>
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                       <center>{{ flashMessage }}</center>
+                    </div>
+                {% endfor %}
+
+                <table class="timetable_sub">
+                    <thead>
+                    <tr>
+                        <th>SL No.</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Product Name</th>
+
+                        <th>Price</th>
+                        <th>A.Price</th>
+                        <th>Remove</th>
+                    </tr>
+                    </thead>
+                    {% if produits|length == 0 %}
+                        <tr>
+                            <td colspan="7"> <center><strong>Aucun articles dans votre panier</strong></center> </td>
+                        </tr>
+                    {% endif %}
+                    {% for produit in produits %}
+                        <tr class="rem1">
+                            <form action="{{ path('souk_el_medina_panier_ajouter_panier',{'id': produit.idproduit}) }}"  method="get">
+                                <td class="invert">1</td>
+                                <td class="invert-image"><a href="{{ path('souk_el_medina_pidev_detail',{'id':produit.idproduit}) }}"><img src="{{ asset('uploads/Images/') }}{{ produit.photoproduit }}" alt=" " class="img-responsive" style="width: 70px;height: 70px;"/></a></td>
+                                <td class="invert">
+                                    <!-- <div class="quantity">
+                           <div class="quantity-select">
+                                <div class="entry value-minus" onchange="this.form.submit()">&nbsp;</div>
+                                <div class="entry value"><span>{{ panier[produit.idproduit] }}</span></div>
+                                <div class="entry value-plus active" onchange="this.form.submit()">&nbsp;</div>
+                            </div>
+                        </div> -->
+                                    <select name="quantite" onchange="this.form.submit()">
+                                        {% for i in 1..20 %}
+                                            <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>
+                                                {{ i }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+
+                                <td class="invert">{{ produit.nomproduit }}</td>
+
+                                <td class="invert">${{ produit.prixproduit }}</td>
+                                <td class="invert">${{ produit.prixproduit * panier[produit.idproduit] }}</td>
+                                <td class="invert">
+                                    <div class="rem">
+                                        <a href="{{ path('souk_el_medina_panier_supprimer_panier',{'id':produit.idproduit}) }}"><div class="close1"> </div></a>
+                                    </div>
+
+                                </td>
+                            </form>
+                        </tr>
+                        {% set totalHT = totalHT + (produit.prixproduit* panier[produit.idproduit]) %}
+                        {% set totalTTC = totalTTC +  (produit.prixproduit* panier[produit.idproduit]) %}
+
+                    {% endfor %}
+
+
+                    <!--quantity-->
+                    <script>
+                        $('.value-plus').on('click', function(){
+                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
+                            divUpd.text(newVal);
+
+
+                        });
+
+                        $('.value-minus').on('click', function(){
+                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
+                            if(newVal>=1) divUpd.text(newVal);
+
+                        });
+                    </script>
+                    <!--quantity-->
+                </table>
+            </div>
+            <div class="checkout-left">
+
+                <div class="checkout-left-basket">
+
+                    {% if produits|length != 0 %}
+
+                        <h4>Continue to basket</h4>
+                        <ul>
+                            <li>Total HT <i>-</i> <span>${{ totalHT }} </span></li>
+                            <li>Total TVA(0%) <i>-</i> <span>TVA NON APPLICABLE </span></li>
+                            <li>Total <i>-</i> <span>${{ totalHT }}</span></li>
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="checkout-right-basket">
+                    <a href="{{ path('homepage') }}"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
+                    <a href="{{ path('souk_el_medina_panier_valider_panier') }}">Valider Panier  <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- //checkout -->
+
+{% endblock %}

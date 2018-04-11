@@ -1,0 +1,58 @@
+{% extends"baseAdmin.html.twig" %}
+
+{% block body %}
+
+    <div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Confirmer la Suppression du client </h3>
+
+
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="table-responsive">
+            <table class="table no-margin">
+                <thead>
+                <tr>
+                    <th>Nom & Prénom</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Numéro</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% if "ROLE_CLIENT" in user.roles  %}
+
+                        <tr>
+                            <td><a href="pages/examples/invoice.html">{{ user.nom }} {{ user.prenom }}</a></td>
+                            <td>{{ user.email }}</td>
+                            {% if user.enabled == true %}
+                                <td><span class="label label-success">Enabled</span></td>
+                            {% else %}
+                                <td><span class="label label-danger">Disabled</span></td>
+                            {% endif %}
+                            <td>{{ user.numerodutelephone }}</td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix">
+        <a href="{{ path('souk_el_medina_user_confirmer_supprimeraction', {'id': user.id}) }}" class="btn btn-sm btn-flat btn-danger pull-left">Supprimer</a>
+        <a href="{{ path('souk_el_medina_user_annuler_supprimeraction') }}" class="btn btn-sm btn-primary btn-flat pull-right">Annuler</a>
+
+    </div>
+    <!-- /.box-footer -->
+    </div>
+    <!-- /.box -->
+    </div>
+
+
+
+{% endblock %}

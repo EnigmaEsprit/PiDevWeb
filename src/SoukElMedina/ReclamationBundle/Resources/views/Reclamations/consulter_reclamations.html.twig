@@ -1,0 +1,81 @@
+{% extends 'baseVendeur.html.twig' %}
+
+{% block title %}Consulter les réclamations | Souk El Medina!{% endblock %}
+
+{% block body %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="{{ path('souk_el_medina_pidev_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Consultation de réclamations clients</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <div class="checkout">
+         <div class="container">
+            <div class="col-lg-3">
+                <strong><i>Rechercher les réclamations : </i></strong><br/><br/>
+                <ul style="list-style-type: none">
+                    <li>
+                        <ul style="list-style-type: none">
+                            <a href="{{ path('reclamations_consultationVendeur2') }}">
+                                <li id="3jours"><span class="glyphicon glyphicon-chevron-right"></span> 3 derniers jours</li>
+                            </a>
+                            <br/>
+                            <a href="{{ path('reclamations_consultationVendeur3') }}">
+                                <li><span class="glyphicon glyphicon-chevron-right"></span> semaine dernière</li>
+                            </a>
+                            <br/>
+                            <a href="{{ path('reclamations_consultationVendeur4') }}">
+                                <li><span class="glyphicon glyphicon-chevron-right"></span> mois dernier</li>
+                            </a>
+                        </ul>
+                    </li>
+                </ul><br/><br/>
+
+                <ul style="list-style-type: none">
+                    <li>
+                        <ul style="list-style-type: none">
+                            <a href="#">
+                                <strong><li><span class="glyphicon glyphicon-chevron-right"></span> 3 derniers jours</li></strong>
+                            </a>
+                            <a href="#">
+                                <strong><li><span class="glyphicon glyphicon-chevron-right"></span> semaine dernière</li></strong>
+                            </a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="checkout-right col-lg-9">
+                <table class="timetable_sub">
+                    <thead>
+                    <tr>
+                        <th>N° de la réclamation</th>
+                        <th>Objet de la réclamation</th>
+                        <th>Nom du client</th>
+                        <th>Email du client</th>
+                        <th>Date d'envoi</th>
+                        <th>Details</th>
+                    </tr>
+                    </thead>
+                    <tbody id="timetable">
+                    {% for reclamation in reclamations %}
+                        <tr  class="rem1">
+                            <td class="invert"><a href="{{ path('reclamation_show', { 'id': reclamation.idreclamation }) }}">{{ reclamation.idreclamation }}</a></td>
+                            <td class="invert">{{ reclamation.objetreclamation }}</td>
+                            <td class="invert">{{ reclamation.iduser.prenom }} {{ reclamation.iduser.nom }}</td>
+                            <td class="invert">{{ reclamation.iduser.email }}</td>
+                            <td class="invert">{{ reclamation.dateenvoireclamation|date('Y-m-d H:i:s') }}</td>
+                            <td class="invert"><a href="{{ path('reclamation_show', { 'id': reclamation.idreclamation }) }}"><span class="glyphicon glyphicon-new-window"></span></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
