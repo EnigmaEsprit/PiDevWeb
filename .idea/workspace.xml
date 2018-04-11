@@ -99,7 +99,11 @@
       </file>
       <file leaf-file-name="evenements.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/config/routing/evenements.yml">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="72" lean-forward="true" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="produits.yml" pinned="false" current-in-tab="false">
@@ -615,7 +619,7 @@
       <workItem from="1523287630184" duration="6338000" />
       <workItem from="1523363716126" duration="8193000" />
       <workItem from="1523392611859" duration="8286000" />
-      <workItem from="1523409475069" duration="19064000" />
+      <workItem from="1523409475069" duration="20081000" />
     </task>
     <task id="LOCAL-00001" summary="wieme">
       <created>1523489225761</created>
@@ -624,11 +628,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523489225761</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="wieme">
+      <created>1523489931138</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1523489931138</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="493008000" />
+    <option name="totallyTimeSpent" value="494025000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -640,17 +651,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="11" weight="0.3290938" />
-      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.5107411" side_tool="true" visible="true" weight="0.18316832" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="0" sideWeight="0.5107411" side_tool="true" visible="true" weight="0.052805282" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="1" weight="0.46864685" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.3286517" />
       <window_info anchor="bottom" id="Run" order="7" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.48925886" weight="0.2514045" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4869762" visible="true" weight="0.3192133" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4869762" visible="true" weight="0.3192133" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="0" weight="0.50322235" />
       <window_info id="Structure" order="2" sideWeight="0.49603623" side_tool="true" weight="0.24758324" />
@@ -1000,7 +1010,11 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SoukElMedina/PidevBundle/Resources/config/routing/evenements.yml">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="72" lean-forward="true" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
