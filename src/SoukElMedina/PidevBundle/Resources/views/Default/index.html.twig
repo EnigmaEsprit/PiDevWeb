@@ -119,7 +119,13 @@
          <p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
         </div>
         <div class="agile_top_brands_grids">
+
+            {% set counter =0 %}
+
+
             {% for promotion in promotionsO %}
+
+                {% set counter=counter+1 %}
              <div class="col-md-4 top_brand_left">
               <div class="hover14 column">
                <div class="agile_top_brand_left_grid">
@@ -130,7 +136,7 @@
                  <figure>
                   <div class="snipcart-item block" >
                    <div class="snipcart-thumb">
-                    <a href="{{ path('souk_el_medina_pidev_detail',{'id':promotion.idpromotion}) }}"><img title=" " alt=" " src="{{ asset('uploads/Images/') }}{{ promotion.idproduit.photoproduit }}"  style="width: 200px;height: 250px" /></a>
+                    <a href="{{ path('souk_el_medina_pidev_detail',{'id':promotion.idproduit.idproduit}) }}"><img title=" " alt=" " src="{{ asset('uploads/Images/') }}{{ promotion.idproduit.photoproduit }}"  style="width: 200px;height: 250px" /></a>
                     <p>{{ promotion.idproduit.nomproduit }}</p>
                     <div class="stars">
                      <i class="fa fa-star blue-star" aria-hidden="true"></i>
@@ -141,10 +147,11 @@
                     </div>
                     <h4>{{ promotion.idproduit.newPrix }} TND<span>{{ promotion.idproduit.prixproduit }}TND</span></h4>
                    </div>
+
                    <div class="snipcart-details top_brand_home_details">
-                    <form action="#" method="post">
+                    <form action="{{ path('souk_el_medina_panier_ajouter_panier',{'id':promotion.idproduit.idproduit}) }}" method="get">
                      <fieldset>
-                      <input type="hidden" name="cmd" value="_cart" />
+                      <input type="hidden" name="cmd" value="" />
                       <input type="hidden" name="add" value="1" />
                       <input type="hidden" name="business" value=" " />
                       <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
@@ -153,8 +160,12 @@
                       <input type="hidden" name="currency_code" value="USD" />
                       <input type="hidden" name="return" value=" " />
                       <input type="hidden" name="cancel_return" value=" " />
-                      <input type="submit" name="submit" value="Add to cart" class="button" />
-                     </fieldset>
+                         {% if panier[promotion.idproduit.idproduit] is not defined %}
+                          <input type="submit" name="submit" value="Add to cart" class="button" />
+                         {% else %}
+                          <a href="{{ path('souk_el_medina_panier_homepage') }}">  <input type="submit" name="submit" value="IN CART" class="button" /></a>
+
+                         {% endif %}</fieldset>
                     </form>
                    </div>
                   </div>
@@ -163,6 +174,11 @@
                </div>
               </div>
               <div><br></div>
+
+                {% if counter ==3 %}
+                 <div class="clearfix"> </div>
+                    {% set counter=0 %}
+                {% endif %}
              </div>
             {% endfor %}
          <div class="clearfix"><br> </div>

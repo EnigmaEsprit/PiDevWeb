@@ -32,7 +32,8 @@ class FactureController extends Controller
 
         return $this->render('SoukElMedinaPanierBundle:Default:facture.html.twig',array(
             'factures' =>$factures,
-            'totalfactures'=>$findfactures
+            'totalfactures'=>$findfactures,
+
         ));
     }
 
@@ -48,7 +49,8 @@ class FactureController extends Controller
         }
 
         $html = $this->renderView('SoukElMedinaPanierBundle:Default:facturePDF.html.twig',array(
-            'facture'=>$facture));
+            'facture'=>$facture,
+            'client'=>$this->getUser()));
 
         try{
             $pdf = new Html2Pdf('P','A4','fr');

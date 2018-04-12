@@ -27,9 +27,14 @@ class ProduitController extends Controller
             $produits,
             $request->query->getInt('page', 1),
             10  );
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
         return $this->render('SoukElMedinaProduitBundle:Default:ShowAllProduit.html.twig', array(
             'produits' => $paginator,
-            'form' => $form->createView(),
+            'form' => $form->createView(),'qteProduitPanier'=> sizeof($session->get('panier'))
 
         ));
     }
@@ -64,10 +69,16 @@ class ProduitController extends Controller
 //            var_dump($rqte) ;
 //            die();
         }
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
+
         $produits=$em->getRepository("SoukElMedinaPidevBundle:Produits")->find($idproduit);
             return $this->render('SoukElMedinaProduitBundle::DetailProduit.html.twig', array(
                 "produits"=>$produits,
-                 'rech'=>$note->createView()
+                 'rech'=>$note->createView(),'qteProduitPanier'=> sizeof($session->get('panier'))
             ));
         }
     public function ShowProduitAction(Request $request,$idB)

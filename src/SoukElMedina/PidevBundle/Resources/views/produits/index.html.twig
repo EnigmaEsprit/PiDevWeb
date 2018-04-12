@@ -1,0 +1,136 @@
+{% extends 'baseVendeur.html.twig' %}
+
+{% block body %}
+<div class="checkout">
+    <div class="container">
+        <h1>Produit list</h1>
+        <div class="checkout-right">
+            <div class="form-group row" style="margin-top: 30px; margin-bottom: 30px; " >
+                <label for="example-search-input" class="col-xs-2 col-form-label textalign" style="font-size: 24px">prix</label>
+                <div class="col-xs-10">
+                    <input type="range" min="1" max="100" step="1" value="50" id="min_price" name="min_price" style="width: 400px; margin-top: 10px;margin-left: -100px" />
+                    <span id="price_range"></span>
+                </div>
+            </div>
+
+
+
+            <table  class="timetable_sub">
+                <thead>
+                <tr>
+                    <th>Reference</th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Photo</th>
+                <th>Quantite</th>
+                <th>Active</th>
+                <th>promotion</th>
+                <th>Categorie magasin</th>
+                <th>Actions</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+            </tr>
+        </thead>
+                <div class="product_loading">
+        <tbody>
+
+        {% for produit in produits %}
+            <tr  class="rem1">
+                <td class="invert">{{ produit.referenceproduit }}</td>
+                <td class="invert">{{ produit.nomproduit }}</td>
+                <td class="invert">{{ produit.prixproduit }}</td>
+                <td class="invert"><img src="{{ asset('uploads/images/') }}{{ produit.photoproduit }}" style="width: 50px;height: 50px"/></td>
+                <td class="invert">{{ produit.quantiteproduit }}</td>
+                <td class="invert">{{produit.active}}</td>
+                <td class="invert">{{ produit.idpromotion }}</td>
+                <td class="invert">{{ produit.categoriemagasin }}</td>
+                <td class="invert">
+
+                    <a href="{{ path('produits_show', { 'idproduit': produit.idproduit }) }}"><img src="{{ asset('images/job-search.png') }}"></a>
+
+                </td>
+                <td class="invert">
+                    <div class="rem">
+                        <div ><a class="close1" href="{{ path('produits_delete', { 'idproduit': produit.idproduit }) }}"></a>
+                        </div>
+                    </div>
+
+                </td>
+                <td class="invert">
+                    <div class="rem">
+                        <div ><a  href="{{ path('produits_edit', { 'idproduit': produit.idproduit }) }}"><img src="{{ asset('images/test (1).png') }}"></a>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+                </div>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.js') }}"></script>²
+    <script>
+        $(document).ready(function(){
+            $('#min_price').change(function(){
+                var price = $(this).val();
+                $("#price_range").text("Product under Price Rs." + price);
+                $.ajax({
+                    url:'http://localhost/PiDevWeb/web/produits/maxprix/' + $(this).val(),
+
+                    type: 'get',
+                    dataType: 'json',
+                    success:resultat
+                });
+            });
+
+        function resultat (data) {
+            $('.product_loading').html('');
+
+            for (i in data) {
+                x = data[i];
+                $('.product_loading').append(
+                    '  <tbody>'+
+                '  <tr  class="rem1">'+
+                '<td class="invert">'+x[0]+'</td>'+
+                ' <td class="invert">'+x[1]+'</td>'+
+                ' <td class="invert">'+x[2]+'</td>'+
+                ' <td class="invert"><img src="http://localhost/PiDevWeb/web/uploads/images/'+x[3]+'" style="width: 50px;height: 50px"/></td>'+
+                ' <td class="invert">'+x[4]+'</td>'+
+                ' <td class="invert">'+x[5]+'</td>'+
+                ' <td class="invert">'+x[7]+'</td>'+
+                '  <td class="invert">'+x[8]+'</td>'+
+                '  <td class="invert">'+
+
+                '  <a href="#"><img src="http://localhost/PiDevWeb/web/images/job-search.png" style="width: 50px;height: 50px"></a>'+
+
+                '  </td>'+
+                '  <td class="invert">'+
+                '   <div class="rem">'+
+                '   <div ><a class="close1" href="#"></a>'+
+                '  </div>'+
+                '  </div>'+
+
+                '   </td>'+
+                '   <td class="invert">'+
+                '  <div class="rem">'+
+                '  <div ><a  href="#"><img src="http://localhost/PiDevWeb/web/images/test (1).png" style="width: 50px;height: 50px""></a>'+
+                '  </div>'+
+                ' </div>'+
+
+                '  </td>'+
+                '  </tr>'+
+                    ' </tbody>'
+                );
+            }
+        }
+        });
+    </script>
+{% endblock %}
+{% endblock %}

@@ -36,8 +36,8 @@
 
 
             </td>
-            <td style="width:25%;"><strong>Bikie Mbida</strong><br>
-               Adresse: Nour Jaafar
+            <td style="width:25%;"><strong>{{ client.prenom }} {{ client.nom }}</strong><br>
+               Adresse: {{ client.adresse }}
 
             </td>
         </tr>
@@ -67,17 +67,24 @@
 
         <tr>
 
+           {% if produit.promotion ==0 %}
             <td>{{ produit.nomProduit }}</td>
-            <td>{{ produit.quantiteproduit }}</td>
-            <td>{{ produit.prixProduit }},00DT</td>
-            <td> {{ produit.prixProduit* produit.quantiteproduit }},00DT</td>
+            {% else %}
+                <td>{{ produit.nomProduit }} <b>(en promotion)</b></td>
+           {% endif %}
+                <td>{{ produit.quantiteproduit }}</td>
+                <td>{{ produit.prixProduit }},00DT</td>
+                <td> {{ produit.prixProduit* produit.quantiteproduit }},00DT</td>
+
 
 
         </tr>
         {% endfor %}
 
         {% set prixT,prixTotal=0,0 %}
+
         {% for produit in facture.commande.produit %}
+
 
         {% set prixT = produit.prixProduit* produit.quantiteproduit %} ;
         {% set prixTotal = prixTotal+ prixT%}

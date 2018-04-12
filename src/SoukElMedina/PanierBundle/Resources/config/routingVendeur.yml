@@ -4,10 +4,13 @@
 souk_el_medina_panier_commande_vendeur:
     path:     /commandes
     defaults: { _controller: SoukElMedinaPanierBundle:CommandeVendeur:Commandes }
-
+    options:
+       expose: true
 souk_el_medina_panier_pdf_facture_vendeur:
     path:     /pdffacture/{id}
     defaults: { _controller: SoukElMedinaPanierBundle:FactureVendeur:facturesPDF}
+    options:
+       expose: true
 
 souk_el_medina_statistiques_vendeur:
     path:     /stats

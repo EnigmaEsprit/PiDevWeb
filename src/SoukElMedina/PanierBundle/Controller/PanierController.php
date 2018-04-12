@@ -68,6 +68,22 @@ class PanierController extends Controller
         $em = $this->getDoctrine()->getManager();
         $produits =$em->getRepository('SoukElMedinaPidevBundle:Produits')
             ->findProduitInSessionArray(array_keys($session->get('panier')));
+
+        $produitsprom = $em->getRepository('SoukElMedina\PidevBundle\Entity\Promotions')
+            ->findProduitPromotionInSessionArray(array_keys($session->get('panier')));
+
+//        foreach ($produits as $produit){
+//            var_dump($produit->getIdproduit());
+//        }
+//        var_dump($session->get('panier'));
+//        foreach ($produitsprom as $produit){
+//            var_dump($produit->getIdproduit());
+//            var_dump(0);
+//        }
+//
+//       // var_dump($produitsprom);
+//
+//        die();
         return $this->render('SoukElMedinaPanierBundle:Default:panier.html.twig',array(
             'produits' =>$produits,
             'panier' =>$session->get('panier'),
@@ -152,7 +168,12 @@ class PanierController extends Controller
             ->findProduitInSessionArray(array_keys($session->get('panier')));
 
         foreach ($produits as $produit) {
-            $prixT = ($produit->getPrixproduit() * $panier[$produit->getIdproduit()]);
+            if ($produit->getValid() ==0 )
+                $prixT = ($produit->getPrixproduit() * $panier[$produit->getIdproduit()]);
+             else
+                 $prixT = ($produit->getNewPrix() * $panier[$produit->getIdproduit()]);
+
+
             $Prixtotal = $Prixtotal + $prixT;
         }
 
@@ -253,14 +274,26 @@ class PanierController extends Controller
         $produits =$em->getRepository('SoukElMedinaPidevBundle:Produits')
             ->findProduitInSessionArray(array_keys($session->get('panier')));
 
+        $produitsprom = $em->getRepository('SoukElMedina\PidevBundle\Entity\Promotions')
+            ->findProduitPromotionInSessionArray(array_keys($session->get('panier')));
+
         $list = new ItemList();
 
         foreach($produits as $k => $product){
+
             $item = new Item();
-            $item->setName( $product->getNomproduit())
-                ->setCurrency("USD")
-                ->setQuantity($panier[$product->getIdproduit()])
-                ->setPrice($product->getPrixproduit());
+            if($product->getValid() == 0){
+                $item->setName( $product->getNomproduit())
+                    ->setCurrency("USD")
+                    ->setQuantity($panier[$product->getIdproduit()])
+                    ->setPrice($product->getPrixproduit());
+            }else{
+                $item->setName( $product->getNomproduit())
+                    ->setCurrency("USD")
+                    ->setQuantity($panier[$product->getIdproduit()])
+                    ->setPrice($product->getNewPrix());
+            }
+
             $list->addItem($item);
         }
 
@@ -463,8 +496,16 @@ class PanierController extends Controller
             foreach($produits as $k => $product){
                 $ligneCmd->setIdcommande($idcmd[$idcmd1]);
                 $ligneCmd->setQuantite($panier[$product->getIdproduit()]);
-                $ligneCmd->setPrixunitaire($product->getPrixproduit());
-                $ligneCmd->setPrixtotal($product->getPrixproduit()*$panier[$product->getIdproduit()]);
+                if ($product->getValid() ==0 ){
+                    $ligneCmd->setPrixunitaire($product->getPrixproduit());
+                    $ligneCmd->setPrixtotal($product->getPrixproduit()*$panier[$product->getIdproduit()]);
+                }
+                else{
+                    $ligneCmd->setPrixunitaire($product->getNewPrix());
+                    $ligneCmd->setPrixtotal($product->getNewPrix()*$panier[$product->getIdproduit()]);
+                }
+
+
                 $ligneCmd->setIdproduit($product->getIdproduit());
                 var_dump($product->getIdproduit());
                 $ligneCmd->setIdmagasin(1);
@@ -522,12 +563,26 @@ class PanierController extends Controller
             ->findProduitInSessionArray(array_keys($session->get('panier')));
 
         foreach ($produits as $produit){
-            $prixT =($produit->getPrixproduit() * $panier[$produit->getIdproduit()]);
-            $Prixtotal=$Prixtotal+$prixT;
 
-            $commande['produit'][$produit->getIdproduit()] = array('nomProduit'=> $produit->getNomproduit(),
-                'quantiteproduit' =>$panier[$produit->getIdproduit()],
-                'prixProduit'=>round($produit->getPrixproduit(),2));
+            if($produit->getValid()==0){
+                $prixT =($produit->getPrixproduit() * $panier[$produit->getIdproduit()]);
+                $Prixtotal=$Prixtotal+$prixT;
+
+                $commande['produit'][$produit->getIdproduit()] = array('nomProduit'=> $produit->getNomproduit(),
+                    'quantiteproduit' =>$panier[$produit->getIdproduit()],
+                    'prixProduit'=>round($produit->getPrixproduit(),2),
+                    'promotion'=> 0);
+            }else{
+                $prixT =($produit->getNewPrix() * $panier[$produit->getIdproduit()]);
+                $Prixtotal=$Prixtotal+$prixT;
+
+                $commande['produit'][$produit->getIdproduit()] = array('nomProduit'=> $produit->getNomproduit(),
+                    'quantiteproduit' =>$panier[$produit->getIdproduit()],
+                    'prixProduit'=>round($produit->getNewPrix(),2),
+                    'promotion'=> 1);
+            }
+
+            $commande['client'] =$this->getUser();
             $commande['Prixtotal'] = round($Prixtotal,2);
             $commande['token']= bin2hex($generator);
 

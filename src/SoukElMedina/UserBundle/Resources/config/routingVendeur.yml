@@ -1,0 +1,26 @@
+
+souk_el_medina_user_homepagevendeur:
+    path:     /vendeurlist
+    defaults: { _controller: SoukElMedinaUserBundle:AdminVendeur:indexVendeur }
+
+souk_el_medina_vendeur_bloqueraction:
+    path:     /bloquervendeur/{id}
+    defaults: { _controller: SoukElMedinaUserBundle:AdminVendeur:BloquerVendeur}
+
+souk_el_medina_vendeur_activeraction:
+    path:     /activervendeur/{id}
+    defaults: { _controller: SoukElMedinaUserBundle:AdminVendeur:ActiverVendeur }
+
+souk_el_medina_vendeur_supprimeraction:
+    path:     /supprimervendeur/{id}
+    defaults: { _controller: SoukElMedinaUserBundle:AdminVendeur:supprimerVendeur }
+
+souk_el_medina_vendeur_confirmer_supprimeraction:
+    path:     /confirmersuppressionvendeur/{id}
+    defaults: { _controller: SoukElMedinaUserBundle:AdminVendeur:confirmSuppression }
+
+souk_el_medina_vendeur_annuler_supprimeraction:
+    path:     /annulersuppressionvendeur
+    defaults: { _controller: SoukElMedinaUserBundle:AdminVendeur:annulerSuppression }
+
+

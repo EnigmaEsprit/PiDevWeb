@@ -22,7 +22,6 @@
                         <th>Nom & Prénom</th>
                         <th>Email</th>
                         <th>Status</th>
-                        <th>Enabled</th>
                         <th>Numéro</th>
                         <th>Action</th>
                     </tr>
@@ -34,10 +33,17 @@
                             <tr>
                                 <td><a href="pages/examples/invoice.html">{{ user.nom }} {{ user.prenom }}</a></td>
                                 <td>{{ user.email }}</td>
-                                <td><span class="label label-success">Shipped</span></td>
-                                <td>{{ user.enabled }}</td>
+                                {% if user.enabled == true %}
+                                    <td><span class="label label-success">Enabled</span></td>
+                                {% else %}
+                                    <td><span class="label label-danger">Disabled</span></td>
+                                {% endif %}
                                 <td>{{ user.numerodutelephone }}</td>
-                                <td></td>
+                                <td><a href="{{ path('souk_el_medina_vendeur_bloqueraction',{'id':user.id}) }}" ><span ></span>bloquer</a>
+                                    <a href="{{ path('souk_el_medina_vendeur_activeraction',{'id':user.id}) }}" >Activer</a>
+                                    <a href="{{ path('souk_el_medina_vendeur_supprimeraction',{'id':user.id}) }}" title="Supprimer" >Supprimer</a></td>
+
+                                </td>
                             </tr>
                         {%endif%}
                     {% endfor %}

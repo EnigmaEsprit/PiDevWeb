@@ -1,9 +1,7 @@
 souk_el_medina_pidev_produits:
     resource: "@SoukElMedinaPidevBundle/Resources/config/routing/produits.yml"
     prefix:   /produits
-souk_el_medina_pidev_magasins:
-    resource: "@SoukElMedinaPidevBundle/Resources/config/routing/magasins.yml"
-    prefix:   /magasins
+
 souk_el_medina_pidev_promotions:
     resource: "@SoukElMedinaPromotionBundle/Resources/config/routing/promotions.yml"
     prefix:   /promotions

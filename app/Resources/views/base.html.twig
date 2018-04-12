@@ -196,30 +196,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </ul>
                             </li>
+                            {#<li class="dropdown">#}
+                                {#<a href="{{ path('magasins_homepage') }}" class="dropdown-toggle" data-toggle="dropdown">Magasin<b class="caret"></b></a>#}
+                                {#<ul class="dropdown-menu multi-column columns-3">#}
+                                    {#<div class="row">#}
+                                        {#<div class="multi-gd-img">#}
+                                            {#<ul class="multi-column-dropdown">#}
+                                                {#<h6>All Household</h6>#}
+                                                {#<li><a href="{{ path('magasins_homepage') }}">Liste des magasins</a></li>#}
+                                                {#<li><a href="household.html">Dust Pans</a></li>#}
+                                                {#<li><a href="household.html">Scrubbers</a></li>#}
+                                                {#<li><a href="household.html">Dust Cloth</a></li>#}
+                                                {#<li><a href="household.html"> Mops </a></li>#}
+                                                {#<li><a href="household.html">Kitchenware</a></li>#}
+                                            {#</ul>#}
+                                        {#</div>#}
+
+
+                                    {#</div>#}
+                                {#</ul>#}
+                            {#</li>#}
+
+
+                            <li><a href="{{ path('magasins_homepage') }}">Magasins</a></li>
+                            <li><a href="{{ path('evenements_indexEventClient') }}">Evenements</a></li>
+                            <li><a href="{{ path('promotions_index_inc') }}">Offers</a></li>
+                            <li>{% if is_granted("IS_AUTHENTICATED_REMEMBERED") and is_granted('ROLE_CLIENT') %}
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Magasin<b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="row">
-                                        <div class="multi-gd-img">
-                                            <ul class="multi-column-dropdown">
-                                                <h6>All Household</h6>
-                                                <li><a href="household.html">Cookware</a></li>
-                                                <li><a href="household.html">Dust Pans</a></li>
-                                                <li><a href="household.html">Scrubbers</a></li>
-                                                <li><a href="household.html">Dust Cloth</a></li>
-                                                <li><a href="household.html"> Mops </a></li>
-                                                <li><a href="household.html">Kitchenware</a></li>
-                                            </ul>
-                                        </div>
+                            <a href="{{ path('magasins_homepage') }}" class="dropdown-toggle" data-toggle="dropdown">Reclamations<b class="caret"></b></a>
+                            <ul class="dropdown-menu multi-column columns-3">
+                            <div class="row">
+                            <div class="multi-gd-img">
+                            <ul class="multi-column-dropdown">
+                            <h6>All Reclamation</h6>
+                            <li><a href="{{ path('reclamations_envoiClient') }}">Send Reclamation</a></li>
+                            <li><a href="{{ path('reclamations_suivi_client') }}">See Reclamtions</a></li>
+
+                            </ul>
+                            </div>
 
 
-                                    </div>
-                                </ul>
+                            </div>
+                            </ul>
+                            </li>
+                            {% endif %}
                             </li>
 
-
-                            <li><a href="{{ path('evenements_indexEventClient') }}">Evenement</a></li>
-                            <li><a href="{{ path('promotions_index_inc') }}">Offers</a></li>
                             <li><a href="{{ path('souk_el_medina_pidev_contact') }}">Contact</a></li>
                         </ul>
                     </div>

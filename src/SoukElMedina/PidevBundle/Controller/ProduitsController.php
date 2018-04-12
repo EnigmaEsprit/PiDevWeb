@@ -4,6 +4,7 @@ namespace SoukElMedina\PidevBundle\Controller;
 
 use SoukElMedina\PidevBundle\Entity\Produits;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -21,9 +22,12 @@ class ProduitsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $produits = $em->getRepository('SoukElMedinaPidevBundle:Produits')->findAll();
+        $produit = new Produits();
+        $form = $this->createForm('SoukElMedina\PidevBundle\Form\ProduitsSearch', $produit);
 
-        return $this->render('produits/index2.html.twig', array(
+        return $this->render('SoukElMedinaPidevBundle:produits:index.html.twig', array(
             'produits' => $produits,
+            'form' => $form->createView(),
         ));
     }
 
@@ -34,18 +38,22 @@ class ProduitsController extends Controller
     public function newAction(Request $request)
     {
         $produit = new Produits();
+
         $form = $this->createForm('SoukElMedina\PidevBundle\Form\ProduitsType', $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $magasin=$em->getRepository('SoukElMedinaPidevBundle:Magasins')->findOneBy(array('iduser' => $this->getUser()));
+            $produit->setIdmagasin($magasin);
+            $produit->setValid(0);
             $em->persist($produit);
             $em->flush();
 
-            return $this->redirectToRoute('produits_show', array('idproduit' => $produit->getIdproduit()));
+            return $this->redirectToRoute('produits_index');
         }
 
-        return $this->render('produits/new.html.twig', array(
+        return $this->render('SoukElMedinaPidevBundle:produits:new.html.twig', array(
             'produit' => $produit,
             'form' => $form->createView(),
         ));
@@ -55,13 +63,22 @@ class ProduitsController extends Controller
      * Finds and displays a produit entity.
      *
      */
-    public function showAction(Produits $produit)
+    public function showAction(Produits $produit )
     {
         $deleteForm = $this->createDeleteForm($produit);
+//        $zffecte=new Produits();
+//        $note=$this->createForm('SoukElMedina\ProduitBundle\Form\rating2', $zffecte);
 
-        return $this->render('produits/show.html.twig', array(
+//        if($note->isSubmitted()){
+//            $em = $this->getDoctrine()->getManager();
+//            $notee=$note->handleRequest($request);
+//            echo $notee;
+//            die();
+//        }
+        return $this->render('SoukElMedinaPidevBundle:produits:show.html.twig', array(
             'produit' => $produit,
             'delete_form' => $deleteForm->createView(),
+//            'rech'=>$note->createView()
         ));
     }
 
@@ -78,10 +95,10 @@ class ProduitsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('produits_edit', array('idproduit' => $produit->getIdproduit()));
+            return $this->redirectToRoute('produits_index');
         }
 
-        return $this->render('produits/edit.html.twig', array(
+        return $this->render('SoukElMedinaPidevBundle:produits:edit.html.twig', array(
             'produit' => $produit,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -92,18 +109,29 @@ class ProduitsController extends Controller
      * Deletes a produit entity.
      *
      */
-    public function deleteAction(Request $request, Produits $produit)
+    public function deleteAction($idproduit)
     {
-        $form = $this->createDeleteForm($produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($produit);
-            $em->flush();
-        }
-
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $EM = $this->getDoctrine()->getManager();
+        $produit = $EM->getRepository("SoukElMedinaPidevBundle:Produits")->find($idproduit);
+        $EM->remove($produit);
+        $EM->flush();
         return $this->redirectToRoute('produits_index');
+    }
+    public function RechercheParPrixAction($prix)
+
+    {
+        $em = $this->getDoctrine()->getManager();
+        $v=null;
+        $produits = $em->getRepository('SoukElMedinaPidevBundle:Produits')->findProduitByPrice($prix);
+        foreach ($produits as $produit){
+            $v[$produit->getIdproduit()] = array($produit->getReferenceproduit(),
+                $produit->getNomproduit(),$produit->getPrixproduit(),$produit->getPhotoproduit(),
+                $produit->getQuantiteproduit(),$produit->getActive(),$produit->getIdpromotion(),$produit->getCategoriemagasin()
+            ,$produit->getIdmagasin()->getNommagasin());
+        }
+        $response = new JsonResponse();
+        return $response->setData($v);
     }
 
     /**
@@ -119,6 +147,6 @@ class ProduitsController extends Controller
             ->setAction($this->generateUrl('produits_delete', array('idproduit' => $produit->getIdproduit())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }

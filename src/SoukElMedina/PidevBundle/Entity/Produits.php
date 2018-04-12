@@ -3,6 +3,8 @@
 namespace SoukElMedina\PidevBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Produits
@@ -95,7 +97,7 @@ class Produits
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid", type="integer", nullable=false)
+     * @ORM\Column(name="valid", type="integer", nullable=true)
      */
     private $valid;
 
@@ -307,6 +309,112 @@ class Produits
     {
         $this->valid = $valid;
     }
+
+
+
+
+    /**
+     * @Assert\File(maxSize="1000000000")
+     */
+    public $file;
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload() {
+        if (null !== $this->file) {
+
+            // do whatever you want to generate a unique name
+            $filename = sha1(uniqid(mt_rand(), true));
+            var_dump($filename.'--------');
+            $this->photoproduit = $filename . '.' . $this->file->guessExtension();
+
+        }
+    }
+
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        // check if we have an old image imagelink
+        if (isset($this->photoproduit)) {
+            // store the old name to delete after the update
+            $this->temp= $this->photoproduit;
+            $this->photoproduit = null;
+        } else {
+            $this->photoproduit = 'initial';
+        }
+    }
+
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file)
+        {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->photoproduit);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if(file_exists($this->getAbsoluteimagelink())) {
+            if ($this->getUploadRootDir() . $this->logo = $this->getAbsoluteimagelink()) {
+                unlink($this->logo);
+            }
+        }
+
+
+    }
+
+    public function getAbsoluteimagelink()
+    {
+        return null === $this->photoproduit ? null : $this->getUploadRootDir().'/'.$this->photoproduit;
+    }
+
+    public function getWebimagelink()
+    {
+        return null === $this->photoproduit ? null : $this->getUploadDir().'/'.'/'.$this->photoproduit;
+    }
+
+    public function getUploadRootDir()
+    {
+        // the absolute directory imagelink where uploaded documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir().'/';
+    }
+
+    public function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/Images';
+
+    }
+
+
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
 
 
 }

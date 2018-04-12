@@ -36,7 +36,11 @@ class MagasinsController extends Controller
 //            $em->persist($rating);
 //            $em->flush();
 //        }
-
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
         $magasin = $em->getRepository('SoukElMedinaPidevBundle:Magasins')->findAll();
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -44,30 +48,41 @@ class MagasinsController extends Controller
             $request->query->getInt('page', 1),
             1   );
         return $this->render('@SoukElMedinaMagasins/Magasins/showAll.html.twig', array(
-            'page' => $pagination,
+            'page' => $pagination,  'qteProduitPanier'=> sizeof($session->get('panier'))
 
         ));
     }
 
-    public function ShowDetailAction($idmagasin){
+    public function ShowDetailAction(Request $request,$idmagasin){
 
 
         $em= $this->getDoctrine()->getManager();
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
 
         $magasin=$em->getRepository("SoukElMedinaPidevBundle:Magasins")->find($idmagasin);
         return $this->render('SoukElMedinaMagasinsBundle:Magasins:DetailMagasins.html.twig', array(
-            "magasin"=>$magasin));
+            "magasin"=>$magasin, 'qteProduitPanier'=> sizeof($session->get('panier'))));
     }
 
 
-    public function MonMagasinDetailAction(){
+    public function MonMagasinDetailAction(Request $request){
 
 
         $em= $this->getDoctrine()->getManager();
         $id=$this->getUser();
         $magasin=$em->getRepository("SoukElMedinaPidevBundle:Magasins")->findOneBy(array('iduser'=>$id));
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
+
         return $this->render('SoukElMedinaMagasinsBundle:Magasins:DetailMagasinsVendeur.html.twig', array(
-            "magasin"=>$magasin));
+            "magasin"=>$magasin,    'qteProduitPanier'=> sizeof($session->get('panier'))));
     }
 
     public function showProduitsAction($idmagasin){

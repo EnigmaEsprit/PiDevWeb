@@ -3,6 +3,9 @@
 namespace SoukElMedina\PidevBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,19 +16,40 @@ class ProduitsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('referenceproduit')
+        $builder->add('referenceproduit')
             ->add('nomproduit')
             ->add('prixproduit')
-            ->add('photoproduit')
+            ->add('file')
             ->add('quantiteproduit')
-            ->add('active')
+            ->add('active', ChoiceType::class, array(
+
+                    'choices' => array(
+                        ''=>'',
+                        'true' => 'true',
+                        'false' => 'false',
+
+
+                    ),
+                )
+            )
             ->add('idpromotion')
-            ->add('categoriemagasin')
-            ->add('idmagasin');
+            ->add('categoriemagasin', ChoiceType::class, array(
+
+                    'choices' => array(
+                        ''=>'',
+                        'vetements' => 'vetements',
+                        'decorations' => 'decorations',
+                        'meuble' => 'meuble',
+                        'artisanal' => 'artisanal',
+                        'plantes' => 'plantes',
+
+                    ),
+                    'required'    => false,)
+            )
+            ->add('Ajouter',SubmitType::class);
     }/**
-     * {@inheritdoc}
-     */
+ * {@inheritdoc}
+ */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

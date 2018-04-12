@@ -217,6 +217,12 @@ class PromotionsController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             9/*limit per page*/
         );
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
+
 
         $DC=(new \DateTime('now'))->format("d/m/Y H:i");
         $prompotion2 =$em->getRepository('SoukElMedinaPidevBundle:Promotions')->FindOffers($DC);
@@ -230,6 +236,7 @@ class PromotionsController extends Controller
 
         return $this->render('@SoukElMedinaPromotion/promotions/promotionINC.html.twig', array(
             'promotions' => $prompotions1,'promotionsO'=>$prompotions2,
+            'qteProduitPanier'=> sizeof($session->get('panier'))
         ));
     }
     public function findProduitAction(Request $request)

@@ -221,9 +221,15 @@ class EvenementsController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             1/*limit per page*/
         );
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
+
 
         return $this->render('@SoukElMedinaEvenement/evenements/indexEventClient.html.twig', array(
-            'evenements' => $evenements
+            'evenements' => $evenements,'qteProduitPanier'=> sizeof($session->get('panier'))
         ));
     }
 
@@ -533,6 +539,13 @@ return $this->redirectToRoute('souk_el_medina_pidev_homepage');
         $event = $request->get('idevenement');
         $user = $this->getUser();
         $Participent = $EM->getRepository("SoukElMedinaPidevBundle:Participations")->FindParticipation($event, $user);
+            $session = $request->getSession();
+            if($session->has('panier')){
+                $panier = $session->get('panier');
+            }
+            else{ $panier=false;}
+
+
         if (empty($Participent)&& $this->isGranted('ROLE_CLIENT')) {
             $Participer = new Participations();
 
@@ -549,7 +562,7 @@ return $this->redirectToRoute('souk_el_medina_pidev_homepage');
             $EM->persist($Evenement);
             $EM->flush();
 
-            return $this->render("@SoukElMedinaEvenement/evenements/participation.html.twig");
+            return $this->render("@SoukElMedinaEvenement/evenements/participation.html.twig",array('qteProduitPanier'=> sizeof($session->get('panier'))));
 //        } elseif ($this->isGranted('ROLE_VENDEUR')) {
 //            $userID = $this->getUser()->getId();
 //            $em = $this->getDoctrine()->getManager();
@@ -561,7 +574,7 @@ return $this->redirectToRoute('souk_el_medina_pidev_homepage');
 //                'evenements' => $evenements,'promotionsO'=>$prompotion,
 //            ));
         }else{
-            return $this->render("@SoukElMedinaEvenement/evenements/echec.html.twig");
+            return $this->render("@SoukElMedinaEvenement/evenements/echec.html.twig",array('qteProduitPanier'=> sizeof($session->get('panier'))));
         }
         }
         else
@@ -570,7 +583,7 @@ return $this->redirectToRoute('souk_el_medina_pidev_homepage');
         }
     }
 
-    public function showINCAction(Evenements $evenement)
+    public function showINCAction(Request $request,Evenements $evenement)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -592,11 +605,19 @@ return $this->redirectToRoute('souk_el_medina_pidev_homepage');
             {
                 $var=false;
             }
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
+
+
 
         $evenements = $em->getRepository('SoukElMedinaPidevBundle:Evenements')->FindEvenement($DC2);
 
         return $this->render('SoukElMedinaEvenementBundle:evenements:showINC.html.twig', array(
             'evenement' => $evenement, 'evenements' => $evenements,'var'=>$var,'npr'=>$NPR,
+            'qteProduitPanier'=> sizeof($session->get('panier'))
         ));
     }
     public function showAdminAction(Evenements $evenement)

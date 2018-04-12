@@ -73,8 +73,16 @@
 
                                 <td class="invert">{{ produit.nomproduit }}</td>
 
+                                {% if produit.valid ==0 %}
                                 <td class="invert">${{ produit.prixproduit }}</td>
-                                <td class="invert">${{ produit.prixproduit * panier[produit.idproduit] }}</td>
+                                    <td class="invert">${{ produit.prixproduit * panier[produit.idproduit] }}</td>
+                                {% else %}
+                                    <td class="invert">${{ produit.newPrix }}</td>
+                                    <td class="invert">${{ produit.newPrix* panier[produit.idproduit] }}</td>
+                                    {% endif %}
+
+
+
                                 <td class="invert">
                                     <div class="rem">
                                         <a href="{{ path('souk_el_medina_panier_supprimer_panier',{'id':produit.idproduit}) }}"><div class="close1"> </div></a>
@@ -83,8 +91,15 @@
                                 </td>
                             </form>
                         </tr>
-                        {% set totalHT = totalHT + (produit.prixproduit* panier[produit.idproduit]) %}
-                        {% set totalTTC = totalTTC +  (produit.prixproduit* panier[produit.idproduit]) %}
+
+                        {% if produit.valid ==0 %}
+                            {% set totalHT = totalHT + (produit.prixproduit* panier[produit.idproduit]) %}
+                            {% set totalTTC = totalTTC +  (produit.prixproduit* panier[produit.idproduit]) %}
+                        {% else %}
+                            {% set totalHT = totalHT + (produit.newPrix* panier[produit.idproduit]) %}
+                            {% set totalTTC = totalTTC +  (produit.prixproduit* panier[produit.idproduit]) %}
+                        {% endif %}
+
 
                     {% endfor %}
 

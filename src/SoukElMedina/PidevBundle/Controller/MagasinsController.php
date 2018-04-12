@@ -4,17 +4,22 @@ namespace SoukElMedina\PidevBundle\Controller;
 
 use SoukElMedina\PidevBundle\Entity\Magasins;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Magasin controller.
  *
+ * @Route("magasins")
  */
 class MagasinsController extends Controller
 {
     /**
      * Lists all magasin entities.
      *
+     * @Route("/", name="magasins_index")
+     * @Method("GET")
      */
     public function indexAction()
     {
@@ -22,7 +27,7 @@ class MagasinsController extends Controller
 
         $magasins = $em->getRepository('SoukElMedinaPidevBundle:Magasins')->findAll();
 
-        return $this->render('magasins/index2.html.twig', array(
+        return $this->render('SoukElMedinaPidevBundle:magasins:index.html.twig', array(
             'magasins' => $magasins,
         ));
     }
@@ -30,6 +35,8 @@ class MagasinsController extends Controller
     /**
      * Creates a new magasin entity.
      *
+     * @Route("/new", name="magasins_new")
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -39,13 +46,15 @@ class MagasinsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //  $magasin->uploadPicture();
+
             $em->persist($magasin);
             $em->flush();
 
-            return $this->redirectToRoute('magasins_show', array('idmagasin' => $magasin->getIdmagasin()));
+            return $this->redirectToRoute('magasins_index');
         }
 
-        return $this->render('magasins/new.html.twig', array(
+        return $this->render('SoukElMedinaPidevBundle:magasins:new.html.twig', array(
             'magasin' => $magasin,
             'form' => $form->createView(),
         ));
@@ -54,13 +63,15 @@ class MagasinsController extends Controller
     /**
      * Finds and displays a magasin entity.
      *
+     * @Route("/{idmagasin}", name="magasins_show")
+     * @Method("GET")
      */
     public function showAction(Magasins $magasin)
     {
         $deleteForm = $this->createDeleteForm($magasin);
 
-        return $this->render('magasins/show.html.twig', array(
-            'magasin' => $magasin,
+        return $this->render('SoukElMedinaPidevBundle:magasins:show.html.twig', array(
+            'form' => $magasin,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -68,6 +79,8 @@ class MagasinsController extends Controller
     /**
      * Displays a form to edit an existing magasin entity.
      *
+     * @Route("/{idmagasin}/edit", name="magasins_edit")
+     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Magasins $magasin)
     {
@@ -78,10 +91,10 @@ class MagasinsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('magasins_edit', array('idmagasin' => $magasin->getIdmagasin()));
+            return $this->redirectToRoute('magasins_index');
         }
 
-        return $this->render('magasins/edit.html.twig', array(
+        return $this->render('SoukElMedinaPidevBundle:magasins:edit.html.twig', array(
             'magasin' => $magasin,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -91,21 +104,17 @@ class MagasinsController extends Controller
     /**
      * Deletes a magasin entity.
      *
+     * @Route("/{idmagasin}", name="magasins_delete")
      */
-    public function deleteAction(Request $request, Magasins $magasin)
+    public function deleteAction($idmagasin)
     {
-        $form = $this->createDeleteForm($magasin);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($magasin);
-            $em->flush();
-        }
-
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $EM = $this->getDoctrine()->getManager();
+        $Magasin = $EM->getRepository("SoukElMedinaPidevBundle:Magasins")->find($idmagasin);
+        $EM->remove($Magasin);
+        $EM->flush();
         return $this->redirectToRoute('magasins_index');
     }
-
     /**
      * Creates a form to delete a magasin entity.
      *
@@ -119,6 +128,6 @@ class MagasinsController extends Controller
             ->setAction($this->generateUrl('magasins_delete', array('idmagasin' => $magasin->getIdmagasin())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }

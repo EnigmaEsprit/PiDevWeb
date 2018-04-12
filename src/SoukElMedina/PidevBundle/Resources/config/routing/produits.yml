@@ -21,4 +21,8 @@ produits_edit:
 produits_delete:
     path:     /{idproduit}/delete
     defaults: { _controller: "SoukElMedinaPidevBundle:Produits:delete" }
-    methods:  DELETE
+    #methods:  DELETE
+maxprix:
+    path:     /maxprix/{prix}
+    defaults: { _controller: "SoukElMedinaPidevBundle:Produits:RechercheParPrix" }
+    methods:  [GET, POST]

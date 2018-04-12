@@ -2,9 +2,6 @@ souk_el_medina_user_homepageclient:
     path:     /administrateur/userlist
     defaults: { _controller: SoukElMedinaUserBundle:AdminUser:index }
 
-souk_el_medina_user_homepagevendeur:
-    path:     /administrateur/vendeurlist
-    defaults: { _controller: SoukElMedinaUserBundle:AdminUser:indexVendeur }
 
 souk_el_medina_user_bloqueraction:
     path:     /administrateur/bloquerclient/{id}
@@ -19,11 +16,14 @@ souk_el_medina_user_supprimeraction:
     defaults: { _controller: SoukElMedinaUserBundle:AdminUser:supprimerClient }
 
 souk_el_medina_user_confirmer_supprimeraction:
-    path:     /administrateur/confirmersuppression/{id}
+    path:     /administrateur/confirmersuppressionclient/{id}
     defaults: { _controller: SoukElMedinaUserBundle:AdminUser:confirmSuppression }
 
 souk_el_medina_user_annuler_supprimeraction:
-    path:     /administrateur/annulersuppression
+    path:     /administrateur/annulersuppressionclient
     defaults: { _controller: SoukElMedinaUserBundle:AdminUser:annulerSuppression }
 
 
+routingVendeur:
+    resource: "routingVendeur.yml"
+    prefix: /administrateur

@@ -24,6 +24,12 @@ class ContactController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             1/*limit per page*/
         );
+        $session = $request->getSession();
+        if($session->has('panier')){
+            $panier = $session->get('panier');
+        }
+        else{ $panier=false;}
+
 
         if($request->isMethod('post')){
             $message = \Swift_Message::newInstance()
@@ -35,11 +41,11 @@ class ContactController extends Controller
                 ->setBody($this->render('@SoukElMedinaDecouverte/Decouverte/emailContact.html.twig', array('name' => $request->get('name'), 'body' => $request->get('body'))));
             $this->get('mailer')->send($message);
             return $this->render('@SoukElMedinaDecouverte/Decouverte/contact.html.twig', array(
-                'magasins' => $magasins, ));
+                'magasins' => $magasins,'qteProduitPanier'=> sizeof($session->get('panier')) ));
 
         }
         return $this->render('@SoukElMedinaDecouverte/Decouverte/contact.html.twig', array(
-            'magasins' => $magasins,
+            'magasins' => $magasins,'qteProduitPanier'=> sizeof($session->get('panier'))
         ));
 
     }

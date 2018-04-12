@@ -59,4 +59,11 @@ class PromotionRepository extends EntityRepository
         );
         return $query->getResult();
     }
+
+    public function findProduitPromotionInSessionArray($array){
+        $query = $this->createQueryBuilder('p');
+        $query->where('p.idproduit IN (:array)')
+            ->setParameter('array',$array);
+        return $query->getQuery()->getResult();
+    }
 }
