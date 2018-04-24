@@ -4,6 +4,10 @@ parameters:
     #parameter_name: value
 
 services:
+  soukelmedina_pidevbundle.archivable_reclamations:
+    class: SoukElMedina\PidevBundle\Entity\Reclamations
+    tags:
+        - { name: cl_archiver.archivable_entity, archived_entity: SoukElMedina\PidevBundle\Entity\ArchivedReclamations }
   app.form.registration:
     class: SoukElMedina\PidevBundle\Form\UsersType
     tags:

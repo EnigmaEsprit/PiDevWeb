@@ -13,6 +13,12 @@ class ProduitController extends Controller
     }
     public function detailAction()
     {
-        return $this->render('SoukElMedinaPidevBundle:Default:detail.html.twig');
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $em = $this->getDoctrine()->getManager();
+        $commentaires = $em -> getRepository('SoukElMedinaPidevBundle:Commentaires') -> findCommentaires(1);
+        $user = $em->getRepository('SoukElMedinaPidevBundle:Users') -> find($this->getUser());
+        return $this->render('SoukElMedinaPidevBundle:Default:detail.html.twig',array(
+            'commentaires' => $commentaires, 'user' => $user
+        ));
     }
 }

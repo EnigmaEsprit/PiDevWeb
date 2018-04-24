@@ -1,0 +1,77 @@
+{% extends"baseVendeur.html.twig" %}
+
+{% block title %}Répondre à une réclamation | Souk El Medina!{% endblock %}
+
+{% block body %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="{{ path('souk_el_medina_pidev_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Envoi d'une réponse</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <!-- register -->
+    <div class="register">
+        <div class="container">
+            <div class="login-form-grids">
+
+                <form method="POST" >
+
+                    <table>
+                        {{ form_start(form) }}
+
+                        <tr>
+                            <div class="wrap-input100 validate-input" data-validate="Objet is required">
+                                <span class="label-input100"></span>
+                                {{ form_widget(form.nom, {'attr': {'class': 'input100', 'id': 'nomuser', 'value': 'oussama boumaiza' }}) }}
+                                <span class="focus-input100"></span>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="wrap-input100 validate-input" data-validate="Objet is required">
+                                <span class="label-input100"></span>
+                                {{ form_widget(form.email, {'attr': {'class': 'input100', 'id': 'emailuser', 'value': 'ivan.onana2013@gmail.com' }}) }}
+                                <span class="focus-input100"></span>
+                            </div>
+                        </tr><br/>
+                        <tr>
+                            <div class="wrap-input100 validate-input" data-validate="Contenu is required">
+                                    <span class="label-input100"></span>
+                                    {{ form_widget(form.text, {'attr': {'class': 'input100', 'placeholder': "Entrer le contenu de votre réponse ici: "}}) }}
+                                    <span class="focus-input100"></span>
+                                </div>
+                        </tr>
+
+                        <tr>
+                            <input type="submit" value="Envoyer" />
+                        </tr>
+
+                        {{ form_end(form) }}
+                    </table>
+                </form>
+
+                <p align="center" style="margin-top: 10%">
+                    <a href="{{ path('souk_el_medina_pidev_homepage_Vendeur') }}">Annuler</a>
+                </p>
+            </div>
+            <span id="dede" style="display: none">{{ reclamation.iduser.nom }}</span>
+            <span id="dada" style="display: none">{{ reclamation.iduser.email }}</span>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#nomuser').change(function() {
+                $(this).val(document.getElementById('dede').text());
+
+            }).change();
+            $('#emailuser').change(function() {
+                $(this).val(document.getElementById('dada').text());
+
+            }).change();
+
+        });
+    </script>
+
+{% endblock %}

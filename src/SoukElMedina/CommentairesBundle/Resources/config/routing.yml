@@ -1,3 +1,14 @@
-souk_el_medina_commentaires_homepage:
-    path:     /
-    defaults: { _controller: SoukElMedinaCommentairesBundle:Default:index }
+#souk_el_medina_commentaires_homepage:
+#    path:     /
+#    defaults: { _controller: SoukElMedinaCommentairesBundle:Default:index }
+
+souk_el_medina_commentaires_ajout:
+    path:     /AjoutCommentaire
+    defaults: { _controller: SoukElMedinaCommentairesBundle:Commentaires:ajouterUnCommentaire }
+
+souk_el_medina_commentaires_supprimer:
+    path:     /deleteCommentaires/{id}
+    defaults: { _controller: SoukElMedinaCommentairesBundle:Commentaires:deleteCommentaire }
+
+
+

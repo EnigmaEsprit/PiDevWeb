@@ -26,8 +26,10 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface {
 
         if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
             $response = new RedirectResponse($this->router->generate('souk_el_medina_pidev_homepage_Admin'));
+        } else if ($this->authorizationChecker->isGranted('ROLE_VENDEUR')) {
+            $response = new RedirectResponse($this->router->generate('souk_el_medina_pidev_homepage_Vendeur'));
         } else if ($this->authorizationChecker->isGranted('ROLE_USER')) {
-            $response = new RedirectResponse($this->router->generate('fos_user_profile_show'));
+            $response = new RedirectResponse($this->router->generate('souk_el_medina_pidev_homepage'));
         }
 
         return $response;

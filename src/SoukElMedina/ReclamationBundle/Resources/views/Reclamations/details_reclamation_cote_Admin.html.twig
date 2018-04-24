@@ -1,0 +1,114 @@
+{% extends"baseAdmin.html.twig" %}
+
+{% block body %}
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="content-wrapper" style="margin-left: -0.5%">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Détails
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="#">Tables</a></li>
+                    <li class="active">Réclamations</li>
+                </ol>
+            </section><br/>
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title"></h3>
+                            </div>
+                            <div class="col-xs-12">
+                                <h2 class="page-header">
+                                    <i class="fa fa-globe"></i> Réclamation n° {{ reclamation.idreclamation }}.
+                                    <small class="pull-right">Date: {{ reclamation.dateenvoireclamation|date('d MM Y') }}</small>
+                                </h2>
+                            </div>
+                            <!-- /.col -->
+                        <!-- info row -->
+                            <div class="row invoice-info" style="font-size: 18px">
+                                <div class="col-sm-4 invoice-col" style="margin-left: 0.5%">
+                                    From
+                                    <address>
+                                        <strong>{{ reclamation.iduser.prenom }} {{ reclamation.iduser.nom }}</strong><br>
+                                        <br>Adresse du client: <br>
+                                        {{ reclamation.iduser.adresse }}<br>
+                                        <br>N° de téléphone: <br>
+                                        {{ reclamation.iduser.numerodutelephone }}<br>
+                                        <br>Email: <br>
+                                        {{ reclamation.iduser.email }}
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 invoice-col">
+                                    To
+                                    <address>
+                                        <strong>
+                                            {% if(reclamation.idmagasin != null) %}
+                                                {{ reclamation.idmagasin.nommagasin }}
+                                            {% else %}Admin
+                                            {% endif %}
+                                        </strong><br><br>
+                                        Type de réclamation: <br>
+                                        <span id="typ">{{ reclamation.typereclamation }}</span><br><br>
+                                        Objet de la réclamation: <br>
+                                        {{ reclamation.objetreclamation }}<br>
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4">
+                                    <address>
+                                        Contenu de la réclamation: <br>
+                                    </address>
+                                    <textarea cols="40" rows="5">{{ reclamation.contenureclamation }}</textarea>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                            <div class="row invoice-info" style="margin: 10% 5%; padding: 2%">
+                                {% if reclamation.typereclamation == 'Réclamation liée au système' %}
+                                <a href="#"><button id="repondre" style="
+        background-color: #2c3b41; /* Green */
+        color: white;
+        border: none;
+        padding: 7px 20px;
+        margin: 1% 2% 5% 25%;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;"><span>Répondre à la réclamation</span></button></a>
+                                {% else %}
+                                    <a href="{{ path('reclamation_envoyer_vendeur', { 'id': reclamation.idreclamation }) }}"><button id="suivre" style="
+        background-color: #2c3b41; /* Green */
+        color: white;
+        border: none;
+        padding: 7px 20px;
+        margin: 1% 2% 5% 25%;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;"><span>Faire suivre la réclamation</span></button></a>
+                                {% endif %}
+                                        <a href="{{ path('reclamation_delete_admin', { 'id': reclamation.idreclamation }) }}"><button id="supprimer" style="
+        background-color: #2c3b41; /* Green */
+        border: none;
+        color: white;
+        padding: 7px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;"><span>Supprimer la réclamation</span></button></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </body>
+{% endblock %}

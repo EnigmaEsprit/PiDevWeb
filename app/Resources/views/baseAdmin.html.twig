@@ -6,6 +6,7 @@
     <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
@@ -37,7 +38,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="{{ path('souk_el_medina_pidev_homepage') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
@@ -287,12 +288,12 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                         {#{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |#}
                                         <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">
                                             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                         </a>
-                                    {#{% else %}#}
+                                        {#{% else %}#}
                                         {#<a href="{{ path('fos_user_security_login') }}" class="btn btn-default btn-flat">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
                                     {% endif %}
 
@@ -426,8 +427,10 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-                        <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Evenements</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Les Demandes</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Liste Block</a></li>
+                        <li><a href="{{ path('reclamations_consultationAdmin') }}"><i class="fa fa-circle-o"></i> Reclamations</a></li>
                     </ul>
                 </li>
                 <li>
@@ -515,94 +518,36 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
 
+        {% block body %}
 
-        <!-- Main content -->
-        <section class="content">
-            <!-- Info boxes -->
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">CPU Traffic</span>
-                            <span class="info-box-number">90<small>%</small></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
+        {% endblock %}
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
                 </div>
                 <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                <div class="col-md-4">
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">Likes</span>
-                            <span class="info-box-number">41,410</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
+                <!-- ./box-body -->
 
-                <!-- fix for small devices only -->
-                <div class="clearfix visible-sm-block"></div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Sales</span>
-                            <span class="info-box-number">760</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">New Members</span>
-                            <span class="info-box-number">2,000</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
+                <!-- /.box -->
             </div>
-            <!-- /.row -->
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box">
+        <!-- Main row -->
 
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-
-                                </div>
-                                <!-- /.col -->
-                                <div class="col-md-4">
-
-                        </div>
-                        <!-- ./box-body -->
-
-                    <!-- /.box -->
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-
-            <!-- Main row -->
-
-            <!-- /.row -->
+        <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
@@ -836,8 +781,3 @@
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 
 </body>
-
-
-
-
-

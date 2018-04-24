@@ -1,4 +1,43 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+    <style>
+        .commentaires{
+            margin-top: 5%; padding: 10px; width: 90%; min-height: 40px; background-color: #f3f6f7;
+        }
+        .entete_user{ margin-bottom: 3%;}
+        #userpic{
+            width: 30px;  height: 30px;  border-radius: 25px; display: inline-block;
+            border: #ced0d1 solid 1px; margin-right: 1%;
+            background-image: url("{{ asset('uploads/Images/50hc.png') }}");
+            background-position: center;
+        }
+        #pseudo{margin-top: -5.5%; margin-left: 8%;}
+        .contenu_commentaire{height: 130px; background-color: white;
+            border: #ced0d1 solid 1px; border-radius: 3px;
+            padding: 1% 1% 3%; margin-bottom: 6%;
+        }
+        #textqreq{
+            height: 90%; width: 100%; border: none;
+        }
+        #textqreq:focus{
+            border-color: white;
+        }
+        #poster{
+            text-align: right; color: #fe9126; font-weight: bold; font-size: 14px;
+        }
+        .recherche_commentaires{
+            margin-bottom: 3%; font-size: 20px; text-align: center;
+        }
+        .liste_commentaires{max-height: 500px; background-color: white;
+            border: #ced0d1 solid 1px; border-radius: 3px;
+            padding: 3%; margin-bottom: 4%;
+            overflow: scroll;
+        }
+        .historiq{ font-weight: normal; color: #0a0a0a}
+
+    </style>
+
+{% endblock %}
 {% block body %}
     <!-- breadcrumbs -->
     <div class="breadcrumbs">
@@ -59,6 +98,44 @@
                                     <input type="submit" name="submit" value="Add to cart" class="button">
                                 </fieldset>
                             </form>
+                        </div>
+                        <div class="commentaires">
+                            <div class="entete_user">
+                                <div id="userpic"></div>
+                                <div id="pseudo"><span style=" color: #fe9126;">{{ user }}</span></div>
+                            </div>
+                            <div class="contenu_commentaire" align="right">
+                                <textarea name="textqreq" id="textqreq"></textarea>
+                                <a href="{{ path('souk_el_medina_commentaires_ajout') }}"><p id="poster">Poster un commentaire </p></a>
+                            </div>
+                            <div class="recherche_commentaires">
+                                <a href="#"><span STYLE="margin-right: 5%;" class="historiq">Les plus récents</span></a>
+                                <a href="#"><span class="historiq">Les plus anciens</span></a>
+                            </div>
+                            <div class="liste_commentaires">
+                                {% for commentaire in commentaires %}
+                                <div>
+                                    <div class="entete_user">
+                                        <div id="userpic"></div>
+                                        <div id="pseudo"><span>{{ commentaire.iduser.nom }} - Le {{ commentaire.dateajoutcommentaire|date("Y-M-d h:i:s") }}</span></div>
+                                    </div>
+                                    <div style="margin-left: 3%">
+                                        <p>{{ commentaire.contenucommentaire }}</p><br/>
+                                    </div>
+                                    <div style="margin-left: 3%; display: inline">
+                                        <div align="left">
+                                            <span><a href="{{ path('souk_el_medina_commentaires_supprimer', { 'id': commentaire.idcommentaire }) }}">Effacer</a> | <a href="#">Modifier</a></span>
+                                        </div>
+                                        <div align="right" style="margin-top: -4%; color: #fe9126">
+                                            <a href="#"><span id="poster"> J'aime</span></a>
+                                        </div>
+                                    </div>
+                                    <div style="margin-bottom: 2%">
+                                        <hr>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>

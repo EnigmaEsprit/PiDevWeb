@@ -1,0 +1,104 @@
+{% extends"base.html.twig" %}
+
+{% block title %}Envoyer une réclamation | Souk El Medina!{% endblock %}
+
+{% block body %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="{{ path('souk_el_medina_pidev_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Envoi de réclamation</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <!-- register -->
+    <div class="register">
+        <div class="container">
+            <h1>Envoyer une Réclamation</h1>
+
+            <div class="login-form-grids">
+
+                <form method="POST" >
+
+                    <table>
+                        {{ form_start(form) }}
+
+                        <tr>
+                                <div class="wrap-input100 validate-input" data-validate="Type is required">
+                                    <select style="height: 45px; width: 100%;" title="Sélectionner le type de réclamation." required class="selectbox" name="recl" id="recl">
+                                        <option data-placeholder="true">--  Sélectionner le type de réclamation  --</option>
+                                        <option value="Réclamation liée au système">Réclamation liée au système</option>
+                                        <option value="Réclamation liée à une vente">Réclamation liée à une vente</option>
+                                    </select>
+                                </div>
+                        </tr>
+                        <tr>
+                            <div class="wrap-input100 validate-input" data-validate="Objet is required">
+
+
+                                <span class="label-input100"></span>
+                                {{ form_widget(form.objetreclamation, {'attr': {'class': 'input100', 'placeholder': "Objet de la réclamation"}}) }}
+                                <span class="focus-input100"></span>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="wrap-input100 validate-input" data-validate="Magasin is required">
+{#
+                                <select title="Magasins" class="selectbox" name="mag">
+                                        <option selected>--  Sélectionner le magasin  --</option>
+                                    {% for magasin in listeMagasins %}
+                                        <option value={{ magasin.idmagasin }}>{{ magasin.nommagasin }}</option>
+                                    {% endfor %}
+                                </select>
+#}
+                                {{ form_widget(form.idmagasin, {'id': 'mag', 'attr': {'style': 'width:100%', 'style': 'border-color:grey', 'style': 'height:45px'}}) }}
+                            </div>
+                        </tr><br/>
+                        <tr>
+                                <div class="wrap-input100 validate-input" data-validate="Contenu is required">
+
+
+                                    <span class="label-input100"></span>
+                                    {{ form_widget(form.contenureclamation, {'attr': {'class': 'input100', 'placeholder': "Entrer le contenu de votre réclamation ici"}}) }}
+                                    <span class="focus-input100"></span>
+                                </div>
+                        </tr>
+
+                        <tr>
+                            <input type="submit" value="Envoyer" />
+                        </tr>
+
+                        {{ form_end(form) }}
+                    </table>
+                </form>
+
+                <p align="center" style="margin-top: 10%">
+                    <a href="{{ path('souk_el_medina_pidev_homepage') }}">Retourner à la page d'accueil</a>
+                </p>
+                <p align="center">
+                    ou
+                </p>
+                <p align="center">
+                    <a href="{{ path('reclamations_suivi_client') }}">Suivre l'état d'avancement de mes réclamations</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#recl').change(function() {
+                $('#mag').prop('disabled', $(this).val() === 'Réclamation liée au système');
+
+                if ($(this).val() === 'Réclamation liée au système')
+                {
+                    $('#mag').css({"background-color":"#ece9e0", "color":"grey"})
+                }
+                else {
+                    $('#mag').css({"background-color":"white", "color":"black"})
+                }
+            }).change();
+
+        });
+    </script>
+{% endblock %}

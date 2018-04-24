@@ -5,8 +5,8 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE_CLIENT:       ROLE_USER
-        ROLE_VENDEUR:       ROLE_USER
+        ROLE_CLIENT:      ROLE_USER
+        ROLE_VENDEUR:     ROLE_VENDEUR
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
@@ -27,10 +27,15 @@ security:
             anonymous:    true
 
     access_control:
-#        - { path: ^/Admin, role: ROLE_ADMIN }
-#        - { path: ^/Admin, role: ROLE_ADMIN }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/client/, role: ROLE_USER }
+        - { path: ^/vendeur/, role: ROLE_VENDEUR }
+        - { path: ^/evenements/, role: ROLE_VENDEUR }
+#        - { path: ^/evenements/{idevenement}/show, role: ROLE_VENDEUR }
+#        - { path: ^/evenements/add, role: ROLE_VENDEUR }
+#        - { path: ^/evenements/{idevenement}/delete, role: ROLE_VENDEUR }
+#        - { path: ^/evenements/{idevenement}/update, role: ROLE_VENDEUR }
+

@@ -4,11 +4,10 @@ namespace SoukElMedina\PidevBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * Users
  *
- * @ORM\Table(name="users")
+ * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1483A5E992FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_1483A5E9A0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_1483A5E9C05FB297", columns={"confirmation_token"})})
  * @ORM\Entity
  */
 class Users extends BaseUser
@@ -25,49 +24,49 @@ class Users extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=50, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
+     * @ORM\Column(name="prenom", type="string", length=50, nullable=true)
      */
     private $prenom;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="dateDeNaissance", type="datetime")
+     * @ORM\Column(name="dateDeNaissance", type="datetime", nullable=true)
      */
     private $datedenaissance;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sexe", type="string", length=5, nullable=false)
+     * @ORM\Column(name="sexe", type="string", length=5, nullable=true)
      */
     private $sexe;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=100, nullable=false)
+     * @ORM\Column(name="adresse", type="string", length=100, nullable=true)
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=20, nullable=false)
+     * @ORM\Column(name="ville", type="string", length=20, nullable=true)
      */
     private $ville;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="zip", type="integer", nullable=false)
+     * @ORM\Column(name="zip", type="integer", nullable=true)
      */
     private $zip;
 
@@ -78,24 +77,10 @@ class Users extends BaseUser
      */
     private $numerodutelephone;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="email", type="string", length=100, nullable=false)
-//     */
-//    protected $email;
-//
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="password", type="string", length=200, nullable=false)
-//     */
-//    protected $password;
-//
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=10, nullable=false)
+     * @ORM\Column(name="type", type="string", length=20, nullable=true)
      */
     private $type;
 
@@ -140,6 +125,16 @@ class Users extends BaseUser
      * @ORM\Column(name="ribBancaire", type="string", length=40, nullable=true)
      */
     private $ribbancaire;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nombreDeReclamations", type="smallint", nullable=true)
+     *
+     *
+     */
+    private $nombredereclamations;
+
 
     /**
      * Users constructor.
@@ -198,7 +193,7 @@ class Users extends BaseUser
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDatedenaissance()
     {
@@ -206,7 +201,7 @@ class Users extends BaseUser
     }
 
     /**
-     * @param string $datedenaissance
+     * @param \DateTime $datedenaissance
      */
     public function setDatedenaissance($datedenaissance)
     {
@@ -293,53 +288,6 @@ class Users extends BaseUser
         $this->numerodutelephone = $numerodutelephone;
     }
 
-//    /**
-//     * @return string
-//     */
-//    public function getEmail()
-//    {
-//        return $this->email;
-//    }
-//
-//    /**
-//     * @param string $email
-//     */
-//    public function setEmail($email)
-//    {
-//        $this->email = $email;
-//    }
-//
-//    /**
-//     * @return string
-//     */
-//    public function getPassword()
-//    {
-//        return $this->password;
-//    }
-//
-//    /**
-//     * @param string $password
-//     */
-//    public function setPassword($password)
-//    {
-//        $this->password = $password;
-//    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
 
     /**
      * @return string
@@ -436,6 +384,24 @@ class Users extends BaseUser
     {
         $this->ribbancaire = $ribbancaire;
     }
+
+    /**
+     * @return int
+     */
+    public function getNombredereclamations()
+    {
+        return $this->nombredereclamations;
+    }
+
+    /**
+     * @param int $nombredereclamations
+     */
+    public function setNombredereclamations($nombredereclamations)
+    {
+        $this->nombredereclamations = $nombredereclamations;
+    }
+
+
 
 
 }

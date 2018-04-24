@@ -1,0 +1,74 @@
+{% extends 'baseVendeur.html.twig' %}
+
+{% block title %}Consulter les réclamations | Souk El Medina!{% endblock %}
+
+{% block body %}
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a href="{{ path('souk_el_medina_pidev_homepage') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li class="active">Consultation de réclamations</li>
+            </ol>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <div class="products">
+        <div class="container">
+            <div class="agileinfo_single">
+
+                <div class="col-md-10 agileinfo_single_left">
+                    <h2>Détails de la réclamation n° {{ reclamation.idreclamation }}</h2>
+                    <br/>
+                    <div class="w3agile_description">
+                        <h4>Objet de la réclamation :</h4>
+                        <p>
+                            {{ reclamation.objetreclamation }}.
+                        </p>
+                    </div>
+                    <div class="w3agile_description">
+                        <h4>Nom du client :</h4>
+                        <p>
+                            {{ reclamation.iduser.prenom }} {{ reclamation.iduser.nom }}.
+                        </p>
+                    </div>
+                    <div class="w3agile_description">
+                        <h4>Date d'envoi de la réclamation :</h4>
+                        <p>
+                            {{ reclamation.dateenvoireclamation|date('Y-m-d H:i:s') }}
+                        </p>
+                    </div>
+                    <div class="w3agile_description">
+                        <h4>Contenu :</h4>
+                        <p>
+                            {{ reclamation.contenureclamation }}
+                        </p>
+                    </div>
+                    <div class="w3agile_description">
+                        <a href="{{ path('reponse_reclamation', { 'id': reclamation.idreclamation }) }}"><button style="
+        background-color: #111111; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;"><span>Répondre à la réclamation</span></button></a>
+                        <a href="{{ path('reclamation_delete', { 'id': reclamation.idreclamation }) }}"><button style="
+        background-color: #111111; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;"><span>Supprimer la réclamation</span></button></a>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+           </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+

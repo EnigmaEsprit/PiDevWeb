@@ -1,0 +1,12 @@
+[submodule "vendor/bundles/CL/Bundle/ArchiverBundle"]
+	path = vendor/bundles/CL/Bundle/ArchiverBundle
+	url = https://github.com/cleentfaar/CLArchiverBundle.git
+[submodule "vendor/friendsofsymfony/comment-bundle"]
+	path = vendor/friendsofsymfony/comment-bundle
+	url = https://github.com/FriendsOfSymfony/FOSCommentBundle.git
+[submodule "vendor/knplabs/knp-paginator-bundle"]
+	path = vendor/knplabs/knp-paginator-bundle
+	url = https://github.com/KnpLabs/KnpPaginatorBundle.git
+[submodule "vendor/knplabs/knp-components"]
+	path = vendor/knplabs/knp-components
+	url = https://github.com/KnpLabs/KnpPaginatorBundle.git

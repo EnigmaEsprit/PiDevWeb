@@ -50,16 +50,6 @@ class Promotions
     private $datefin;
 
     /**
-     * @var \Users
-     *
-     * @ORM\ManyToOne(targetEntity="Users")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
-     * })
-     */
-    private $iduser;
-
-    /**
      * @var \Produits
      *
      * @ORM\ManyToOne(targetEntity="Produits")
@@ -68,6 +58,16 @@ class Promotions
      * })
      */
     private $idproduit;
+
+    /**
+     * @var \Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * })
+     */
+    private $iduser;
 
 
 }

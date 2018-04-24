@@ -1,0 +1,24 @@
+promotions_index:
+    path:     /
+    defaults: { _controller: "SoukElMedinaPromotionBundle:Default:index" }
+    methods:  GET
+
+promotions_show:
+    path:     /{idpromotion}/show
+    defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:show" }
+    methods:  GET
+
+promotions_new:
+    path:     /new
+    defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:new" }
+    methods:  [GET, POST]
+
+promotions_edit:
+    path:     /{idpromotion}/edit
+    defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:edit" }
+    methods:  [GET, POST]
+
+promotions_delete:
+    path:     /{idpromotion}/delete
+    defaults: { _controller: "SoukElMedinaPromotionBundle:Promotions:delete" }
+    methods:  DELETE
