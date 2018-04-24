@@ -15,9 +15,9 @@ class ReclamationsRepository extends EntityRepository
 {
     public function findReclamations($idMagasin) {
         $query = $this -> getEntityManager()
-            -> createQuery("select v from SoukElMedinaPidevBundle:Reclamations v WHERE v.idmagasin = :serie and 
+            -> createQuery("select v from SoukElMedinaPidevBundle:Reclamations v WHERE v.idmagasin = :idmagasin and 
               v.statusreclamation = 1 and v.datereponsereclamation is null ORDER by v.dateenvoireclamation desc ")
-            -> setParameter('serie', $idMagasin);
+            -> setParameter('idmagasin', $idMagasin);
         return $query -> getResult();
     }
 
