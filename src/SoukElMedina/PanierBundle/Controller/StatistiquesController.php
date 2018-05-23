@@ -57,7 +57,7 @@ class StatistiquesController extends Controller
 
 
         $datetime = date("d/m/Y");
-       echo $datetime;
+      // echo $datetime;
 
 
 
@@ -95,7 +95,7 @@ class StatistiquesController extends Controller
 
 
 
-var_dump($lignecommandedatevente);
+//var_dump($lignecommandedatevente);
 
 
 

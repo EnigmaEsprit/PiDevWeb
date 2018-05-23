@@ -1,3 +1,3 @@
-#souk_el_medina_produit_homepage:
-#    path:     /
-#    defaults: { _controller: SoukElMedinaProduitBundle:Default:index }
+souk_el_medina_produit_homepage:
+    path:     /produit/all
+    defaults: { _controller: SoukElMedinaProduitBundle:Default:index }

@@ -39,6 +39,20 @@ class panierRepository extends \Doctrine\ORM\EntityRepository
 
         return $em->getResult();
     }
+    public function rechercher($nom){
+        $em = $this->getEntityManager()
+            ->createQuery("SELECT c 
+                                  from SoukElMedinaPidevBundle:Commandes c 
+                                  INNER JOIN SoukElMedinaPidevBundle:Users u
+                                  WITH c.iduser =u.id 
+                                  WHERE u.nom like :d ")
+        ->setParameter('d','%'.$nom.'%');
+
+
+
+
+        return $em->getResult();
+    }
     public function GetStatistiqueDateVenteProduit($datevente)
     {
         $query=$this->getEntityManager()

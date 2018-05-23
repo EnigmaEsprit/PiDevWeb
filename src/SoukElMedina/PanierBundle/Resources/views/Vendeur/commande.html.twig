@@ -19,7 +19,16 @@
         <div class="container">
 
             <h2>My Commands: <span>{{ totalcommandes|length }} Commands</span></h2>
+
+            <div class="">
+            <form action="#" method="post">
+                <input type="search" name="nom" id="nom"  placeholder="rechercher">
+                <input type="submit" value="valider">
+            </form>
+            </div>
+
             <div class="clearfix"></div>
+            <div id="result"></div>
             <div class="checkout-right">
 
                 <table class="timetable_sub">
@@ -54,13 +63,51 @@
                     {% endfor %}
 
 
+
+
                     <div class="navigation">
                         {{ knp_pagination_render(commandes) }}
                     </div>
 
                 </table>
             </div>
+            <script>
+                $("#nom").keyup(
+                    function () {
+                        var nom = $('#nom').val();
+                        var DATA = 'nom='+nom;
+                        $.ajax({
+                            type:"post",
+                            url:"{{ path('souk_el_medina_panier_commande_vendeur') }}",
+                            data :DATA,
+                            success: function (data) {
+                                console.log('data**  '+ JSON.stringify(data));
 
+
+                                $("#result").html("<table  id='res' class='timetable_sub'> <tr><th>Reference</th><th>Date</th><th>Client</th><th>Action</th></tr></table>");
+
+                                $.each(data,function (k,el) {
+
+
+                                    console.log(el);
+                                    $(".checkout-right").hide();
+
+                                   // var route = Routing.generate('souk_el_medina_panier_pdf_facture_vendeur',{'id':el.idcommande});
+                                    $('#res').append(
+                                        "<tr>" +
+                                        "<td>" + "Ref: "+el.reference + "</td>" +
+                                        "<td>" + el.datedecommande + "</td>" +
+                                        "<td>" + el.iduser.nom + "</td>" +
+                                        "<td>" + + "</td>" +
+                                        "</tr>");
+                                });
+
+                            }
+                        });
+                    });
+
+
+            </script>
 
             <div class="checkout-right-basket">
                 <a href="{{ path('souk_el_medina_panier_homepage') }}"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Retour</a>
